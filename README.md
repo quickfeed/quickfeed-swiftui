@@ -1,2 +1,2 @@
 # quickfeed-swiftui
-[![Swift](https://github.com/BjorniTe1/quickfeed-swiftui/workflows/Swift/badge.svg)](https://github.com/BjorniTe1/quickfeed-swiftui/actions)
+[![Swift Build](https://github.com/BjorniTe1/quickfeed-swiftui/workflows/Swift/badge.svg)](https://github.com/BjorniTe1/quickfeed-swiftui/actions)
