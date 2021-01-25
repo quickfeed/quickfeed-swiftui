@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D0F9FC6325BEB9A90080A1F2 /* GRPC in Frameworks */ = {isa = PBXBuildFile; productRef = D0F9FC6225BEB9A90080A1F2 /* GRPC */; };
+		D0F9FC6525BEB9A90080A1F2 /* CGRPCZlib in Frameworks */ = {isa = PBXBuildFile; productRef = D0F9FC6425BEB9A90080A1F2 /* CGRPCZlib */; };
 		FA85790925BEB4E900223DB9 /* QuickfeedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA85790825BEB4E900223DB9 /* QuickfeedApp.swift */; };
 		FA85790B25BEB4E900223DB9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA85790A25BEB4E900223DB9 /* ContentView.swift */; };
 		FA85790D25BEB4EA00223DB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA85790C25BEB4EA00223DB9 /* Assets.xcassets */; };
@@ -65,6 +67,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0F9FC6325BEB9A90080A1F2 /* GRPC in Frameworks */,
+				D0F9FC6525BEB9A90080A1F2 /* CGRPCZlib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +175,10 @@
 			dependencies = (
 			);
 			name = Quickfeed;
+			packageProductDependencies = (
+				D0F9FC6225BEB9A90080A1F2 /* GRPC */,
+				D0F9FC6425BEB9A90080A1F2 /* CGRPCZlib */,
+			);
 			productName = Quickfeed;
 			productReference = FA85790525BEB4E900223DB9 /* Quickfeed.app */;
 			productType = "com.apple.product-type.application";
@@ -242,6 +250,9 @@
 				Base,
 			);
 			mainGroup = FA8578FC25BEB4E900223DB9;
+			packageReferences = (
+				D0F9FC6125BEB9A90080A1F2 /* XCRemoteSwiftPackageReference "grpc-swift" */,
+			);
 			productRefGroup = FA85790625BEB4E900223DB9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -609,6 +620,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D0F9FC6125BEB9A90080A1F2 /* XCRemoteSwiftPackageReference "grpc-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/grpc/grpc-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = "1.0.0-alpha.23";
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D0F9FC6225BEB9A90080A1F2 /* GRPC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0F9FC6125BEB9A90080A1F2 /* XCRemoteSwiftPackageReference "grpc-swift" */;
+			productName = GRPC;
+		};
+		D0F9FC6425BEB9A90080A1F2 /* CGRPCZlib */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0F9FC6125BEB9A90080A1F2 /* XCRemoteSwiftPackageReference "grpc-swift" */;
+			productName = CGRPCZlib;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FA8578FD25BEB4E900223DB9 /* Project object */;
 }
