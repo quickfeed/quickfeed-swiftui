@@ -26,6 +26,12 @@
 		FA85796D25BEBA3500223DB9 /* StudentTestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA85796C25BEBA3500223DB9 /* StudentTestResult.swift */; };
 		FA85796E25BEBA3500223DB9 /* StudentTestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA85796C25BEBA3500223DB9 /* StudentTestResult.swift */; };
 		FA85796F25BEBA3500223DB9 /* StudentTestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA85796C25BEBA3500223DB9 /* StudentTestResult.swift */; };
+		FA85798225BEC4FB00223DB9 /* LabMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA85798125BEC4FB00223DB9 /* LabMenuView.swift */; };
+		FA85798325BEC4FB00223DB9 /* LabMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA85798125BEC4FB00223DB9 /* LabMenuView.swift */; };
+		FA85798425BEC4FB00223DB9 /* LabMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA85798125BEC4FB00223DB9 /* LabMenuView.swift */; };
+		FA85799525BECFDA00223DB9 /* StudentNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA85799425BECFDA00223DB9 /* StudentNavigatorView.swift */; };
+		FA85799625BECFDA00223DB9 /* StudentNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA85799425BECFDA00223DB9 /* StudentNavigatorView.swift */; };
+		FA85799725BECFDA00223DB9 /* StudentNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA85799425BECFDA00223DB9 /* StudentNavigatorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +70,8 @@
 		FA85795B25BEB9DA00223DB9 /* StudentCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentCourse.swift; sourceTree = "<group>"; };
 		FA85796525BEB9F400223DB9 /* StudentLab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLab.swift; sourceTree = "<group>"; };
 		FA85796C25BEBA3500223DB9 /* StudentTestResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentTestResult.swift; sourceTree = "<group>"; };
+		FA85798125BEC4FB00223DB9 /* LabMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabMenuView.swift; sourceTree = "<group>"; };
+		FA85799425BECFDA00223DB9 /* StudentNavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentNavigatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +133,7 @@
 		FA85790725BEB4E900223DB9 /* Quickfeed */ = {
 			isa = PBXGroup;
 			children = (
+				FA85798025BEC4B000223DB9 /* Views */,
 				FA85795A25BEB9AC00223DB9 /* Models */,
 				D0F9FC6C25BEBBDB0080A1F2 /* GRPC */,
 				FA85790825BEB4E900223DB9 /* QuickfeedApp.swift */,
@@ -171,6 +180,31 @@
 				FA85796C25BEBA3500223DB9 /* StudentTestResult.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		FA85798025BEC4B000223DB9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FA85798B25BEC59300223DB9 /* Quickfeed */,
+				FA85798C25BEC5B600223DB9 /* Helpers */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FA85798B25BEC59300223DB9 /* Quickfeed */ = {
+			isa = PBXGroup;
+			children = (
+				FA85799425BECFDA00223DB9 /* StudentNavigatorView.swift */,
+			);
+			path = Quickfeed;
+			sourceTree = "<group>";
+		};
+		FA85798C25BEC5B600223DB9 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				FA85798125BEC4FB00223DB9 /* LabMenuView.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,9 +343,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA85799525BECFDA00223DB9 /* StudentNavigatorView.swift in Sources */,
 				FA85795C25BEB9DA00223DB9 /* StudentCourse.swift in Sources */,
 				FA85796D25BEBA3500223DB9 /* StudentTestResult.swift in Sources */,
 				FA85796625BEB9F400223DB9 /* StudentLab.swift in Sources */,
+				FA85798225BEC4FB00223DB9 /* LabMenuView.swift in Sources */,
 				D0F9FC6F25BEBC360080A1F2 /* ag.pb.swift in Sources */,
 				FA85790B25BEB4E900223DB9 /* ContentView.swift in Sources */,
 				D0F9FC7025BEBC360080A1F2 /* ag.grpc.swift in Sources */,
@@ -323,6 +359,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA85799625BECFDA00223DB9 /* StudentNavigatorView.swift in Sources */,
+				FA85798325BEC4FB00223DB9 /* LabMenuView.swift in Sources */,
 				FA85796E25BEBA3500223DB9 /* StudentTestResult.swift in Sources */,
 				FA85795D25BEB9DA00223DB9 /* StudentCourse.swift in Sources */,
 				FA85796725BEB9F400223DB9 /* StudentLab.swift in Sources */,
@@ -334,6 +372,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA85799725BECFDA00223DB9 /* StudentNavigatorView.swift in Sources */,
+				FA85798425BEC4FB00223DB9 /* LabMenuView.swift in Sources */,
 				FA85796F25BEBA3500223DB9 /* StudentTestResult.swift in Sources */,
 				FA85795E25BEB9DA00223DB9 /* StudentCourse.swift in Sources */,
 				FA85796825BEB9F400223DB9 /* StudentLab.swift in Sources */,

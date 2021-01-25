@@ -1,7 +1,4 @@
 import Foundation
-import SwiftUI
-
-
 
 struct StudentLab: Identifiable, Codable {
     let id: UUID
@@ -42,7 +39,8 @@ struct StudentLab: Identifiable, Codable {
 extension StudentLab {
     static var data: [StudentLab]{
         [
-            StudentLab(labTitle: "lab1", delivered: "fre. 4. sep., 18:27", deadline: "søn. 30. aug., 23:59", status: "Approved", testResults: StudentTestResult.data)
+            StudentLab(labTitle: "lab1", delivered: "fre. 4. sep., 18:27", deadline: "søn. 30. aug., 23:59", status: "Approved", testResults: StudentTestResult.data),
+            StudentLab(labTitle: "lab2", delivered: "fre. 4. sep., 18:27", deadline: "søn. 30. aug., 23:59", status: "Approved", testResults: StudentTestResult.data)
         ]
     }
 }

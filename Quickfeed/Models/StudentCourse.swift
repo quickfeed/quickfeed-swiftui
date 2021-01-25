@@ -1,6 +1,5 @@
 import Foundation
 
-
 struct StudentCourse: Identifiable {
     let id: UUID
     var courseCode: String
