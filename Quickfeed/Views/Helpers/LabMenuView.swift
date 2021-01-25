@@ -5,9 +5,24 @@ import SwiftUI
 struct LabMenuView: View {
     var labs: [StudentLab]
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
+            Text("Labs")
+                .padding(.leading)
+                .font(.title2)
+                .foregroundColor(.gray)
+            
             ForEach(labs){ lab in
-                Text(lab.labTitle)
+                HStack{
+                    Text(lab.labTitle)
+                        .font(.title2)
+                    Spacer()
+                    Image(systemName: "person.3.fill")
+                }
+                .padding()
+                
+
+                
+                
             }
             
         }
