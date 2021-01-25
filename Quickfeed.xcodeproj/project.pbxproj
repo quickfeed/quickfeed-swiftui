@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		D0F9FC6325BEB9A90080A1F2 /* GRPC in Frameworks */ = {isa = PBXBuildFile; productRef = D0F9FC6225BEB9A90080A1F2 /* GRPC */; };
 		D0F9FC6525BEB9A90080A1F2 /* CGRPCZlib in Frameworks */ = {isa = PBXBuildFile; productRef = D0F9FC6425BEB9A90080A1F2 /* CGRPCZlib */; };
+		D0F9FC6F25BEBC360080A1F2 /* ag.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9FC6D25BEBC360080A1F2 /* ag.pb.swift */; };
+		D0F9FC7025BEBC360080A1F2 /* ag.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9FC6E25BEBC360080A1F2 /* ag.grpc.swift */; };
 		FA85790925BEB4E900223DB9 /* QuickfeedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA85790825BEB4E900223DB9 /* QuickfeedApp.swift */; };
 		FA85790B25BEB4E900223DB9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA85790A25BEB4E900223DB9 /* ContentView.swift */; };
 		FA85790D25BEB4EA00223DB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA85790C25BEB4EA00223DB9 /* Assets.xcassets */; };
@@ -35,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D0F9FC6D25BEBC360080A1F2 /* ag.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ag.pb.swift; sourceTree = "<group>"; };
+		D0F9FC6E25BEBC360080A1F2 /* ag.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ag.grpc.swift; sourceTree = "<group>"; };
 		FA85790525BEB4E900223DB9 /* Quickfeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quickfeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA85790825BEB4E900223DB9 /* QuickfeedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickfeedApp.swift; sourceTree = "<group>"; };
 		FA85790A25BEB4E900223DB9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -77,6 +81,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D0F9FC6C25BEBBDB0080A1F2 /* GRPC */ = {
+			isa = PBXGroup;
+			children = (
+				D0F9FC6E25BEBC360080A1F2 /* ag.grpc.swift */,
+				D0F9FC6D25BEBC360080A1F2 /* ag.pb.swift */,
+			);
+			path = GRPC;
+			sourceTree = "<group>";
+		};
 		FA8578FC25BEB4E900223DB9 = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +113,7 @@
 		FA85790725BEB4E900223DB9 /* Quickfeed */ = {
 			isa = PBXGroup;
 			children = (
+				D0F9FC6C25BEBBDB0080A1F2 /* GRPC */,
 				FA85790825BEB4E900223DB9 /* QuickfeedApp.swift */,
 				FA85790A25BEB4E900223DB9 /* ContentView.swift */,
 				FA85790C25BEB4EA00223DB9 /* Assets.xcassets */,
@@ -272,7 +286,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0F9FC6F25BEBC360080A1F2 /* ag.pb.swift in Sources */,
 				FA85790B25BEB4E900223DB9 /* ContentView.swift in Sources */,
+				D0F9FC7025BEBC360080A1F2 /* ag.grpc.swift in Sources */,
 				FA85790925BEB4E900223DB9 /* QuickfeedApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
