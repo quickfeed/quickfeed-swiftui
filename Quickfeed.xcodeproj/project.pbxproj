@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D029D7B925BF089B00047837 /* GRPCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D029D7B825BF089B00047837 /* GRPCManager.swift */; };
 		D0F9FC6325BEB9A90080A1F2 /* GRPC in Frameworks */ = {isa = PBXBuildFile; productRef = D0F9FC6225BEB9A90080A1F2 /* GRPC */; };
 		D0F9FC6525BEB9A90080A1F2 /* CGRPCZlib in Frameworks */ = {isa = PBXBuildFile; productRef = D0F9FC6425BEB9A90080A1F2 /* CGRPCZlib */; };
 		D0F9FC6F25BEBC360080A1F2 /* ag.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9FC6D25BEBC360080A1F2 /* ag.pb.swift */; };
@@ -52,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D029D7B825BF089B00047837 /* GRPCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRPCManager.swift; sourceTree = "<group>"; };
 		D0F9FC6D25BEBC360080A1F2 /* ag.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ag.pb.swift; sourceTree = "<group>"; };
 		D0F9FC6E25BEBC360080A1F2 /* ag.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ag.grpc.swift; sourceTree = "<group>"; };
 		FA85790525BEB4E900223DB9 /* Quickfeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quickfeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,6 +103,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D029D7B725BF088C00047837 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				D029D7B825BF089B00047837 /* GRPCManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		D0F9FC6C25BEBBDB0080A1F2 /* GRPC */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +143,7 @@
 		FA85790725BEB4E900223DB9 /* Quickfeed */ = {
 			isa = PBXGroup;
 			children = (
+				D029D7B725BF088C00047837 /* Managers */,
 				FA85798025BEC4B000223DB9 /* Views */,
 				FA85795A25BEB9AC00223DB9 /* Models */,
 				D0F9FC6C25BEBBDB0080A1F2 /* GRPC */,
@@ -350,6 +361,7 @@
 				FA85798225BEC4FB00223DB9 /* LabMenuView.swift in Sources */,
 				D0F9FC6F25BEBC360080A1F2 /* ag.pb.swift in Sources */,
 				FA85790B25BEB4E900223DB9 /* ContentView.swift in Sources */,
+				D029D7B925BF089B00047837 /* GRPCManager.swift in Sources */,
 				D0F9FC7025BEBC360080A1F2 /* ag.grpc.swift in Sources */,
 				FA85790925BEB4E900223DB9 /* QuickfeedApp.swift in Sources */,
 			);
