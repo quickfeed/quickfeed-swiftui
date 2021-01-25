@@ -137,7 +137,6 @@
 				FA85795A25BEB9AC00223DB9 /* Models */,
 				D0F9FC6C25BEBBDB0080A1F2 /* GRPC */,
 				FA85790825BEB4E900223DB9 /* QuickfeedApp.swift */,
-				FA85790A25BEB4E900223DB9 /* ContentView.swift */,
 				FA85790C25BEB4EA00223DB9 /* Assets.xcassets */,
 				FA85791125BEB4EA00223DB9 /* Info.plist */,
 				FA85791225BEB4EA00223DB9 /* Quickfeed.entitlements */,
@@ -185,6 +184,7 @@
 		FA85798025BEC4B000223DB9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FA85790A25BEB4E900223DB9 /* ContentView.swift */,
 				FA85798B25BEC59300223DB9 /* Quickfeed */,
 				FA85798C25BEC5B600223DB9 /* Helpers */,
 			);
