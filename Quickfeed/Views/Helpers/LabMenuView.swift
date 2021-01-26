@@ -3,7 +3,8 @@
 import SwiftUI
 
 struct LabMenuView: View {
-    var labs: [StudentLab]
+    
+    var labs: [AssignmentModel]
     var body: some View {
         VStack(alignment: .leading) {
             Text("Labs")
@@ -11,9 +12,9 @@ struct LabMenuView: View {
                 .font(.title2)
                 .foregroundColor(.gray)
             
-            ForEach(labs){ lab in
+            ForEach(labs, id: \.id){ lab in
                 HStack{
-                    Text(lab.labTitle)
+                    Text(lab.name)
                         .font(.title2)
                     Spacer()
                     Image(systemName: "person.3.fill")
@@ -30,8 +31,8 @@ struct LabMenuView: View {
 }
 
 struct LabMenuView_Previews: PreviewProvider {
-    static var course: StudentCourse = StudentCourse.data[0]
+    static var labs: [AssignmentModel] = AssignmentModel.data
     static var previews: some View {
-        LabMenuView(labs: course.labs)
+        LabMenuView(labs: labs)
     }
 }
