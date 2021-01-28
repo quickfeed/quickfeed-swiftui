@@ -37,7 +37,8 @@ extension AllSubmissionsForEnrollment{
 extension AssignmentModel{
     static var data: [AssignmentModel]{
         [
-            AssignmentModel(id: 1, courseId: 1, name: "lab1", deadLine: "23/09", autoApprove: true, scoreLimit: 80)
+            AssignmentModel(id: 1, courseId: 1, name: "lab1", deadLine: "23/09", autoApprove: true, scoreLimit: 80, isGroupLab: true),
+            AssignmentModel(id: 2, courseId: 1, name: "lab2", deadLine: "23/10", autoApprove: true, scoreLimit: 80, isGroupLab: false)
         ]
     }
 }
