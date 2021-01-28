@@ -30,6 +30,7 @@ struct AssignmentModel{
     var deadLine: String
     var autoApprove: Bool
     var scoreLimit: Int
+    var isGroupLab: Bool
     
 }
 
