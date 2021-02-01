@@ -17,15 +17,13 @@ struct LabMenuView: View {
                     Text(lab.name)
                         .font(.title2)
                     Spacer()
-                    Image(systemName: "person.3.fill")
+                    if lab.isGroupLab {
+                        Image(systemName: "person.3.fill")
+                    }
                 }
                 .padding()
-                
-
-                
-                
+                .frame(minWidth: 200, idealWidth: 300, maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             }
-            
         }
     }
 }

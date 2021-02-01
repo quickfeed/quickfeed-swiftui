@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		D01B3CD225C2D76900B126FB /* GRPCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B3CD125C2D76900B126FB /* GRPCManager.swift */; };
+		D01B3D0025C2DFC500B126FB /* StudentLabOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B3CFF25C2DFC500B126FB /* StudentLabOverview.swift */; };
+		D01B3D0525C2F43200B126FB /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B3D0425C2F43200B126FB /* test.swift */; };
+		D0A71EA225C7E9B100440B02 /* testStudentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A71EA125C7E9B100440B02 /* testStudentView.swift */; };
 		D0F9FC6325BEB9A90080A1F2 /* GRPC in Frameworks */ = {isa = PBXBuildFile; productRef = D0F9FC6225BEB9A90080A1F2 /* GRPC */; };
 		D0F9FC6525BEB9A90080A1F2 /* CGRPCZlib in Frameworks */ = {isa = PBXBuildFile; productRef = D0F9FC6425BEB9A90080A1F2 /* CGRPCZlib */; };
 		D0F9FC6F25BEBC360080A1F2 /* ag.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9FC6D25BEBC360080A1F2 /* ag.pb.swift */; };
@@ -52,7 +55,10 @@
 
 /* Begin PBXFileReference section */
 		D01B3CD125C2D76900B126FB /* GRPCManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRPCManager.swift; sourceTree = "<group>"; };
+		D01B3CFF25C2DFC500B126FB /* StudentLabOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLabOverview.swift; sourceTree = "<group>"; };
+		D01B3D0425C2F43200B126FB /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		D029D7B825BF089B00047837 /* GRPCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRPCManager.swift; sourceTree = "<group>"; };
+		D0A71EA125C7E9B100440B02 /* testStudentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testStudentView.swift; sourceTree = "<group>"; };
 		D0F9FC6D25BEBC360080A1F2 /* ag.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ag.pb.swift; sourceTree = "<group>"; };
 		D0F9FC6E25BEBC360080A1F2 /* ag.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ag.grpc.swift; sourceTree = "<group>"; };
 		FA4D0BD225BEFD75006412B0 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
@@ -205,6 +211,9 @@
 			isa = PBXGroup;
 			children = (
 				FA85799425BECFDA00223DB9 /* StudentNavigatorView.swift */,
+				D01B3CFF25C2DFC500B126FB /* StudentLabOverview.swift */,
+				D01B3D0425C2F43200B126FB /* test.swift */,
+				D0A71EA125C7E9B100440B02 /* testStudentView.swift */,
 			);
 			path = Quickfeed;
 			sourceTree = "<group>";
@@ -363,14 +372,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAC5365125C0347300784980 /* UserManager.swift in Sources */,
+				D01B3D0525C2F43200B126FB /* test.swift in Sources */,
 				FA85799525BECFDA00223DB9 /* StudentNavigatorView.swift in Sources */,
 				FAC5364925C0264500784980 /* ModelTestData.swift in Sources */,
 				FA85798225BEC4FB00223DB9 /* LabMenuView.swift in Sources */,
 				D0F9FC6F25BEBC360080A1F2 /* ag.pb.swift in Sources */,
 				FA85790B25BEB4E900223DB9 /* ContentView.swift in Sources */,
+				D01B3D0025C2DFC500B126FB /* StudentLabOverview.swift in Sources */,
 				D0F9FC7025BEBC360080A1F2 /* ag.grpc.swift in Sources */,
 				D01B3CD225C2D76900B126FB /* GRPCManager.swift in Sources */,
 				FA4D0BD325BEFD75006412B0 /* Models.swift in Sources */,
+				D0A71EA225C7E9B100440B02 /* testStudentView.swift in Sources */,
 				FA85790925BEB4E900223DB9 /* QuickfeedApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
