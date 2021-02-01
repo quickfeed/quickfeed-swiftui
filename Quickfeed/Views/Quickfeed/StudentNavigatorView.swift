@@ -18,17 +18,13 @@ struct StudentNavigatorView: View {
             Picker(selection: $selectedCourse, label: Text("Current course")) {
                 ForEach(0 ..< courses.count){
                     Text(courses[$0].code)
-                        
-                    
                 }
-                
             }
             .pickerStyle(MenuPickerStyle())
             .labelsHidden()
-            .padding(.bottom, 5)
-            
-            LabMenuView(labs: AssignmentModel.data)
+            .padding()
                 
+            LabMenuView(labs: AssignmentModel.data)
         }
     }
 }
