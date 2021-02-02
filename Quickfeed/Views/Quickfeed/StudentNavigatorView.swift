@@ -10,21 +10,28 @@ import SwiftUI
 struct StudentNavigatorView: View {
     var student: UserModel
     var courses: [CourseModel]
-    @State private var selectedCourse = 0
-    
+    @State private var selectedCourse = 1
+
     var body: some View {
-        VStack(alignment: .leading){
-           
-            Picker(selection: $selectedCourse, label: Text("Current course")) {
-                ForEach(0 ..< courses.count){
-                    Text(courses[$0].code)
+        NavigationView{
+            List{
+                Text("Course")
+                Picker(selection: $selectedCourse, label: Text("Current course")) {
+                    ForEach(courses, id: \.id){ course in
+                        NavigationLink(destination: Text(course.code)){
+                            Text(course.code)
+                        }
+                    }
                 }
-            }
-            .pickerStyle(MenuPickerStyle())
-            .labelsHidden()
-            .padding()
+                .padding(.leading)
+                .pickerStyle(MenuPickerStyle())
+                .labelsHidden()
                 
-            LabMenuView(labs: AssignmentModel.data)
+                Text("Labs")
+                StudentLabMenu(selectedCourse: selectedCourse, labs: AssignmentModel.data)
+                    .padding(.leading)
+            }
+            .frame(minWidth: 170)
         }
     }
 }

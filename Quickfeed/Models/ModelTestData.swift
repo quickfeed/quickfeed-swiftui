@@ -41,9 +41,6 @@ extension AssignmentModel{
             AssignmentModel(id: 1, courseId: 1, name: "lab1", deadLine: "23/09", autoApprove: true, scoreLimit: 80, isGroupLab: true),
             AssignmentModel(id: 2, courseId: 1, name: "lab2", deadLine: "23/10", autoApprove: true, scoreLimit: 80, isGroupLab: false),
             AssignmentModel(id: 3, courseId: 1, name: "lab3", deadLine: "23/09", autoApprove: true, scoreLimit: 80, isGroupLab: true),
-            AssignmentModel(id: 4, courseId: 1, name: "lab4", deadLine: "23/10", autoApprove: true, scoreLimit: 80, isGroupLab: false),
-            AssignmentModel(id: 5, courseId: 1, name: "lab5", deadLine: "23/09", autoApprove: true, scoreLimit: 80, isGroupLab: true),
-            AssignmentModel(id: 6, courseId: 1, name: "lab6", deadLine: "23/10", autoApprove: true, scoreLimit: 80, isGroupLab: false)
         ]
     }
 }
