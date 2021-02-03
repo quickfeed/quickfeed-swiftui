@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D01B3CD225C2D76900B126FB /* GRPCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B3CD125C2D76900B126FB /* GRPCManager.swift */; };
+		D057492F25CAA69A007EFFE0 /* GitHubManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057492E25CAA69A007EFFE0 /* GitHubManager.swift */; };
 		D0765D9E25CA08710012D8E8 /* StudentLabOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0765D9D25CA08710012D8E8 /* StudentLabOverview.swift */; };
 		D099DEB625C94F8F009F46AA /* StudentLabMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D099DEB525C94F8E009F46AA /* StudentLabMenu.swift */; };
 		D099DECB25C94FF0009F46AA /* StudentAssignmentLabInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D099DECA25C94FF0009F46AA /* StudentAssignmentLabInfo.swift */; };
@@ -52,6 +53,7 @@
 /* Begin PBXFileReference section */
 		D01B3CD125C2D76900B126FB /* GRPCManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRPCManager.swift; sourceTree = "<group>"; };
 		D029D7B825BF089B00047837 /* GRPCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRPCManager.swift; sourceTree = "<group>"; };
+		D057492E25CAA69A007EFFE0 /* GitHubManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubManager.swift; sourceTree = "<group>"; };
 		D0765D9D25CA08710012D8E8 /* StudentLabOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLabOverview.swift; sourceTree = "<group>"; };
 		D099DEB525C94F8E009F46AA /* StudentLabMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLabMenu.swift; sourceTree = "<group>"; };
 		D099DECA25C94FF0009F46AA /* StudentAssignmentLabInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentAssignmentLabInfo.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 			children = (
 				D01B3CD125C2D76900B126FB /* GRPCManager.swift */,
 				FAC5365025C0347300784980 /* UserManager.swift */,
+				D057492E25CAA69A007EFFE0 /* GitHubManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				D0A6FCB925CA0A8A008C546B /* StudentNavigatorView.swift in Sources */,
 				D0F9FC6F25BEBC360080A1F2 /* ag.pb.swift in Sources */,
 				FA85790B25BEB4E900223DB9 /* ContentView.swift in Sources */,
+				D057492F25CAA69A007EFFE0 /* GitHubManager.swift in Sources */,
 				D0F9FC7025BEBC360080A1F2 /* ag.grpc.swift in Sources */,
 				D099DED025C94FF6009F46AA /* StudentAssignmentTests.swift in Sources */,
 				D01B3CD225C2D76900B126FB /* GRPCManager.swift in Sources */,

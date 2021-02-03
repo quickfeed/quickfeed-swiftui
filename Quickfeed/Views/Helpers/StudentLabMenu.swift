@@ -30,6 +30,6 @@ struct StudentLabMenu_Previews: PreviewProvider {
     static var labs: [AssignmentModel] = AssignmentModel.data
     
     static var previews: some View {
-        StudentLabMenu(selectedCourse: 0, labs: labs)
+        StudentLabMenu(selectedCourse: 1, labs: labs)
     }
 }
