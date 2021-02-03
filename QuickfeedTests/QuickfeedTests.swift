@@ -39,7 +39,7 @@ class QuickfeedTests: XCTestCase {
         let course = sot.getCourseById(courseId: 111) // DAT310
         let assignments = course?.assignments
         
-        XCTAssertEqual(assignments?.count, 3)
+        XCTAssertEqual(assignments?.count, 4)
     }
     
     func testFakeGetUsersEnrolledInCourse() throws{
