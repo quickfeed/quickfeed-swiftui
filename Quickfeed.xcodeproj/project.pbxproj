@@ -32,21 +32,21 @@
 		FAB0666D25CABF2F00FFE8EB /* ag.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9FC6D25BEBC360080A1F2 /* ag.pb.swift */; };
 		FAB0667325CABF6E00FFE8EB /* CGRPCZlib in Frameworks */ = {isa = PBXBuildFile; productRef = FAB0667225CABF6E00FFE8EB /* CGRPCZlib */; };
 		FAB0667525CABF7200FFE8EB /* GRPC in Frameworks */ = {isa = PBXBuildFile; productRef = FAB0667425CABF7200FFE8EB /* GRPC */; };
-		FAB0668325CAC01400FFE8EB /* SudentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0668225CAC01400FFE8EB /* SudentViewModel.swift */; };
-		FAB0668725CAC01800FFE8EB /* SudentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0668225CAC01400FFE8EB /* SudentViewModel.swift */; };
-		FAB0668B25CAC01900FFE8EB /* SudentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0668225CAC01400FFE8EB /* SudentViewModel.swift */; };
-		FAB0669025CAC03700FFE8EB /* TeacherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0668F25CAC03700FFE8EB /* TeacherViewModel.swift */; };
-		FAB0669125CAC03700FFE8EB /* TeacherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0668F25CAC03700FFE8EB /* TeacherViewModel.swift */; };
-		FAB0669225CAC03700FFE8EB /* TeacherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0668F25CAC03700FFE8EB /* TeacherViewModel.swift */; };
-		FAB0669A25CAC04100FFE8EB /* UserViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0669925CAC04100FFE8EB /* UserViewModelProtocol.swift */; };
-		FAB0669B25CAC04100FFE8EB /* UserViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0669925CAC04100FFE8EB /* UserViewModelProtocol.swift */; };
-		FAB0669C25CAC04100FFE8EB /* UserViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0669925CAC04100FFE8EB /* UserViewModelProtocol.swift */; };
 		FAB066A625CAC0D300FFE8EB /* FakeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB066A525CAC0D300FFE8EB /* FakeProvider.swift */; };
 		FAB066A725CAC0D300FFE8EB /* FakeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB066A525CAC0D300FFE8EB /* FakeProvider.swift */; };
 		FAB066A825CAC0D300FFE8EB /* FakeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB066A525CAC0D300FFE8EB /* FakeProvider.swift */; };
 		FAB066B025CAC0F000FFE8EB /* ProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB066AF25CAC0F000FFE8EB /* ProviderProtocol.swift */; };
 		FAB066B125CAC0F000FFE8EB /* ProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB066AF25CAC0F000FFE8EB /* ProviderProtocol.swift */; };
 		FAB066B225CAC0F000FFE8EB /* ProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB066AF25CAC0F000FFE8EB /* ProviderProtocol.swift */; };
+		FAB066FB25CAC89B00FFE8EB /* StudentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB066FA25CAC89B00FFE8EB /* StudentViewModel.swift */; };
+		FAB066FC25CAC89B00FFE8EB /* StudentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB066FA25CAC89B00FFE8EB /* StudentViewModel.swift */; };
+		FAB066FD25CAC89B00FFE8EB /* StudentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB066FA25CAC89B00FFE8EB /* StudentViewModel.swift */; };
+		FAB0670525CAC8BC00FFE8EB /* TeacherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0670425CAC8BC00FFE8EB /* TeacherViewModel.swift */; };
+		FAB0670625CAC8BC00FFE8EB /* TeacherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0670425CAC8BC00FFE8EB /* TeacherViewModel.swift */; };
+		FAB0670725CAC8BC00FFE8EB /* TeacherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0670425CAC8BC00FFE8EB /* TeacherViewModel.swift */; };
+		FAB0670C25CAC8D600FFE8EB /* UserViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0670B25CAC8D600FFE8EB /* UserViewModelProtocol.swift */; };
+		FAB0670D25CAC8D600FFE8EB /* UserViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0670B25CAC8D600FFE8EB /* UserViewModelProtocol.swift */; };
+		FAB0670E25CAC8D600FFE8EB /* UserViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0670B25CAC8D600FFE8EB /* UserViewModelProtocol.swift */; };
 		FAC5364925C0264500784980 /* ModelTestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5364825C0264500784980 /* ModelTestData.swift */; };
 		FAC5364A25C0264500784980 /* ModelTestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5364825C0264500784980 /* ModelTestData.swift */; };
 		FAC5364B25C0264500784980 /* ModelTestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5364825C0264500784980 /* ModelTestData.swift */; };
@@ -96,11 +96,11 @@
 		FA85792225BEB4EA00223DB9 /* QuickfeedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickfeedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA85792625BEB4EA00223DB9 /* QuickfeedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickfeedUITests.swift; sourceTree = "<group>"; };
 		FA85792825BEB4EA00223DB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FAB0668225CAC01400FFE8EB /* SudentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudentViewModel.swift; sourceTree = "<group>"; };
-		FAB0668F25CAC03700FFE8EB /* TeacherViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeacherViewModel.swift; path = ../../../../Desktop/backup/ViewModels/User/TeacherViewModel.swift; sourceTree = "<group>"; };
-		FAB0669925CAC04100FFE8EB /* UserViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserViewModelProtocol.swift; path = ../../../../Desktop/backup/ViewModels/User/UserViewModelProtocol.swift; sourceTree = "<group>"; };
 		FAB066A525CAC0D300FFE8EB /* FakeProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeProvider.swift; sourceTree = "<group>"; };
 		FAB066AF25CAC0F000FFE8EB /* ProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderProtocol.swift; sourceTree = "<group>"; };
+		FAB066FA25CAC89B00FFE8EB /* StudentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentViewModel.swift; sourceTree = "<group>"; };
+		FAB0670425CAC8BC00FFE8EB /* TeacherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherViewModel.swift; sourceTree = "<group>"; };
+		FAB0670B25CAC8D600FFE8EB /* UserViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModelProtocol.swift; sourceTree = "<group>"; };
 		FAC5364825C0264500784980 /* ModelTestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTestData.swift; sourceTree = "<group>"; };
 		FAC5365025C0347300784980 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -176,8 +176,8 @@
 		FA85790725BEB4E900223DB9 /* Quickfeed */ = {
 			isa = PBXGroup;
 			children = (
+				FAB066F825CAC84200FFE8EB /* ViewModels */,
 				FAB066A425CAC09F00FFE8EB /* Providers */,
-				FAB0668025CABFE900FFE8EB /* ViewModels */,
 				FAC5364F25C0321600784980 /* Managers */,
 				FA85798025BEC4B000223DB9 /* Views */,
 				FA85795A25BEB9AC00223DB9 /* Models */,
@@ -262,25 +262,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		FAB0668025CABFE900FFE8EB /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				FAB0668125CABFF300FFE8EB /* Users */,
-			);
-			name = ViewModels;
-			path = ../ViewModels;
-			sourceTree = "<group>";
-		};
-		FAB0668125CABFF300FFE8EB /* Users */ = {
-			isa = PBXGroup;
-			children = (
-				FAB0668225CAC01400FFE8EB /* SudentViewModel.swift */,
-				FAB0668F25CAC03700FFE8EB /* TeacherViewModel.swift */,
-				FAB0669925CAC04100FFE8EB /* UserViewModelProtocol.swift */,
-			);
-			path = Users;
-			sourceTree = "<group>";
-		};
 		FAB066A425CAC09F00FFE8EB /* Providers */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,6 +269,24 @@
 				FAB066AF25CAC0F000FFE8EB /* ProviderProtocol.swift */,
 			);
 			path = Providers;
+			sourceTree = "<group>";
+		};
+		FAB066F825CAC84200FFE8EB /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				FAB066F925CAC85500FFE8EB /* Users */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		FAB066F925CAC85500FFE8EB /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				FAB066FA25CAC89B00FFE8EB /* StudentViewModel.swift */,
+				FAB0670425CAC8BC00FFE8EB /* TeacherViewModel.swift */,
+				FAB0670B25CAC8D600FFE8EB /* UserViewModelProtocol.swift */,
+			);
+			path = Users;
 			sourceTree = "<group>";
 		};
 		FAC5364F25C0321600784980 /* Managers */ = {
@@ -443,13 +442,14 @@
 			files = (
 				FAB066A625CAC0D300FFE8EB /* FakeProvider.swift in Sources */,
 				D099DECB25C94FF0009F46AA /* StudentAssignmentLabInfo.swift in Sources */,
+				FAB0670525CAC8BC00FFE8EB /* TeacherViewModel.swift in Sources */,
 				FAC5365125C0347300784980 /* UserManager.swift in Sources */,
 				D099DEB625C94F8F009F46AA /* StudentLabMenu.swift in Sources */,
-				FAB0669A25CAC04100FFE8EB /* UserViewModelProtocol.swift in Sources */,
+				FAB066FB25CAC89B00FFE8EB /* StudentViewModel.swift in Sources */,
 				FAC5364925C0264500784980 /* ModelTestData.swift in Sources */,
-				FAB0669025CAC03700FFE8EB /* TeacherViewModel.swift in Sources */,
 				D0765D9E25CA08710012D8E8 /* StudentLabOverview.swift in Sources */,
 				D0A6FCB925CA0A8A008C546B /* StudentNavigatorView.swift in Sources */,
+				FAB0670C25CAC8D600FFE8EB /* UserViewModelProtocol.swift in Sources */,
 				D0F9FC6F25BEBC360080A1F2 /* ag.pb.swift in Sources */,
 				FA85790B25BEB4E900223DB9 /* ContentView.swift in Sources */,
 				D0F9FC7025BEBC360080A1F2 /* ag.grpc.swift in Sources */,
@@ -458,7 +458,6 @@
 				FAB066B025CAC0F000FFE8EB /* ProviderProtocol.swift in Sources */,
 				FA4D0BD325BEFD75006412B0 /* Models.swift in Sources */,
 				FA85790925BEB4E900223DB9 /* QuickfeedApp.swift in Sources */,
-				FAB0668325CAC01400FFE8EB /* SudentViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,17 +465,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAB066FC25CAC89B00FFE8EB /* StudentViewModel.swift in Sources */,
 				FAB066B125CAC0F000FFE8EB /* ProviderProtocol.swift in Sources */,
-				FAB0669B25CAC04100FFE8EB /* UserViewModelProtocol.swift in Sources */,
 				FAB0666925CABF2E00FFE8EB /* ag.pb.swift in Sources */,
-				FAB0669125CAC03700FFE8EB /* TeacherViewModel.swift in Sources */,
 				FAC5364A25C0264500784980 /* ModelTestData.swift in Sources */,
+				FAB0670D25CAC8D600FFE8EB /* UserViewModelProtocol.swift in Sources */,
 				FAC5365225C0347300784980 /* UserManager.swift in Sources */,
 				FA85791C25BEB4EA00223DB9 /* QuickfeedTests.swift in Sources */,
 				FAB0665D25CABED500FFE8EB /* Models.swift in Sources */,
 				FAB0666125CABF2A00FFE8EB /* ag.grpc.swift in Sources */,
-				FAB0668725CAC01800FFE8EB /* SudentViewModel.swift in Sources */,
 				FAB066A725CAC0D300FFE8EB /* FakeProvider.swift in Sources */,
+				FAB0670625CAC8BC00FFE8EB /* TeacherViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,17 +483,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAB066FD25CAC89B00FFE8EB /* StudentViewModel.swift in Sources */,
 				FAB066B225CAC0F000FFE8EB /* ProviderProtocol.swift in Sources */,
-				FAB0669C25CAC04100FFE8EB /* UserViewModelProtocol.swift in Sources */,
 				FAB0666D25CABF2F00FFE8EB /* ag.pb.swift in Sources */,
-				FAB0669225CAC03700FFE8EB /* TeacherViewModel.swift in Sources */,
 				FAC5364B25C0264500784980 /* ModelTestData.swift in Sources */,
+				FAB0670E25CAC8D600FFE8EB /* UserViewModelProtocol.swift in Sources */,
 				FAC5365325C0347300784980 /* UserManager.swift in Sources */,
 				FA85792725BEB4EA00223DB9 /* QuickfeedUITests.swift in Sources */,
 				FAB0665925CABED200FFE8EB /* Models.swift in Sources */,
 				FAB0666525CABF2A00FFE8EB /* ag.grpc.swift in Sources */,
-				FAB0668B25CAC01900FFE8EB /* SudentViewModel.swift in Sources */,
 				FAB066A825CAC0D300FFE8EB /* FakeProvider.swift in Sources */,
+				FAB0670725CAC8BC00FFE8EB /* TeacherViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
