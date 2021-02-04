@@ -8,7 +8,7 @@
 import Foundation
 
 
-class StudentViewModel: UserViewModelProtocol, ObservableObject{
+class StudentViewModel: UserViewModelProtocol{
     var provider: ProviderProtocol
     @Published var user: User
     

@@ -15,6 +15,8 @@ protocol ProviderProtocol{
     
     func getCourses() -> [Course]
     func changeName(newName: String)
+    func getCoursesForCurrentUser() -> [Course]?
+    func isAuthorizedTeacher() -> Bool
 
     
 }
