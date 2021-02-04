@@ -9,12 +9,13 @@ import SwiftUI
 
 struct TeacherNavigatorView: View {
     @StateObject var viewModel: TeacherViewModel
-    @Binding var selectedCourse: Int
+    @Binding var selectedCourse: UInt64
     
     var body: some View {
         NavigationView{
             VStack{
                 Text("Courses")
+                    .padding(.top)
                 Picker(selection: $selectedCourse, label: Text("Current course")) {
                     ForEach(viewModel.courses, id: \.id){ course in
                         NavigationLink(destination: Text(course.code)){
@@ -27,7 +28,7 @@ struct TeacherNavigatorView: View {
                 .labelsHidden()
                 TabView {
                     VStack{
-                        Text("Labs")
+                        Text("Labs for \(viewModel.getCourse(courseId: selectedCourse).code)")
                         
                         Spacer()
                     }
@@ -58,6 +59,6 @@ struct TeacherNavigatorView: View {
 
 struct TeacherNavigatorView_Previews: PreviewProvider {
     static var previews: some View {
-        TeacherNavigatorView(viewModel: TeacherViewModel(provider: FakeProvider()), selectedCourse: .constant(0))
+        TeacherNavigatorView(viewModel: TeacherViewModel(provider: FakeProvider()), selectedCourse: .constant(111))
     }
 }

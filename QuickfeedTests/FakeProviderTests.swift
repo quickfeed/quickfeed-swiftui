@@ -8,7 +8,7 @@
 import XCTest
 @testable import Quickfeed
 
-class QuickfeedTests: XCTestCase {
+class FakeProviderTests: XCTestCase {
     var sot: FakeProvider!
 
     override func setUpWithError() throws {
