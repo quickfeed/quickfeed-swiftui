@@ -25,11 +25,29 @@ struct TeacherNavigatorView: View {
                 .padding(.horizontal)
                 .pickerStyle(MenuPickerStyle())
                 .labelsHidden()
-                TabView(selection: .constant(1),
-                        content:  {
-                            Text("LabMenyView").tabItem { Text("Labs") }.tag(1)
-                            Text("StudentList").tabItem { Text("Students") }.tag(2)
-                        })
+                TabView {
+                    VStack{
+                        Text("Labs")
+                        
+                        Spacer()
+                    }
+                        .tabItem {
+                            Image(systemName: "1.square.fill")
+                            Text("Labs")
+                        }
+                    VStack{
+                        Text("Students")
+                        
+                        Spacer()
+                    }
+                
+                        .tabItem {
+                            Image(systemName: "2.square.fill")
+                            Text("Students")
+                        }
+                    
+                }
+                .font(.headline)
                 
             }
             

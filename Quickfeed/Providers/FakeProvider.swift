@@ -10,24 +10,32 @@ import Foundation
 class FakeProvider: ProviderProtocol, ObservableObject{
     
     @Published var currentUser: User
-    var enrollments: [Enrollment]
+    var dummyUsers: [User]
     var courses: [Course]
     
     init() {
         self.courses = []
-        self.enrollments = []
+        self.dummyUsers = []
         self.currentUser = User()
-        self.initTestUser(name: "test user")
+        self.currentUser = self.testUser(name: "Current user", id: 1, studentID: "111111", isAdmin: true, enrollments: [])
         self.initTestCourses()
         self.initTestEnrollments()
-        self.enrollCurrentUser()
-        self.enrollCourses()
         self.initTestAssignments()
+        self.initDummyUsers()
     }
     
     
     func getUser() -> User? {
         return currentUser
+    }
+    
+    func getUsersForCourse(course: Course) -> [User] {
+        let enrollments: [Enrollment] = course.enrollments
+        var users: [User] = []
+        for enrollment in enrollments{
+            users.append(enrollment.user)
+        }
+        return users
     }
     
     func getAssignments(courseID: UInt64) -> [Assignment]{
@@ -86,58 +94,65 @@ class FakeProvider: ProviderProtocol, ObservableObject{
         return self.courses
     }
     
-    func initTestUser(name: String) {
-        self.currentUser.id = 1
-        self.currentUser.studentID = "111111"
-        self.currentUser.name = name
-        self.currentUser.isAdmin = true
-        self.currentUser.enrollments = []
+   
+    
+    func initDummyUsers(){
+        self.dummyUsers.append(self.testUser(name: "Test2", id: 2, studentID: "222222", isAdmin: false, enrollments: []))
+        
+        self.dummyUsers.append(self.testUser(name: "Test2", id: 2, studentID: "222222", isAdmin: false, enrollments: []))
+        
+        self.dummyUsers.append(self.testUser(name: "Test2", id: 2, studentID: "222222", isAdmin: false, enrollments: []))
+    }
+    
+    
+    func testUser(name: String, id: UInt64, studentID: String, isAdmin: Bool, enrollments: [Enrollment]) -> User{
+        var user = User()
+        user.name = name
+        user.id = id
+        user.studentID = studentID
+        user.isAdmin = isAdmin
+        user.enrollments = enrollments
+        
+        return user
     }
     
     
     // ENROLLMENTS
     func initTestEnrollments(){
-        self.appendTestEnrollment(course: self.courses[0], courseId: 111, user: self.currentUser, userId: 1, userStatus: Enrollment.UserStatus.teacher)
-        self.appendTestEnrollment(course: self.courses[1], courseId: 222, user: self.currentUser, userId: 1, userStatus: Enrollment.UserStatus.student)
+        self.createEnrollment(user: &self.currentUser, course: &self.courses[0], status: Enrollment.UserStatus.teacher)
+        self.createEnrollment(user: &self.currentUser, course: &self.courses[1], status: Enrollment.UserStatus.teacher)
+        
+        var i = 0
+        for _ in self.dummyUsers{
+            var j = 0
+            for _ in self.courses{
+                self.createEnrollment(user: &self.dummyUsers[i], course: &courses[j], status: Enrollment.UserStatus.student)
+                j += 1
+            }
+            i += 1
+        }
         
     }
     
-    func appendTestEnrollment(course: Course, courseId: UInt64, user: User, userId: UInt64, userStatus: Enrollment.UserStatus){
-        var testEnrollment = Enrollment()
-        testEnrollment.course = course
-        testEnrollment.courseID = courseId
-        testEnrollment.user = user
-        testEnrollment.userID = userId
-        testEnrollment.status = userStatus
+    func createEnrollment(user: inout User, course: inout Course, status: Enrollment.UserStatus){
+        var enrollment = Enrollment()
+        enrollment.user = user
+        enrollment.course = course
+        enrollment.userID = user.id
+        enrollment.courseID = course.id
+        enrollment.status = status
         
-        
-        self.enrollments.append(testEnrollment)
+        user.enrollments.append(enrollment)
+        course.enrollments.append(enrollment)
     }
+
     
     func updateUser(user: User) -> Bool{
         return true
     }
     
-    func enrollCurrentUser(){
-        for enrollment in self.enrollments {
-            if enrollment.userID == self.currentUser.id{
-                self.currentUser.enrollments.append(enrollment)
-            }
-        }
-    }
+ 
     
-    func enrollCourses(){
-        for course in self.courses{
-            var courseIndex = 0
-            for enrollment in self.enrollments {
-                if enrollment.courseID == course.id{
-                    self.courses[courseIndex].enrollments.append(enrollment)
-                }
-                courseIndex += 1
-            }
-            
-        }
-    }
     
     // COURSES
     func initTestCourses(){
