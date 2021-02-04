@@ -7,14 +7,38 @@
 
 import SwiftUI
 
-struct TeacherView: View {
+struct TeacherNavigatorView: View {
+    @StateObject var viewModel: TeacherViewModel
+    @Binding var selectedCourse: Int
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView{
+            VStack{
+                Text("Courses")
+                Picker(selection: $selectedCourse, label: Text("Current course")) {
+                    ForEach(viewModel.courses, id: \.id){ course in
+                        NavigationLink(destination: Text(course.code)){
+                            Text(course.code)
+                        }
+                    }
+                }
+                .padding(.horizontal)
+                .pickerStyle(MenuPickerStyle())
+                .labelsHidden()
+                TabView(selection: .constant(1),
+                        content:  {
+                            Text("Tab Content 1").tabItem { Text("Labs") }.tag(1)
+                            Text("Tab Content 2").tabItem { Text("Students") }.tag(2)
+                        })
+                
+            }
+            
+        }
     }
 }
 
-struct TeacherView_Previews: PreviewProvider {
+struct TeacherNavigatorView_Previews: PreviewProvider {
     static var previews: some View {
-        TeacherView()
+        TeacherNavigatorView(viewModel: TeacherViewModel(provider: FakeProvider()), selectedCourse: .constant(0))
     }
 }

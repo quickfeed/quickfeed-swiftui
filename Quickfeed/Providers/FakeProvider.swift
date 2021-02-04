@@ -34,6 +34,10 @@ class FakeProvider: ProviderProtocol, ObservableObject{
         self.currentUser.name = newName
     }
     
+    func isAuthorizedTeacher() -> Bool{
+        return true
+    }
+    
     func getCoursesForCurrentUser() -> [Course]?{
         var courses: [Course] = []
         for enrollment in currentUser.enrollments{

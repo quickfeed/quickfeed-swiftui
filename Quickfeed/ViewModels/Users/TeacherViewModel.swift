@@ -9,11 +9,14 @@ import Foundation
 import Combine
 
 class TeacherViewModel: UserViewModelProtocol{
-    var user: User
+    var provider: ProviderProtocol
+    @Published var user: User
+    var courses: [Course]
     
-    
-    init(user: User) {
-        self.user = user
+    init(provider: ProviderProtocol) {
+        self.provider = provider
+        self.user = provider.getUser() ?? User()
+        self.courses = provider.getCoursesForCurrentUser() ?? []
     }
     
     func reset() {
