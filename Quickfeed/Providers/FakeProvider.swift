@@ -92,17 +92,18 @@ class FakeProvider: ProviderProtocol, ObservableObject{
     
     // ENROLLMENTS
     func initTestEnrollments(){
-        self.appendTestEnrollment(course: self.courses[0], courseId: 111, user: self.currentUser, userId: 1)
-        self.appendTestEnrollment(course: self.courses[1], courseId: 222, user: self.currentUser, userId: 1)
+        self.appendTestEnrollment(course: self.courses[0], courseId: 111, user: self.currentUser, userId: 1, userStatus: Enrollment.UserStatus.teacher)
+        self.appendTestEnrollment(course: self.courses[1], courseId: 222, user: self.currentUser, userId: 1, userStatus: Enrollment.UserStatus.student)
         
     }
     
-    func appendTestEnrollment(course: Course, courseId: UInt64, user: User, userId: UInt64){
+    func appendTestEnrollment(course: Course, courseId: UInt64, user: User, userId: UInt64, userStatus: Enrollment.UserStatus){
         var testEnrollment = Enrollment()
         testEnrollment.course = course
         testEnrollment.courseID = courseId
         testEnrollment.user = user
         testEnrollment.userID = userId
+        testEnrollment.status = userStatus
         
         
         self.enrollments.append(testEnrollment)

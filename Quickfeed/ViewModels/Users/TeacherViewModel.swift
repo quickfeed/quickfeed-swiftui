@@ -17,6 +17,7 @@ class TeacherViewModel: UserViewModelProtocol{
         self.provider = provider
         self.user = provider.getUser() ?? User()
         self.courses = provider.getCoursesForCurrentUser() ?? []
+        assert(provider.isAuthorizedTeacher())
     }
     
     func reset() {

@@ -34,6 +34,7 @@ struct TeacherNavigatorView: View {
             }
             
         }
+        .onAppear()
     }
 }
 
