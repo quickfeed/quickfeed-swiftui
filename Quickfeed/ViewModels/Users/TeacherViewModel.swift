@@ -20,6 +20,15 @@ class TeacherViewModel: UserViewModelProtocol{
         assert(provider.isAuthorizedTeacher())
     }
     
+    func getCourse(courseId: UInt64) -> Course{
+        for course in self.courses{
+            if course.id == courseId{
+                return course
+            }
+        }
+        return Course()
+    }
+    
     func reset() {
         
     }
