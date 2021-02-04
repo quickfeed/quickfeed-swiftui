@@ -30,6 +30,11 @@ class FakeProvider: ProviderProtocol, ObservableObject{
         return currentUser
     }
     
+    func getAssignments(courseID: UInt64) -> [Assignment]{
+        let course: Course = self.getCourseById(courseId: courseID) ?? Course()
+        return course.assignments
+    }
+    
     func changeName(newName: String){
         self.currentUser.name = newName
     }
@@ -107,6 +112,10 @@ class FakeProvider: ProviderProtocol, ObservableObject{
         
         
         self.enrollments.append(testEnrollment)
+    }
+    
+    func updateUser(user: User) -> Bool{
+        return true
     }
     
     func enrollCurrentUser(){
@@ -195,6 +204,8 @@ class FakeProvider: ProviderProtocol, ObservableObject{
         
         return testAssignment
     }
+    
+    
     
     
     

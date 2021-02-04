@@ -17,6 +17,7 @@ protocol ProviderProtocol{
     func changeName(newName: String)
     func getCoursesForCurrentUser() -> [Course]?
     func isAuthorizedTeacher() -> Bool
+    func getAssignments(courseID: UInt64) -> [Assignment]
 
     
 }

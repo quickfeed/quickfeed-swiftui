@@ -27,8 +27,8 @@ struct TeacherNavigatorView: View {
                 .labelsHidden()
                 TabView(selection: .constant(1),
                         content:  {
-                            Text("Tab Content 1").tabItem { Text("Labs") }.tag(1)
-                            Text("Tab Content 2").tabItem { Text("Students") }.tag(2)
+                            Text("LabMenyView").tabItem { Text("Labs") }.tag(1)
+                            Text("StudentList").tabItem { Text("Students") }.tag(2)
                         })
                 
             }
