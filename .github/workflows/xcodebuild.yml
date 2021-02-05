@@ -1,2 +1,0 @@
-- name: Xcodebuild Action
-  uses: sersoft-gmbh/xcodebuild-action@v1.3
