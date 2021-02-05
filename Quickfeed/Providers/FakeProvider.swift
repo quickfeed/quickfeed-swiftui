@@ -16,7 +16,6 @@ class FakeProvider: ProviderProtocol, ObservableObject{
     init() {
         self.courses = []
         self.dummyUsers = []
-        self.currentUser = User()
         self.currentUser = User(name: "Current user", id: 1, studentID: "111111", isAdmin: true, enrollments: [])
         self.initTestCourses()
         self.initTestEnrollments()
@@ -61,7 +60,6 @@ class FakeProvider: ProviderProtocol, ObservableObject{
         if courses.isEmpty{
             return nil
         }
-        
         return courses
     }
     
@@ -73,12 +71,7 @@ class FakeProvider: ProviderProtocol, ObservableObject{
         for enrollment in course.enrollments{
             users.append(enrollment.user)
         }
-        
         return users
-        
-        
-        
-        
     }
     
     func getCourseById(courseId: UInt64) -> Course?{
@@ -94,14 +87,57 @@ class FakeProvider: ProviderProtocol, ObservableObject{
         return self.courses
     }
     
+    
+    
+    
+    func updateUser(user: User) -> Bool{
+        return true
+    }
+    
    
+    
+    
+ 
+}
+
+// Contains methods not present in the protocol, used for testing
+extension FakeProvider{
     
     func initDummyUsers(){
         self.dummyUsers.append(User(name: "Test2", id: 2, studentID: "222222", isAdmin: false, enrollments: []))
-        
-        self.dummyUsers.append(User(name: "Test2", id: 2, studentID: "222222", isAdmin: false, enrollments: []))
-        
-        self.dummyUsers.append(User(name: "Test2", id: 2, studentID: "222222", isAdmin: false, enrollments: []))
+        self.dummyUsers.append(User(name: "Test3", id: 2, studentID: "333333", isAdmin: false, enrollments: []))
+        self.dummyUsers.append(User(name: "Test4", id: 2, studentID: "444444", isAdmin: false, enrollments: []))
+    }
+    
+    // COURSES
+    func initTestCourses(){
+        var c1 = Course(id: 111, code: "DAT310", name: "Webprogramming", year: 2021, tag: "Spring", provider: "github")
+        let c2 = Course(id: 222, code: "DAT320", name: "Operating systems", year: 2020, tag: "Fall", provider: "github")
+        let c3 = Course(id: 333, code: "DAT220", name: "Database Management Systems", year: 2021, tag: "Spring", provider: "github")
+        let a1 = Assignment(name: "assignment-1", id: 1, deadline: "lør. 9. jan., 23:00", courseID: 111, autoApprove: true)
+        let a2 = Assignment(name: "assignment-2", id: 2, deadline: "fre. 15. jan., 23:00", courseID: 111, autoApprove: true)
+        let a3 = Assignment(name: "assignment-3", id: 3, deadline: "fre. 29. jan., 23:00", courseID: 111, autoApprove: false)
+        c1.assignments.append(a1)
+        c1.assignments.append(a2)
+        c1.assignments.append(a3)
+        self.courses.append(c1)
+        self.courses.append(c2)
+        self.courses.append(c3)
+    }
+    
+    func appendAssignmentToCourse(courseId: UInt64, assignment: Assignment){
+        var course = self.getCourseById(courseId: courseId)
+        course?.assignments.append(assignment)
+    }
+    
+    // ASSIGNMENTS
+    func initTestAssignments(){
+        let a1 = Assignment(name: "assignment-1", id: 1, deadline: "lør. 9. jan., 23:00", courseID: 111, autoApprove: true)
+        let a2 = Assignment(name: "assignment-2", id: 2, deadline: "fre. 15. jan., 23:00", courseID: 111, autoApprove: true)
+        let a3 = Assignment(name: "assignment-3", id: 3, deadline: "fre. 29. jan., 23:00", courseID: 111, autoApprove: false)
+        self.appendAssignmentToCourse(courseId: 111, assignment: a1)
+        self.appendAssignmentToCourse(courseId: 111, assignment: a2)
+        self.appendAssignmentToCourse(courseId: 111, assignment: a3)
     }
     
     
@@ -121,64 +157,11 @@ class FakeProvider: ProviderProtocol, ObservableObject{
             }
             i += 1
         }
-        
     }
     
     func createEnrollment(user: inout User, course: inout Course, status: Enrollment.UserStatus, id: UInt64){
         let enrollment = Enrollment(id: id, courseId: course.id, userID: user.id, user: user, course: course)
-        
         user.enrollments.append(enrollment)
         course.enrollments.append(enrollment)
     }
-
-    
-    func updateUser(user: User) -> Bool{
-        return true
-    }
-    
-    
-    
-    // COURSES
-    func initTestCourses(){
-        var c1 = Course(id: 111, code: "DAT310", name: "Webprogramming", year: 2021, tag: "Spring", provider: "github")
-        let c2 = Course(id: 222, code: "DAT320", name: "Operating systems", year: 2020, tag: "Fall", provider: "github")
-        let c3 = Course(id: 333, code: "DAT220", name: "Database Management Systems", year: 2021, tag: "Spring", provider: "github")
-        
-        let a1 = Assignment(name: "assignment-1", id: 1, deadline: "lør. 9. jan., 23:00", courseID: 111, autoApprove: true)
-        let a2 = Assignment(name: "assignment-2", id: 2, deadline: "fre. 15. jan., 23:00", courseID: 111, autoApprove: true)
-        let a3 = Assignment(name: "assignment-3", id: 3, deadline: "fre. 29. jan., 23:00", courseID: 111, autoApprove: false)
-        
-        c1.assignments.append(a1)
-        c1.assignments.append(a2)
-        c1.assignments.append(a3)
-        
-        self.courses.append(c1)
-        self.courses.append(c2)
-        self.courses.append(c3)
-    }
-    
-    
-    func appendAssignmentToCourse(courseId: UInt64, assignment: Assignment){
-        var course = self.getCourseById(courseId: courseId)
-        course?.assignments.append(assignment)
-        
-    }
-    
-    
-    // ASSIGNMENTS
-    func initTestAssignments(){
-        
-        
-        let a1 = Assignment(name: "assignment-1", id: 1, deadline: "lør. 9. jan., 23:00", courseID: 111, autoApprove: true)
-        let a2 = Assignment(name: "assignment-2", id: 2, deadline: "fre. 15. jan., 23:00", courseID: 111, autoApprove: true)
-        let a3 = Assignment(name: "assignment-3", id: 3, deadline: "fre. 29. jan., 23:00", courseID: 111, autoApprove: false)
-        
-        self.appendAssignmentToCourse(courseId: 111, assignment: a1)
-        self.appendAssignmentToCourse(courseId: 111, assignment: a2)
-        self.appendAssignmentToCourse(courseId: 111, assignment: a3)
-    }
-    
-    
-    
 }
-
