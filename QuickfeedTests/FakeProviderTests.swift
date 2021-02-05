@@ -1,5 +1,5 @@
 //
-//  QuickfeedTests.swift
+//  FakeProviderTests.swift
 //  QuickfeedTests
 //
 //  Created by Oskar Gjølga on 25/01/2021.
