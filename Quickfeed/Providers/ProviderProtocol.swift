@@ -12,14 +12,17 @@ import Combine
 protocol ProviderProtocol{
     var currentUser: User { get set }
     func getUser() -> User?
+    func getCoursesForCurrentUser() -> [Course]?
+    func isAuthorizedTeacher() -> Bool
+    func getCourses() -> [Course]
     func getUsers() -> [User]
     
-    func getCourses() -> [Course]
+    
     func getCourse(courseId: UInt64) -> Course?
     func changeName(newName: String)
     func getCoursesStudent() -> [Course]
-    func getCoursesForCurrentUser() -> [Course]?
-    func isAuthorizedTeacher() -> Bool
+    
+    
     func getAssignments(courseID: UInt64) -> [Assignment]
     func getUsersForCourse(course: Course) -> [User]
     func addUserToCourse(course: Course, user: User) -> Bool

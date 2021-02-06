@@ -16,46 +16,43 @@ struct TeacherNavigatorView: View {
             VStack{
                 Text("Courses")
                     .padding(.top)
-                Picker(selection: $selectedCourse, label: Text("Current course")) {
-                    ForEach(viewModel.courses, id: \.id){ course in
-                        NavigationLink(destination: Text(course.code)){
-                            Text(course.code)
-                        }
-                    }
-                }
-                .padding(.horizontal)
-                .pickerStyle(MenuPickerStyle())
-                .labelsHidden()
-                TabView {
-                    VStack{
-                        Text("Labs for \(viewModel.getCourse(courseId: selectedCourse).code)")
-                        
-                        Spacer()
-                    }
-                        .tabItem {
-                            Image(systemName: "1.square.fill")
-                            Text("Labs")
-                        }
-                    VStack{
-                        Text("Students")
-                        
-                        Spacer()
-                    }
                 
-                        .tabItem {
-                            Image(systemName: "2.square.fill")
-                            Text("Students")
-                        }
+                CourseSelectorView(courses: viewModel.courses, selectedCourse: $selectedCourse)
+                
+            .padding(.horizontal)
+            .pickerStyle(MenuPickerStyle())
+            .labelsHidden()
+            TabView {
+                VStack{
+                    LabListView()
                     
+                    Spacer()
                 }
-                .font(.headline)
+                .tabItem {
+                    Image(systemName: "1.square.fill")
+                    Text("Labs")
+                }
+                VStack{
+                    Text("Students")
+                    
+                    Spacer()
+                }
                 
+                .tabItem {
+                    Image(systemName: "2.square.fill")
+                    Text("Students")
+                }
+                
+            }
+            .font(.headline)
             }
             
         }
-        .onAppear()
+        
     }
+    
 }
+
 
 struct TeacherNavigatorView_Previews: PreviewProvider {
     static var previews: some View {
