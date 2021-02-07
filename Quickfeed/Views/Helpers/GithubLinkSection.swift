@@ -24,9 +24,12 @@ struct GithubLinkSection: View {
 
 struct GithubLinkSection_Previews: PreviewProvider {
     static var previews: some View {
-        
         List{
             GithubLinkSection(orgUrl: "https://github.com/dat310-spring21", isTeacher: true)
+            
+        }
+        
+        List{
             GithubLinkSection(orgUrl: "https://github.com/dat310-spring21", isTeacher: false)
         }
         
