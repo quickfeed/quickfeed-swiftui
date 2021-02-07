@@ -20,13 +20,14 @@ extension User{
 }
 
 extension Course{
-    init(id: UInt64, code: String, name: String, year: UInt32, tag: String, provider: String){
+    init(id: UInt64, code: String, name: String, year: UInt32, tag: String, provider: String, orgPath: String){
         self.id = id
         self.code = code
         self.name = name
         self.year = year
         self.tag = tag
         self.provider = provider
+        self.organizationPath = orgPath
     }
 }
 

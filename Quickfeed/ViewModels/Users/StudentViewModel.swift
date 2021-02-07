@@ -21,12 +21,7 @@ class StudentViewModel: UserViewModelProtocol{
         
     }
     
-    func changeName() {
-        self.provider.changeName(newName: "test name")
-        
-        //self.user = provider.getUser() ?? User()
-        
-    }
+  
     func getUser(){
         self.user = provider.getUser() ?? User()
     }
