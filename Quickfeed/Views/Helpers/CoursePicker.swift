@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CourseSelectorView: View {
+struct CoursePicker: View {
     var courses: [Course]
     @Binding var selectedCourse: UInt64
     var body: some View {
@@ -18,6 +18,8 @@ struct CourseSelectorView: View {
                 }
             }
         }
+        .labelsHidden()
+        .pickerStyle(MenuPickerStyle())
         
     }
 }
@@ -25,6 +27,6 @@ struct CourseSelectorView: View {
 struct CourseSelectorView_Previews: PreviewProvider {
     static var previews: some View {
         let provider = FakeProvider()
-        CourseSelectorView(courses: provider.getCourses(), selectedCourse: .constant(111))
+        CoursePicker(courses: provider.getCourses(), selectedCourse: .constant(111))
     }
 }
