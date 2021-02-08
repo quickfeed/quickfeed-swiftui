@@ -8,8 +8,21 @@
 import SwiftUI
 
 struct ReviewView: View {
+   @State private var searchString: String = ""
+    
     var body: some View {
-        Text("Review Submissions")
+        VStack(alignment: .leading){
+            Text("Review Submissions")
+                .font(.title)
+            HStack{
+                SearchBar(searchString: $searchString)
+            }
+            Text("input: \(searchString)")
+            Spacer()
+            
+        }
+        .padding()
+        
     }
 }
 

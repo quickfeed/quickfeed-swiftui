@@ -208,7 +208,7 @@ class FakeProvider: ProviderProtocol, ObservableObject{
  
 }
 
-// Contains methods not present in the protocol, used for testingx
+// Contains methods not present in the protocol, used for testing
 extension FakeProvider{
     
     func initDummyUsers(){
