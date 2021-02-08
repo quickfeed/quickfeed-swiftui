@@ -17,6 +17,7 @@ struct StudentNavigatorView: View {
                 List{
                     CoursePicker(courses: viewModel.courses, selectedCourse: $selectedCourse)
                     LabSection(labs: viewModel.getAssignments(courseID: selectedCourse), isTeacher: false)
+                    GithubLinkSection(orgUrl: "https://github.com/dat310-spring21", isTeacher: false)
                 }
                 Spacer()
             }
