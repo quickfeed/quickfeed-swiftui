@@ -264,8 +264,8 @@
 		FA85798B25BEC59300223DB9 /* Quickfeed */ = {
 			isa = PBXGroup;
 			children = (
-				D0765D9D25CA08710012D8E8 /* StudentLabOverview.swift */,
 				D0A6FCB825CA0A8A008C546B /* StudentNavigatorView.swift */,
+				D0765D9D25CA08710012D8E8 /* StudentLabOverview.swift */,
 			);
 			path = Quickfeed;
 			sourceTree = "<group>";
