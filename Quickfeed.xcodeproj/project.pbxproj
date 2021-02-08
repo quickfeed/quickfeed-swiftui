@@ -156,6 +156,15 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
+		D04B46E125D12E9D00AC8926 /* Student */ = {
+			isa = PBXGroup;
+			children = (
+				D0A6FCB825CA0A8A008C546B /* StudentNavigatorView.swift */,
+				D0765D9D25CA08710012D8E8 /* StudentLabOverview.swift */,
+			);
+			path = Student;
+			sourceTree = "<group>";
+		};
 		D0F9FC6C25BEBBDB0080A1F2 /* GRPC */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +262,7 @@
 		FA85798025BEC4B000223DB9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D04B46E125D12E9D00AC8926 /* Student */,
 				FA29712325D05121000C99A1 /* Teacher */,
 				FA85790A25BEB4E900223DB9 /* ContentView.swift */,
 				FA85798B25BEC59300223DB9 /* Quickfeed */,
@@ -264,8 +274,6 @@
 		FA85798B25BEC59300223DB9 /* Quickfeed */ = {
 			isa = PBXGroup;
 			children = (
-				D0A6FCB825CA0A8A008C546B /* StudentNavigatorView.swift */,
-				D0765D9D25CA08710012D8E8 /* StudentLabOverview.swift */,
 			);
 			path = Quickfeed;
 			sourceTree = "<group>";
