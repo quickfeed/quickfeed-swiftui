@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 struct UserModel {
     var id: Int
     var name: String

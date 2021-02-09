@@ -42,7 +42,7 @@ struct TeacherNavigationView: View {
                             .frame(width: 20)
                         Text("Groups")
                     }
-                    NavigationLink(destination: Text("Members")){
+                    NavigationLink(destination: Text("Test")){
                         Image(systemName: "person")
                             .frame(width: 20)
                         Text("Members")
