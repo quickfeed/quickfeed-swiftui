@@ -8,29 +8,53 @@
 import SwiftUI
 
 struct ReviewView: View {
-   @State private var searchQuery: String = ""
+    @State private var searchQuery: String = ""
+    @Binding var selectedLab: UInt64
+    @EnvironmentObject var viewModel: TeacherViewModel
+    
+
     
     var body: some View {
-        VStack(alignment: .leading){
-            
-            HStack{
+        NavigationView{
+            VStack(alignment: .leading){
+                
                 Text("Review Submissions")
-                    .font(.title)
+                    .navigationTitle("navigation")
+                LabPicker(labs: viewModel.courses[0].assignments, selectedLab: $selectedLab)
+                    .frame(width: 200)
+                SearchFieldRepresentable(query: $searchQuery)
+                    .frame(width: 200, height: 20)
+                    
+                Text("input: \(searchQuery)")
+                Text("count: \(viewModel.courses[0].assignments.count)")
                 Spacer()
-                SearchBar(query: $searchQuery, placeholder: "Search")
-                  .frame(minWidth: 60.0, idealWidth: 200.0, maxWidth: 200.0, minHeight: 24.0, idealHeight: 21.0, maxHeight: 21.0, alignment: .center)
-            }
-            Text("input: \(searchQuery)")
-            Spacer()
-            
+                
+                    List{
+                        Section(header: Text("Students")){
+                            NavigationLink(destination: Text("back")){
+                                Text("student1")
+                            }
+                            .navigationTitle("Test")
+                            
+                        }
+                    }
+                    
+                }
+                
+           
         }
-        .padding()
+        
+        
+        
+       
+            
         
     }
 }
 
 struct ReviewView_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewView()
+        ReviewView(selectedLab: .constant(1))
+            .environmentObject(TeacherViewModel(provider: FakeProvider()))
     }
 }

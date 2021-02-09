@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct TeacherNavigationView: View {
     @StateObject var viewModel: TeacherViewModel
     @State var selectedCourse: UInt64
@@ -26,7 +27,7 @@ struct TeacherNavigationView: View {
                             
                         
                     }
-                    NavigationLink(destination: ReviewView()){
+                    NavigationLink(destination: ReviewView(selectedLab: .constant(1)).environmentObject(viewModel)){
                         Image(systemName: "list.dash")
                             .frame(width: 20)
                         Text("Review")
@@ -50,8 +51,10 @@ struct TeacherNavigationView: View {
                     Spacer()
                     GithubLinkSection(orgUrl: "https://github.com/dat310-spring21", isTeacher: true)
                     
+                    
                 }
             }
+            
                 
         }
         
