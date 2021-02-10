@@ -12,8 +12,7 @@ struct ReviewNavigatorView: View {
     @State var users: [User]
     @Binding var selectedLab: UInt64
     @EnvironmentObject var viewModel: TeacherViewModel
-    
-    
+    @State private var showCompleted: Bool = true
     
     
     func matchesQuery(str: String) -> Bool{
@@ -28,9 +27,17 @@ struct ReviewNavigatorView: View {
             VStack(alignment: .leading){
                 Text("Review Submissions")
                     .font(.headline)
-                LabPicker(labs: viewModel.courses[0].assignments, selectedLab: $selectedLab)
-                    .frame(width: 200)
+                
                 SearchFieldRepresentable(query: $searchQuery)
+                
+                LabPicker(labs: viewModel.courses[0].assignments, selectedLab: $selectedLab)
+                    .frame(width: 120)
+                Toggle("Show completed", isOn: $showCompleted)
+                
+                
+                
+                
+                
                 
                 List{
                     Section(header: Text("Students")){

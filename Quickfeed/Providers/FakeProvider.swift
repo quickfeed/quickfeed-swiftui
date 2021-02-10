@@ -18,10 +18,11 @@ class FakeProvider: ProviderProtocol, ObservableObject{
         self.courses = []
         self.dummyUsers = []
         self.currentUser = User(name: "Current user", id: 1, studentID: "111111", isAdmin: true, enrollments: [])
+        self.initDummyUsers()
         self.initTestCourses()
         self.initTestEnrollments()
         self.initTestAssignments()
-        self.initDummyUsers()
+        
     }
     
     
@@ -32,6 +33,7 @@ class FakeProvider: ProviderProtocol, ObservableObject{
     func getUsersForCourse(course: Course) -> [User] {
         let enrollments: [Enrollment] = course.enrollments
         var users: [User] = []
+        print(enrollments)
         for enrollment in enrollments{
             users.append(enrollment.user)
         }
@@ -211,11 +213,15 @@ class FakeProvider: ProviderProtocol, ObservableObject{
 // Contains methods not present in the protocol, used for testing
 extension FakeProvider{
     
+    
     func initDummyUsers(){
         self.dummyUsers.append(User(name: "Test2", id: 2, studentID: "222222", isAdmin: false, enrollments: []))
-        self.dummyUsers.append(User(name: "Test3", id: 2, studentID: "333333", isAdmin: false, enrollments: []))
-        self.dummyUsers.append(User(name: "Test4", id: 2, studentID: "444444", isAdmin: false, enrollments: []))
+        self.dummyUsers.append(User(name: "Test3", id: 3, studentID: "333333", isAdmin: false, enrollments: []))
+        self.dummyUsers.append(User(name: "Test4", id: 4, studentID: "444444", isAdmin: false, enrollments: []))
+        self.dummyUsers.append(User(name: "Test5", id: 5, studentID: "555555", isAdmin: false, enrollments: []))
+        self.dummyUsers.append(User(name: "Test6", id: 6, studentID: "666666", isAdmin: false, enrollments: []))
     }
+
     
     // COURSES
     func initTestCourses(){
@@ -259,12 +265,13 @@ extension FakeProvider{
         for _ in self.dummyUsers{
             var j = 0
             for _ in self.courses{
-                self.createEnrollment(user: &self.dummyUsers[i], course: &courses[j], status: Enrollment.UserStatus.student, id: enrId)
+                self.createEnrollment(user: &self.dummyUsers[i], course: &self.courses[j], status: Enrollment.UserStatus.student, id: enrId)
                 j += 1
                 enrId += 1
             }
             i += 1
         }
+        
     }
     
     func createEnrollment(user: inout User, course: inout Course, status: Enrollment.UserStatus, id: UInt64){

@@ -28,10 +28,8 @@ struct TeacherNavigationView: View {
                         Image(systemName: "chart.bar")
                             .frame(width: 20)
                         Text("Results")
-                        
-                        
                     }
-                    NavigationLink(destination: ReviewView(users: users, selectedLab: .constant(1)).environmentObject(viewModel)){
+                    NavigationLink(destination: ReviewNavigatorView(users: users, selectedLab: .constant(1)).environmentObject(viewModel)){
                         Image(systemName: "list.dash")
                             .frame(width: 20)
                         Text("Review")
@@ -41,7 +39,6 @@ struct TeacherNavigationView: View {
                             .frame(width: 20)
                         Text("Release")
                     }
-                    
                     NavigationLink(destination: Text("Groups")){
                         Image(systemName: "person.2")
                             .frame(width: 20)
@@ -52,13 +49,16 @@ struct TeacherNavigationView: View {
                             .frame(width: 20)
                         Text("Members")
                     }
-                }
-                Spacer()
-                List{
+                    
+                    Spacer()
                     GithubLinkSection(orgUrl: "https://github.com/dat310-spring21", isTeacher: true)
                 }
             }
+            .navigationTitle("test")
         }
+        .onAppear(perform: {
+            self.users = self.viewModel.getStudentsForCourse(courseId: self.selectedCourse)
+        })
     }
 }
 
