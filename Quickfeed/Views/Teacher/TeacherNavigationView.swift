@@ -11,6 +11,7 @@ import SwiftUI
 struct TeacherNavigationView: View {
     @StateObject var viewModel: TeacherViewModel
     @State var selectedCourse: UInt64
+    @State private var users: [User] = []
     
     var body: some View {
         NavigationView{
@@ -18,16 +19,19 @@ struct TeacherNavigationView: View {
                 CoursePicker(courses: viewModel.courses, selectedCourse: $selectedCourse)
                     .padding(.top)
                     .padding(.horizontal)
+                    .onChange(of: selectedCourse, perform: { value in
+                        self.users = self.viewModel.getStudentsForCourse(courseId: selectedCourse)
+                    })
                 
                 List{
                     NavigationLink(destination: Text("Results")){
                         Image(systemName: "chart.bar")
                             .frame(width: 20)
                         Text("Results")
-                            
+                        
                         
                     }
-                    NavigationLink(destination: ReviewView(selectedLab: .constant(1)).environmentObject(viewModel)){
+                    NavigationLink(destination: ReviewView(users: users, selectedLab: .constant(1)).environmentObject(viewModel)){
                         Image(systemName: "list.dash")
                             .frame(width: 20)
                         Text("Review")
@@ -48,18 +52,14 @@ struct TeacherNavigationView: View {
                             .frame(width: 20)
                         Text("Members")
                     }
-                    Spacer()
+                }
+                Spacer()
+                List{
                     GithubLinkSection(orgUrl: "https://github.com/dat310-spring21", isTeacher: true)
-                    
-                    
                 }
             }
-            
-                
         }
-        
     }
-    
 }
 
 

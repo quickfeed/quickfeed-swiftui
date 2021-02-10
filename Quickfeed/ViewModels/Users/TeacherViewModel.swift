@@ -12,12 +12,14 @@ class TeacherViewModel: UserViewModelProtocol{
     var provider: ProviderProtocol
     @Published var user: User
     var courses: [Course]
+    var users: [User]
     
     init(provider: ProviderProtocol) {
         self.provider = provider
         self.user = provider.getUser() ?? User()
         self.courses = provider.getCoursesForCurrentUser() ?? []
         assert(provider.isAuthorizedTeacher())
+        self.users = []
     }
     
     func getCourse(courseId: UInt64) -> Course{
@@ -27,6 +29,16 @@ class TeacherViewModel: UserViewModelProtocol{
             }
         }
         return Course()
+    }
+    
+    func getStudentsForCourse(courseId: UInt64) -> [User]{
+        let course = provider.getCourse(courseId: courseId)
+        let users = provider.getUsersForCourse(course: course ?? Course())
+        
+        self.users = users
+        
+        return users
+        
     }
     
     func reset() {
