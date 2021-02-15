@@ -33,7 +33,6 @@ class FakeProvider: ProviderProtocol, ObservableObject{
     func getUsersForCourse(course: Course) -> [User] {
         let enrollments: [Enrollment] = course.enrollments
         var users: [User] = []
-        print(enrollments)
         for enrollment in enrollments{
             users.append(enrollment.user)
         }
@@ -251,20 +250,23 @@ extension FakeProvider{
     func initTestEnrollments(){
         self.createEnrollment(user: &self.currentUser, course: &self.courses[0], status: Enrollment.UserStatus.teacher, id: 1)
         self.createEnrollment(user: &self.currentUser, course: &self.courses[1], status: Enrollment.UserStatus.teacher, id: 2)
+        self.createEnrollment(user: &self.currentUser, course: &self.courses[2], status: Enrollment.UserStatus.teacher, id: 3)
         
-        var enrId: UInt64 = 1
+        self.enrollDummyUsersToCourse(courseIndex: 0)
+        self.enrollDummyUsersToCourse(courseIndex: 1)
+        
+    }
+    
+    func enrollDummyUsersToCourse(courseIndex: Int){
         var i = 0
         for _ in self.dummyUsers{
-            var j = 0
-            for _ in self.courses{
-                self.createEnrollment(user: &self.dummyUsers[i], course: &self.courses[j], status: Enrollment.UserStatus.student, id: enrId)
-                j += 1
-                enrId += 1
-            }
+            self.createEnrollment(user: &self.dummyUsers[i], course: &self.courses[courseIndex], status: Enrollment.UserStatus.student, id: self.courses[courseIndex].id + self.dummyUsers[i].id)
             i += 1
         }
         
     }
+    
+    
     
     func createEnrollment(user: inout User, course: inout Course, status: Enrollment.UserStatus, id: UInt64){
         let enrollment = Enrollment(id: id, courseId: course.id, userID: user.id, user: user, course: course)

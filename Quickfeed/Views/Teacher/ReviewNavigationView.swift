@@ -11,7 +11,7 @@ struct ReviewNavigationView: View {
     @EnvironmentObject var viewModel: TeacherViewModel
     @Binding var selectedCourse: UInt64
     @State private var searchQuery: String = ""
-    @Binding var users: [User]
+    @Binding var enrolledUsers: [User]
     @Binding var selectedLab: UInt64
     @State private var showCompleted: Bool = true
     
@@ -41,7 +41,7 @@ struct ReviewNavigationView: View {
                 
                 List{
                     Section(header: Text(viewModel.getAssignmentById(id: selectedLab).isGroupLab ? "Groups" : "Students")){
-                        ForEach(users.filter({ matchesQuery(str: $0.name) }), id: \.id){ user in
+                        ForEach(enrolledUsers.filter({ matchesQuery(str: $0.name) }), id: \.id){ user in
                             NavigationLink(destination: Text(user.name)){
                                 SubmissionListItem(submitterName: user.name, totalReviewers: 1, reviews: 1, markedAsReady: true)
                             }
@@ -58,7 +58,7 @@ struct ReviewNavigationView: View {
 
 struct ReviewNavigatorView_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewNavigationView(selectedCourse: .constant(1),users: .constant([]), selectedLab: .constant(1))
+        ReviewNavigationView(selectedCourse: .constant(1), enrolledUsers: .constant([]), selectedLab: .constant(1))
             .environmentObject(TeacherViewModel(provider: FakeProvider()))
     }
 }
