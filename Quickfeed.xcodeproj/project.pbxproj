@@ -18,7 +18,7 @@
 		D0F9FC6F25BEBC360080A1F2 /* ag.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9FC6D25BEBC360080A1F2 /* ag.pb.swift */; };
 		D0F9FC7025BEBC360080A1F2 /* ag.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9FC6E25BEBC360080A1F2 /* ag.grpc.swift */; };
 		FA29711F25D04CF2000C99A1 /* GithubLinkSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29711E25D04CF2000C99A1 /* GithubLinkSection.swift */; };
-		FA29713025D05208000C99A1 /* ReviewNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29712F25D05208000C99A1 /* ReviewNavigatorView.swift */; };
+		FA29713025D05208000C99A1 /* ReviewNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29712F25D05208000C99A1 /* ReviewNavigationView.swift */; };
 		FA29716E25D28E45000C99A1 /* LabPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29716D25D28E45000C99A1 /* LabPicker.swift */; };
 		FA29717325D303E0000C99A1 /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29717225D303E0000C99A1 /* SearchField.swift */; };
 		FA29717825D311B5000C99A1 /* SearchFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29717725D311B5000C99A1 /* SearchFieldController.swift */; };
@@ -95,7 +95,7 @@
 		D0F9FC6D25BEBC360080A1F2 /* ag.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ag.pb.swift; sourceTree = "<group>"; };
 		D0F9FC6E25BEBC360080A1F2 /* ag.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ag.grpc.swift; sourceTree = "<group>"; };
 		FA29711E25D04CF2000C99A1 /* GithubLinkSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubLinkSection.swift; sourceTree = "<group>"; };
-		FA29712F25D05208000C99A1 /* ReviewNavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewNavigatorView.swift; sourceTree = "<group>"; };
+		FA29712F25D05208000C99A1 /* ReviewNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewNavigationView.swift; sourceTree = "<group>"; };
 		FA29716D25D28E45000C99A1 /* LabPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabPicker.swift; sourceTree = "<group>"; };
 		FA29717225D303E0000C99A1 /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
 		FA29717725D311B5000C99A1 /* SearchFieldController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFieldController.swift; sourceTree = "<group>"; };
@@ -177,7 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				FAB0671C25CACF8700FFE8EB /* TeacherNavigationView.swift */,
-				FA29712F25D05208000C99A1 /* ReviewNavigatorView.swift */,
+				FA29712F25D05208000C99A1 /* ReviewNavigationView.swift */,
 			);
 			path = Teacher;
 			sourceTree = "<group>";
@@ -521,7 +521,7 @@
 				FAB0670C25CAC8D600FFE8EB /* UserViewModelProtocol.swift in Sources */,
 				FA29711F25D04CF2000C99A1 /* GithubLinkSection.swift in Sources */,
 				D0F9FC6F25BEBC360080A1F2 /* ag.pb.swift in Sources */,
-				FA29713025D05208000C99A1 /* ReviewNavigatorView.swift in Sources */,
+				FA29713025D05208000C99A1 /* ReviewNavigationView.swift in Sources */,
 				FA29717325D303E0000C99A1 /* SearchField.swift in Sources */,
 				FA29717825D311B5000C99A1 /* SearchFieldController.swift in Sources */,
 				FA85790B25BEB4E900223DB9 /* ContentView.swift in Sources */,

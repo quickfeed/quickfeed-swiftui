@@ -13,9 +13,7 @@ struct LabPicker: View {
     var body: some View {
         Picker(selection: $selectedLab, label: Text("Selected lab")) {
             ForEach(labs, id: \.id){ lab in
-                NavigationLink(destination: Text(lab.name)){
-                    Text(lab.name)
-                }
+                Text(lab.name)
             }
         }
         .labelsHidden()

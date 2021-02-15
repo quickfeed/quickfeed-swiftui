@@ -32,12 +32,14 @@ extension Course{
 }
 
 extension Assignment{
-    init(name: String, id: UInt64, deadline: String, courseID: UInt64, autoApprove: Bool) {
+    init(name: String, id: UInt64, deadline: String, courseID: UInt64, autoApprove: Bool, isGroupLab: Bool, skipTests: Bool) {
         self.name = name
         self.id = id
         self.deadline = deadline
         self.courseID = courseID
         self.autoApprove = autoApprove
+        self.isGroupLab = isGroupLab
+        self.skipTests = skipTests // means it is graded manually
     }
 }
 

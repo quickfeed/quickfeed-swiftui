@@ -31,6 +31,18 @@ class TeacherViewModel: UserViewModelProtocol{
         return Course()
     }
     
+    
+    func getAssignmentById(id: UInt64) -> Assignment{
+        for course in self.courses{
+            for assignment in course.assignments{
+                if assignment.id == id{
+                    return assignment
+                }
+            }
+        }
+        return Assignment()
+    }
+    
     func getStudentsForCourse(courseId: UInt64) -> [User]{
         let course = provider.getCourse(courseId: courseId)
         let users = provider.getUsersForCourse(course: course ?? Course())

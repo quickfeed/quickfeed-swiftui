@@ -7,11 +7,12 @@
 
 import SwiftUI
 
-struct ReviewNavigatorView: View {
-    @State private var searchQuery: String = ""
-    @State var users: [User]
-    @Binding var selectedLab: UInt64
+struct ReviewNavigationView: View {
     @EnvironmentObject var viewModel: TeacherViewModel
+    @Binding var selectedCourse: UInt64
+    @State private var searchQuery: String = ""
+    @Binding var users: [User]
+    @Binding var selectedLab: UInt64
     @State private var showCompleted: Bool = true
     
     
@@ -28,35 +29,36 @@ struct ReviewNavigatorView: View {
                 Text("Review Submissions")
                     .font(.headline)
                 
-                SearchFieldRepresentable(query: $searchQuery)
-                
-                LabPicker(labs: viewModel.courses[0].assignments, selectedLab: $selectedLab)
-                    .frame(width: 120)
-                Toggle("Show completed", isOn: $showCompleted)
-                
-                
-                
+                VStack{
+                    SearchFieldRepresentable(query: $searchQuery)
+                    
+                    LabPicker(labs: viewModel.getCourse(courseId: selectedCourse).assignments, selectedLab: $selectedLab)
+        
+                    Toggle("Show completed", isOn: $showCompleted)
+                }
                 
                 
                 
                 List{
-                    Section(header: Text("Students")){
+                    Section(header: Text(viewModel.getAssignmentById(id: selectedLab).isGroupLab ? "Groups" : "Students")){
                         ForEach(users.filter({ matchesQuery(str: $0.name) }), id: \.id){ user in
                             NavigationLink(destination: Text(user.name)){
-                                Text(user.name)
+                                SubmissionListItem(submitterName: user.name, totalReviewers: 1, reviews: 1, markedAsReady: true)
                             }
                         }
                     }
                 }
             }
+            .frame(alignment: .leading)
             .padding(5)
         }
+        .frame(minWidth: 200)
     }
 }
 
 struct ReviewNavigatorView_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewNavigatorView(users: [], selectedLab: .constant(1))
+        ReviewNavigationView(selectedCourse: .constant(1),users: .constant([]), selectedLab: .constant(1))
             .environmentObject(TeacherViewModel(provider: FakeProvider()))
     }
 }

@@ -17,18 +17,26 @@ struct SubmissionListItem: View {
     var body: some View {
         HStack{
             Text(submitterName)
-                .frame(width: 200, alignment: .leading)
+                .frame( width: 100, alignment: .leading)
+            
             Text("\(reviews) / \(totalReviewers)")
             if markedAsReady {
                 Image(systemName: "checkmark.circle.fill")
             }
             
         }
+        
     }
 }
 
 struct SubmissionListItem_Previews: PreviewProvider {
     static var previews: some View {
-        SubmissionListItem(submitterName: "Ola Nordmann", totalReviewers: 1, reviews: 1, markedAsReady: true)
+        List{
+            SubmissionListItem(submitterName: "Ola Nord", totalReviewers: 1, reviews: 1, markedAsReady: true)
+            SubmissionListItem(submitterName: "Ola Nordmann", totalReviewers: 1, reviews: 0, markedAsReady: false)
+            SubmissionListItem(submitterName: "Ola Nordmann", totalReviewers: 1, reviews: 1, markedAsReady: true)
+        }
+        .frame(alignment: .leading)
+        
     }
 }

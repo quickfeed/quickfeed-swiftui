@@ -29,7 +29,7 @@ struct TeacherNavigationView: View {
                             .frame(width: 20)
                         Text("Results")
                     }
-                    NavigationLink(destination: ReviewNavigatorView(users: users, selectedLab: .constant(1)).environmentObject(viewModel)){
+                    NavigationLink(destination: ReviewNavigationView(selectedCourse: $selectedCourse, users: $users, selectedLab: .constant(1)).environmentObject(viewModel)){
                         Image(systemName: "list.dash")
                             .frame(width: 20)
                         Text("Review")
