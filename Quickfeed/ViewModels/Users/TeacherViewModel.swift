@@ -31,6 +31,17 @@ class TeacherViewModel: UserViewModelProtocol{
         return Course()
     }
     
+    func getAssignments(courseId: UInt64) -> [Assignment]{
+        return self.provider.getAssignments(courseID: courseId)
+    }
+    
+    func getManuallyGradedAssignments(courseId: UInt64) -> [Assignment]{
+        let allAssignments = self.getAssignments(courseId: courseId)
+        return allAssignments.filter{ assignment in
+            assignment.skipTests // skipTests -> assignments is manually graded
+        }
+    }
+    
     
     func getAssignmentById(id: UInt64) -> Assignment{
         for course in self.courses{

@@ -30,29 +30,31 @@ struct ReviewNavigationView: View {
                     .font(.headline)
                 
                 VStack{
+                    LabPicker(labs: viewModel.getManuallyGradedAssignments(courseId: selectedCourse), selectedLab: $selectedLab)
+        
                     SearchFieldRepresentable(query: $searchQuery)
                     
-                    LabPicker(labs: viewModel.getCourse(courseId: selectedCourse).assignments, selectedLab: $selectedLab)
-        
                     Toggle("Show completed", isOn: $showCompleted)
                 }
                 
                 
                 
                 List{
-                    Section(header: Text(viewModel.getAssignmentById(id: selectedLab).isGroupLab ? "Groups" : "Students")){
+                    Section(header: Text("Submissions")){
                         ForEach(enrolledUsers.filter({ matchesQuery(str: $0.name) }), id: \.id){ user in
                             NavigationLink(destination: Text(user.name)){
                                 SubmissionListItem(submitterName: user.name, totalReviewers: 1, reviews: 1, markedAsReady: true)
                             }
                         }
                     }
+                    
                 }
             }
             .frame(alignment: .leading)
-            .padding(5)
+            
         }
         .frame(minWidth: 200)
+        .padding(2)
     }
 }
 

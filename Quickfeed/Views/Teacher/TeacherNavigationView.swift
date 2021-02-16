@@ -12,6 +12,7 @@ struct TeacherNavigationView: View {
     @StateObject var viewModel: TeacherViewModel
     @State var selectedCourse: UInt64
     @State private var users: [User] = []
+    @State private var selectedLabForManualGrading: UInt64 = 0
     
     var body: some View {
         NavigationView{
@@ -28,29 +29,42 @@ struct TeacherNavigationView: View {
                     NavigationLink(destination: Text("Results")){
                         Image(systemName: "chart.bar")
                             .frame(width: 20)
+                            .foregroundColor(.blue)
                         Text("Results")
                     }
-                    NavigationLink(destination: ReviewNavigationView(selectedCourse: $selectedCourse, enrolledUsers: $users, selectedLab: .constant(1)).environmentObject(viewModel)){
-                        Image(systemName: "list.dash")
-                            .frame(width: 20)
-                        Text("Review")
-                    }
-                    NavigationLink(destination: Text("Release")){
-                        Image(systemName: "arrow.up.doc.fill")
-                            .frame(width: 20)
-                        Text("Release")
-                    }
+                    
                     NavigationLink(destination: Text("Groups")){
                         Image(systemName: "person.2")
                             .frame(width: 20)
+                            .foregroundColor(.blue)
                         Text("Groups")
                     }
-                    NavigationLink(destination: Text("Test")){
+                    NavigationLink(destination: MembersView(course: self.viewModel.getCourse(courseId: selectedCourse)).environmentObject(viewModel)){
                         Image(systemName: "person")
                             .frame(width: 20)
+                            .foregroundColor(.blue)
                         Text("Members")
                     }
                     
+                    
+                    
+                    Section(header:Text("Manual Grading")){
+                        NavigationLink(destination: ReviewNavigationView(selectedCourse: $selectedCourse, enrolledUsers: $users, selectedLab: $selectedLabForManualGrading).environmentObject(viewModel)){
+                            Image(systemName: "list.dash")
+                                .frame(width: 20)
+                                .foregroundColor(.blue)
+                            Text("Review")
+                        }
+                        NavigationLink(destination: Text("Release")){
+                            Image(systemName: "arrow.up.doc.fill")
+                                .frame(width: 20)
+                                .foregroundColor(.blue)
+                            Text("Release")
+                        }
+                        
+                    }
+                  
+                  
                     Spacer()
                     GithubLinkSection(orgUrl: "https://github.com/dat310-spring21", isTeacher: true)
                 }
@@ -59,6 +73,7 @@ struct TeacherNavigationView: View {
         }
         .onAppear(perform: {
             self.users = self.viewModel.getStudentsForCourse(courseId: self.selectedCourse)
+            self.selectedLabForManualGrading = self.viewModel.getManuallyGradedAssignments(courseId: selectedCourse)[0].id
         })
     }
 }

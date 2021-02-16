@@ -56,6 +56,8 @@
 		FAB0670D25CAC8D600FFE8EB /* UserViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0670B25CAC8D600FFE8EB /* UserViewModelProtocol.swift */; };
 		FAB0670E25CAC8D600FFE8EB /* UserViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0670B25CAC8D600FFE8EB /* UserViewModelProtocol.swift */; };
 		FAB0671D25CACF8700FFE8EB /* TeacherNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0671C25CACF8700FFE8EB /* TeacherNavigationView.swift */; };
+		FABB233925DBD8BD00317969 /* UserListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB233825DBD8BD00317969 /* UserListItem.swift */; };
+		FABB233E25DBD91B00317969 /* MembersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB233D25DBD91B00317969 /* MembersView.swift */; };
 		FAC5364925C0264500784980 /* ModelTestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5364825C0264500784980 /* ModelTestData.swift */; };
 		FAC5364A25C0264500784980 /* ModelTestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5364825C0264500784980 /* ModelTestData.swift */; };
 		FAC5364B25C0264500784980 /* ModelTestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5364825C0264500784980 /* ModelTestData.swift */; };
@@ -122,6 +124,8 @@
 		FAB0670425CAC8BC00FFE8EB /* TeacherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherViewModel.swift; sourceTree = "<group>"; };
 		FAB0670B25CAC8D600FFE8EB /* UserViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModelProtocol.swift; sourceTree = "<group>"; };
 		FAB0671C25CACF8700FFE8EB /* TeacherNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherNavigationView.swift; sourceTree = "<group>"; };
+		FABB233825DBD8BD00317969 /* UserListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListItem.swift; sourceTree = "<group>"; };
+		FABB233D25DBD91B00317969 /* MembersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersView.swift; sourceTree = "<group>"; };
 		FAC5364825C0264500784980 /* ModelTestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTestData.swift; sourceTree = "<group>"; };
 		FAC5365025C0347300784980 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		FAF945B625CC4E3200074A2F /* ProtoExstensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtoExstensions.swift; sourceTree = "<group>"; };
@@ -178,6 +182,7 @@
 			children = (
 				FAB0671C25CACF8700FFE8EB /* TeacherNavigationView.swift */,
 				FA29712F25D05208000C99A1 /* ReviewNavigationView.swift */,
+				FABB233D25DBD91B00317969 /* MembersView.swift */,
 			);
 			path = Teacher;
 			sourceTree = "<group>";
@@ -204,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				FA6C3EB025D45E4500D8A798 /* SubmissionListItem.swift */,
+				FABB233825DBD8BD00317969 /* UserListItem.swift */,
 			);
 			path = ListItems;
 			sourceTree = "<group>";
@@ -511,6 +517,7 @@
 				FAB0670525CAC8BC00FFE8EB /* TeacherViewModel.swift in Sources */,
 				FAC5365125C0347300784980 /* UserManager.swift in Sources */,
 				FA6C3EB125D45E4500D8A798 /* SubmissionListItem.swift in Sources */,
+				FABB233925DBD8BD00317969 /* UserListItem.swift in Sources */,
 				D099DEB625C94F8F009F46AA /* LabMenuView.swift in Sources */,
 				FAB066FB25CAC89B00FFE8EB /* StudentViewModel.swift in Sources */,
 				FAC5364925C0264500784980 /* ModelTestData.swift in Sources */,
@@ -523,6 +530,7 @@
 				D0F9FC6F25BEBC360080A1F2 /* ag.pb.swift in Sources */,
 				FA29713025D05208000C99A1 /* ReviewNavigationView.swift in Sources */,
 				FA29717325D303E0000C99A1 /* SearchField.swift in Sources */,
+				FABB233E25DBD91B00317969 /* MembersView.swift in Sources */,
 				FA29717825D311B5000C99A1 /* SearchFieldController.swift in Sources */,
 				FA85790B25BEB4E900223DB9 /* ContentView.swift in Sources */,
 				D0F9FC7025BEBC360080A1F2 /* ag.grpc.swift in Sources */,

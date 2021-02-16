@@ -17,12 +17,10 @@ struct SubmissionListItem: View {
     var body: some View {
         HStack{
             Text(submitterName)
-                .frame( width: 100, alignment: .leading)
+                .frame( width: 200, alignment: .leading)
             
             Text("\(reviews) / \(totalReviewers)")
-            if markedAsReady {
-                Image(systemName: "checkmark.circle.fill")
-            }
+            
             
         }
         
