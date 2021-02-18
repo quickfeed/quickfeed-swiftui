@@ -23,7 +23,9 @@ class FakeProvider: ProviderProtocol, ObservableObject{
         self.initDummyUsers()
         self.initTestCourses()
         self.initTestEnrollments()
-        self.grpcManager.getOrganization(orgName: "dat320")
+        // self.grpcManager.getOrganization(orgName: "dat320")
+        self.grpcManager.getProviders()
+        self.grpcManager.getOrganization(orgName: "testorg")
         
         
     }

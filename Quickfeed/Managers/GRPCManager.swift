@@ -32,6 +32,21 @@ class GRPCManager {
         
     }
     
+    func getProviders(){
+        let call = self.quickfeedClient.getProviders(Void())
+        
+        do {
+            print("getting providers")
+            let response = try call.response.wait()
+            
+            print("getting org")
+            print("Call received: \(response.providers)")
+          } catch {
+            print("Call failed: \(error)")
+          }
+        
+    }
+    
     
     func getOrganization(orgName: String) {
         
@@ -39,7 +54,7 @@ class GRPCManager {
             $0.orgName = orgName
         }
         
-        let headers: HPACKHeaders = ["user": "1"]
+        let headers: HPACKHeaders = ["user": "2"]
         
         var callOptions = CallOptions()
         callOptions.customMetadata = headers
