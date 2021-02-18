@@ -47,9 +47,9 @@ struct TeacherNavigationView: View {
                     }
                     
                     
-                    
+                    if viewModel.getManuallyGradedAssignments(courseId: selectedCourse).count > 0{
                     Section(header:Text("Manual Grading")){
-                        NavigationLink(destination: ReviewNavigationView(selectedCourse: $selectedCourse, enrolledUsers: $users, selectedLab: $selectedLabForManualGrading).environmentObject(viewModel)){
+                        NavigationLink(destination: ReviewNavigationView(selectedCourse: $selectedCourse,enrolledUsers: $users, selectedLab: $selectedLabForManualGrading).environmentObject(viewModel)){
                             Image(systemName: "list.dash")
                                 .frame(width: 20)
                                 .foregroundColor(.blue)
@@ -62,6 +62,7 @@ struct TeacherNavigationView: View {
                             Text("Release")
                         }
                         
+                    }
                     }
                   
                   

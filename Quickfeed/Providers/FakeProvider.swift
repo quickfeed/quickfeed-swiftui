@@ -13,14 +13,17 @@ class FakeProvider: ProviderProtocol, ObservableObject{
     @Published var currentUser: User
     var dummyUsers: [User]
     var courses: [Course]
+    var grpcManager: GRPCManager
     
     init() {
+        self.grpcManager = GRPCManager()
         self.courses = []
         self.dummyUsers = []
-        self.currentUser = User(name: "Current user", id: 1, studentID: "111111", isAdmin: true, enrollments: [])
+        self.currentUser = User(name: "Current user", id: 1, studentID: "111111", isAdmin: true, email: "test2@testmail.com", enrollments: [])
         self.initDummyUsers()
         self.initTestCourses()
         self.initTestEnrollments()
+        self.grpcManager.getOrganization(orgName: "dat320")
         
         
     }
@@ -214,11 +217,11 @@ extension FakeProvider{
     
     
     func initDummyUsers(){
-        self.dummyUsers.append(User(name: "Test2", id: 2, studentID: "222222", isAdmin: false, enrollments: []))
-        self.dummyUsers.append(User(name: "Test3", id: 3, studentID: "333333", isAdmin: false, enrollments: []))
-        self.dummyUsers.append(User(name: "Test4", id: 4, studentID: "444444", isAdmin: false, enrollments: []))
-        self.dummyUsers.append(User(name: "Test5", id: 5, studentID: "555555", isAdmin: false, enrollments: []))
-        self.dummyUsers.append(User(name: "Test6", id: 6, studentID: "666666", isAdmin: false, enrollments: []))
+        self.dummyUsers.append(User(name: "Test2", id: 2, studentID: "222222", isAdmin: false, email: "test2@testmail.com", enrollments: []))
+        self.dummyUsers.append(User(name: "Test3", id: 3, studentID: "333333", isAdmin: false, email: "test3@testmail.com", enrollments: []))
+        self.dummyUsers.append(User(name: "Test4", id: 4, studentID: "444444", isAdmin: false, email: "test4@testmail.com", enrollments: []))
+        self.dummyUsers.append(User(name: "Test5", id: 5, studentID: "555555", isAdmin: false, email: "test5@testmail.com", enrollments: []))
+        self.dummyUsers.append(User(name: "Test6", id: 6, studentID: "666666", isAdmin: false, email: "test6@testmail.com", enrollments: []))
     }
 
     

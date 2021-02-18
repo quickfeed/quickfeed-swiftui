@@ -16,45 +16,54 @@ struct ReviewNavigationView: View {
     @State private var showCompleted: Bool = true
     
     
-    func matchesQuery(str: String) -> Bool{
-        if searchQuery != "" && !str.lowercased().contains(self.searchQuery.lowercased()){
-            return false
+    func matchesQuery(user: User) -> Bool{
+        if searchQuery == ""{
+            return true
         }
-        return true
+        if  user.name.lowercased().contains(self.searchQuery.lowercased()){
+            return true
+        }
+        if  user.email.lowercased().contains(self.searchQuery.lowercased()){
+            return true
+        }
+        if user.studentID.lowercased().contains(self.searchQuery.lowercased()){
+            return true
+        }
+        if user.login.lowercased().contains(self.searchQuery.lowercased()){
+            return true
+        }
+        
+        return false
     }
     
     var body: some View {
+        
         NavigationView{
             VStack(alignment: .leading){
-                Text("Review Submissions")
-                    .font(.headline)
+                LabPicker(labs: viewModel.getManuallyGradedAssignments(courseId: selectedCourse), selectedLab: $selectedLab)
+                    .padding(2)
                 
-                VStack{
-                    LabPicker(labs: viewModel.getManuallyGradedAssignments(courseId: selectedCourse), selectedLab: $selectedLab)
-        
-                    SearchFieldRepresentable(query: $searchQuery)
-                    
-                    Toggle("Show completed", isOn: $showCompleted)
-                }
+                SearchFieldRepresentable(query: $searchQuery)
+                    .padding(2)
                 
-                
+                Toggle("Show completed", isOn: $showCompleted)
                 
                 List{
                     Section(header: Text("Submissions")){
-                        ForEach(enrolledUsers.filter({ matchesQuery(str: $0.name) }), id: \.id){ user in
+                        ForEach(enrolledUsers.filter({ matchesQuery(user: $0) }), id: \.id){ user in
                             NavigationLink(destination: Text(user.name)){
                                 SubmissionListItem(submitterName: user.name, totalReviewers: 1, reviews: 1, markedAsReady: true)
                             }
                         }
                     }
-                    
                 }
+                .padding(2)
             }
-            .frame(alignment: .leading)
+            .frame(minWidth: 300)
             
         }
-        .frame(minWidth: 200)
-        .padding(2)
+        
+        
     }
 }
 
