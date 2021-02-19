@@ -13,7 +13,6 @@
 		D04B470225D1741300AC8926 /* StudentLab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B470125D1741300AC8926 /* StudentLab.swift */; };
 		D04B470A25D29B7300AC8926 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B470925D29B7300AC8926 /* JSON.swift */; };
 		D06024B125DD23D4009390A1 /* LabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06024B025DD23D4009390A1 /* LabTests.swift */; };
-		D0765D9E25CA08710012D8E8 /* StudentLabOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0765D9D25CA08710012D8E8 /* StudentLabOverview.swift */; };
 		D0A6FCB925CA0A8A008C546B /* StudentNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A6FCB825CA0A8A008C546B /* StudentNavigatorView.swift */; };
 		D0F9FC6325BEB9A90080A1F2 /* GRPC in Frameworks */ = {isa = PBXBuildFile; productRef = D0F9FC6225BEB9A90080A1F2 /* GRPC */; };
 		D0F9FC6525BEB9A90080A1F2 /* CGRPCZlib in Frameworks */ = {isa = PBXBuildFile; productRef = D0F9FC6425BEB9A90080A1F2 /* CGRPCZlib */; };
@@ -89,7 +88,6 @@
 		D04B470125D1741300AC8926 /* StudentLab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLab.swift; sourceTree = "<group>"; };
 		D04B470925D29B7300AC8926 /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		D06024B025DD23D4009390A1 /* LabTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabTests.swift; sourceTree = "<group>"; };
-		D0765D9D25CA08710012D8E8 /* StudentLabOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLabOverview.swift; sourceTree = "<group>"; };
 		D0A6FCB825CA0A8A008C546B /* StudentNavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentNavigatorView.swift; sourceTree = "<group>"; };
 		D0F9FC6D25BEBC360080A1F2 /* ag.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ag.pb.swift; sourceTree = "<group>"; };
 		D0F9FC6E25BEBC360080A1F2 /* ag.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ag.grpc.swift; sourceTree = "<group>"; };
@@ -162,7 +160,6 @@
 			isa = PBXGroup;
 			children = (
 				D0A6FCB825CA0A8A008C546B /* StudentNavigatorView.swift */,
-				D0765D9D25CA08710012D8E8 /* StudentLabOverview.swift */,
 				D04B470125D1741300AC8926 /* StudentLab.swift */,
 			);
 			path = Student;
@@ -481,7 +478,6 @@
 				D04B470A25D29B7300AC8926 /* JSON.swift in Sources */,
 				FAC5364925C0264500784980 /* ModelTestData.swift in Sources */,
 				FA44BC1825CDE4FB00FDB9A2 /* CoursePicker.swift in Sources */,
-				D0765D9E25CA08710012D8E8 /* StudentLabOverview.swift in Sources */,
 				D0A6FCB925CA0A8A008C546B /* StudentNavigatorView.swift in Sources */,
 				FAF945B725CC4E3200074A2F /* ProtoExstensions.swift in Sources */,
 				FAB0670C25CAC8D600FFE8EB /* UserViewModelProtocol.swift in Sources */,

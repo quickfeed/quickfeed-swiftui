@@ -13,7 +13,7 @@ struct LabSection: View {
     var body: some View {
         Section(header: Text("Labs")){
             ForEach(assignments, id: \.id){ assignment in
-                NavigationLink(destination: Text(assignment.name)){
+                NavigationLink(destination: StudentLab(assignment: assignment, slipdays: UInt32(7))){
                     Text(assignment.name)
                     if assignment.isGroupLab {
                         Image(systemName: "person.3.fill")
