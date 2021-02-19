@@ -13,13 +13,6 @@ struct GithubLinkSection: View {
     var body: some View {
         Section(header: Text("Repositories")){
             Link("course-info", destination: URL(string: orgUrl + "/course-info")!)
-                /*.onHover { inside in
-                            if inside {
-                                NSCursor.pointingHand.push()
-                            } else {
-                                NSCursor.pop()
-                            }
-                        }*/
             Link("assignments", destination: URL(string: orgUrl + "/assignments")!)
             if isTeacher{
                 Link("tests", destination: URL(string: orgUrl + "/tests")!)

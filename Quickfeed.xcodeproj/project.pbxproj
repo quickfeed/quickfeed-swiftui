@@ -9,9 +9,11 @@
 /* Begin PBXBuildFile section */
 		D01B3CD225C2D76900B126FB /* GRPCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B3CD125C2D76900B126FB /* GRPCManager.swift */; };
 		D04B46EC25D1301200AC8926 /* LabSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B46EB25D1301200AC8926 /* LabSection.swift */; };
+		D04B46FD25D1696D00AC8926 /* LabInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B46FC25D1696D00AC8926 /* LabInfo.swift */; };
+		D04B470225D1741300AC8926 /* StudentLab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B470125D1741300AC8926 /* StudentLab.swift */; };
+		D04B470A25D29B7300AC8926 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B470925D29B7300AC8926 /* JSON.swift */; };
+		D06024B125DD23D4009390A1 /* LabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06024B025DD23D4009390A1 /* LabTests.swift */; };
 		D0765D9E25CA08710012D8E8 /* StudentLabOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0765D9D25CA08710012D8E8 /* StudentLabOverview.swift */; };
-		D099DECB25C94FF0009F46AA /* StudentAssignmentLabInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D099DECA25C94FF0009F46AA /* StudentAssignmentLabInfo.swift */; };
-		D099DED025C94FF6009F46AA /* StudentAssignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D099DECF25C94FF6009F46AA /* StudentAssignmentTests.swift */; };
 		D0A6FCB925CA0A8A008C546B /* StudentNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A6FCB825CA0A8A008C546B /* StudentNavigatorView.swift */; };
 		D0F9FC6325BEB9A90080A1F2 /* GRPC in Frameworks */ = {isa = PBXBuildFile; productRef = D0F9FC6225BEB9A90080A1F2 /* GRPC */; };
 		D0F9FC6525BEB9A90080A1F2 /* CGRPCZlib in Frameworks */ = {isa = PBXBuildFile; productRef = D0F9FC6425BEB9A90080A1F2 /* CGRPCZlib */; };
@@ -83,9 +85,11 @@
 		D01B3CD125C2D76900B126FB /* GRPCManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRPCManager.swift; sourceTree = "<group>"; };
 		D029D7B825BF089B00047837 /* GRPCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRPCManager.swift; sourceTree = "<group>"; };
 		D04B46EB25D1301200AC8926 /* LabSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabSection.swift; sourceTree = "<group>"; };
+		D04B46FC25D1696D00AC8926 /* LabInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabInfo.swift; sourceTree = "<group>"; };
+		D04B470125D1741300AC8926 /* StudentLab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLab.swift; sourceTree = "<group>"; };
+		D04B470925D29B7300AC8926 /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
+		D06024B025DD23D4009390A1 /* LabTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabTests.swift; sourceTree = "<group>"; };
 		D0765D9D25CA08710012D8E8 /* StudentLabOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLabOverview.swift; sourceTree = "<group>"; };
-		D099DECA25C94FF0009F46AA /* StudentAssignmentLabInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentAssignmentLabInfo.swift; sourceTree = "<group>"; };
-		D099DECF25C94FF6009F46AA /* StudentAssignmentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentAssignmentTests.swift; sourceTree = "<group>"; };
 		D0A6FCB825CA0A8A008C546B /* StudentNavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentNavigatorView.swift; sourceTree = "<group>"; };
 		D0F9FC6D25BEBC360080A1F2 /* ag.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ag.pb.swift; sourceTree = "<group>"; };
 		D0F9FC6E25BEBC360080A1F2 /* ag.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ag.grpc.swift; sourceTree = "<group>"; };
@@ -159,6 +163,7 @@
 			children = (
 				D0A6FCB825CA0A8A008C546B /* StudentNavigatorView.swift */,
 				D0765D9D25CA08710012D8E8 /* StudentLabOverview.swift */,
+				D04B470125D1741300AC8926 /* StudentLab.swift */,
 			);
 			path = Student;
 			sourceTree = "<group>";
@@ -253,6 +258,7 @@
 				FA4D0BD225BEFD75006412B0 /* Models.swift */,
 				FAC5364825C0264500784980 /* ModelTestData.swift */,
 				FAF945B625CC4E3200074A2F /* ProtoExstensions.swift */,
+				D04B470925D29B7300AC8926 /* JSON.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -271,11 +277,11 @@
 		FA85798C25BEC5B600223DB9 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				D099DECA25C94FF0009F46AA /* StudentAssignmentLabInfo.swift */,
-				D099DECF25C94FF6009F46AA /* StudentAssignmentTests.swift */,
+				D04B46FC25D1696D00AC8926 /* LabInfo.swift */,
 				FA44BC1725CDE4FB00FDB9A2 /* CoursePicker.swift */,
 				FA29711E25D04CF2000C99A1 /* GithubLinkSection.swift */,
 				D04B46EB25D1301200AC8926 /* LabSection.swift */,
+				D06024B025DD23D4009390A1 /* LabTests.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -466,11 +472,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAB066A625CAC0D300FFE8EB /* FakeProvider.swift in Sources */,
-				D099DECB25C94FF0009F46AA /* StudentAssignmentLabInfo.swift in Sources */,
+				D04B470225D1741300AC8926 /* StudentLab.swift in Sources */,
 				FAB0671D25CACF8700FFE8EB /* TeacherNavigatorView.swift in Sources */,
 				FAB0670525CAC8BC00FFE8EB /* TeacherViewModel.swift in Sources */,
 				FAC5365125C0347300784980 /* UserManager.swift in Sources */,
+				D06024B125DD23D4009390A1 /* LabTests.swift in Sources */,
 				FAB066FB25CAC89B00FFE8EB /* StudentViewModel.swift in Sources */,
+				D04B470A25D29B7300AC8926 /* JSON.swift in Sources */,
 				FAC5364925C0264500784980 /* ModelTestData.swift in Sources */,
 				FA44BC1825CDE4FB00FDB9A2 /* CoursePicker.swift in Sources */,
 				D0765D9E25CA08710012D8E8 /* StudentLabOverview.swift in Sources */,
@@ -483,7 +491,7 @@
 				FA29713025D05208000C99A1 /* ReviewView.swift in Sources */,
 				FA85790B25BEB4E900223DB9 /* ContentView.swift in Sources */,
 				D0F9FC7025BEBC360080A1F2 /* ag.grpc.swift in Sources */,
-				D099DED025C94FF6009F46AA /* StudentAssignmentTests.swift in Sources */,
+				D04B46FD25D1696D00AC8926 /* LabInfo.swift in Sources */,
 				D01B3CD225C2D76900B126FB /* GRPCManager.swift in Sources */,
 				FAB066B025CAC0F000FFE8EB /* ProviderProtocol.swift in Sources */,
 				FA4D0BD325BEFD75006412B0 /* Models.swift in Sources */,

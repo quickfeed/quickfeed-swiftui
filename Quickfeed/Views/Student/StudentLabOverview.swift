@@ -382,11 +382,11 @@ struct StudentLabOverview: View {
                             .frame(width: 250)
                     }
                     HStack{
-                        StudentAssignmentTests()
-                            .frame(minWidth: 400)
+                        //StudentAssignmentTests()
+                         //   .frame(minWidth: 400)
                         Spacer()
                         Divider()
-                        StudentAssignmentLabInfo(lab: lab, status: status)
+                        //StudentAssignmentLabInfo(lab: lab, status: status)
                             .frame(width: 250)
                         
                     }
@@ -408,53 +408,6 @@ struct StudentLabOverview: View {
                          Text("Bjørn Kristian Teisrud: Lab \(lab.id)")
                              .font(.title)
                              .fontWeight(.bold)
-                         if status == "Approved" {
-                             ProgressView(value: scoreValue, total: 100)
-                                 .accentColor(.green)
-                         }else if status == "Rejected"{
-                             ProgressView(value: scoreValue, total: 100)
-                                 .accentColor(.red)
-                         }else if status == "Revision"{
-                            ProgressView(value: scoreValue, total: 100)
-                                .accentColor(.orange)
-                        }else{
-                             ProgressView(value: scoreValue, total: 100)
-                                 .accentColor(.blue)
-                         }
-                         Divider()
-                         Text("Tests")
-                             .font(.title2)
-                             .fontWeight(.bold)
-                         StudentAssignmentTests()
-                            .frame(minWidth: 400)
-                         Divider()
-                         Text("Feedback")
-                             .font(.title2)
-                             .fontWeight(.bold)
-                         ScrollView{
-                             Text(feedback)
-                         }
-                            .frame(width: .infinity, height: 250)
-                     }
-                     VStack{
-                        Text("Lab Information")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                        
-                        StudentAssignmentLabInfo(lab: lab, status: status)
-                        Spacer()
-                     }
-                     .frame(width: 250)
-                 }
-             }
-             .padding()
-        }else if side == 3{
-            ScrollView{
-                 HStack{
-                     VStack{
-                         Text("Bjørn Kristian Teisrud: Lab \(lab.id)")
-                             .font(.title)
-                             .fontWeight(.bold)
                         Divider()
                          if status == "Approved" {
                              ProgressView(value: scoreValue, total: 100)
@@ -473,8 +426,8 @@ struct StudentLabOverview: View {
                          Text("Tests")
                              .font(.title2)
                              .fontWeight(.bold)
-                        StudentAssignmentTests()
-                           .frame(minWidth: 400)
+                        //StudentAssignmentTests()
+                        //   .frame(minWidth: 400)
                          Divider()
                          Text("Feedback")
                              .font(.title2)
@@ -489,7 +442,7 @@ struct StudentLabOverview: View {
                              .font(.title)
                              .fontWeight(.bold)
                         Divider()
-                        StudentAssignmentLabInfo(lab: lab, status: status)
+                        //StudentAssignmentLabInfo(lab: lab, status: status)
                         Spacer()
                      }
                      .frame(width: 250)
@@ -503,6 +456,6 @@ struct StudentLabOverview: View {
 
 struct StudentLabOverview_Previews: PreviewProvider {
     static var previews: some View {
-        StudentLabOverview(lab: AssignmentModel.data[0], side: 3, scoreLimit: 80)
+        StudentLabOverview(lab: AssignmentModel.data[0], side: 1, scoreLimit: 80)
     }
 }
