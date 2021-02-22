@@ -9,13 +9,14 @@ import Foundation
 
 
 extension User{
-    init(name: String, id: UInt64, studentID: String, isAdmin: Bool, email: String, enrollments: [Enrollment]){
+    init(name: String, id: UInt64, studentID: String, isAdmin: Bool, email: String, enrollments: [Enrollment], login: String){
         self.name = name
         self.id = id
         self.studentID = studentID
         self.isAdmin = isAdmin
         self.email = email
         self.enrollments = enrollments
+        self.login = login
     }
     
 }

@@ -9,9 +9,11 @@ import SwiftUI
 
 struct GithubLinkSection: View {
     var orgUrl: String
+    var userLogin: String
     var isTeacher: Bool
     var body: some View {
         Section(header: Text("Repositories")){
+            Link("\(userLogin)-labs", destination: URL(string: orgUrl + "/" + userLogin + "-labs")!)
             Link("course-info", destination: URL(string: orgUrl + "/course-info")!)
             Link("assignments", destination: URL(string: orgUrl + "/assignments")!)
             if isTeacher{
@@ -25,14 +27,14 @@ struct GithubLinkSection: View {
 struct GithubLinkSection_Previews: PreviewProvider {
     static var previews: some View {
         List{
-            GithubLinkSection(orgUrl: "https://github.com/dat310-spring21", isTeacher: true)
+            GithubLinkSection(orgUrl: "https://github.com/dat310-spring21", userLogin: "oskargj", isTeacher: true)
                 
             
         }
         .previewDisplayName("Teacher")
         
         List{
-            GithubLinkSection(orgUrl: "https://github.com/dat310-spring21", isTeacher: false)
+            GithubLinkSection(orgUrl: "https://github.com/dat310-spring21", userLogin: "oskargj", isTeacher: false)
                 
         }
         .previewDisplayName("Student")

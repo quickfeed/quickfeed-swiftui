@@ -19,6 +19,9 @@ class GRPCManager {
     
     
     init(){
+        let hostname = "ag2.ux.uis.no"
+        let port = 443
+        
         // Setup an `EventLoopGroup` for the connection to run on.
         //
         // See: https://github.com/apple/swift-nio#eventloops-and-eventloopgroups
@@ -28,13 +31,13 @@ class GRPCManager {
         //self.channel = ClientConnection.insecure(group: self.eventLoopGroup)
         //.connect(host: "https://ag2.ux.uis.no", port: 3005)
         
-        
+        print("GRPC connection setup")
         
         self.channel = ClientConnection.insecure(group: self.eventLoopGroup)
-            .connect(host: "ag2.ux.uis.no", port: 443)
+            .connect(host: hostname, port: port)
         
         
-        print("GRPC connection")
+       
         
         
         // Provide the connection to the generated client.
@@ -50,7 +53,7 @@ class GRPCManager {
         
         
         do {
-            print("getting providers")
+            print("Get providers")
             
             print("connectivity state: \(self.channel.connectivity.state)")
             let response = try call.response.wait()

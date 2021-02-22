@@ -73,22 +73,9 @@ struct MembersView: View {
                 
                 
                 ForEach(self.filteredUsers().indices, id: \.self){ i in
-                    HStack {
-                        
-                        Text(self.filteredUsers()[i].name)
-                            .padding(.leading, 4)
-                            .frame(minWidth: 200, maxWidth: .infinity, alignment: .leading)
-                        Link(self.filteredUsers()[i].email, destination: URL(string: "mailto:" + self.filteredUsers()[i].email)!)
-                            .frame(minWidth: 200, maxWidth: .infinity, alignment: .leading)
-                        Text(self.filteredUsers()[i].studentID)
-                            .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
-                        Text("Inactive") // NOT IMPLEMENTED
-                            .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
-                        Text("0") // NOT IMPLEMENTED
-                            .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
-                        Text("Student") // NOT IMPLEMENTED
-                            .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
-                    }
+                    
+                    MemberListItem(user: self.filteredUsers()[i])
+
                     .frame(maxWidth: .infinity)
                     .listRowBackground(RoundedRectangle(cornerRadius: 4)
                                         .foregroundColor(Color(.unemphasizedSelectedTextBackgroundColor))
