@@ -58,6 +58,7 @@ struct ReviewNavigationView: View {
                     }
                 }
                 .padding(2)
+                
             }
             .frame(minWidth: 300)
             

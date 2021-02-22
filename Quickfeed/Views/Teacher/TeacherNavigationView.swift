@@ -70,7 +70,8 @@ struct TeacherNavigationView: View {
                     GithubLinkSection(orgUrl: "https://github.com/dat310-spring21", isTeacher: true)
                 }
             }
-            .navigationTitle("test")
+            
+            
         }
         .onAppear(perform: {
             self.users = self.viewModel.getStudentsForCourse(courseId: self.selectedCourse)
