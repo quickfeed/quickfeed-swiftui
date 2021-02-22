@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		D01B3CD225C2D76900B126FB /* GRPCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B3CD125C2D76900B126FB /* GRPCManager.swift */; };
+		D04B46EC25D1301200AC8926 /* LabSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B46EB25D1301200AC8926 /* LabSection.swift */; };
 		D057492F25CAA69A007EFFE0 /* GitHubManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057492E25CAA69A007EFFE0 /* GitHubManager.swift */; };
 		D0765D9E25CA08710012D8E8 /* StudentLabOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0765D9D25CA08710012D8E8 /* StudentLabOverview.swift */; };
-		D099DEB625C94F8F009F46AA /* StudentLabMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D099DEB525C94F8E009F46AA /* StudentLabMenu.swift */; };
 		D099DECB25C94FF0009F46AA /* StudentAssignmentLabInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D099DECA25C94FF0009F46AA /* StudentAssignmentLabInfo.swift */; };
 		D099DED025C94FF6009F46AA /* StudentAssignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D099DECF25C94FF6009F46AA /* StudentAssignmentTests.swift */; };
 		D0A6FCB925CA0A8A008C546B /* StudentNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A6FCB825CA0A8A008C546B /* StudentNavigatorView.swift */; };
@@ -18,19 +18,49 @@
 		D0F9FC6525BEB9A90080A1F2 /* CGRPCZlib in Frameworks */ = {isa = PBXBuildFile; productRef = D0F9FC6425BEB9A90080A1F2 /* CGRPCZlib */; };
 		D0F9FC6F25BEBC360080A1F2 /* ag.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9FC6D25BEBC360080A1F2 /* ag.pb.swift */; };
 		D0F9FC7025BEBC360080A1F2 /* ag.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9FC6E25BEBC360080A1F2 /* ag.grpc.swift */; };
+		FA29711F25D04CF2000C99A1 /* GithubLinkSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29711E25D04CF2000C99A1 /* GithubLinkSection.swift */; };
+		FA29713025D05208000C99A1 /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29712F25D05208000C99A1 /* ReviewView.swift */; };
+		FA44BC1825CDE4FB00FDB9A2 /* CoursePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA44BC1725CDE4FB00FDB9A2 /* CoursePicker.swift */; };
 		FA4D0BD325BEFD75006412B0 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4D0BD225BEFD75006412B0 /* Models.swift */; };
 		FA85790925BEB4E900223DB9 /* QuickfeedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA85790825BEB4E900223DB9 /* QuickfeedApp.swift */; };
 		FA85790B25BEB4E900223DB9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA85790A25BEB4E900223DB9 /* ContentView.swift */; };
 		FA85790D25BEB4EA00223DB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA85790C25BEB4EA00223DB9 /* Assets.xcassets */; };
 		FA85791025BEB4EA00223DB9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA85790F25BEB4EA00223DB9 /* Preview Assets.xcassets */; };
-		FA85791C25BEB4EA00223DB9 /* QuickfeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA85791B25BEB4EA00223DB9 /* QuickfeedTests.swift */; };
+		FA85791C25BEB4EA00223DB9 /* FakeProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA85791B25BEB4EA00223DB9 /* FakeProviderTests.swift */; };
 		FA85792725BEB4EA00223DB9 /* QuickfeedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA85792625BEB4EA00223DB9 /* QuickfeedUITests.swift */; };
+		FAB0665925CABED200FFE8EB /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4D0BD225BEFD75006412B0 /* Models.swift */; };
+		FAB0665D25CABED500FFE8EB /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4D0BD225BEFD75006412B0 /* Models.swift */; };
+		FAB0666125CABF2A00FFE8EB /* ag.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9FC6E25BEBC360080A1F2 /* ag.grpc.swift */; };
+		FAB0666525CABF2A00FFE8EB /* ag.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9FC6E25BEBC360080A1F2 /* ag.grpc.swift */; };
+		FAB0666925CABF2E00FFE8EB /* ag.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9FC6D25BEBC360080A1F2 /* ag.pb.swift */; };
+		FAB0666D25CABF2F00FFE8EB /* ag.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9FC6D25BEBC360080A1F2 /* ag.pb.swift */; };
+		FAB0667325CABF6E00FFE8EB /* CGRPCZlib in Frameworks */ = {isa = PBXBuildFile; productRef = FAB0667225CABF6E00FFE8EB /* CGRPCZlib */; };
+		FAB0667525CABF7200FFE8EB /* GRPC in Frameworks */ = {isa = PBXBuildFile; productRef = FAB0667425CABF7200FFE8EB /* GRPC */; };
+		FAB066A625CAC0D300FFE8EB /* FakeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB066A525CAC0D300FFE8EB /* FakeProvider.swift */; };
+		FAB066A725CAC0D300FFE8EB /* FakeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB066A525CAC0D300FFE8EB /* FakeProvider.swift */; };
+		FAB066A825CAC0D300FFE8EB /* FakeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB066A525CAC0D300FFE8EB /* FakeProvider.swift */; };
+		FAB066B025CAC0F000FFE8EB /* ProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB066AF25CAC0F000FFE8EB /* ProviderProtocol.swift */; };
+		FAB066B125CAC0F000FFE8EB /* ProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB066AF25CAC0F000FFE8EB /* ProviderProtocol.swift */; };
+		FAB066B225CAC0F000FFE8EB /* ProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB066AF25CAC0F000FFE8EB /* ProviderProtocol.swift */; };
+		FAB066FB25CAC89B00FFE8EB /* StudentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB066FA25CAC89B00FFE8EB /* StudentViewModel.swift */; };
+		FAB066FC25CAC89B00FFE8EB /* StudentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB066FA25CAC89B00FFE8EB /* StudentViewModel.swift */; };
+		FAB066FD25CAC89B00FFE8EB /* StudentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB066FA25CAC89B00FFE8EB /* StudentViewModel.swift */; };
+		FAB0670525CAC8BC00FFE8EB /* TeacherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0670425CAC8BC00FFE8EB /* TeacherViewModel.swift */; };
+		FAB0670625CAC8BC00FFE8EB /* TeacherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0670425CAC8BC00FFE8EB /* TeacherViewModel.swift */; };
+		FAB0670725CAC8BC00FFE8EB /* TeacherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0670425CAC8BC00FFE8EB /* TeacherViewModel.swift */; };
+		FAB0670C25CAC8D600FFE8EB /* UserViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0670B25CAC8D600FFE8EB /* UserViewModelProtocol.swift */; };
+		FAB0670D25CAC8D600FFE8EB /* UserViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0670B25CAC8D600FFE8EB /* UserViewModelProtocol.swift */; };
+		FAB0670E25CAC8D600FFE8EB /* UserViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0670B25CAC8D600FFE8EB /* UserViewModelProtocol.swift */; };
+		FAB0671D25CACF8700FFE8EB /* TeacherNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0671C25CACF8700FFE8EB /* TeacherNavigatorView.swift */; };
 		FAC5364925C0264500784980 /* ModelTestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5364825C0264500784980 /* ModelTestData.swift */; };
 		FAC5364A25C0264500784980 /* ModelTestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5364825C0264500784980 /* ModelTestData.swift */; };
 		FAC5364B25C0264500784980 /* ModelTestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5364825C0264500784980 /* ModelTestData.swift */; };
 		FAC5365125C0347300784980 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5365025C0347300784980 /* UserManager.swift */; };
 		FAC5365225C0347300784980 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5365025C0347300784980 /* UserManager.swift */; };
 		FAC5365325C0347300784980 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5365025C0347300784980 /* UserManager.swift */; };
+		FAF945B725CC4E3200074A2F /* ProtoExstensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF945B625CC4E3200074A2F /* ProtoExstensions.swift */; };
+		FAF945B825CC4E3200074A2F /* ProtoExstensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF945B625CC4E3200074A2F /* ProtoExstensions.swift */; };
+		FAF945B925CC4E3200074A2F /* ProtoExstensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF945B625CC4E3200074A2F /* ProtoExstensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,14 +83,17 @@
 /* Begin PBXFileReference section */
 		D01B3CD125C2D76900B126FB /* GRPCManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRPCManager.swift; sourceTree = "<group>"; };
 		D029D7B825BF089B00047837 /* GRPCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRPCManager.swift; sourceTree = "<group>"; };
+		D04B46EB25D1301200AC8926 /* LabSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabSection.swift; sourceTree = "<group>"; };
 		D057492E25CAA69A007EFFE0 /* GitHubManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubManager.swift; sourceTree = "<group>"; };
 		D0765D9D25CA08710012D8E8 /* StudentLabOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLabOverview.swift; sourceTree = "<group>"; };
-		D099DEB525C94F8E009F46AA /* StudentLabMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLabMenu.swift; sourceTree = "<group>"; };
 		D099DECA25C94FF0009F46AA /* StudentAssignmentLabInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentAssignmentLabInfo.swift; sourceTree = "<group>"; };
 		D099DECF25C94FF6009F46AA /* StudentAssignmentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentAssignmentTests.swift; sourceTree = "<group>"; };
 		D0A6FCB825CA0A8A008C546B /* StudentNavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentNavigatorView.swift; sourceTree = "<group>"; };
 		D0F9FC6D25BEBC360080A1F2 /* ag.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ag.pb.swift; sourceTree = "<group>"; };
 		D0F9FC6E25BEBC360080A1F2 /* ag.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ag.grpc.swift; sourceTree = "<group>"; };
+		FA29711E25D04CF2000C99A1 /* GithubLinkSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubLinkSection.swift; sourceTree = "<group>"; };
+		FA29712F25D05208000C99A1 /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
+		FA44BC1725CDE4FB00FDB9A2 /* CoursePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursePicker.swift; sourceTree = "<group>"; };
 		FA4D0BD225BEFD75006412B0 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		FA85790525BEB4E900223DB9 /* Quickfeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quickfeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA85790825BEB4E900223DB9 /* QuickfeedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickfeedApp.swift; sourceTree = "<group>"; };
@@ -70,13 +103,20 @@
 		FA85791125BEB4EA00223DB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA85791225BEB4EA00223DB9 /* Quickfeed.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Quickfeed.entitlements; sourceTree = "<group>"; };
 		FA85791725BEB4EA00223DB9 /* QuickfeedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickfeedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FA85791B25BEB4EA00223DB9 /* QuickfeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickfeedTests.swift; sourceTree = "<group>"; };
+		FA85791B25BEB4EA00223DB9 /* FakeProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeProviderTests.swift; sourceTree = "<group>"; };
 		FA85791D25BEB4EA00223DB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA85792225BEB4EA00223DB9 /* QuickfeedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickfeedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA85792625BEB4EA00223DB9 /* QuickfeedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickfeedUITests.swift; sourceTree = "<group>"; };
 		FA85792825BEB4EA00223DB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAB066A525CAC0D300FFE8EB /* FakeProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeProvider.swift; sourceTree = "<group>"; };
+		FAB066AF25CAC0F000FFE8EB /* ProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderProtocol.swift; sourceTree = "<group>"; };
+		FAB066FA25CAC89B00FFE8EB /* StudentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentViewModel.swift; sourceTree = "<group>"; };
+		FAB0670425CAC8BC00FFE8EB /* TeacherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherViewModel.swift; sourceTree = "<group>"; };
+		FAB0670B25CAC8D600FFE8EB /* UserViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModelProtocol.swift; sourceTree = "<group>"; };
+		FAB0671C25CACF8700FFE8EB /* TeacherNavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherNavigatorView.swift; sourceTree = "<group>"; };
 		FAC5364825C0264500784980 /* ModelTestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTestData.swift; sourceTree = "<group>"; };
 		FAC5365025C0347300784980 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		FAF945B625CC4E3200074A2F /* ProtoExstensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtoExstensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +140,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAB0667525CABF7200FFE8EB /* GRPC in Frameworks */,
+				FAB0667325CABF6E00FFE8EB /* CGRPCZlib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +156,15 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
+		D04B46E125D12E9D00AC8926 /* Student */ = {
+			isa = PBXGroup;
+			children = (
+				D0A6FCB825CA0A8A008C546B /* StudentNavigatorView.swift */,
+				D0765D9D25CA08710012D8E8 /* StudentLabOverview.swift */,
+			);
+			path = Student;
+			sourceTree = "<group>";
+		};
 		D0F9FC6C25BEBBDB0080A1F2 /* GRPC */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +172,15 @@
 				D0F9FC6D25BEBC360080A1F2 /* ag.pb.swift */,
 			);
 			path = GRPC;
+			sourceTree = "<group>";
+		};
+		FA29712325D05121000C99A1 /* Teacher */ = {
+			isa = PBXGroup;
+			children = (
+				FAB0671C25CACF8700FFE8EB /* TeacherNavigatorView.swift */,
+				FA29712F25D05208000C99A1 /* ReviewView.swift */,
+			);
+			path = Teacher;
 			sourceTree = "<group>";
 		};
 		FA8578FC25BEB4E900223DB9 = {
@@ -131,6 +191,7 @@
 				FA85792525BEB4EA00223DB9 /* QuickfeedUITests */,
 				FA85790625BEB4E900223DB9 /* Products */,
 				D01B3CCA25C2D73100B126FB /* Recovered References */,
+				FAB0667125CABF6E00FFE8EB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -147,8 +208,10 @@
 		FA85790725BEB4E900223DB9 /* Quickfeed */ = {
 			isa = PBXGroup;
 			children = (
-				FAC5364F25C0321600784980 /* Managers */,
+				FAB066A425CAC09F00FFE8EB /* Providers */,
+				FAB066F825CAC84200FFE8EB /* ViewModels */,
 				FA85798025BEC4B000223DB9 /* Views */,
+				FAC5364F25C0321600784980 /* Managers */,
 				FA85795A25BEB9AC00223DB9 /* Models */,
 				D0F9FC6C25BEBBDB0080A1F2 /* GRPC */,
 				FA85790825BEB4E900223DB9 /* QuickfeedApp.swift */,
@@ -171,7 +234,7 @@
 		FA85791A25BEB4EA00223DB9 /* QuickfeedTests */ = {
 			isa = PBXGroup;
 			children = (
-				FA85791B25BEB4EA00223DB9 /* QuickfeedTests.swift */,
+				FA85791B25BEB4EA00223DB9 /* FakeProviderTests.swift */,
 				FA85791D25BEB4EA00223DB9 /* Info.plist */,
 			);
 			path = QuickfeedTests;
@@ -191,6 +254,7 @@
 			children = (
 				FA4D0BD225BEFD75006412B0 /* Models.swift */,
 				FAC5364825C0264500784980 /* ModelTestData.swift */,
+				FAF945B625CC4E3200074A2F /* ProtoExstensions.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -198,30 +262,58 @@
 		FA85798025BEC4B000223DB9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D04B46E125D12E9D00AC8926 /* Student */,
+				FA29712325D05121000C99A1 /* Teacher */,
 				FA85790A25BEB4E900223DB9 /* ContentView.swift */,
-				FA85798B25BEC59300223DB9 /* Quickfeed */,
 				FA85798C25BEC5B600223DB9 /* Helpers */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		FA85798B25BEC59300223DB9 /* Quickfeed */ = {
-			isa = PBXGroup;
-			children = (
-				D0765D9D25CA08710012D8E8 /* StudentLabOverview.swift */,
-				D0A6FCB825CA0A8A008C546B /* StudentNavigatorView.swift */,
-			);
-			path = Quickfeed;
-			sourceTree = "<group>";
-		};
 		FA85798C25BEC5B600223DB9 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				D099DEB525C94F8E009F46AA /* StudentLabMenu.swift */,
 				D099DECA25C94FF0009F46AA /* StudentAssignmentLabInfo.swift */,
 				D099DECF25C94FF6009F46AA /* StudentAssignmentTests.swift */,
+				FA44BC1725CDE4FB00FDB9A2 /* CoursePicker.swift */,
+				FA29711E25D04CF2000C99A1 /* GithubLinkSection.swift */,
+				D04B46EB25D1301200AC8926 /* LabSection.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		FAB0667125CABF6E00FFE8EB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FAB066A425CAC09F00FFE8EB /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				FAB066A525CAC0D300FFE8EB /* FakeProvider.swift */,
+				FAB066AF25CAC0F000FFE8EB /* ProviderProtocol.swift */,
+			);
+			path = Providers;
+			sourceTree = "<group>";
+		};
+		FAB066F825CAC84200FFE8EB /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				FAB066F925CAC85500FFE8EB /* Users */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		FAB066F925CAC85500FFE8EB /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				FAB066FA25CAC89B00FFE8EB /* StudentViewModel.swift */,
+				FAB0670425CAC8BC00FFE8EB /* TeacherViewModel.swift */,
+				FAB0670B25CAC8D600FFE8EB /* UserViewModelProtocol.swift */,
+			);
+			path = Users;
 			sourceTree = "<group>";
 		};
 		FAC5364F25C0321600784980 /* Managers */ = {
@@ -272,6 +364,8 @@
 				FA85791925BEB4EA00223DB9 /* PBXTargetDependency */,
 			);
 			name = QuickfeedTests;
+			packageProductDependencies = (
+			);
 			productName = QuickfeedTests;
 			productReference = FA85791725BEB4EA00223DB9 /* QuickfeedTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -290,6 +384,10 @@
 				FA85792425BEB4EA00223DB9 /* PBXTargetDependency */,
 			);
 			name = QuickfeedUITests;
+			packageProductDependencies = (
+				FAB0667225CABF6E00FFE8EB /* CGRPCZlib */,
+				FAB0667425CABF7200FFE8EB /* GRPC */,
+			);
 			productName = QuickfeedUITests;
 			productReference = FA85792225BEB4EA00223DB9 /* QuickfeedUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -370,18 +468,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAB066A625CAC0D300FFE8EB /* FakeProvider.swift in Sources */,
 				D099DECB25C94FF0009F46AA /* StudentAssignmentLabInfo.swift in Sources */,
+				FAB0671D25CACF8700FFE8EB /* TeacherNavigatorView.swift in Sources */,
+				FAB0670525CAC8BC00FFE8EB /* TeacherViewModel.swift in Sources */,
 				FAC5365125C0347300784980 /* UserManager.swift in Sources */,
-				D099DEB625C94F8F009F46AA /* StudentLabMenu.swift in Sources */,
+				FAB066FB25CAC89B00FFE8EB /* StudentViewModel.swift in Sources */,
 				FAC5364925C0264500784980 /* ModelTestData.swift in Sources */,
+				FA44BC1825CDE4FB00FDB9A2 /* CoursePicker.swift in Sources */,
 				D0765D9E25CA08710012D8E8 /* StudentLabOverview.swift in Sources */,
 				D0A6FCB925CA0A8A008C546B /* StudentNavigatorView.swift in Sources */,
+				FAF945B725CC4E3200074A2F /* ProtoExstensions.swift in Sources */,
+				FAB0670C25CAC8D600FFE8EB /* UserViewModelProtocol.swift in Sources */,
+				FA29711F25D04CF2000C99A1 /* GithubLinkSection.swift in Sources */,
 				D0F9FC6F25BEBC360080A1F2 /* ag.pb.swift in Sources */,
+				D04B46EC25D1301200AC8926 /* LabSection.swift in Sources */,
+				FA29713025D05208000C99A1 /* ReviewView.swift in Sources */,
 				FA85790B25BEB4E900223DB9 /* ContentView.swift in Sources */,
 				D057492F25CAA69A007EFFE0 /* GitHubManager.swift in Sources */,
 				D0F9FC7025BEBC360080A1F2 /* ag.grpc.swift in Sources */,
 				D099DED025C94FF6009F46AA /* StudentAssignmentTests.swift in Sources */,
 				D01B3CD225C2D76900B126FB /* GRPCManager.swift in Sources */,
+				FAB066B025CAC0F000FFE8EB /* ProviderProtocol.swift in Sources */,
 				FA4D0BD325BEFD75006412B0 /* Models.swift in Sources */,
 				FA85790925BEB4E900223DB9 /* QuickfeedApp.swift in Sources */,
 			);
@@ -391,9 +499,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAB066FC25CAC89B00FFE8EB /* StudentViewModel.swift in Sources */,
+				FAB066B125CAC0F000FFE8EB /* ProviderProtocol.swift in Sources */,
+				FAB0666925CABF2E00FFE8EB /* ag.pb.swift in Sources */,
 				FAC5364A25C0264500784980 /* ModelTestData.swift in Sources */,
+				FAB0670D25CAC8D600FFE8EB /* UserViewModelProtocol.swift in Sources */,
 				FAC5365225C0347300784980 /* UserManager.swift in Sources */,
-				FA85791C25BEB4EA00223DB9 /* QuickfeedTests.swift in Sources */,
+				FA85791C25BEB4EA00223DB9 /* FakeProviderTests.swift in Sources */,
+				FAB0665D25CABED500FFE8EB /* Models.swift in Sources */,
+				FAB0666125CABF2A00FFE8EB /* ag.grpc.swift in Sources */,
+				FAB066A725CAC0D300FFE8EB /* FakeProvider.swift in Sources */,
+				FAF945B825CC4E3200074A2F /* ProtoExstensions.swift in Sources */,
+				FAB0670625CAC8BC00FFE8EB /* TeacherViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,9 +518,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAB066FD25CAC89B00FFE8EB /* StudentViewModel.swift in Sources */,
+				FAB066B225CAC0F000FFE8EB /* ProviderProtocol.swift in Sources */,
+				FAB0666D25CABF2F00FFE8EB /* ag.pb.swift in Sources */,
 				FAC5364B25C0264500784980 /* ModelTestData.swift in Sources */,
+				FAB0670E25CAC8D600FFE8EB /* UserViewModelProtocol.swift in Sources */,
 				FAC5365325C0347300784980 /* UserManager.swift in Sources */,
 				FA85792725BEB4EA00223DB9 /* QuickfeedUITests.swift in Sources */,
+				FAB0665925CABED200FFE8EB /* Models.swift in Sources */,
+				FAB0666525CABF2A00FFE8EB /* ag.grpc.swift in Sources */,
+				FAB066A825CAC0D300FFE8EB /* FakeProvider.swift in Sources */,
+				FAF945B925CC4E3200074A2F /* ProtoExstensions.swift in Sources */,
+				FAB0670725CAC8BC00FFE8EB /* TeacherViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -724,6 +850,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D0F9FC6125BEB9A90080A1F2 /* XCRemoteSwiftPackageReference "grpc-swift" */;
 			productName = CGRPCZlib;
+		};
+		FAB0667225CABF6E00FFE8EB /* CGRPCZlib */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0F9FC6125BEB9A90080A1F2 /* XCRemoteSwiftPackageReference "grpc-swift" */;
+			productName = CGRPCZlib;
+		};
+		FAB0667425CABF7200FFE8EB /* GRPC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0F9FC6125BEB9A90080A1F2 /* XCRemoteSwiftPackageReference "grpc-swift" */;
+			productName = GRPC;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
