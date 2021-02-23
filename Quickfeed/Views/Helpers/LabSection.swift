@@ -8,25 +8,15 @@
 import SwiftUI
 
 struct LabSection: View {
-    var labs: [Assignment]
-    var isTeacher: Bool
+    var assignments: [Assignment]
     
     var body: some View {
         Section(header: Text("Labs")){
-            ForEach(labs, id: \.id){ lab in
-                if isTeacher{
-                    NavigationLink(destination: Text("Teacher " + lab.name)){
-                        Text(lab.name)
-                        if lab.isGroupLab {
-                            Image(systemName: "person.3.fill")
-                        }
-                    }
-                } else {
-                    NavigationLink(destination: Text("Not Teacher " + lab.name)){
-                        Text(lab.name)
-                        if lab.isGroupLab {
-                            Image(systemName: "person.3.fill")
-                        }
+            ForEach(assignments, id: \.id){ assignment in
+                NavigationLink(destination: StudentLab(assignment: assignment, slipdays: UInt32(7))){
+                    Text(assignment.name)
+                    if assignment.isGroupLab {
+                        Image(systemName: "person.3.fill")
                     }
                 }
             }
@@ -39,7 +29,7 @@ struct LabSection_Previews: PreviewProvider {
     static var previews: some View {
         let provider = FakeProvider()
         List{
-            LabSection(labs: provider.getAssignments(courseID: 111), isTeacher: true)
+            LabSection(assignments: provider.getAssignments(courseID: 111))
         }
     }
 }

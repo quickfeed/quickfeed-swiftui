@@ -13,13 +13,12 @@ struct StudentNavigatorView: View {
 
     var body: some View {
         NavigationView{
-            VStack{
-                List{
-                    CoursePicker(courses: viewModel.courses, selectedCourse: $selectedCourse)
-                    LabSection(labs: viewModel.getAssignments(courseID: selectedCourse), isTeacher: false)
-                }
-                Spacer()
+            List{
+                CoursePicker(courses: viewModel.courses, selectedCourse: $selectedCourse)
+                LabSection(assignments: viewModel.getAssignments(courseID: selectedCourse))
+                GithubLinkSection(orgUrl: "https://github.com/dat310-spring21", isTeacher: false)
             }
+            Spacer()
         }
     }
 }

@@ -219,12 +219,14 @@ extension FakeProvider{
     
     // COURSES
     func initTestCourses(){
-        var c1 = Course(id: 111, code: "DAT310", name: "Webprogramming", year: 2021, tag: "Spring", provider: "github", orgPath: "https://github.com/dat310-spring21")
-        let c2 = Course(id: 222, code: "DAT320", name: "Operating systems", year: 2020, tag: "Fall", provider: "github", orgPath: "https://github.com/dat310-spring21")
-        let c3 = Course(id: 333, code: "DAT220", name: "Database Management Systems", year: 2021, tag: "Spring", provider: "github", orgPath: "https://github.com/dat310-spring21")
-        let a1 = Assignment(name: "assignment-1", id: 1, deadline: "lør. 9. jan., 23:00", courseID: 111, autoApprove: true)
-        let a2 = Assignment(name: "assignment-2", id: 2, deadline: "fre. 15. jan., 23:00", courseID: 111, autoApprove: true)
-        let a3 = Assignment(name: "assignment-3", id: 3, deadline: "fre. 29. jan., 23:00", courseID: 111, autoApprove: false)
+        var c1 = Course(id: 111, code: "DAT310", name: "Webprogramming", year: 2021, tag: "Spring", provider: "github", orgPath: "https://github.com/dat310-spring21", slipDays: 7)
+        let c2 = Course(id: 222, code: "DAT320", name: "Operating systems", year: 2020, tag: "Fall", provider: "github", orgPath: "https://github.com/dat310-spring21", slipDays: 10)
+        let c3 = Course(id: 333, code: "DAT220", name: "Database Management Systems", year: 2021, tag: "Spring", provider: "github", orgPath: "https://github.com/dat310-spring21", slipDays: 8)
+        var a1 = Assignment(name: "assignment-1", id: 1, deadline: "2021-02-28T16:39:57", courseID: 111, autoApprove: true, submission: [])
+        let a2 = Assignment(name: "assignment-2", id: 2, deadline: "2021-03-05T16:39:57", courseID: 111, autoApprove: true, submission: [])
+        let a3 = Assignment(name: "assignment-3", id: 3, deadline: "2021-03-15T16:39:57", courseID: 111, autoApprove: false, submission: [])
+        let s1 = Submission(assignmentid: 1, approvedDate: "", buildInfo: "{\"builddate\": \"2021-02-15T16:39:57\", \"buildid\": 1, \"buildlog\": \"No tests for this assignment\", \"execTime\": 3}", status: Submission.Status.none, score: 91, scoreObjects: "[{\"TestName\": \"TestGoMultipleChoiceAG\", \"Score\": 11, \"MaxScore\": 11, \"Weight\": 1}, {\"TestName\": \"TestLintAG\", \"Score\": 3, \"MaxScore\": 3, \"Weight\": 5}, {\"TestName\": \"TestTerminalAG\", \"Score\": 23, \"MaxScore\": 23, \"Weight\": 20}, {\"TestName\": \"TestRot13AG\", \"Score\": 6, \"MaxScore\": 6, \"Weight\": 5}, {\"TestName\": \"TestScrambleAG\", \"Score\": 5, \"MaxScore\": 5, \"Weight\": 5}, {\"TestName\": \"TestErrorsAG\", \"Score\": 16, \"MaxScore\": 16, \"Weight\": 5}, {\"TestName\": \"TestWritersAG\", \"Score\": 0, \"MaxScore\": 10, \"Weight\": 5}, {\"TestName\": \"TestTriangularAG\", \"Score\": 16, \"MaxScore\": 16, \"Weight\": 5}, {\"TestName\": \"TestStringerBookAG\", \"Score\": 4, \"MaxScore\": 4, \"Weight\": 5}]")
+        a1.submissions.append(s1)
         c1.assignments.append(a1)
         c1.assignments.append(a2)
         c1.assignments.append(a3)
@@ -240,9 +242,9 @@ extension FakeProvider{
     
     // ASSIGNMENTS
     func initTestAssignments(){
-        let a1 = Assignment(name: "assignment-1", id: 1, deadline: "lør. 9. jan., 23:00", courseID: 111, autoApprove: true)
-        let a2 = Assignment(name: "assignment-2", id: 2, deadline: "fre. 15. jan., 23:00", courseID: 111, autoApprove: true)
-        let a3 = Assignment(name: "assignment-3", id: 3, deadline: "fre. 29. jan., 23:00", courseID: 111, autoApprove: false)
+        let a1 = Assignment(name: "assignment-1", id: 1, deadline: "2021-02-28T16:39:57", courseID: 111, autoApprove: true, submission: [])
+        let a2 = Assignment(name: "assignment-2", id: 2, deadline: "2021-03-05T16:39:57", courseID: 111, autoApprove: true, submission: [])
+        let a3 = Assignment(name: "assignment-3", id: 3, deadline: "2021-03-15T16:39:57", courseID: 111, autoApprove: false, submission: [])
         self.appendAssignmentToCourse(courseId: 111, assignment: a1)
         self.appendAssignmentToCourse(courseId: 111, assignment: a2)
         self.appendAssignmentToCourse(courseId: 111, assignment: a3)

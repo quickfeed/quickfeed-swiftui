@@ -17,8 +17,8 @@ struct GithubLinkSection: View {
             if isTeacher{
                 Link("tests", destination: URL(string: orgUrl + "/tests")!)
             }
-            
         }
+        .padding(.leading)
     }
 }
 
