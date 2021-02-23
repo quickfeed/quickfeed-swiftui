@@ -118,7 +118,9 @@ func setUpTLS() -> AutograderServiceClient{
     
     var configuration = TLSConfiguration.forClient(applicationProtocols: ["h2"])
     configuration.trustRoots = .file(certificatePath!) //anchors the ca certificate to trust roots for TLS configuration. Not required incase of insecure communication with host
+    
     //Step iii: generate SSL context
+    /*
     do {
         let sslContext = try NIOSSLContext(configuration: configuration)
         let handler = try NIOSSLClientHandler(context: sslContext, serverHostname: hostname + "\(port)")
@@ -126,6 +128,7 @@ func setUpTLS() -> AutograderServiceClient{
     } catch{
         print("Call failed: \(error)")
     }
+    */
     
     
     //Step iv: Create an event loop group

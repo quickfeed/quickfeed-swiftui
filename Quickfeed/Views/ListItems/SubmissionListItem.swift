@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Display submitter name and review status
 struct SubmissionListItem: View {
     var submitterName: String
     var totalReviewers: Int32
