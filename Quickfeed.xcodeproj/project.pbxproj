@@ -493,6 +493,7 @@
 				D04B46EC25D1301200AC8926 /* LabSection.swift in Sources */,
 				FA29713025D05208000C99A1 /* ReviewView.swift in Sources */,
 				FA85790B25BEB4E900223DB9 /* ContentView.swift in Sources */,
+				D057492F25CAA69A007EFFE0 /* GitHubManager.swift in Sources */,
 				D0F9FC7025BEBC360080A1F2 /* ag.grpc.swift in Sources */,
 				D0005CC125E4EF2A00EDECD1 /* GitHubManager.swift in Sources */,
 				D04B46FD25D1696D00AC8926 /* LabInfo.swift in Sources */,
