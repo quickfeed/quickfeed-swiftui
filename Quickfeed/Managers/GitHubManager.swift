@@ -2,11 +2,7 @@
 //  GitHubManager.swift
 //  Quickfeed
 //
-<<<<<<< HEAD
 //  Created by Bjørn Kristian Teisrud on 23/02/2021.
-=======
-//  Created by Bjørn Kristian Teisrud on 03/02/2021.
->>>>>>> 1cdd8e826030f73ad29368de293cd7f47ec0e81f
 //
 
 import Foundation
