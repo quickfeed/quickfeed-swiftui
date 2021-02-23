@@ -35,6 +35,8 @@
 		FAA8332C25E4F19E008C05F4 /* TeacherNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0671C25CACF8700FFE8EB /* TeacherNavigationView.swift */; };
 		FAA8333025E4F1BD008C05F4 /* TeacherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0670425CAC8BC00FFE8EB /* TeacherViewModel.swift */; };
 		FAA8333425E4F1D0008C05F4 /* ReviewNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29712F25D05208000C99A1 /* ReviewNavigationView.swift */; };
+		FAA8333925E502F2008C05F4 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA8333825E502F2008C05F4 /* ResultView.swift */; };
+		FAA8333E25E519E2008C05F4 /* ResultGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA8333D25E519E2008C05F4 /* ResultGrid.swift */; };
 		FAB0665925CABED200FFE8EB /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4D0BD225BEFD75006412B0 /* Models.swift */; };
 		FAB0665D25CABED500FFE8EB /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4D0BD225BEFD75006412B0 /* Models.swift */; };
 		FAB0666125CABF2A00FFE8EB /* ag.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9FC6E25BEBC360080A1F2 /* ag.grpc.swift */; };
@@ -118,6 +120,8 @@
 		FA85792625BEB4EA00223DB9 /* QuickfeedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickfeedUITests.swift; sourceTree = "<group>"; };
 		FA85792825BEB4EA00223DB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAA8330425E3E073008C05F4 /* MemberListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberListItem.swift; sourceTree = "<group>"; };
+		FAA8333825E502F2008C05F4 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
+		FAA8333D25E519E2008C05F4 /* ResultGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultGrid.swift; sourceTree = "<group>"; };
 		FAB066A525CAC0D300FFE8EB /* FakeProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeProvider.swift; sourceTree = "<group>"; };
 		FAB066AF25CAC0F000FFE8EB /* ProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderProtocol.swift; sourceTree = "<group>"; };
 		FAB066FA25CAC89B00FFE8EB /* StudentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentViewModel.swift; sourceTree = "<group>"; };
@@ -191,6 +195,8 @@
 				FAB0671C25CACF8700FFE8EB /* TeacherNavigationView.swift */,
 				FA29712F25D05208000C99A1 /* ReviewNavigationView.swift */,
 				FABB233D25DBD91B00317969 /* MembersView.swift */,
+				FAA8333825E502F2008C05F4 /* ResultView.swift */,
+				FAA8333D25E519E2008C05F4 /* ResultGrid.swift */,
 			);
 			path = Teacher;
 			sourceTree = "<group>";
@@ -512,6 +518,7 @@
 				FAA8333425E4F1D0008C05F4 /* ReviewNavigationView.swift in Sources */,
 				FAA8333025E4F1BD008C05F4 /* TeacherViewModel.swift in Sources */,
 				FAA8332C25E4F19E008C05F4 /* TeacherNavigationView.swift in Sources */,
+				FAA8333925E502F2008C05F4 /* ResultView.swift in Sources */,
 				FAA8331325E4EF92008C05F4 /* CoursePicker.swift in Sources */,
 				FAB066A625CAC0D300FFE8EB /* FakeProvider.swift in Sources */,
 				FA6C3EB125D45E4500D8A798 /* SubmissionListItem.swift in Sources */,
@@ -529,6 +536,7 @@
 				FABB233E25DBD91B00317969 /* MembersView.swift in Sources */,
 				FAA8330525E3E073008C05F4 /* MemberListItem.swift in Sources */,
 				FA29717825D311B5000C99A1 /* SearchFieldController.swift in Sources */,
+				FAA8333E25E519E2008C05F4 /* ResultGrid.swift in Sources */,
 				D04B46EC25D1301200AC8926 /* LabSection.swift in Sources */,
 				FA85790B25BEB4E900223DB9 /* ContentView.swift in Sources */,
 				D0F9FC7025BEBC360080A1F2 /* ag.grpc.swift in Sources */,
