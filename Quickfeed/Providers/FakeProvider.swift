@@ -229,13 +229,13 @@ extension FakeProvider{
     
     // COURSES
     func initTestCourses(){
-        var c1 = Course(id: 111, code: "DAT310", name: "Web programming", year: 2021, tag: "Spring", provider: "github", orgPath: "https://github.com/dat310-spring21")
-        let c2 = Course(id: 222, code: "DAT320", name: "Operating systems", year: 2020, tag: "Fall", provider: "github", orgPath: "https://github.com/dat310-spring21")
-        let c3 = Course(id: 333, code: "DAT220", name: "Database Management Systems", year: 2021, tag: "Spring", provider: "github", orgPath: "https://github.com/dat310-spring21")
-        let a1 = Assignment(name: "assignment-1", id: 1, deadline: "lør. 9. jan., 23:00", courseID: 111, autoApprove: true, isGroupLab: true, skipTests: false)
-        let a2 = Assignment(name: "assignment-2", id: 2, deadline: "fre. 15. jan., 23:00", courseID: 111, autoApprove: true, isGroupLab: false, skipTests: false)
-        let a3 = Assignment(name: "assignment-3", id: 3, deadline: "fre. 29. jan., 23:00", courseID: 111, autoApprove: false, isGroupLab: false, skipTests: true)
-        let a4 = Assignment(name: "assignment-4", id: 4, deadline: "fre. 12. jan., 23:00", courseID: 111, autoApprove: false, isGroupLab: false, skipTests: true)
+        var c1 = Course(id: 111, code: "DAT310", name: "Web programming", year: 2021, tag: "Spring", provider: "github", orgPath: "https://github.com/dat310-spring21", slipDays: 7)
+        let c2 = Course(id: 222, code: "DAT320", name: "Operating systems", year: 2020, tag: "Fall", provider: "github", orgPath: "https://github.com/dat310-spring21", slipDays: 7)
+        let c3 = Course(id: 333, code: "DAT220", name: "Database Management Systems", year: 2021, tag: "Spring", provider: "github", orgPath: "https://github.com/dat310-spring21", slipDays: 7)
+        let a1 = Assignment(name: "assignment-1", id: 1, deadline: "lør. 9. jan., 23:00", courseID: 111, autoApprove: true, isGroupLab: true, skipTests: false, submission: [])
+        let a2 = Assignment(name: "assignment-2", id: 2, deadline: "fre. 15. jan., 23:00", courseID: 111, autoApprove: true, isGroupLab: false, skipTests: false, submission: [])
+        let a3 = Assignment(name: "assignment-3", id: 3, deadline: "fre. 29. jan., 23:00", courseID: 111, autoApprove: false, isGroupLab: false, skipTests: true, submission: [])
+        let a4 = Assignment(name: "assignment-4", id: 4, deadline: "fre. 12. jan., 23:00", courseID: 111, autoApprove: false, isGroupLab: false, skipTests: true, submission: [])
         c1.assignments.append(a1)
         c1.assignments.append(a2)
         c1.assignments.append(a3)
@@ -252,7 +252,6 @@ extension FakeProvider{
     }
     
     // ASSIGNMENTS
-
     
     // ENROLLMENTS
     func initTestEnrollments(){
