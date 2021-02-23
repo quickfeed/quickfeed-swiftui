@@ -19,7 +19,6 @@
 		D0F9FC6F25BEBC360080A1F2 /* ag.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9FC6D25BEBC360080A1F2 /* ag.pb.swift */; };
 		D0F9FC7025BEBC360080A1F2 /* ag.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9FC6E25BEBC360080A1F2 /* ag.grpc.swift */; };
 		FA29711F25D04CF2000C99A1 /* GithubLinkSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29711E25D04CF2000C99A1 /* GithubLinkSection.swift */; };
-		FA29713025D05208000C99A1 /* ReviewNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29712F25D05208000C99A1 /* ReviewNavigationView.swift */; };
 		FA29716E25D28E45000C99A1 /* LabPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29716D25D28E45000C99A1 /* LabPicker.swift */; };
 		FA29717325D303E0000C99A1 /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29717225D303E0000C99A1 /* SearchField.swift */; };
 		FA29717825D311B5000C99A1 /* SearchFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29717725D311B5000C99A1 /* SearchFieldController.swift */; };
@@ -33,6 +32,9 @@
 		FA85792725BEB4EA00223DB9 /* QuickfeedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA85792625BEB4EA00223DB9 /* QuickfeedUITests.swift */; };
 		FAA8330525E3E073008C05F4 /* MemberListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA8330425E3E073008C05F4 /* MemberListItem.swift */; };
 		FAA8331325E4EF92008C05F4 /* CoursePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA44BC1725CDE4FB00FDB9A2 /* CoursePicker.swift */; };
+		FAA8332C25E4F19E008C05F4 /* TeacherNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0671C25CACF8700FFE8EB /* TeacherNavigationView.swift */; };
+		FAA8333025E4F1BD008C05F4 /* TeacherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0670425CAC8BC00FFE8EB /* TeacherViewModel.swift */; };
+		FAA8333425E4F1D0008C05F4 /* ReviewNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29712F25D05208000C99A1 /* ReviewNavigationView.swift */; };
 		FAB0665925CABED200FFE8EB /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4D0BD225BEFD75006412B0 /* Models.swift */; };
 		FAB0665D25CABED500FFE8EB /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4D0BD225BEFD75006412B0 /* Models.swift */; };
 		FAB0666125CABF2A00FFE8EB /* ag.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9FC6E25BEBC360080A1F2 /* ag.grpc.swift */; };
@@ -50,18 +52,15 @@
 		FAB066FB25CAC89B00FFE8EB /* StudentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB066FA25CAC89B00FFE8EB /* StudentViewModel.swift */; };
 		FAB066FC25CAC89B00FFE8EB /* StudentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB066FA25CAC89B00FFE8EB /* StudentViewModel.swift */; };
 		FAB066FD25CAC89B00FFE8EB /* StudentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB066FA25CAC89B00FFE8EB /* StudentViewModel.swift */; };
-		FAB0670525CAC8BC00FFE8EB /* TeacherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0670425CAC8BC00FFE8EB /* TeacherViewModel.swift */; };
 		FAB0670625CAC8BC00FFE8EB /* TeacherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0670425CAC8BC00FFE8EB /* TeacherViewModel.swift */; };
 		FAB0670725CAC8BC00FFE8EB /* TeacherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0670425CAC8BC00FFE8EB /* TeacherViewModel.swift */; };
 		FAB0670C25CAC8D600FFE8EB /* UserViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0670B25CAC8D600FFE8EB /* UserViewModelProtocol.swift */; };
 		FAB0670D25CAC8D600FFE8EB /* UserViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0670B25CAC8D600FFE8EB /* UserViewModelProtocol.swift */; };
 		FAB0670E25CAC8D600FFE8EB /* UserViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0670B25CAC8D600FFE8EB /* UserViewModelProtocol.swift */; };
-		FAB0671D25CACF8700FFE8EB /* TeacherNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0671C25CACF8700FFE8EB /* TeacherNavigationView.swift */; };
 		FABB233E25DBD91B00317969 /* MembersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB233D25DBD91B00317969 /* MembersView.swift */; };
 		FAC5364925C0264500784980 /* ModelTestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5364825C0264500784980 /* ModelTestData.swift */; };
 		FAC5364A25C0264500784980 /* ModelTestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5364825C0264500784980 /* ModelTestData.swift */; };
 		FAC5364B25C0264500784980 /* ModelTestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5364825C0264500784980 /* ModelTestData.swift */; };
-		FAC5365125C0347300784980 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5365025C0347300784980 /* UserManager.swift */; };
 		FAC5365225C0347300784980 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5365025C0347300784980 /* UserManager.swift */; };
 		FAC5365325C0347300784980 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5365025C0347300784980 /* UserManager.swift */; };
 		FAF945B725CC4E3200074A2F /* ProtoExstensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF945B625CC4E3200074A2F /* ProtoExstensions.swift */; };
@@ -510,16 +509,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAA8333425E4F1D0008C05F4 /* ReviewNavigationView.swift in Sources */,
+				FAA8333025E4F1BD008C05F4 /* TeacherViewModel.swift in Sources */,
+				FAA8332C25E4F19E008C05F4 /* TeacherNavigationView.swift in Sources */,
 				FAA8331325E4EF92008C05F4 /* CoursePicker.swift in Sources */,
 				FAB066A625CAC0D300FFE8EB /* FakeProvider.swift in Sources */,
-				FAB0671D25CACF8700FFE8EB /* TeacherNavigationView.swift in Sources */,
-				FAB0670525CAC8BC00FFE8EB /* TeacherViewModel.swift in Sources */,
-				FAC5365125C0347300784980 /* UserManager.swift in Sources */,
 				FA6C3EB125D45E4500D8A798 /* SubmissionListItem.swift in Sources */,
 				D04B470225D1741300AC8926 /* StudentLab.swift in Sources */,
-				FAB0671D25CACF8700FFE8EB /* TeacherNavigationView.swift in Sources */,
-				FAB0670525CAC8BC00FFE8EB /* TeacherViewModel.swift in Sources */,
-				FAC5365125C0347300784980 /* UserManager.swift in Sources */,
 				D06024B125DD23D4009390A1 /* LabTests.swift in Sources */,
 				FAB066FB25CAC89B00FFE8EB /* StudentViewModel.swift in Sources */,
 				D04B470A25D29B7300AC8926 /* JSON.swift in Sources */,
@@ -529,13 +525,11 @@
 				FAB0670C25CAC8D600FFE8EB /* UserViewModelProtocol.swift in Sources */,
 				FA29711F25D04CF2000C99A1 /* GithubLinkSection.swift in Sources */,
 				D0F9FC6F25BEBC360080A1F2 /* ag.pb.swift in Sources */,
-				FA29713025D05208000C99A1 /* ReviewNavigationView.swift in Sources */,
 				FA29717325D303E0000C99A1 /* SearchField.swift in Sources */,
 				FABB233E25DBD91B00317969 /* MembersView.swift in Sources */,
 				FAA8330525E3E073008C05F4 /* MemberListItem.swift in Sources */,
 				FA29717825D311B5000C99A1 /* SearchFieldController.swift in Sources */,
 				D04B46EC25D1301200AC8926 /* LabSection.swift in Sources */,
-				FA29713025D05208000C99A1 /* ReviewNavigationView.swift in Sources */,
 				FA85790B25BEB4E900223DB9 /* ContentView.swift in Sources */,
 				D0F9FC7025BEBC360080A1F2 /* ag.grpc.swift in Sources */,
 				D04B46FD25D1696D00AC8926 /* LabInfo.swift in Sources */,
