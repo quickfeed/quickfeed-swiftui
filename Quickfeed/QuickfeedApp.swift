@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 @main
 struct QuickfeedApp: App {
     var body: some Scene {
