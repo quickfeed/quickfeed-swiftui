@@ -21,6 +21,9 @@ struct ResultView: View {
         }
         if displayingSubmission {
             // SubmissionResults(show: $show)
+            VStack{
+                Text("test")
+            }
                 
         }
     

@@ -48,6 +48,7 @@ struct MembersView: View {
             
             SearchFieldRepresentable(query: $searchQuery)
                 .padding(.horizontal)
+                .frame(height: 20)
             
             List{
                 HStack{

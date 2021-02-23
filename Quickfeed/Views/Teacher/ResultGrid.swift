@@ -18,7 +18,7 @@ struct ResultGrid: View {
     var body: some View {
         VStack{
             Text("Results for \(viewModel.getCourse(courseId: selectedCourse).name)")
-            
+            Button("test"){self.displayingSubmission = true}
             HStack{
                 SearchFieldRepresentable(query: $searchQuery)
                     .frame(width: 180)
@@ -27,19 +27,24 @@ struct ResultGrid: View {
                     Text(assignment.name)
                 }
             }
-            
-            ForEach(self.filteredUsers().indices, id: \.self){ i in
-                
-                MemberListItem(user: self.filteredUsers()[i])
+            List{
+                ForEach(self.filteredUsers().indices, id: \.self){ i in
                     
-                    .frame(maxWidth: .infinity)
-                    .listRowBackground(RoundedRectangle(cornerRadius: 4)
-                                        .foregroundColor(Color(.unemphasizedSelectedTextBackgroundColor))
-                                        .opacity(i % 2 == 0 ? 0 : 100)
-                    )
+                    MemberListItem(user: self.filteredUsers()[i])
+                        
+                        .frame(maxWidth: .infinity)
+                        .listRowBackground(RoundedRectangle(cornerRadius: 4)
+                                            .foregroundColor(Color(.unemphasizedSelectedTextBackgroundColor))
+                                            .opacity(i % 2 == 0 ? 0 : 100)
+                        )
+                }
+                
             }
+            
+            
             Spacer()
         }
+        .transition(AnyTransition.move(edge: .leading)).animation(.default)
         .onAppear(perform: {
             users = viewModel.getStudentsForCourse(courseId: self.selectedCourse)
         })
