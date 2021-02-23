@@ -35,7 +35,7 @@ extension Course{
 }
 
 extension Assignment{
-    init(name: String, id: UInt64, deadline: String, courseID: UInt64, autoApprove: Bool, isGroupLab: Bool, skipTests: Bool, submission: [Submission]) {
+    init(name: String, id: UInt64, deadline: String, courseID: UInt64, autoApprove: Bool, isGroupLab: Bool, skipTests: Bool, submissions: [Submission]) {
         self.name = name
         self.id = id
         self.deadline = deadline
@@ -43,7 +43,7 @@ extension Assignment{
         self.autoApprove = autoApprove
         self.isGroupLab = isGroupLab
         self.skipTests = skipTests // means it is graded manually
-        self.submissions = submission
+        self.submissions = submissions
     }
 }
 
@@ -61,13 +61,14 @@ extension Submission{
         return scoreObject
     }
     
-    init(assignmentid: UInt64, approvedDate: String, buildInfo: String, status: Submission.Status, score: UInt32, scoreObjects: String) {
+    init(assignmentid: UInt64, approvedDate: String, buildInfo: String, status: Submission.Status, score: UInt32, scoreObjects: String, userId: UInt64) {
         self.assignmentID = assignmentid
         self.buildInfo = buildInfo
         self.approvedDate = approvedDate
         self.status = status
         self.score = score
         self.scoreObjects = scoreObjects
+        self.userID = userId
     }
 }
 
