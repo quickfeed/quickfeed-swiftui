@@ -14,7 +14,7 @@ struct GitHubLogIn: View {
             Image("GitHubLogo")
                 .resizable()
                 .frame(width: 18, height: 18)
-            Text("Log in with GitHub")
+            Text("Sign in with GitHub")
             Spacer()
         }
         .frame(width: 250, height: 50)
