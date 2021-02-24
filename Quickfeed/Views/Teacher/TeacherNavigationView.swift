@@ -27,7 +27,7 @@ struct TeacherNavigationView: View {
                 
                 List{
                     NavigationLink(destination: ResultView(selectedCourse: .constant(111))
-                                    .environmentObject(viewModel)){
+                                    .environmentObject(ResultViewModel(courseId: selectedCourse))){
                         Image(systemName: "chart.bar")
                             .frame(width: 20)
                             .foregroundColor(.blue)

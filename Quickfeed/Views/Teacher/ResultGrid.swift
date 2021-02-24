@@ -21,7 +21,7 @@ struct ResultGrid: View {
             Button("test"){self.displayingSubmission = true}
             HStack{
                 SearchFieldRepresentable(query: $searchQuery)
-                    .frame(width: 180)
+                    .frame(width: 180, height: 20)
                 
                 ForEach(self.viewModel.getAssignments(courseId: selectedCourse), id: \.self) {assignment in
                     Text(assignment.name)
@@ -44,7 +44,6 @@ struct ResultGrid: View {
             
             Spacer()
         }
-        .transition(AnyTransition.move(edge: .leading)).animation(.default)
         .onAppear(perform: {
             users = viewModel.getStudentsForCourse(courseId: self.selectedCourse)
         })

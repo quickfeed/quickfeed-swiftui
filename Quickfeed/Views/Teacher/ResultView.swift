@@ -15,30 +15,22 @@ struct ResultView: View {
     @State private var displayingSubmission = false
     
     var body: some View {
-        
-        if !displayingSubmission {
-            ResultGrid(displayingSubmission: $displayingSubmission, selectedCourse: $selectedCourse)
-        }
-        if displayingSubmission {
-            // SubmissionResults(show: $show)
-            VStack{
-                Text("test")
+        VStack{
+            if !displayingSubmission {
+                ResultGrid(displayingSubmission: $displayingSubmission, selectedCourse: $selectedCourse)
             }
+            if displayingSubmission {
+                // SubmissionResults(show: $show)
+                SubmissionResult(displayingSubmission: $displayingSubmission)
                 
+            }
         }
-    
-        
-        
-        
     }
-    
-    
-    
 }
 
 struct ResultGridView_Previews: PreviewProvider {
     static var previews: some View {
         ResultView(selectedCourse: .constant(111))
-            .environmentObject(TeacherViewModel(provider: FakeProvider()))
+            .environmentObject(ResultViewModel(provider: FakeProvider(), courseId: 111))
     }
 }

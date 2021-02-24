@@ -8,13 +8,26 @@
 import SwiftUI
 
 struct ResultListItem: View {
+    var user: User
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack{
+            Text(user.name)
+                .frame(width: 180)
+            Spacer()
+            Text("95%")
+            Spacer()
+            Text("95%")
+            Spacer()
+            Text("95%")
+            Spacer()
+            Text("95%")
+        }
+        
     }
 }
 
 struct ResultListItem_Previews: PreviewProvider {
     static var previews: some View {
-        ResultListItem()
+        ResultListItem(user: User(name: "Test User", id: 1, studentID: "111111", isAdmin: false, email: "gfkjdsl@dfsa.com", enrollments: [], login: "oskargj"))
     }
 }
