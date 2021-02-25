@@ -225,6 +225,8 @@ extension FakeProvider{
         self.dummyUsers.append(User(name: "Test5", id: 5, studentID: "555555", isAdmin: false, email: "test5@testmail.com", enrollments: [], login: "test5"))
         self.dummyUsers.append(User(name: "Test6", id: 6, studentID: "666666", isAdmin: false, email: "test6@testmail.com", enrollments: [], login: "test6"))
     }
+    
+    
 
     
     // COURSES
@@ -232,10 +234,10 @@ extension FakeProvider{
         var c1 = Course(id: 111, code: "DAT310", name: "Web programming", year: 2021, tag: "Spring", provider: "github", orgPath: "https://github.com/dat310-spring21", slipDays: 7)
         let c2 = Course(id: 222, code: "DAT320", name: "Operating systems", year: 2020, tag: "Fall", provider: "github", orgPath: "https://github.com/dat310-spring21", slipDays: 7)
         let c3 = Course(id: 333, code: "DAT220", name: "Database Management Systems", year: 2021, tag: "Spring", provider: "github", orgPath: "https://github.com/dat310-spring21", slipDays: 7)
-        let a1 = Assignment(name: "assignment-1", id: 1, deadline: "lør. 9. jan., 23:00", courseID: 111, autoApprove: true, isGroupLab: true, skipTests: false, submission: [])
-        let a2 = Assignment(name: "assignment-2", id: 2, deadline: "fre. 15. jan., 23:00", courseID: 111, autoApprove: true, isGroupLab: false, skipTests: false, submission: [])
-        let a3 = Assignment(name: "assignment-3", id: 3, deadline: "fre. 29. jan., 23:00", courseID: 111, autoApprove: false, isGroupLab: false, skipTests: true, submission: [])
-        let a4 = Assignment(name: "assignment-4", id: 4, deadline: "fre. 12. jan., 23:00", courseID: 111, autoApprove: false, isGroupLab: false, skipTests: true, submission: [])
+        let a1 = Assignment(name: "assignment-1", id: 1, deadline: "lør. 9. jan., 23:00", courseID: 111, autoApprove: true, isGroupLab: true, skipTests: false, submissions: self.sumissionsDat310Assignment1())
+        let a2 = Assignment(name: "assignment-2", id: 2, deadline: "fre. 15. jan., 23:00", courseID: 111, autoApprove: true, isGroupLab: false, skipTests: false, submissions: [])
+        let a3 = Assignment(name: "assignment-3", id: 3, deadline: "fre. 29. jan., 23:00", courseID: 111, autoApprove: false, isGroupLab: false, skipTests: true, submissions: [])
+        let a4 = Assignment(name: "assignment-4", id: 4, deadline: "fre. 12. jan., 23:00", courseID: 111, autoApprove: false, isGroupLab: false, skipTests: true, submissions: [])
         c1.assignments.append(a1)
         c1.assignments.append(a2)
         c1.assignments.append(a3)
@@ -246,12 +248,32 @@ extension FakeProvider{
         self.courses.append(c3)
     }
     
+   
+    // ASSIGNMENTS
     func appendAssignmentToCourse(courseId: UInt64, assignment: Assignment){
         var course = self.getCourseById(courseId: courseId)
         course?.assignments.append(assignment)
     }
     
-    // ASSIGNMENTS
+    
+    // SUBMISSIONS
+    
+    func sumissionsDat310Assignment1() -> [Submission]{
+        var submissions: [Submission] = []
+        let s1 = Submission(assignmentid: 1, approvedDate: "lør. 9. jan., 23:00", buildInfo: "buildinfo", status: Submission.Status.approved, score: 80, scoreObjects: "objects", userId: 2)
+        let s2 = Submission(assignmentid: 1, approvedDate: "lør. 9. jan., 23:00", buildInfo: "buildinfo", status: Submission.Status.approved, score: 80, scoreObjects: "objects", userId: 3)
+        let s3 = Submission(assignmentid: 1, approvedDate: "lør. 9. jan., 23:00", buildInfo: "buildinfo", status: Submission.Status.approved, score: 80, scoreObjects: "objects", userId: 4)
+        let s4 = Submission(assignmentid: 1, approvedDate: "lør. 9. jan., 23:00", buildInfo: "buildinfo", status: Submission.Status.approved, score: 80, scoreObjects: "objects", userId: 5)
+        
+        submissions.append(s1)
+        submissions.append(s2)
+        submissions.append(s3)
+        submissions.append(s4)
+        
+        return submissions
+    }
+    
+    
     
     // ENROLLMENTS
     func initTestEnrollments(){
@@ -272,6 +294,7 @@ extension FakeProvider{
         }
         
     }
+    
     
     
     

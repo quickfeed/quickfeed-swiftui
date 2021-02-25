@@ -26,7 +26,8 @@ struct TeacherNavigationView: View {
                     })
                 
                 List{
-                    NavigationLink(destination: Text("Results")){
+                    NavigationLink(destination: ResultView(selectedCourse: .constant(111))
+                                    .environmentObject(ResultViewModel(courseId: selectedCourse))){
                         Image(systemName: "chart.bar")
                             .frame(width: 20)
                             .foregroundColor(.blue)
@@ -48,24 +49,24 @@ struct TeacherNavigationView: View {
                     
                     
                     if viewModel.getManuallyGradedAssignments(courseId: selectedCourse).count > 0{
-                    Section(header:Text("Manual Grading")){
-                        NavigationLink(destination: ReviewNavigationView(selectedCourse: $selectedCourse,enrolledUsers: $users, selectedLab: $selectedLabForManualGrading).environmentObject(viewModel)){
-                            Image(systemName: "list.dash")
-                                .frame(width: 20)
-                                .foregroundColor(.blue)
-                            Text("Review")
+                        Section(header:Text("Manual Grading")){
+                            NavigationLink(destination: ReviewNavigationView(selectedCourse: $selectedCourse,enrolledUsers: $users, selectedLab: $selectedLabForManualGrading).environmentObject(viewModel)){
+                                Image(systemName: "list.dash")
+                                    .frame(width: 20)
+                                    .foregroundColor(.blue)
+                                Text("Review")
+                            }
+                            NavigationLink(destination: Text("Release")){
+                                Image(systemName: "arrow.up.doc.fill")
+                                    .frame(width: 20)
+                                    .foregroundColor(.blue)
+                                Text("Release")
+                            }
+                            
                         }
-                        NavigationLink(destination: Text("Release")){
-                            Image(systemName: "arrow.up.doc.fill")
-                                .frame(width: 20)
-                                .foregroundColor(.blue)
-                            Text("Release")
-                        }
-                        
                     }
-                    }
-                  
-                  
+                    
+                    
                     Spacer()
                     GithubLinkSection(orgUrl: "https://github.com/dat310-spring21", userLogin: viewModel.user.login, isTeacher: true)
                 }

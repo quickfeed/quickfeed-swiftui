@@ -19,38 +19,21 @@ class GRPCManager {
     
     
     init(){
-        let hostname = "ag2.ux.uis.no"
-        let port = 443
+        let hostname = "localhost"
+        let port = 9090
         
-        // Setup an `EventLoopGroup` for the connection to run on.
-        //
-        // See: https://github.com/apple/swift-nio#eventloops-and-eventloopgroups
         self.eventLoopGroup = MultiThreadedEventLoopGroup(numberOfThreads: 1)
-        
-        // Configure the channel, we're not using TLS so the connection is `insecure`.
-        //self.channel = ClientConnection.insecure(group: self.eventLoopGroup)
-        //.connect(host: "https://ag2.ux.uis.no", port: 3005)
-        
-        print("GRPC connection setup")
-        
         self.channel = ClientConnection.insecure(group: self.eventLoopGroup)
             .connect(host: hostname, port: port)
-        
-        
-       
-        
-        
-        // Provide the connection to the generated client.
+    
         self.quickfeedClient = AutograderServiceClient(channel: channel)
-        //self.quickfeedClient = setUpTLS()
+
         
     }
     
     
     func getProviders(){
         let call = self.quickfeedClient.getProviders(Void())
-        
-        
         
         do {
             print("Get providers")
@@ -65,6 +48,23 @@ class GRPCManager {
         }
         
         
+    }
+    
+    func getUser(userId: UInt64) -> User?{
+        let headers: HPACKHeaders = ["custom-header-1": "value1", "user": "\(userId)"]
+        
+        var callOptions = CallOptions()
+        callOptions.customMetadata = headers
+        let call = self.quickfeedClient.getUser(Void(), callOptions: callOptions)
+        
+        do {
+            let user = try call.response.wait()
+            return user
+        } catch {
+            print("Call failed: \(error)")
+        }
+        
+        return nil
     }
     
     
