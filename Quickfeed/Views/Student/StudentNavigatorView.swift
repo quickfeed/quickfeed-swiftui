@@ -10,15 +10,22 @@ import SwiftUI
 struct StudentNavigatorView: View {
     @StateObject var viewModel: StudentViewModel
     @State var selectedCourse: UInt64
-
+    
     var body: some View {
         NavigationView{
-            List{
-                CoursePicker(courses: viewModel.courses, selectedCourse: $selectedCourse)
-                LabSection(assignments: viewModel.getAssignments(courseID: selectedCourse))
-                GithubLinkSection(orgUrl: "https://github.com/dat310-spring21", userLogin: "test", isTeacher: false)
+            VStack(alignment: .leading){
+                List{
+                    CoursePicker(courses: viewModel.courses, selectedCourse: $selectedCourse)
+                    LabSection(assignments: viewModel.getAssignments(courseID: selectedCourse))
+                    //GithubLinkSection(orgUrl: "https://github.com/dat310-spring21", isTeacher: false)
+                }
+                Spacer()
+                HStack{
+                    Image(systemName: "person.fill")
+                    Text("Bjørn Kristian Teisrud")
+                }
+                .padding()
             }
-            Spacer()
         }
     }
 }
