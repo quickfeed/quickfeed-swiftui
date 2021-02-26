@@ -20,7 +20,7 @@ class ServerProvider: ProviderProtocol{
     }
     
     func getCoursesForCurrentUser() -> [Course]? {
-        fatalError("Not implemented")
+        return grpcManager.getCourses(userStatus: Enrollment.UserStatus.teacher)
     }
     
     func isAuthorizedTeacher() -> Bool {

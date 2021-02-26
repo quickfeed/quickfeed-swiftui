@@ -318,12 +318,12 @@
 		FA85798025BEC4B000223DB9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FA85790A25BEB4E900223DB9 /* ContentView.swift */,
 				FA6C3EAF25D45E2000D8A798 /* ListItems */,
 				FA29714925D12432000C99A1 /* Pickers */,
 				FA29714825D123FC000C99A1 /* SearchBar */,
 				D04B46E125D12E9D00AC8926 /* Student */,
 				FA29712325D05121000C99A1 /* Teacher */,
-				FA85790A25BEB4E900223DB9 /* ContentView.swift */,
 				FA85798C25BEC5B600223DB9 /* Helpers */,
 			);
 			path = Views;

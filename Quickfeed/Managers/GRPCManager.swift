@@ -46,8 +46,6 @@ class GRPCManager {
         } catch {
             print("Call failed: \(error)")
         }
-        
-        
     }
     
     func getUser(userId: UInt64) -> User?{
@@ -65,6 +63,29 @@ class GRPCManager {
         }
         
         return nil
+    }
+    
+    func getCourses(userStatus: Enrollment.UserStatus) -> [Course]{
+        let headers: HPACKHeaders = ["custom-header-1": "value1", "user": "111"]
+        
+        var callOptions = CallOptions()
+        callOptions.customMetadata = headers
+        let req = EnrollmentStatusRequest.with{
+            $0.statuses = [userStatus]
+        }
+      
+        let unaryCall = self.quickfeedClient.getCoursesByUser(req, callOptions: callOptions)
+        
+        do {
+            let response = try unaryCall.response.wait()
+            print(response.courses)
+            return response.courses
+        } catch {
+            print("Call failed: \(error)")
+        }
+        
+        return []
+        
     }
     
     
@@ -105,45 +126,4 @@ class GRPCManager {
         try! self.channel.close().wait()
         try! self.eventLoopGroup.syncShutdownGracefully()
     }
-}
-
-
-func setUpTLS() -> AutograderServiceClient{
-    //Step i: get certificate path from Bundle
-    let hostname = "ag2.ux.uis.no"
-    let port = 443
-    
-    let certificatePath = Bundle.main.path(forResource: "certificateName", ofType: "pem")
-    //Step ii: create TLS configuration
-    
-    var configuration = TLSConfiguration.forClient(applicationProtocols: ["h2"])
-    configuration.trustRoots = .file(certificatePath!) //anchors the ca certificate to trust roots for TLS configuration. Not required incase of insecure communication with host
-    
-    //Step iii: generate SSL context
-    /*
-    do {
-        let sslContext = try NIOSSLContext(configuration: configuration)
-        let handler = try NIOSSLClientHandler(context: sslContext, serverHostname: hostname + "\(port)")
-        
-    } catch{
-        print("Call failed: \(error)")
-    }
-    */
-    
-    
-    //Step iv: Create an event loop group
-    let group = MultiThreadedEventLoopGroup(numberOfThreads: 1)
-    //Step v: Create client connection builder
-    let builder: ClientConnection.Builder
-    builder = ClientConnection.secure(group: group).withTLS(trustRoots: configuration.trustRoots!)
-    //Step vi: Start the connection and create the client
-    let connection = builder.connect(host: hostname, port: port)
-    print("Connection Status=>:\(connection)")
-    //Step vii: Create client
-    //use appropriate service client from .grpc server to replace the xxx call : <your .grpc.swift ServiceClient> = <XXX>ServiceClient
-    let qfClient = AutograderServiceClient(channel: connection)
-    
-    return qfClient
-    
-    
 }
