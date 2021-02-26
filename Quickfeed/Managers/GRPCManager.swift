@@ -16,6 +16,7 @@ class GRPCManager {
     let eventLoopGroup: MultiThreadedEventLoopGroup
     let channel: ClientConnection
     let quickfeedClient: AutograderServiceClient
+    var defaultOptions: CallOptions
     
     
     init(){
@@ -27,7 +28,27 @@ class GRPCManager {
             .connect(host: hostname, port: port)
     
         self.quickfeedClient = AutograderServiceClient(channel: channel)
+        let headers: HPACKHeaders = ["custom-header-1": "value1", "user": "100"]
+        
+        self.defaultOptions = CallOptions()
+        self.defaultOptions.customMetadata = headers
 
+        
+    }
+    
+    func isAuthorizedTeacher() -> Bool{
+       
+        let call = self.quickfeedClient.isAuthorizedTeacher(Void(), callOptions: self.defaultOptions)
+        
+        print("teacher")
+        do {
+            let response = try call.response.wait()
+            return response.isAuthorized
+        } catch {
+            print("Call failed: \(error)")
+        }
+        
+        return false
         
     }
     
@@ -49,11 +70,7 @@ class GRPCManager {
     }
     
     func getUser(userId: UInt64) -> User?{
-        let headers: HPACKHeaders = ["custom-header-1": "value1", "user": "\(userId)"]
-        
-        var callOptions = CallOptions()
-        callOptions.customMetadata = headers
-        let call = self.quickfeedClient.getUser(Void(), callOptions: callOptions)
+        let call = self.quickfeedClient.getUser(Void(), callOptions: self.defaultOptions)
         
         do {
             let user = try call.response.wait()
@@ -66,15 +83,13 @@ class GRPCManager {
     }
     
     func getCourses(userStatus: Enrollment.UserStatus) -> [Course]{
-        let headers: HPACKHeaders = ["custom-header-1": "value1", "user": "111"]
         
-        var callOptions = CallOptions()
-        callOptions.customMetadata = headers
         let req = EnrollmentStatusRequest.with{
             $0.statuses = [userStatus]
+            $0.userID = 100
         }
-      
-        let unaryCall = self.quickfeedClient.getCoursesByUser(req, callOptions: callOptions)
+        
+        let unaryCall = self.quickfeedClient.getCoursesByUser(req, callOptions: self.defaultOptions)
         
         do {
             let response = try unaryCall.response.wait()
@@ -88,6 +103,43 @@ class GRPCManager {
         
     }
     
+    func getCourse(courseId: UInt64) -> Course? {
+        
+        let req = CourseRequest.with{
+            $0.courseID = courseId
+        }
+        print("get courses")
+        let unaryCall = self.quickfeedClient.getCourse(req, callOptions: self.defaultOptions)
+        
+        do {
+            let response = try unaryCall.response.wait()
+            return response
+        } catch {
+            print("Call failed: \(error)")
+        }
+        
+        return nil
+    }
+    
+    func getAssignments(courseId: UInt64) -> [Assignment]{
+        
+        let req = CourseRequest.with{
+            $0.courseID = courseId
+        }
+        
+        let call = self.quickfeedClient.getAssignments(req, callOptions: self.defaultOptions)
+        
+        do {
+            let resp = try call.response.wait()
+            return resp.assignments
+        } catch {
+            print(courseId)
+            print("Call failed: \(error)")
+        }
+        
+        return []
+    }
+    
     
     func getOrganization(orgName: String) {
         
@@ -95,14 +147,9 @@ class GRPCManager {
             $0.orgName = orgName
         }
         
-        let headers: HPACKHeaders = ["custom-header-1": "value1", "user": "1"]
-        
-        var callOptions = CallOptions()
-        callOptions.customMetadata = headers
         
         
-        
-        let unaryCall = self.quickfeedClient.getOrganization(request, callOptions: callOptions)
+        let unaryCall = self.quickfeedClient.getOrganization(request, callOptions: self.defaultOptions)
         
         do {
             print("getting org")
@@ -127,3 +174,4 @@ class GRPCManager {
         try! self.eventLoopGroup.syncShutdownGracefully()
     }
 }
+

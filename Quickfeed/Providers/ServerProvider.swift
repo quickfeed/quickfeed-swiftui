@@ -24,7 +24,7 @@ class ServerProvider: ProviderProtocol{
     }
     
     func isAuthorizedTeacher() -> Bool {
-        fatalError("Not implemented")
+        return grpcManager.isAuthorizedTeacher()
     }
     
     func getCourses() -> [Course] {
@@ -36,7 +36,7 @@ class ServerProvider: ProviderProtocol{
     }
     
     func getCourse(courseId: UInt64) -> Course? {
-        fatalError("Not implemented")
+        return self.grpcManager.getCourse(courseId: courseId)
     }
     
     func changeName(newName: String) {
@@ -48,11 +48,11 @@ class ServerProvider: ProviderProtocol{
     }
     
     func getAssignments(courseID: UInt64) -> [Assignment] {
-        fatalError("Not implemented")
+        return self.grpcManager.getAssignments(courseId: courseID)
     }
     
     func getUsersForCourse(course: Course) -> [User] {
-        fatalError("Not implemented")
+        return self.grpcManager.getUsersForCourse(courseId: courseId)
     }
     
     func addUserToCourse(course: Course, user: User) -> Bool {
