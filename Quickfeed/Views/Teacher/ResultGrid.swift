@@ -30,7 +30,7 @@ struct ResultGrid: View {
             List{
                 ForEach(self.filteredUsers().indices, id: \.self){ i in
                     
-                    MemberListItem(user: self.filteredUsers()[i])
+                    ResultListItem(user: self.filteredUsers()[i], submissions: self.viewModel.getSubmissionByUser(courseId: selectedCourse, userId: self.filteredUsers()[i].id))
                         
                         .frame(maxWidth: .infinity)
                         .listRowBackground(RoundedRectangle(cornerRadius: 4)
@@ -81,7 +81,7 @@ struct ResultGrid: View {
 
 struct ResultGrid_Previews: PreviewProvider {
     static var previews: some View {
-        ResultGrid(displayingSubmission: .constant(false), selectedCourse: .constant(111))
+        ResultGrid(displayingSubmission: .constant(false), selectedCourse: .constant(4))
             .environmentObject(TeacherViewModel(provider: FakeProvider()))
     }
 }

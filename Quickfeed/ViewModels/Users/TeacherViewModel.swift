@@ -41,6 +41,10 @@ class TeacherViewModel: UserViewModelProtocol{
         }
     }
     
+    func getSubmissionByUser(courseId: UInt64, userId: UInt64) -> [Submission]{
+        return self.provider.getSubmissionsByUser(courseId: courseId, userId: userId)
+    }
+    
     
     func getAssignmentById(id: UInt64) -> Assignment{
         for course in self.courses{

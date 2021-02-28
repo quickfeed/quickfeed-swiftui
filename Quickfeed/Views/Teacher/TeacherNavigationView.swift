@@ -27,7 +27,7 @@ struct TeacherNavigationView: View {
                 
                 List{
                     NavigationLink(destination: ResultView(selectedCourse: $selectedCourse)
-                                    .environmentObject(ResultViewModel(courseId: selectedCourse))){
+                                    .environmentObject(viewModel)){
                         Image(systemName: "chart.bar")
                             .frame(width: 20)
                             .foregroundColor(.blue)
@@ -84,6 +84,6 @@ struct TeacherNavigationView: View {
 
 struct TeacherNavigationView_Previews: PreviewProvider {
     static var previews: some View {
-        TeacherNavigationView(viewModel: TeacherViewModel(provider: FakeProvider()), selectedCourse: 111)
+        TeacherNavigationView(viewModel: TeacherViewModel(provider: FakeProvider()), selectedCourse: 4)
     }
 }
