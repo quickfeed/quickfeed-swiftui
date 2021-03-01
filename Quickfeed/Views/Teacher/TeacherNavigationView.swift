@@ -53,7 +53,8 @@ struct TeacherNavigationView: View {
                         }
                         
                     }
-
+                    Spacer()
+                    GithubLinkSection(orgPath: "dat310-spring21", userLogin: viewModel.user.login, isTeacher: true)
                 }
                 
                 
