@@ -8,15 +8,14 @@
 import SwiftUI
 
 struct NavigatorView: View {
+    @ObservedObject var viewModel: UserViewModel
+    var courses: [Course] { return viewModel.courses }
     @State var selectedCourse: UInt64
     
     var body: some View {
         NavigationView{
             VStack(alignment: .leading){
-                NavigationLink(
-                    destination: Text("Destination")){
-                    Text("TEST")
-                }
+                CoursePicker(courses: courses, selectedCourse: $selectedCourse)
                 Spacer()
                 NavigationLink(
                     destination: Text("UserProfile_HardCoded")){
@@ -25,11 +24,14 @@ struct NavigatorView: View {
                 }
             }
         }
+        .onAppear(perform: {
+            self.selectedCourse = self.courses[0].id
+        })
     }
 }
 
 struct NavigatorView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigatorView(selectedCourse: 111)
+        NavigatorView(viewModel: UserViewModel(provider: FakeProvider()), selectedCourse: 111)
     }
 }

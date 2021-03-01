@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        TeacherNavigationView(viewModel: TeacherViewModel(provider: FakeProvider()), selectedCourse: 111)
+        NavigatorView(viewModel: UserViewModel(provider: ServerProvider()), selectedCourse: 4)
     
     }
     
