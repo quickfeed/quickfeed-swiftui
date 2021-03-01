@@ -16,8 +16,14 @@ struct NavigatorView: View {
         NavigationView{
             VStack(alignment: .leading){
                 CoursePicker(courses: courses, selectedCourse: $selectedCourse)
-                TeacherNavigationView(viewModel: TeacherViewModel(provider: ServerProvider(), course: viewModel.getCourse(courseId: selectedCourse)))
-                
+                    .padding([.horizontal, .top])
+                List{
+                    if viewModel.getCourse(courseId: selectedCourse).enrolled == Enrollment.UserStatus.teacher {
+                        Text("Teacher")
+                    } else {
+                        StudentNavigatorView(viewModel: StudentViewModel(provider: ServerProvider(), course: viewModel.getCourse(courseId: selectedCourse)))
+                    }
+                }
                 Spacer()
                 NavigationLink(
                     destination: Text("UserProfile_HardCoded")){

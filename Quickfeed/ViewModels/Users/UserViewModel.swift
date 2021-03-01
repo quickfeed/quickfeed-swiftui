@@ -15,12 +15,16 @@ class UserViewModel: UserViewModelProtocol {
     init(provider: ProviderProtocol) {
         self.provider = provider
         self.user = provider.getUser() ?? User()
-        self.courses = provider.getCoursesForCurrentUser() ?? []
+        self.courses = provider.getAllCoursesForCurrentUser() ?? []
     }
     
-    
     func getCourse(courseId: UInt64) -> Course{
-        return self.provider.getCourse(courseId: courseId) ?? Course()
+        for course in self.courses{
+            if course.id == courseId{
+                return course
+            }
+        }
+        return Course()
     }
     
     func reset() {

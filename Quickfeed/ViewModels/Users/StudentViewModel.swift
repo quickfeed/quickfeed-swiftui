@@ -11,22 +11,12 @@ import Foundation
 class StudentViewModel: UserViewModelProtocol{
     var provider: ProviderProtocol
     @Published var user: User
-    var courses: [Course]
+    @Published var course: Course
     
-    init(provider: ProviderProtocol) {
+    init(provider: ProviderProtocol, course: Course) {
         self.provider = provider
         self.user = provider.getUser() ?? User()
-        self.courses = provider.getCoursesForCurrentUser() ?? []
-        assert(provider.isAuthorizedTeacher())
-    }
-    
-    func getCourse(courseId: UInt64) -> Course{
-        for course in self.courses{
-            if course.id == courseId{
-                return course
-            }
-        }
-        return Course()
+        self.course = course
     }
     
     func getAssignments(courseID: UInt64) -> [Assignment]{
