@@ -8,16 +8,17 @@
 import SwiftUI
 
 struct GithubLinkSection: View {
-    var orgUrl: String
+    var orgPath: String
     var userLogin: String
     var isTeacher: Bool
+    
     var body: some View {
         Section(header: Text("Repositories")){
-            Link("\(userLogin)-labs", destination: URL(string: orgUrl + "/" + userLogin + "-labs")!)
-            Link("course-info", destination: URL(string: orgUrl + "/course-info")!)
-            Link("assignments", destination: URL(string: orgUrl + "/assignments")!)
+            Link("\(userLogin)-labs", destination: URL(string: "https://github.com/" + orgPath + "/" + userLogin + "-labs")!)
+            Link("course-info", destination: URL(string: "https://github.com/" + orgPath + "/course-info")!)
+            Link("assignments", destination: URL(string: "https://github.com/" + orgPath + "/assignments")!)
             if isTeacher{
-                Link("tests", destination: URL(string: orgUrl + "/tests")!)
+                Link("tests", destination: URL(string: "https://github.com/" + orgPath + "/tests")!)
             }
         }
         .padding(.leading)
@@ -27,14 +28,14 @@ struct GithubLinkSection: View {
 struct GithubLinkSection_Previews: PreviewProvider {
     static var previews: some View {
         List{
-            GithubLinkSection(orgUrl: "https://github.com/dat310-spring21", userLogin: "oskargj", isTeacher: true)
+            GithubLinkSection(orgPath: "dat310-spring21", userLogin: "oskargj", isTeacher: true)
                 
             
         }
         .previewDisplayName("Teacher")
         
         List{
-            GithubLinkSection(orgUrl: "https://github.com/dat310-spring21", userLogin: "oskargj", isTeacher: false)
+            GithubLinkSection(orgPath: "dat310-spring21", userLogin: "oskargj", isTeacher: false)
                 
         }
         .previewDisplayName("Student")

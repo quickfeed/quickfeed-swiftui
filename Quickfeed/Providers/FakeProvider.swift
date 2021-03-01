@@ -57,6 +57,10 @@ class FakeProvider: ProviderProtocol, ObservableObject{
         return true
     }
     
+    func getAllCoursesForCurrentUser() -> [Course]?{
+        fatalError("Not implemented")
+    }
+    
     func getCoursesForCurrentUser() -> [Course]?{
         var courses: [Course] = []
         for enrollment in currentUser.enrollments{

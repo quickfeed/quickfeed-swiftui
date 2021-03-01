@@ -15,6 +15,7 @@ struct LabSection: View {
             ForEach(assignments, id: \.id){ assignment in
                 NavigationLink(destination: StudentLab(assignment: assignment, slipdays: UInt32(7))){
                     Text(assignment.name)
+                    Spacer()
                     if assignment.isGroupLab {
                         Image(systemName: "person.3.fill")
                     }
