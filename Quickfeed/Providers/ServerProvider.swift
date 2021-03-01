@@ -29,6 +29,12 @@ class ServerProvider: ProviderProtocol{
         return self.currentUser
     }
     
+    func getAllCoursesForCurrentUser() -> [Course]? {
+        var courses: [Course]? = grpcManager.getCourses(userStatus: Enrollment.UserStatus.teacher)
+        courses?.append(contentsOf: grpcManager.getCourses(userStatus: Enrollment.UserStatus.student))
+        return courses
+    }
+    
     func getCoursesForCurrentUser() -> [Course]? {
         return grpcManager.getCourses(userStatus: Enrollment.UserStatus.teacher)
     }

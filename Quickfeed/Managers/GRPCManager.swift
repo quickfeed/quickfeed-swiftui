@@ -27,7 +27,7 @@ class GRPCManager {
             .connect(host: hostname, port: port)
     
         self.quickfeedClient = AutograderServiceClient(channel: channel)
-        let headers: HPACKHeaders = ["custom-header-1": "value1", "user": "2"]
+        let headers: HPACKHeaders = ["custom-header-1": "value1", "user": "100"]
         
         self.defaultOptions = CallOptions()
         self.defaultOptions.customMetadata = headers
@@ -85,7 +85,7 @@ class GRPCManager {
         
         let req = EnrollmentStatusRequest.with{
             $0.statuses = [userStatus]
-            $0.userID = 2
+            $0.userID = 100
         }
         
         let unaryCall = self.quickfeedClient.getCoursesByUser(req, callOptions: self.defaultOptions)

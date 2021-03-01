@@ -68,7 +68,7 @@ struct TeacherNavigationView: View {
                     
                     
                     Spacer()
-                    GithubLinkSection(orgUrl: "https://github.com/dat310-spring21", userLogin: viewModel.user.login, isTeacher: true)
+                    GithubLinkSection(orgPath: "dat310-spring21", userLogin: viewModel.user.login, isTeacher: true)
                 }
             }
             
