@@ -22,7 +22,7 @@ struct NavigatorView: View {
                 NavigationLink(
                     destination: Text("UserProfile_HardCoded")){
                     Image(systemName: "person.fill")
-                    Text("Bjørn Kristian Teisrud")
+                    Text(viewModel.user.name)
                 }
             }
         }
