@@ -4,7 +4,6 @@
 //
 //  Created by Bjørn Kristian Teisrud on 25/01/2021.
 //
-
 import Foundation
 import NIO
 import NIOSSL
@@ -28,7 +27,8 @@ class GRPCManager {
             .connect(host: hostname, port: port)
     
         self.quickfeedClient = AutograderServiceClient(channel: channel)
-        let headers: HPACKHeaders = ["custom-header-1": "value1", "user": "151"]
+
+        let headers: HPACKHeaders = ["custom-header-1": "value1", "user": "100"]
         
         self.defaultOptions = CallOptions()
         self.defaultOptions.customMetadata = headers
@@ -40,7 +40,6 @@ class GRPCManager {
        
         let call = self.quickfeedClient.isAuthorizedTeacher(Void(), callOptions: self.defaultOptions)
         
-        print("teacher")
         do {
             let response = try call.response.wait()
             return response.isAuthorized
@@ -82,6 +81,7 @@ class GRPCManager {
         return nil
     }
     
+
     func getCourses(userStatus: Enrollment.UserStatus, userId: UInt64) -> [Course]{
         
         let req = EnrollmentStatusRequest.with{
@@ -93,7 +93,7 @@ class GRPCManager {
         
         do {
             let response = try unaryCall.response.wait()
-            print(response.courses)
+            
             return response.courses
         } catch {
             print("Call failed: \(error)")
@@ -108,7 +108,7 @@ class GRPCManager {
         let req = CourseRequest.with{
             $0.courseID = courseId
         }
-        print("get courses")
+        
         let unaryCall = self.quickfeedClient.getCourse(req, callOptions: self.defaultOptions)
         
         do {
@@ -186,10 +186,10 @@ class GRPCManager {
         let unaryCall = self.quickfeedClient.getOrganization(request, callOptions: self.defaultOptions)
         
         do {
-            print("getting org")
+            
             let response = try unaryCall.response.wait()
             
-            print("getting org")
+            
             print("Call received: \(response.path)")
         } catch {
             print("Call failed: \(error)")
@@ -208,4 +208,3 @@ class GRPCManager {
         try! self.eventLoopGroup.syncShutdownGracefully()
     }
 }
-

@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct MembersView: View {
-    @EnvironmentObject var viewModel: TeacherViewModel
-    var course: Course
+    @ObservedObject var viewModel: TeacherViewModel
     @State var searchQuery: String = ""
-    @State var users: [User] = []
+    
     
     func filteredUsers() -> [User] {
-        return users.filter({ matchesQuery(user: $0) })
+        return viewModel.users.filter({ matchesQuery(user: $0) })
     }
     
     func matchesQuery(user: User) -> Bool{
@@ -42,9 +41,19 @@ struct MembersView: View {
         return false
     }
     
+    func getEnrollmentForUser(user: User) -> Enrollment{
+        for enrollment in user.enrollments{
+            if enrollment.courseID == viewModel.currentCourse.id{
+                return enrollment
+            }
+        }
+        
+        return Enrollment()
+    }
+    
     var body: some View {
         VStack {
-            Text("Users enrolled in \(self.course.name)")
+            Text("Users enrolled in \(viewModel.currentCourse.name)")
             
             SearchFieldRepresentable(query: $searchQuery)
                 .padding(.horizontal)
@@ -75,7 +84,7 @@ struct MembersView: View {
                 
                 ForEach(self.filteredUsers().indices, id: \.self){ i in
                     
-                    MemberListItem(user: self.filteredUsers()[i])
+                    MemberListItem(user: self.filteredUsers()[i], courseId: viewModel.currentCourse.id)
 
                     .frame(maxWidth: .infinity)
                     .listRowBackground(RoundedRectangle(cornerRadius: 4)
@@ -86,7 +95,7 @@ struct MembersView: View {
             }
         }
         .onAppear(perform: {
-            self.users = self.viewModel.getStudentsForCourse(courseId: self.course.id)
+            viewModel.loadUsers()
         })
         
     }
@@ -96,6 +105,6 @@ struct MembersView: View {
 struct MembersView_Previews: PreviewProvider {
     static var viewModel = TeacherViewModel(provider: FakeProvider(), course: Course())
     static var previews: some View {
-        MembersView(course: viewModel.getCourse(courseId: 111))
+        MembersView(viewModel: TeacherViewModel(provider: FakeProvider(), course: Course()))
     }
 }

@@ -10,14 +10,14 @@ import SwiftUI
 struct ResultGrid: View {
     @ObservedObject var viewModel: TeacherViewModel
     @Binding var displayingSubmission: Bool
-    @Binding var selectedCourse: UInt64
+   
     @State var users: [User] = []
     @State var searchQuery: String = ""
     
     
     var body: some View {
         VStack{
-            Text("Results for \(viewModel.getCourse(courseId: selectedCourse).name)")
+            Text("Results for \(viewModel.currentCourse.name)")
             Button("test"){self.displayingSubmission = true}
             HStack{
                 SearchFieldRepresentable(query: $searchQuery)
@@ -30,7 +30,7 @@ struct ResultGrid: View {
             List{
                 ForEach(self.filteredUsers().indices, id: \.self){ i in
                     
-                    ResultListItem(user: self.filteredUsers()[i], submissions: self.viewModel.getSubmissionsByUser(courseId: selectedCourse, userId: self.filteredUsers()[i].id))
+                    ResultListItem(user: self.filteredUsers()[i], submissions: self.viewModel.getSubmissionsByUser(courseId: viewModel.currentCourse.id, userId: self.filteredUsers()[i].id))
                         
                         .frame(maxWidth: .infinity)
                         .listRowBackground(RoundedRectangle(cornerRadius: 4)
@@ -45,7 +45,7 @@ struct ResultGrid: View {
             Spacer()
         }
         .onAppear(perform: {
-            users = viewModel.getStudentsForCourse(courseId: self.selectedCourse)
+            users = viewModel.getStudentsForCourse(courseId: self.viewModel.currentCourse.id)
         })
     }
     
@@ -81,6 +81,6 @@ struct ResultGrid: View {
 
 struct ResultGrid_Previews: PreviewProvider {
     static var previews: some View {
-        ResultGrid(viewModel: TeacherViewModel(provider: FakeProvider(), course: Course()), displayingSubmission: .constant(false), selectedCourse: .constant(4))
+        ResultGrid(viewModel: TeacherViewModel(provider: FakeProvider(), course: Course()), displayingSubmission: .constant(false))
     }
 }

@@ -4,7 +4,6 @@
 //
 //  Created by Oskar Gjølga on 25/02/2021.
 //
-
 import Foundation
 
 class ServerProvider: ProviderProtocol{
@@ -13,7 +12,9 @@ class ServerProvider: ProviderProtocol{
         let enrollments = self.getEnrollmentsForCourse(course: course) ?? []
         var users: [User] = []
         for enrollment in enrollments{
-            users.append(enrollment.user)
+            var user = enrollment.user
+            user.enrollments.append(enrollment)
+            users.append(user)
         }
         
         return users
@@ -31,7 +32,9 @@ class ServerProvider: ProviderProtocol{
     }
     
     func getCoursesForCurrentUser() -> [Course]? {
+
         return grpcManager.getCourses(userStatus: Enrollment.UserStatus.teacher, userId: self.currentUser.id)
+
     }
     
     func isAuthorizedTeacher() -> Bool {

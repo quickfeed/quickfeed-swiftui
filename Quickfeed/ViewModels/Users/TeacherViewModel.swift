@@ -33,7 +33,7 @@ class TeacherViewModel: UserViewModelProtocol{
     }
     
     func loadUsers(){
-        self.users = self.provider.getUsers()
+        self.users = self.getStudentsForCourse(courseId: self.currentCourse.id)
     }
     
     

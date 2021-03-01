@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ReviewNavigationView: View {
     @ObservedObject var viewModel: TeacherViewModel
-    @Binding var selectedCourse: UInt64
     @State private var searchQuery: String = ""
     @Binding var enrolledUsers: [User]
     @Binding var selectedLab: UInt64
@@ -70,6 +69,6 @@ struct ReviewNavigationView: View {
 
 struct ReviewNavigatorView_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewNavigationView(viewModel: TeacherViewModel(provider: FakeProvider(), course: Course()), selectedCourse: .constant(1), enrolledUsers: .constant([]), selectedLab: .constant(1))
+        ReviewNavigationView(viewModel: TeacherViewModel(provider: FakeProvider(), course: Course()), enrolledUsers: .constant([]), selectedLab: .constant(1))
     }
 }
