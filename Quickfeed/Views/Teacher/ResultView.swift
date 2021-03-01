@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ResultView: View {
-    @EnvironmentObject var viewModel: TeacherViewModel
+    @ObservedObject var viewModel: TeacherViewModel
     @Binding var selectedCourse: UInt64
     @State var users: [User] = []
     @State var searchQuery: String = ""
@@ -17,7 +17,7 @@ struct ResultView: View {
     var body: some View {
         VStack{
             if !displayingSubmission {
-                ResultGrid(displayingSubmission: $displayingSubmission, selectedCourse: $selectedCourse)
+                ResultGrid(viewModel: viewModel, displayingSubmission: $displayingSubmission, selectedCourse: $selectedCourse)
             }
             if displayingSubmission {
                 // SubmissionResults(show: $show)
@@ -30,7 +30,7 @@ struct ResultView: View {
 
 struct ResultGridView_Previews: PreviewProvider {
     static var previews: some View {
-        ResultView(selectedCourse: .constant(111))
-            .environmentObject(ResultViewModel(provider: FakeProvider(), courseId: 111))
+        ResultView(viewModel: TeacherViewModel(provider: FakeProvider(), course: Course()), selectedCourse: .constant(111))
+            
     }
 }

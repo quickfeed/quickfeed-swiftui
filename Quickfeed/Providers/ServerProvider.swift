@@ -31,7 +31,7 @@ class ServerProvider: ProviderProtocol{
     }
     
     func getCoursesForCurrentUser() -> [Course]? {
-        return grpcManager.getCourses(userStatus: Enrollment.UserStatus.teacher)
+        return grpcManager.getCourses(userStatus: Enrollment.UserStatus.teacher, userId: self.currentUser.id)
     }
     
     func isAuthorizedTeacher() -> Bool {

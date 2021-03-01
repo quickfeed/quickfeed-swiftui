@@ -11,14 +11,16 @@ import Combine
 class TeacherViewModel: UserViewModelProtocol{
     var provider: ProviderProtocol
     @Published var user: User
-    var courses: [Course]
-    var users: [User]
+    @Published var currentCourse: Course
+    @Published var users: [User] = []
+    @Published var courses: [Course] = []
+    @Published var assignments: [Assignment] = []
+    @Published var manuallyGradedAssignments: [Assignment] = []
     
-    init(provider: ProviderProtocol) {
+    init(provider: ProviderProtocol, course: Course) {
         self.provider = provider
         self.user = provider.getUser() ?? User()
-        self.courses = provider.getCoursesForCurrentUser() ?? []
-        self.users = []
+        self.currentCourse = course
     }
     
     func getCourse(courseId: UInt64) -> Course{
@@ -30,13 +32,22 @@ class TeacherViewModel: UserViewModelProtocol{
         return Course()
     }
     
-    func getAssignments(courseId: UInt64) -> [Assignment]{
-        return self.provider.getAssignments(courseID: courseId)
+    func loadUsers(){
+        self.users = self.provider.getUsers()
     }
     
-    func getManuallyGradedAssignments(courseId: UInt64) -> [Assignment]{
-        let allAssignments = self.getAssignments(courseId: courseId)
-        return allAssignments.filter{ assignment in
+    
+    func loadCourses() {
+        self.courses = self.provider.getCourses()
+    }
+    
+    func loadAssignments(){
+        self.assignments =  self.provider.getAssignments(courseID: self.currentCourse.id)
+        self.loadManuallyGradedAssignments(courseId: self.currentCourse.id)
+    }
+    
+    func loadManuallyGradedAssignments(courseId: UInt64){
+        self.manuallyGradedAssignments =  self.assignments.filter{ assignment in
             assignment.skipTests // skipTests -> assignments is manually graded
         }
     }

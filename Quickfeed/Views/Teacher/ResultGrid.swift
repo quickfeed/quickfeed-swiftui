@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ResultGrid: View {
-    @EnvironmentObject var viewModel: TeacherViewModel
+    @ObservedObject var viewModel: TeacherViewModel
     @Binding var displayingSubmission: Bool
     @Binding var selectedCourse: UInt64
     @State var users: [User] = []
@@ -23,7 +23,7 @@ struct ResultGrid: View {
                 SearchFieldRepresentable(query: $searchQuery)
                     .frame(width: 180, height: 20)
                 
-                ForEach(self.viewModel.getAssignments(courseId: selectedCourse), id: \.self) {assignment in
+                ForEach(self.viewModel.assignments, id: \.self) {assignment in
                     Text(assignment.name)
                 }
             }
@@ -81,7 +81,6 @@ struct ResultGrid: View {
 
 struct ResultGrid_Previews: PreviewProvider {
     static var previews: some View {
-        ResultGrid(displayingSubmission: .constant(false), selectedCourse: .constant(4))
-            .environmentObject(TeacherViewModel(provider: FakeProvider()))
+        ResultGrid(viewModel: TeacherViewModel(provider: FakeProvider(), course: Course()), displayingSubmission: .constant(false), selectedCourse: .constant(4))
     }
 }

@@ -94,7 +94,7 @@ struct MembersView: View {
 }
 
 struct MembersView_Previews: PreviewProvider {
-    static var viewModel = TeacherViewModel(provider: FakeProvider())
+    static var viewModel = TeacherViewModel(provider: FakeProvider(), course: Course())
     static var previews: some View {
         MembersView(course: viewModel.getCourse(courseId: 111))
     }
