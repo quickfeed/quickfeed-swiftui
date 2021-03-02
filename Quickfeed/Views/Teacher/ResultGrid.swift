@@ -17,19 +17,30 @@ struct ResultGrid: View {
         VStack{
             Text("Results for \(viewModel.currentCourse.name)")
             Button("test"){self.displayingSubmission = true}
+            SearchFieldRepresentable(query: $searchQuery)
+                .padding(.horizontal)
+                .frame(height: 20)
+            
             HStack{
-                SearchFieldRepresentable(query: $searchQuery)
-                    .frame(width: 180, height: 20)
-                
+                Text("Name:")
+                    .frame(width: 180, alignment: .leading)
                 ForEach(self.viewModel.assignments, id: \.self) {assignment in
                     Text(assignment.name)
+                    Spacer()
                 }
             }
+            .padding(2)
+            .frame(maxWidth: .infinity)
+            .background(RoundedRectangle(cornerRadius: 4)
+                                .foregroundColor(Color(.unemphasizedSelectedTextBackgroundColor))
+                                )
+            .padding(.horizontal)
             List{
+                
+                
                 ForEach(self.filteredUsers().indices, id: \.self){ i in
                     
                     ResultListItem(user: self.filteredUsers()[i], submissionLinks: self.viewModel.submissionLinks[self.filteredUsers()[i].id] ?? [])
-                        
                         .frame(maxWidth: .infinity)
                         .listRowBackground(RoundedRectangle(cornerRadius: 4)
                                             .foregroundColor(Color(.unemphasizedSelectedTextBackgroundColor))
@@ -40,7 +51,7 @@ struct ResultGrid: View {
             }
             
             
-            Spacer()
+            
         }
         .onAppear(perform: {
             self.viewModel.loadSubmissions()

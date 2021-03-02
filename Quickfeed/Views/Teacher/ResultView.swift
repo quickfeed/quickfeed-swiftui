@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ResultView: View {
     @ObservedObject var viewModel: TeacherViewModel
-    @State var users: [User] = []
     @State var searchQuery: String = ""
     @State private var displayingSubmission = false
     

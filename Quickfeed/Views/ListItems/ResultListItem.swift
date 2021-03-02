@@ -17,6 +17,7 @@ struct ResultListItem: View {
             
             ForEach(submissionLinks, id: \.assignment.id){ link in
                 Text("\(link.submission.approvedDate != "" ? "80%" : "0%")")
+                    .frame(width: 30)
                 Spacer()
             }
         }
