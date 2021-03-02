@@ -137,8 +137,8 @@ class ServerProvider: ProviderProtocol{
         fatalError("Not implemented")
     }
     
-    func getSubmissionsByCourse(courseId: UInt64, type: SubmissionsForCourseRequest.Type) -> [AllSubmissionsForEnrollment] {
-        fatalError("Not implemented")
+    func getSubmissionsByCourse(courseId: UInt64, type: SubmissionsForCourseRequest.TypeEnum) -> CourseSubmissions {
+        return self.grpcManager.getSubmissionsByCourse(courseId: courseId, type: type)
     }
     
     func getEnrollmentsForUser(userId: UInt64) -> [Enrollment] {

@@ -8,6 +8,10 @@
 import Foundation
 
 class FakeProvider: ProviderProtocol, ObservableObject{
+    func getSubmissionsByCourse(courseId: UInt64, type: SubmissionsForCourseRequest.TypeEnum) -> CourseSubmissions {
+        fatalError("notImplemented")
+    }
+    
     
     
     @Published var currentUser: User
@@ -179,7 +183,7 @@ class FakeProvider: ProviderProtocol, ObservableObject{
         fatalError("Not implemented")
     }
     
-    func getSubmissionsByCourse(courseId: UInt64, type: SubmissionsForCourseRequest.Type) -> [AllSubmissionsForEnrollment] {
+    func getSubmissionsByCourse(courseId: UInt64, type: SubmissionsForCourseRequest.Type) -> CourseSubmissions {
         fatalError("Not implemented")
     }
     

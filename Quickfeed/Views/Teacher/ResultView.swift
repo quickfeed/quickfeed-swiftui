@@ -24,6 +24,9 @@ struct ResultView: View {
                 
             }
         }
+        .onAppear(perform: {
+            
+        })
     }
 }
 

@@ -10,7 +10,6 @@ import SwiftUI
 struct ReviewNavigationView: View {
     @ObservedObject var viewModel: TeacherViewModel
     @State private var searchQuery: String = ""
-    @Binding var enrolledUsers: [User]
     @Binding var selectedLab: UInt64
     @State private var showCompleted: Bool = true
     
@@ -49,19 +48,21 @@ struct ReviewNavigationView: View {
                 
                 List{
                     Section(header: Text("Submissions")){
-                        ForEach(enrolledUsers.filter({ matchesQuery(user: $0) }), id: \.id){ user in
+                        ForEach(viewModel.users.filter({ matchesQuery(user: $0) }), id: \.id){ user in
                             NavigationLink(destination: Text(user.name)){
                                 SubmissionListItem(submitterName: user.name, totalReviewers: 1, reviews: 1, markedAsReady: true)
                             }
                         }
                     }
                 }
-                .padding(2)
+                
                 
             }
             .frame(minWidth: 300)
+            .padding(.horizontal)
             
         }
+        
         
         
     }
@@ -69,6 +70,6 @@ struct ReviewNavigationView: View {
 
 struct ReviewNavigatorView_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewNavigationView(viewModel: TeacherViewModel(provider: FakeProvider(), course: Course()), enrolledUsers: .constant([]), selectedLab: .constant(1))
+        ReviewNavigationView(viewModel: TeacherViewModel(provider: FakeProvider(), course: Course()), selectedLab: .constant(1))
     }
 }

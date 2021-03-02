@@ -16,6 +16,7 @@ class TeacherViewModel: UserViewModelProtocol{
     @Published var courses: [Course] = []
     @Published var assignments: [Assignment] = []
     @Published var manuallyGradedAssignments: [Assignment] = []
+    @Published var submissionLinks = [UInt64 : [SubmissionLink]]()
     
     init(provider: ProviderProtocol, course: Course) {
         self.provider = provider
@@ -39,6 +40,13 @@ class TeacherViewModel: UserViewModelProtocol{
     
     func loadCourses() {
         self.courses = self.provider.getCourses()
+    }
+    
+    func loadSubmissions(){
+        let courseSubmissions = self.provider.getSubmissionsByCourse(courseId: self.currentCourse.id, type: SubmissionsForCourseRequest.TypeEnum.all)
+        for link in courseSubmissions.links{
+            self.submissionLinks[link.enrollment.userID] = link.submissions
+        }
     }
     
     func loadAssignments(){

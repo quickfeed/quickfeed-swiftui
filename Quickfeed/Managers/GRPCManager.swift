@@ -81,6 +81,7 @@ class GRPCManager {
         return nil
     }
     
+    
 
     func getCourses(userStatus: Enrollment.UserStatus, userId: UInt64) -> [Course]{
         
@@ -137,6 +138,24 @@ class GRPCManager {
         return []
         
     }
+    
+    func getSubmissionsByCourse(courseId: UInt64, type: SubmissionsForCourseRequest.TypeEnum) -> CourseSubmissions{
+        let req = SubmissionsForCourseRequest.with{
+            $0.courseID = courseId
+            $0.type = type
+        }
+        
+        let call = self.quickfeedClient.getSubmissionsByCourse(req, callOptions: self.defaultOptions)
+        do {
+            let response = try call.response.wait()
+            return response
+        } catch {
+            print("Call failed: \(error)")
+        }
+        
+        return CourseSubmissions()
+    }
+    
     
     func getEnrollmentsByCourse(course: Course) -> [Enrollment]{
         let req = EnrollmentRequest.with{

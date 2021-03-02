@@ -32,7 +32,7 @@ struct MemberListItem: View {
                 .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
             Text("\(enrollment.lastActivityDate != "" ? enrollment.lastActivityDate : "Inactive")")
                 .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
-            Text("0") // NOT IMPLEMENTED
+            Text("\(enrollment.totalApproved)") 
                 .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
             Text(translateUserStatus(status: enrollment.status.rawValue))
                 .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)

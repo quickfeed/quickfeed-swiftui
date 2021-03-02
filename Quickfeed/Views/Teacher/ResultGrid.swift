@@ -10,8 +10,6 @@ import SwiftUI
 struct ResultGrid: View {
     @ObservedObject var viewModel: TeacherViewModel
     @Binding var displayingSubmission: Bool
-   
-    @State var users: [User] = []
     @State var searchQuery: String = ""
     
     
@@ -30,7 +28,7 @@ struct ResultGrid: View {
             List{
                 ForEach(self.filteredUsers().indices, id: \.self){ i in
                     
-                    ResultListItem(user: self.filteredUsers()[i], submissions: self.viewModel.getSubmissionsByUser(courseId: viewModel.currentCourse.id, userId: self.filteredUsers()[i].id))
+                    ResultListItem(user: self.filteredUsers()[i], submissionLinks: self.viewModel.submissionLinks[self.filteredUsers()[i].id] ?? [])
                         
                         .frame(maxWidth: .infinity)
                         .listRowBackground(RoundedRectangle(cornerRadius: 4)
@@ -45,12 +43,12 @@ struct ResultGrid: View {
             Spacer()
         }
         .onAppear(perform: {
-            users = viewModel.getStudentsForCourse(courseId: self.viewModel.currentCourse.id)
+            self.viewModel.loadSubmissions()
         })
     }
     
     func filteredUsers() -> [User] {
-        return users.filter({ matchesQuery(user: $0) })
+        return viewModel.users.filter({ matchesQuery(user: $0) })
     }
     
     func matchesQuery(user: User) -> Bool{

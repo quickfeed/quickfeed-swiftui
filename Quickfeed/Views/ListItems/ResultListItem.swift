@@ -9,13 +9,15 @@ import SwiftUI
 
 struct ResultListItem: View {
     var user: User
-    var submissions: [Submission]
+    var submissionLinks: [SubmissionLink]
     var body: some View {
         HStack{
             Text(user.name)
-                .frame(width: 180)
-            ForEach(submissions, id: \.id){ submission in
-                Text(submission.approvedDate)
+                .frame(width: 180, alignment: .leading)
+            
+            ForEach(submissionLinks, id: \.assignment.id){ link in
+                Text("\(link.submission.approvedDate != "" ? "80%" : "0%")")
+                Spacer()
             }
         }
         
@@ -24,6 +26,6 @@ struct ResultListItem: View {
 
 struct ResultListItem_Previews: PreviewProvider {
     static var previews: some View {
-        ResultListItem(user: User(name: "Test User", id: 1, studentID: "111111", isAdmin: false, email: "gfkjdsl@dfsa.com", enrollments: [], login: "oskargj"), submissions: [])
+        ResultListItem(user: User(name: "Test User", id: 1, studentID: "111111", isAdmin: false, email: "gfkjdsl@dfsa.com", enrollments: [], login: "oskargj"), submissionLinks: [])
     }
 }
