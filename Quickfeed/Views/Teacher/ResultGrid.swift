@@ -12,7 +12,6 @@ struct ResultGrid: View {
     @Binding var displayingSubmission: Bool
     @State var searchQuery: String = ""
     
-    
     var body: some View {
         VStack{
             Text("Results for \(viewModel.currentCourse.name)")
@@ -32,32 +31,27 @@ struct ResultGrid: View {
             .padding(2)
             .frame(maxWidth: .infinity)
             .background(RoundedRectangle(cornerRadius: 3)
-                                .foregroundColor(Color(.unemphasizedSelectedTextBackgroundColor))
-                                )
+                            .foregroundColor(Color(.unemphasizedSelectedTextBackgroundColor))
+            )
             .padding(.horizontal)
             List{
-                ForEach(self.filteredUsers().indices, id: \.self){ i in
-                    
-                    ResultListItem(user: self.filteredUsers()[i], submissionLinks: self.viewModel.submissionLinks[self.filteredUsers()[i].id] ?? [])
+                ForEach(self.filteredLinks().indices, id: \.self){ i in
+                    ResultListItem(user: self.filteredLinks()[i].enrollment.user, submissionLinks: self.filteredLinks()[i].submissions)
                         .frame(maxWidth: .infinity)
                         .listRowBackground(RoundedRectangle(cornerRadius: 3)
                                             .foregroundColor(Color(.unemphasizedSelectedTextBackgroundColor))
                                             .opacity(i % 2 == 0 ? 0 : 100)
                         )
                 }
-                
             }
-            
-            
-            
+            .padding(.top, 0)
         }
         .onAppear(perform: {
-            self.viewModel.loadSubmissions()
         })
     }
     
-    func filteredUsers() -> [User] {
-        return viewModel.users.filter({ matchesQuery(user: $0) })
+    func filteredLinks() -> [EnrollmentLink] {
+        return viewModel.enrollmentLinks.filter({ matchesQuery(user: $0.enrollment.user) })
     }
     
     func matchesQuery(user: User) -> Bool{
