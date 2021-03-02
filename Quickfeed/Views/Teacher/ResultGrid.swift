@@ -31,18 +31,16 @@ struct ResultGrid: View {
             }
             .padding(2)
             .frame(maxWidth: .infinity)
-            .background(RoundedRectangle(cornerRadius: 4)
+            .background(RoundedRectangle(cornerRadius: 3)
                                 .foregroundColor(Color(.unemphasizedSelectedTextBackgroundColor))
                                 )
             .padding(.horizontal)
             List{
-                
-                
                 ForEach(self.filteredUsers().indices, id: \.self){ i in
                     
                     ResultListItem(user: self.filteredUsers()[i], submissionLinks: self.viewModel.submissionLinks[self.filteredUsers()[i].id] ?? [])
                         .frame(maxWidth: .infinity)
-                        .listRowBackground(RoundedRectangle(cornerRadius: 4)
+                        .listRowBackground(RoundedRectangle(cornerRadius: 3)
                                             .foregroundColor(Color(.unemphasizedSelectedTextBackgroundColor))
                                             .opacity(i % 2 == 0 ? 0 : 100)
                         )
