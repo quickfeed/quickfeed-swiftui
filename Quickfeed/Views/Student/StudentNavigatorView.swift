@@ -11,8 +11,12 @@ struct StudentNavigatorView: View {
     @ObservedObject var viewModel: StudentViewModel
     
     var body: some View {
+        if viewModel.course.slipDays != 0 {
+            Text("Remaining Slipdays: \(viewModel.getSlipdays()!)")
+                .padding(.leading)
+        }
         List{
-            LabSection(assignments: viewModel.getAssignments(courseID: viewModel.course.id))
+            LabSection(viewModel: viewModel)
             GithubLinkSection(orgPath: viewModel.course.organizationPath, userLogin: viewModel.user.login, isTeacher: false)
         }
     }

@@ -138,6 +138,39 @@ class GRPCManager {
         
     }
     
+    func getSubbmissionByGroup(courseID: UInt64, groupID: UInt64) -> [Submission] {
+        let req = SubmissionRequest.with{
+            $0.courseID = courseID
+            $0.groupID = groupID
+        }
+        let call = self.quickfeedClient.getSubmissions(req, callOptions: self.defaultOptions)
+        do {
+            let response = try call.response.wait()
+            return response.submissions
+        } catch {
+            print("Call failed: \(error)")
+        }
+        
+        return []
+    }
+    
+    func getEnrollmentsByUser(userID: UInt64) -> [Enrollment] {
+        let req = EnrollmentStatusRequest.with{
+            $0.userID = userID
+        }
+        
+        let call = self.quickfeedClient.getEnrollmentsByUser(req, callOptions: self.defaultOptions)
+        
+        do {
+            let response = try call.response.wait()
+            return response.enrollments
+        } catch {
+            print("Call failed: \(error)")
+        }
+        
+        return []
+    }
+    
     func getEnrollmentsByCourse(course: Course) -> [Enrollment]{
         let req = EnrollmentRequest.with{
             $0.courseID = course.id
@@ -153,6 +186,24 @@ class GRPCManager {
         }
         
         return []
+    }
+    
+    func getGroupByUserAndCourse(userID: UInt64, courseID: UInt64) -> Group? {
+        let req = GroupRequest.with{
+            $0.courseID = courseID
+            $0.userID = userID
+        }
+        
+        let call = self.quickfeedClient.getGroupByUserAndCourse(req, callOptions: self.defaultOptions)
+        
+        do {
+            let response = try call.response.wait()
+            return response
+        } catch {
+            print("Call failed: \(error)")
+        }
+        
+        return nil
     }
     
     func getAssignments(courseId: UInt64) -> [Assignment]{

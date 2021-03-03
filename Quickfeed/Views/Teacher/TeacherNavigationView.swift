@@ -61,7 +61,9 @@ struct TeacherNavigationView: View {
             self.viewModel.loadUsers()
             self.viewModel.loadAssignments()
             
-            self.selectedLabForManualGrading = self.viewModel.manuallyGradedAssignments[0].id
+            if self.viewModel.manuallyGradedAssignments.count > 0{
+                self.selectedLabForManualGrading = self.viewModel.manuallyGradedAssignments[0].id
+            }
             
         })
     }
