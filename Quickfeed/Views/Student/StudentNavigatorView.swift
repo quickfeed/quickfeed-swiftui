@@ -11,10 +11,10 @@ struct StudentNavigatorView: View {
     @ObservedObject var viewModel: StudentViewModel
     
     var body: some View {
+        Text(viewModel.course.code)
+            .font(.title)
+            .padding([.leading, .top])
         if viewModel.course.slipDays != 0 {
-            Text(viewModel.course.code)
-                .font(.title)
-                .padding(.leading)
             Text("Remaining Slipdays: \(viewModel.getSlipdays()!)")
                 .padding(.leading)
         }

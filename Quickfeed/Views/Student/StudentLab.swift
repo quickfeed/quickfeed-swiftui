@@ -38,7 +38,7 @@ struct StudentLab: View {
                     .accentColor(color())
                 Divider()
                 if assignment.skipTests {
-                    ManuallyGraded()
+                    ManuallyGraded(submission: submission!)
                 } else {
                     AutoGraded(assignment: assignment, submission: submission!)
                 }
