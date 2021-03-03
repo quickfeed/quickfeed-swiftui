@@ -19,30 +19,15 @@ struct ResultGrid: View {
             SearchFieldRepresentable(query: $searchQuery)
                 .padding(.horizontal)
                 .frame(height: 20)
-            
-            HStack{
-                Text("Name:")
-                    .frame(width: 180, alignment: .leading)
-                ForEach(self.viewModel.assignments, id: \.self) {assignment in
-                    Text(assignment.name)
-                    Spacer()
-                }
-            }
-            .padding(2)
-            .frame(maxWidth: .infinity)
-            .background(RoundedRectangle(cornerRadius: 3)
-                            .foregroundColor(Color(.unemphasizedSelectedTextBackgroundColor))
-            )
-            .padding(.horizontal)
             List{
-                ForEach(self.filteredLinks().indices, id: \.self){ i in
-                    ResultListItem(user: self.filteredLinks()[i].enrollment.user, submissionLinks: self.filteredLinks()[i].submissions)
-                        .frame(maxWidth: .infinity)
-                        .listRowBackground(RoundedRectangle(cornerRadius: 3)
-                                            .foregroundColor(Color(.unemphasizedSelectedTextBackgroundColor))
-                                            .opacity(i % 2 == 0 ? 0 : 100)
-                        )
+                Section(header: ResultGridListHeader(assignments: self.viewModel.assignments)){
+                    ForEach(self.filteredLinks().indices, id: \.self){ i in
+                        ResultListItem(user: self.filteredLinks()[i].enrollment.user, submissionLinks: self.filteredLinks()[i].submissions)
+                        
+                        
+                    }
                 }
+                
             }
             .padding(.top, 0)
         }

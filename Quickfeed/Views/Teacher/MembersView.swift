@@ -60,38 +60,14 @@ struct MembersView: View {
                 .frame(height: 20)
             
             List{
-                HStack{
-                    Text("Name")
-                        .padding(.leading, 4)
-                        .frame(minWidth: 200, maxWidth: .infinity, alignment: .leading)
-                    Text("Email")
-                        .frame(minWidth: 200, maxWidth: .infinity, alignment: .leading)
-                    Text("Student ID")
-                        .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
-                    Text("Activity")
-                        .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
-                    Text("Approved")
-                        .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
-                    Text("Role")
-                        .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
+                Section(header: MemberListHeader()){
+                    ForEach(self.filteredUsers().indices, id: \.self){ i in
+                        MemberListItem(user: self.filteredUsers()[i], courseId: viewModel.currentCourse.id)
+                            
+                    }
                 }
-                .padding(2)
-                .frame(maxWidth: .infinity)
-                .listRowBackground(RoundedRectangle(cornerRadius: 4)
-                                    .foregroundColor(Color(.unemphasizedSelectedTextBackgroundColor))
-                                    )
                 
                 
-                ForEach(self.filteredUsers().indices, id: \.self){ i in
-                    
-                    MemberListItem(user: self.filteredUsers()[i], courseId: viewModel.currentCourse.id)
-
-                    .frame(maxWidth: .infinity)
-                    .listRowBackground(RoundedRectangle(cornerRadius: 4)
-                                        .foregroundColor(Color(.unemphasizedSelectedTextBackgroundColor))
-                                        .opacity(i % 2 == 0 ? 0 : 100)
-                                        )
-                }
             }
         }
         .onAppear(perform: {

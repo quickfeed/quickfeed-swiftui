@@ -24,6 +24,8 @@
 		FA17B95D25EF81F1008BB07F /* TranslateStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B95C25EF81F1008BB07F /* TranslateStatus.swift */; };
 		FA17B96225EF90E6008BB07F /* SubmissionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B96125EF90E6008BB07F /* SubmissionInfo.swift */; };
 		FA17B96825EFD0D6008BB07F /* SubmissionListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B96725EFD0D6008BB07F /* SubmissionListHeader.swift */; };
+		FA17B97025EFD30F008BB07F /* ResultGridListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B96F25EFD30F008BB07F /* ResultGridListHeader.swift */; };
+		FA17B97525EFD40B008BB07F /* MemberListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B97425EFD40B008BB07F /* MemberListHeader.swift */; };
 		FA29711F25D04CF2000C99A1 /* GithubLinkSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29711E25D04CF2000C99A1 /* GithubLinkSection.swift */; };
 		FA29716E25D28E45000C99A1 /* LabPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29716D25D28E45000C99A1 /* LabPicker.swift */; };
 		FA29717325D303E0000C99A1 /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29717225D303E0000C99A1 /* SearchField.swift */; };
@@ -108,6 +110,8 @@
 		FA17B95C25EF81F1008BB07F /* TranslateStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateStatus.swift; sourceTree = "<group>"; };
 		FA17B96125EF90E6008BB07F /* SubmissionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionInfo.swift; sourceTree = "<group>"; };
 		FA17B96725EFD0D6008BB07F /* SubmissionListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListHeader.swift; sourceTree = "<group>"; };
+		FA17B96F25EFD30F008BB07F /* ResultGridListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultGridListHeader.swift; sourceTree = "<group>"; };
+		FA17B97425EFD40B008BB07F /* MemberListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberListHeader.swift; sourceTree = "<group>"; };
 		FA29711E25D04CF2000C99A1 /* GithubLinkSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubLinkSection.swift; sourceTree = "<group>"; };
 		FA29712F25D05208000C99A1 /* ReviewNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewNavigationView.swift; sourceTree = "<group>"; };
 		FA29716D25D28E45000C99A1 /* LabPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabPicker.swift; sourceTree = "<group>"; };
@@ -206,6 +210,8 @@
 			isa = PBXGroup;
 			children = (
 				FA17B96725EFD0D6008BB07F /* SubmissionListHeader.swift */,
+				FA17B96F25EFD30F008BB07F /* ResultGridListHeader.swift */,
+				FA17B97425EFD40B008BB07F /* MemberListHeader.swift */,
 			);
 			path = ListHeaders;
 			sourceTree = "<group>";
@@ -544,6 +550,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAA8333425E4F1D0008C05F4 /* ReviewNavigationView.swift in Sources */,
+				FA17B97525EFD40B008BB07F /* MemberListHeader.swift in Sources */,
 				FA17B96225EF90E6008BB07F /* SubmissionInfo.swift in Sources */,
 				FA3DBDD625E634EB00FF585C /* ResultViewModel.swift in Sources */,
 				FAA8333025E4F1BD008C05F4 /* TeacherViewModel.swift in Sources */,
@@ -582,6 +589,7 @@
 				FA17B96825EFD0D6008BB07F /* SubmissionListHeader.swift in Sources */,
 				FA29716E25D28E45000C99A1 /* LabPicker.swift in Sources */,
 				FA85790925BEB4E900223DB9 /* QuickfeedApp.swift in Sources */,
+				FA17B97025EFD30F008BB07F /* ResultGridListHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
