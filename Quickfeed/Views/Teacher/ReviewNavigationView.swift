@@ -57,7 +57,7 @@ struct ReviewNavigationView: View {
                 List{
                     Section(header: Text("Submissions")){
                         ForEach(viewModel.enrollmentLinks.filter({ matchesQuery(user: $0.enrollment.user) }), id: \.enrollment.user.id){ link in
-                            NavigationLink(destination: SubmissionReview(user: link.enrollment.user, viewModel: viewModel, submissionLink: selectedSubmissionLink(links: link.submissions))){
+                            NavigationLink(destination: SubmissionReview(user: link.enrollment.user, viewModel: viewModel, submissionLink: selectedSubmissionLink(links: link.submissions), selectedLab: $selectedLab)){
                                 SubmissionListItem(submitterName: link.enrollment.user.name, subLink: selectedSubmissionLink(links: link.submissions))
                             }
                         }
@@ -70,6 +70,9 @@ struct ReviewNavigationView: View {
             .padding(.horizontal)
             
         }
+        .onAppear(perform: {
+            viewModel.loadBenchmarks()
+        })
         
         
         

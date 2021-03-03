@@ -7,19 +7,6 @@
 import Foundation
 
 class ServerProvider: ProviderProtocol{
-    
-    func getUsersForCourse(course: Course) -> [User] {
-        let enrollments = self.getEnrollmentsForCourse(course: course) ?? []
-        var users: [User] = []
-        for enrollment in enrollments{
-            var user = enrollment.user
-            user.enrollments.append(enrollment)
-            users.append(user)
-        }
-        
-        return users
-    }
-    
     var currentUser: User
     var grpcManager: GRPCManager = GRPCManager()
 
@@ -35,6 +22,18 @@ class ServerProvider: ProviderProtocol{
         var courses: [Course]? = grpcManager.getCourses(userStatus: Enrollment.UserStatus.teacher, userId: currentUser.id)
         courses?.append(contentsOf: grpcManager.getCourses(userStatus: Enrollment.UserStatus.student, userId: currentUser.id))
         return courses
+    }
+    
+    func getUsersForCourse(course: Course) -> [User] {
+        let enrollments = self.getEnrollmentsForCourse(course: course) ?? []
+        var users: [User] = []
+        for enrollment in enrollments{
+            var user = enrollment.user
+            user.enrollments.append(enrollment)
+            users.append(user)
+        }
+        
+        return users
     }
     
     func getCoursesForCurrentUser() -> [Course]? {
@@ -171,6 +170,13 @@ class ServerProvider: ProviderProtocol{
     
     func getRepositories(courseId: UInt64, types: [Repository.Type]) {
         fatalError("Not implemented")
+    }
+    
+    
+    // MANUAL GRADING
+    
+    func loadCriteria(courseId: UInt64, assignmentId: UInt64) -> [GradingBenchmark] {
+        return self.grpcManager.loadCriteria(courseId: courseId, assignmentId: assignmentId)
     }
     
     

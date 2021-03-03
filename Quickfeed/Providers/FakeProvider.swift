@@ -8,6 +8,10 @@
 import Foundation
 
 class FakeProvider: ProviderProtocol, ObservableObject{
+    func loadCriteria(courseId: UInt64, assignmentId: UInt64) -> [GradingBenchmark] {
+        fatalError("notImplemented")
+    }
+    
     func getSubmissionsByCourse(courseId: UInt64, type: SubmissionsForCourseRequest.TypeEnum) -> CourseSubmissions {
         fatalError("notImplemented")
     }

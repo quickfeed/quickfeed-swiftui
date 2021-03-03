@@ -17,6 +17,8 @@ class TeacherViewModel: UserViewModelProtocol{
     @Published var assignments: [Assignment] = []
     @Published var manuallyGradedAssignments: [Assignment] = []
     @Published var enrollmentLinks: [EnrollmentLink] = []
+    @Published var gradingBenchmarkForAssignment = [UInt64 : [GradingBenchmark]]()
+    @Published var assignmentMap = [UInt64 : Assignment]()
     
     
     init(provider: ProviderProtocol, course: Course) {
@@ -24,6 +26,7 @@ class TeacherViewModel: UserViewModelProtocol{
         self.user = provider.getUser() ?? User()
         self.currentCourse = course
     }
+    
     
     func getCourse(courseId: UInt64) -> Course{
         for course in self.courses{
@@ -51,6 +54,10 @@ class TeacherViewModel: UserViewModelProtocol{
     func loadAssignments(){
         self.assignments =  self.provider.getAssignments(courseID: self.currentCourse.id)
         self.loadManuallyGradedAssignments(courseId: self.currentCourse.id)
+        for assignment in assignments{
+            self.assignmentMap[assignment.id] = assignment
+        }
+        
     }
     
     func loadManuallyGradedAssignments(courseId: UInt64){
@@ -61,6 +68,12 @@ class TeacherViewModel: UserViewModelProtocol{
     
     func getSubmissionsByUser(courseId: UInt64, userId: UInt64) -> [Submission]{
         return self.provider.getSubmissionsByUser(courseId: courseId, userId: userId)
+    }
+    
+    func loadBenchmarks(){
+        for assignment in manuallyGradedAssignments {
+            self.gradingBenchmarkForAssignment[assignment.id] = self.provider.loadCriteria(courseId: assignment.courseID, assignmentId: assignment.id)
+        }
     }
     
     

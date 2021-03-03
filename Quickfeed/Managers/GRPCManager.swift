@@ -25,19 +25,21 @@ class GRPCManager {
         self.eventLoopGroup = MultiThreadedEventLoopGroup(numberOfThreads: 1)
         self.channel = ClientConnection.insecure(group: self.eventLoopGroup)
             .connect(host: hostname, port: port)
-    
+        
         self.quickfeedClient = AutograderServiceClient(channel: channel)
-
+        
         let headers: HPACKHeaders = ["custom-header-1": "value1", "user": "100"]
         
         self.defaultOptions = CallOptions()
         self.defaultOptions.customMetadata = headers
-
+        
         
     }
     
+    
+    
     func isAuthorizedTeacher() -> Bool{
-       
+        
         let call = self.quickfeedClient.isAuthorizedTeacher(Void(), callOptions: self.defaultOptions)
         
         do {
@@ -82,7 +84,7 @@ class GRPCManager {
     }
     
     
-
+    
     func getCourses(userStatus: Enrollment.UserStatus, userId: UInt64) -> [Course]{
         
         let req = EnrollmentStatusRequest.with{
@@ -214,6 +216,36 @@ class GRPCManager {
             print("Call failed: \(error)")
         }
         
+    }
+    
+    
+    // MANUAL GRADING
+    
+    func createReview(courseId: UInt64, assignmentId: UInt64){
+        let req = ReviewRequest.with{
+            $0.courseID = courseId
+            
+        }
+    }
+    
+    
+    
+    func loadCriteria(courseId: UInt64, assignmentId: UInt64) -> [GradingBenchmark]{
+        let req = LoadCriteriaRequest.with{
+            $0.courseID = courseId
+            $0.assignmentID = assignmentId
+        }
+        
+        let call = self.quickfeedClient.loadCriteria(req, callOptions: self.defaultOptions)
+        
+        do {
+            let resp = try call.response.wait()
+            return resp.benchmarks
+        } catch {
+            print("Call failed: \(error)")
+        }
+        
+        return []
     }
     
     

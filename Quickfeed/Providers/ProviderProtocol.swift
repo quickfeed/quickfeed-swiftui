@@ -51,4 +51,6 @@ protocol ProviderProtocol{
     func rebuildSubmission(assignmentId: UInt64, submissionId: UInt64) -> Submission?
     func getRepositories(courseId: UInt64, types: [Repository.Type])
     
+    
+    func loadCriteria(courseId: UInt64, assignmentId: UInt64) -> [GradingBenchmark] 
 }
