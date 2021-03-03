@@ -11,7 +11,7 @@ struct LabInfo: View {
     var submission: Submission
     var assignment: Assignment
     var teacherView: Bool
-    var slipdays: UInt32
+    var slipdays: UInt32?
     
     private func showApprovedLine() -> Bool {
         return submission.status == Submission.Status.approved && submission.approvedDate != ""
@@ -49,7 +49,7 @@ struct LabInfo: View {
         let dateString = dateFormat.date(from: date)!
         
         let stringFormatter = DateFormatter()
-        stringFormatter.dateFormat = "E, d MMM HH:mm"
+        stringFormatter.dateFormat = "E, d MMM YY HH:mm"
         return stringFormatter.string(from: dateString)
     }
     
@@ -104,15 +104,14 @@ struct LabInfo: View {
             HStack{
                 Text("Execution time")
                 Spacer()
-                Text("\(submission.buildInfoJSON.execTime) seconds")
-                
+                Text("\(String(format: "%.3f", Double(submission.buildInfoJSON.execTime) / 1000)) seconds")
             }
             .padding(.top, 1.0)
-            if !assignment.isGroupLab {
+            if slipdays != nil && !assignment.isGroupLab {
                 HStack{
                     Text("Slip days")
                     Spacer()
-                    Text(String(slipdays))
+                    Text(String(slipdays!))
                     
                 }
                 .padding(.top, 1.0)

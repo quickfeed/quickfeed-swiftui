@@ -9,6 +9,21 @@ import SwiftUI
 
 struct MemberListItem: View {
     var user: User
+    var courseId: UInt64
+    var enrollment: Enrollment {
+        for enrollment in user.enrollments{
+            if enrollment.courseID == courseId{
+                
+                return enrollment
+            }
+        }
+
+        return Enrollment()
+    }
+    
+  
+    
+    
     
     var body: some View {
         HStack {
@@ -19,19 +34,21 @@ struct MemberListItem: View {
                 .frame(minWidth: 200, maxWidth: .infinity, alignment: .leading)
             Text(user.studentID)
                 .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
-            Text("Inactive") // NOT IMPLEMENTED
+            Text("\(enrollment.lastActivityDate != "" ? enrollment.lastActivityDate : "Inactive")") // NOT IMPLEMENTED
                 .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
             Text("0") // NOT IMPLEMENTED
                 .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
-            Text("Student") // NOT IMPLEMENTED
+            Text("\(enrollment.status.rawValue)") // NOT IMPLEMENTED
                 .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
 
         }
     }
+    
+
 }
 
 struct MemberListItem_Previews: PreviewProvider {
     static var previews: some View {
-        MemberListItem(user: User(name: "Oskar Skjærvø Gjølga", id: 1, studentID: "123456", isAdmin: false, email: "os.gjolga@stud.uis.no", enrollments: [], login: "oskargj"))
+        MemberListItem(user: User(name: "Oskar Skjærvø Gjølga", id: 1, studentID: "123456", isAdmin: false, email: "os.gjolga@stud.uis.no", enrollments: [], login: "oskargj"), courseId: 4)
     }
 }

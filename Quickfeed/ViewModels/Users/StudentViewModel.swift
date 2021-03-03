@@ -11,27 +11,59 @@ import Foundation
 class StudentViewModel: UserViewModelProtocol{
     var provider: ProviderProtocol
     @Published var user: User
-    var courses: [Course]
+    @Published var course: Course
+    @Published var group: Group?
+    @Published var assignments: [Assignment]?
+    @Published var submissions: [Submission]?
     
-    init(provider: ProviderProtocol) {
+    init(provider: ProviderProtocol, course: Course) {
         self.provider = provider
-        self.user = provider.getUser() ?? User()
-        self.courses = provider.getCoursesForCurrentUser() ?? []
-        assert(provider.isAuthorizedTeacher())
+        self.user = provider.getUser()!
+        self.course = course
+        self.group = provider.getGroupByUserAndCourse(courseId: course.id, userId: user.id)
+        self.assignments = provider.getAssignments(courseID: course.id)
+        self.submissions  = self.getSubmissions()
     }
     
-    func getCourse(courseId: UInt64) -> Course{
-        for course in self.courses{
-            if course.id == courseId{
-                return course
+    func getAssignments() -> [Assignment]{
+        return provider.getAssignments(courseID: course.id)
+    }
+    
+    func getSubmission(assignment: Assignment) -> Submission? {
+        for element in self.submissions! {
+            if element.assignmentID == assignment.id {
+                if assignment.isGroupLab && element.groupID != 0 {
+                    return element
+                } else if !assignment.isGroupLab && element.groupID == 0{
+                    return element
+                }
             }
         }
-        return Course()
+        return nil
     }
     
-    func getAssignments(courseID: UInt64) -> [Assignment]{
-        return provider.getAssignments(courseID: courseID)
+    func getSubmissions() -> [Submission]{
+        var submissions = provider.getSubmissionsByUser(courseId: course.id, userId: user.id)
+        if self.group != nil{
+            submissions.append(contentsOf: provider.getSubmissionsByGroub(courseId: course.id, groupId: group!.id))
+        }
+        return submissions
     }
+    
+    func getSubmissionByGroup() -> [Submission]{
+        return provider.getSubmissionsByGroub(courseId: course.id, groupId: group!.id)
+    }
+    
+    func getSlipdays() -> UInt32? {
+        let enrollments = provider.getEnrollmentsForUser(userId: user.id)
+        for element in enrollments{
+            if element.courseID == course.id{
+                return element.slipDaysRemaining
+            }
+        }
+        return nil
+    }
+    
     
     func reset() {
         

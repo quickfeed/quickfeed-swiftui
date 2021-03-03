@@ -4,7 +4,6 @@
 //
 //  Created by Bjørn Kristian Teisrud on 25/01/2021.
 //
-
 import Foundation
 import NIO
 import NIOSSL
@@ -16,6 +15,7 @@ class GRPCManager {
     let eventLoopGroup: MultiThreadedEventLoopGroup
     let channel: ClientConnection
     let quickfeedClient: AutograderServiceClient
+    var defaultOptions: CallOptions
     
     
     init(){
@@ -28,6 +28,26 @@ class GRPCManager {
     
         self.quickfeedClient = AutograderServiceClient(channel: channel)
 
+        let headers: HPACKHeaders = ["custom-header-1": "value1", "user": "100"]
+        
+        self.defaultOptions = CallOptions()
+        self.defaultOptions.customMetadata = headers
+
+        
+    }
+    
+    func isAuthorizedTeacher() -> Bool{
+       
+        let call = self.quickfeedClient.isAuthorizedTeacher(Void(), callOptions: self.defaultOptions)
+        
+        do {
+            let response = try call.response.wait()
+            return response.isAuthorized
+        } catch {
+            print("Call failed: \(error)")
+        }
+        
+        return false
         
     }
     
@@ -46,16 +66,10 @@ class GRPCManager {
         } catch {
             print("Call failed: \(error)")
         }
-        
-        
     }
     
     func getUser(userId: UInt64) -> User?{
-        let headers: HPACKHeaders = ["custom-header-1": "value1", "user": "\(userId)"]
-        
-        var callOptions = CallOptions()
-        callOptions.customMetadata = headers
-        let call = self.quickfeedClient.getUser(Void(), callOptions: callOptions)
+        let call = self.quickfeedClient.getUser(Void(), callOptions: self.defaultOptions)
         
         do {
             let user = try call.response.wait()
@@ -67,6 +81,150 @@ class GRPCManager {
         return nil
     }
     
+
+    func getCourses(userStatus: Enrollment.UserStatus, userId: UInt64) -> [Course]{
+        
+        let req = EnrollmentStatusRequest.with{
+            $0.statuses = [userStatus]
+            $0.userID = userId
+        }
+        
+        let unaryCall = self.quickfeedClient.getCoursesByUser(req, callOptions: self.defaultOptions)
+        
+        do {
+            let response = try unaryCall.response.wait()
+            
+            return response.courses
+        } catch {
+            print("Call failed: \(error)")
+        }
+        
+        return []
+        
+    }
+    
+    func getCourse(courseId: UInt64) -> Course? {
+        
+        let req = CourseRequest.with{
+            $0.courseID = courseId
+        }
+        
+        let unaryCall = self.quickfeedClient.getCourse(req, callOptions: self.defaultOptions)
+        
+        do {
+            let response = try unaryCall.response.wait()
+            return response
+        } catch {
+            print("Call failed: \(error)")
+        }
+        
+        return nil
+    }
+    
+    func getSubmissionsForEnrollment(courseId: UInt64, userId: UInt64) -> [Submission]{
+        let req = SubmissionRequest.with{
+            $0.courseID = courseId
+            $0.userID = userId
+        }
+        let call = self.quickfeedClient.getSubmissions(req, callOptions: self.defaultOptions)
+        do {
+            let response = try call.response.wait()
+            return response.submissions
+        } catch {
+            print("Call failed: \(error)")
+        }
+        
+        return []
+        
+    }
+    
+    func getSubbmissionByGroup(courseID: UInt64, groupID: UInt64) -> [Submission] {
+        let req = SubmissionRequest.with{
+            $0.courseID = courseID
+            $0.groupID = groupID
+        }
+        let call = self.quickfeedClient.getSubmissions(req, callOptions: self.defaultOptions)
+        do {
+            let response = try call.response.wait()
+            return response.submissions
+        } catch {
+            print("Call failed: \(error)")
+        }
+        
+        return []
+    }
+    
+    func getEnrollmentsByUser(userID: UInt64) -> [Enrollment] {
+        let req = EnrollmentStatusRequest.with{
+            $0.userID = userID
+        }
+        
+        let call = self.quickfeedClient.getEnrollmentsByUser(req, callOptions: self.defaultOptions)
+        
+        do {
+            let response = try call.response.wait()
+            return response.enrollments
+        } catch {
+            print("Call failed: \(error)")
+        }
+        
+        return []
+    }
+    
+    func getEnrollmentsByCourse(course: Course) -> [Enrollment]{
+        let req = EnrollmentRequest.with{
+            $0.courseID = course.id
+        }
+        
+        let call = self.quickfeedClient.getEnrollmentsByCourse(req, callOptions: self.defaultOptions)
+        
+        do {
+            let response = try call.response.wait()
+            return response.enrollments
+        } catch {
+            print("Call failed: \(error)")
+        }
+        
+        return []
+    }
+    
+    func getGroupByUserAndCourse(userID: UInt64, courseID: UInt64) -> Group? {
+        let req = GroupRequest.with{
+            $0.courseID = courseID
+            $0.userID = userID
+        }
+        
+        let call = self.quickfeedClient.getGroupByUserAndCourse(req, callOptions: self.defaultOptions)
+        
+        do {
+            let response = try call.response.wait()
+            return response
+        } catch {
+            print("Call failed: \(error)")
+        }
+        
+        return nil
+    }
+    
+    func getAssignments(courseId: UInt64) -> [Assignment]{
+        
+        let req = CourseRequest.with{
+            $0.courseID = courseId
+        }
+        
+        let call = self.quickfeedClient.getAssignments(req, callOptions: self.defaultOptions)
+        
+        do {
+            let resp = try call.response.wait()
+            return resp.assignments
+        } catch {
+            print(courseId)
+            print("Call failed: \(error)")
+        }
+        
+        return []
+    }
+    
     
     func getOrganization(orgName: String) {
         
@@ -74,20 +232,15 @@ class GRPCManager {
             $0.orgName = orgName
         }
         
-        let headers: HPACKHeaders = ["custom-header-1": "value1", "user": "1"]
-        
-        var callOptions = CallOptions()
-        callOptions.customMetadata = headers
         
         
-        
-        let unaryCall = self.quickfeedClient.getOrganization(request, callOptions: callOptions)
+        let unaryCall = self.quickfeedClient.getOrganization(request, callOptions: self.defaultOptions)
         
         do {
-            print("getting org")
+            
             let response = try unaryCall.response.wait()
             
-            print("getting org")
+            
             print("Call received: \(response.path)")
         } catch {
             print("Call failed: \(error)")
@@ -105,45 +258,4 @@ class GRPCManager {
         try! self.channel.close().wait()
         try! self.eventLoopGroup.syncShutdownGracefully()
     }
-}
-
-
-func setUpTLS() -> AutograderServiceClient{
-    //Step i: get certificate path from Bundle
-    let hostname = "ag2.ux.uis.no"
-    let port = 443
-    
-    let certificatePath = Bundle.main.path(forResource: "certificateName", ofType: "pem")
-    //Step ii: create TLS configuration
-    
-    var configuration = TLSConfiguration.forClient(applicationProtocols: ["h2"])
-    configuration.trustRoots = .file(certificatePath!) //anchors the ca certificate to trust roots for TLS configuration. Not required incase of insecure communication with host
-    
-    //Step iii: generate SSL context
-    /*
-    do {
-        let sslContext = try NIOSSLContext(configuration: configuration)
-        let handler = try NIOSSLClientHandler(context: sslContext, serverHostname: hostname + "\(port)")
-        
-    } catch{
-        print("Call failed: \(error)")
-    }
-    */
-    
-    
-    //Step iv: Create an event loop group
-    let group = MultiThreadedEventLoopGroup(numberOfThreads: 1)
-    //Step v: Create client connection builder
-    let builder: ClientConnection.Builder
-    builder = ClientConnection.secure(group: group).withTLS(trustRoots: configuration.trustRoots!)
-    //Step vi: Start the connection and create the client
-    let connection = builder.connect(host: hostname, port: port)
-    print("Connection Status=>:\(connection)")
-    //Step vii: Create client
-    //use appropriate service client from .grpc server to replace the xxx call : <your .grpc.swift ServiceClient> = <XXX>ServiceClient
-    let qfClient = AutograderServiceClient(channel: connection)
-    
-    return qfClient
-    
-    
 }

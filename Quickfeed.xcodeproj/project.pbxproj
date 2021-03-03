@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		D01B3CD225C2D76900B126FB /* GRPCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B3CD125C2D76900B126FB /* GRPCManager.swift */; };
+		D035C75825E92795005AC2BA /* NavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035C75725E92795005AC2BA /* NavigatorView.swift */; };
 		D04B46EC25D1301200AC8926 /* LabSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B46EB25D1301200AC8926 /* LabSection.swift */; };
 		D04B46FD25D1696D00AC8926 /* LabInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B46FC25D1696D00AC8926 /* LabInfo.swift */; };
 		D04B470225D1741300AC8926 /* StudentLab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B470125D1741300AC8926 /* StudentLab.swift */; };
 		D04B470A25D29B7300AC8926 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B470925D29B7300AC8926 /* JSON.swift */; };
 		D06024B125DD23D4009390A1 /* LabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06024B025DD23D4009390A1 /* LabTests.swift */; };
+		D06A115D25ECE1A4004B0047 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06A115C25ECE1A4004B0047 /* UserViewModel.swift */; };
 		D0A6FCB925CA0A8A008C546B /* StudentNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A6FCB825CA0A8A008C546B /* StudentNavigatorView.swift */; };
 		D0F9FC6325BEB9A90080A1F2 /* GRPC in Frameworks */ = {isa = PBXBuildFile; productRef = D0F9FC6225BEB9A90080A1F2 /* GRPC */; };
 		D0F9FC6525BEB9A90080A1F2 /* CGRPCZlib in Frameworks */ = {isa = PBXBuildFile; productRef = D0F9FC6425BEB9A90080A1F2 /* CGRPCZlib */; };
@@ -94,11 +96,13 @@
 /* Begin PBXFileReference section */
 		D01B3CD125C2D76900B126FB /* GRPCManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRPCManager.swift; sourceTree = "<group>"; };
 		D029D7B825BF089B00047837 /* GRPCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRPCManager.swift; sourceTree = "<group>"; };
+		D035C75725E92795005AC2BA /* NavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorView.swift; sourceTree = "<group>"; };
 		D04B46EB25D1301200AC8926 /* LabSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabSection.swift; sourceTree = "<group>"; };
 		D04B46FC25D1696D00AC8926 /* LabInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabInfo.swift; sourceTree = "<group>"; };
 		D04B470125D1741300AC8926 /* StudentLab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLab.swift; sourceTree = "<group>"; };
 		D04B470925D29B7300AC8926 /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		D06024B025DD23D4009390A1 /* LabTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabTests.swift; sourceTree = "<group>"; };
+		D06A115C25ECE1A4004B0047 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		D0A6FCB825CA0A8A008C546B /* StudentNavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentNavigatorView.swift; sourceTree = "<group>"; };
 		D0F9FC6D25BEBC360080A1F2 /* ag.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ag.pb.swift; sourceTree = "<group>"; };
 		D0F9FC6E25BEBC360080A1F2 /* ag.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ag.grpc.swift; sourceTree = "<group>"; };
@@ -318,13 +322,14 @@
 		FA85798025BEC4B000223DB9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FA85790A25BEB4E900223DB9 /* ContentView.swift */,
 				FA6C3EAF25D45E2000D8A798 /* ListItems */,
 				FA29714925D12432000C99A1 /* Pickers */,
 				FA29714825D123FC000C99A1 /* SearchBar */,
 				D04B46E125D12E9D00AC8926 /* Student */,
 				FA29712325D05121000C99A1 /* Teacher */,
-				FA85790A25BEB4E900223DB9 /* ContentView.swift */,
 				FA85798C25BEC5B600223DB9 /* Helpers */,
+				D035C75725E92795005AC2BA /* NavigatorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -372,6 +377,7 @@
 				FAB066FA25CAC89B00FFE8EB /* StudentViewModel.swift */,
 				FAB0670425CAC8BC00FFE8EB /* TeacherViewModel.swift */,
 				FAB0670B25CAC8D600FFE8EB /* UserViewModelProtocol.swift */,
+				D06A115C25ECE1A4004B0047 /* UserViewModel.swift */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -543,6 +549,7 @@
 				D0A6FCB925CA0A8A008C546B /* StudentNavigatorView.swift in Sources */,
 				FAF945B725CC4E3200074A2F /* ProtoExstensions.swift in Sources */,
 				FAB0670C25CAC8D600FFE8EB /* UserViewModelProtocol.swift in Sources */,
+				D035C75825E92795005AC2BA /* NavigatorView.swift in Sources */,
 				FA29711F25D04CF2000C99A1 /* GithubLinkSection.swift in Sources */,
 				D0F9FC6F25BEBC360080A1F2 /* ag.pb.swift in Sources */,
 				FAA8335325E52E3A008C05F4 /* SubmissionResult.swift in Sources */,
@@ -554,6 +561,7 @@
 				FA5FBDE225E7E63E007EC0E3 /* ServerProvider.swift in Sources */,
 				D04B46EC25D1301200AC8926 /* LabSection.swift in Sources */,
 				FA85790B25BEB4E900223DB9 /* ContentView.swift in Sources */,
+				D06A115D25ECE1A4004B0047 /* UserViewModel.swift in Sources */,
 				D0F9FC7025BEBC360080A1F2 /* ag.grpc.swift in Sources */,
 				FAA8334E25E5259B008C05F4 /* ResultListItem.swift in Sources */,
 				D04B46FD25D1696D00AC8926 /* LabInfo.swift in Sources */,

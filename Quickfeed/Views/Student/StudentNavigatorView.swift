@@ -8,30 +8,22 @@
 import SwiftUI
 
 struct StudentNavigatorView: View {
-    @StateObject var viewModel: StudentViewModel
-    @State var selectedCourse: UInt64
+    @ObservedObject var viewModel: StudentViewModel
     
     var body: some View {
-        NavigationView{
-            VStack(alignment: .leading){
-                List{
-                    CoursePicker(courses: viewModel.courses, selectedCourse: $selectedCourse)
-                    LabSection(assignments: viewModel.getAssignments(courseID: selectedCourse))
-                    //GithubLinkSection(orgUrl: "https://github.com/dat310-spring21", isTeacher: false)
-                }
-                Spacer()
-                HStack{
-                    Image(systemName: "person.fill")
-                    Text("Bjørn Kristian Teisrud")
-                }
-                .padding()
-            }
+        if viewModel.course.slipDays != 0 {
+            Text("Remaining Slipdays: \(viewModel.getSlipdays()!)")
+                .padding(.leading)
+        }
+        List{
+            LabSection(viewModel: viewModel)
+            GithubLinkSection(orgPath: viewModel.course.organizationPath, userLogin: viewModel.user.login, isTeacher: false)
         }
     }
 }
 
-struct StudentNavigatorView_Previews: PreviewProvider {
-    static var previews: some View {
-        StudentNavigatorView(viewModel: StudentViewModel(provider: FakeProvider()), selectedCourse: 111)
-    }
-}
+/*struct StudentNavigatorView_Previews: PreviewProvider {
+ static var previews: some View {
+ StudentNavigatorView(viewModel: StudentViewModel(provider: <#T##ProviderProtocol#>, course: <#T##Course#>))
+ }
+ }*/

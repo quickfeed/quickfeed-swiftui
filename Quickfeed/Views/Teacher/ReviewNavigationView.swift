@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct ReviewNavigationView: View {
-    @EnvironmentObject var viewModel: TeacherViewModel
-    @Binding var selectedCourse: UInt64
+    @ObservedObject var viewModel: TeacherViewModel
     @State private var searchQuery: String = ""
     @Binding var enrolledUsers: [User]
     @Binding var selectedLab: UInt64
@@ -40,7 +39,7 @@ struct ReviewNavigationView: View {
         
         NavigationView{
             VStack(alignment: .leading){
-                LabPicker(labs: viewModel.getManuallyGradedAssignments(courseId: selectedCourse), selectedLab: $selectedLab)
+                LabPicker(labs: viewModel.manuallyGradedAssignments, selectedLab: $selectedLab)
                     .padding(2)
                 
                 SearchFieldRepresentable(query: $searchQuery)
@@ -70,7 +69,6 @@ struct ReviewNavigationView: View {
 
 struct ReviewNavigatorView_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewNavigationView(selectedCourse: .constant(1), enrolledUsers: .constant([]), selectedLab: .constant(1))
-            .environmentObject(TeacherViewModel(provider: FakeProvider()))
+        ReviewNavigationView(viewModel: TeacherViewModel(provider: FakeProvider(), course: Course()), enrolledUsers: .constant([]), selectedLab: .constant(1))
     }
 }
