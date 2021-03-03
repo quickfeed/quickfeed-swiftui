@@ -34,28 +34,11 @@ struct MemberListItem: View {
                 .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
             Text("\(enrollment.totalApproved)") 
                 .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
-            Text(translateUserStatus(status: enrollment.status.rawValue))
+            Text(translateUserStatus(status: enrollment.status))
                 .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
             
         }
     }
-    
-    
-    func translateUserStatus(status: Int) -> String{
-        switch status {
-        case 1:
-            return "Pending"
-        case 2:
-            return "Student"
-        case 3:
-            return "Teacher"
-        default:
-            return "None"
-        }
-        
-    }
-    
-    
 }
 
 struct MemberListItem_Previews: PreviewProvider {

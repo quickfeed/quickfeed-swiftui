@@ -14,6 +14,13 @@ struct ReviewNavigationView: View {
     @State private var showCompleted: Bool = true
     
     
+    func selectedSubmissionLink(links: [SubmissionLink]) -> SubmissionLink {
+        return links.first(where: {
+            $0.assignment.id == self.selectedLab
+        }) ?? links[0]
+    }
+    
+    
     func matchesQuery(user: User) -> Bool{
         if searchQuery == ""{
             return true
@@ -43,14 +50,15 @@ struct ReviewNavigationView: View {
                 
                 SearchFieldRepresentable(query: $searchQuery)
                     .padding(2)
+                    .frame(height: 25)
                 
                 Toggle("Show completed", isOn: $showCompleted)
                 
                 List{
                     Section(header: Text("Submissions")){
-                        ForEach(viewModel.users.filter({ matchesQuery(user: $0) }), id: \.id){ user in
-                            NavigationLink(destination: Text(user.name)){
-                                SubmissionListItem(submitterName: user.name, totalReviewers: 1, reviews: 1, markedAsReady: true)
+                        ForEach(viewModel.enrollmentLinks.filter({ matchesQuery(user: $0.enrollment.user) }), id: \.enrollment.user.id){ link in
+                            NavigationLink(destination: SubmissionReview(user: link.enrollment.user, viewModel: viewModel, submissionLink: selectedSubmissionLink(links: link.submissions))){
+                                SubmissionListItem(submitterName: link.enrollment.user.name, subLink: selectedSubmissionLink(links: link.submissions))
                             }
                         }
                     }
