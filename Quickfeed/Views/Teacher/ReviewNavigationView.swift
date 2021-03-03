@@ -55,7 +55,7 @@ struct ReviewNavigationView: View {
                 Toggle("Show completed", isOn: $showCompleted)
                 
                 List{
-                    Section(header: Text("Submissions")){
+                    Section(header: SubmissionListHeader()){
                         ForEach(viewModel.enrollmentLinks.filter({ matchesQuery(user: $0.enrollment.user) }), id: \.enrollment.user.id){ link in
                             NavigationLink(destination: SubmissionReview(user: link.enrollment.user, viewModel: viewModel, submissionLink: selectedSubmissionLink(links: link.submissions), selectedLab: $selectedLab)){
                                 SubmissionListItem(submitterName: link.enrollment.user.name, subLink: selectedSubmissionLink(links: link.submissions))
@@ -71,7 +71,7 @@ struct ReviewNavigationView: View {
             
         }
         .onAppear(perform: {
-            viewModel.loadBenchmarks()
+            viewModel.loadEnrollments()
         })
         
         

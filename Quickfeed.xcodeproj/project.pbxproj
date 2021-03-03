@@ -23,6 +23,7 @@
 		FA17B95525EF7D6F008BB07F /* SubmissionReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B95425EF7D6F008BB07F /* SubmissionReview.swift */; };
 		FA17B95D25EF81F1008BB07F /* TranslateStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B95C25EF81F1008BB07F /* TranslateStatus.swift */; };
 		FA17B96225EF90E6008BB07F /* SubmissionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B96125EF90E6008BB07F /* SubmissionInfo.swift */; };
+		FA17B96825EFD0D6008BB07F /* SubmissionListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B96725EFD0D6008BB07F /* SubmissionListHeader.swift */; };
 		FA29711F25D04CF2000C99A1 /* GithubLinkSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29711E25D04CF2000C99A1 /* GithubLinkSection.swift */; };
 		FA29716E25D28E45000C99A1 /* LabPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29716D25D28E45000C99A1 /* LabPicker.swift */; };
 		FA29717325D303E0000C99A1 /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29717225D303E0000C99A1 /* SearchField.swift */; };
@@ -106,6 +107,7 @@
 		FA17B95425EF7D6F008BB07F /* SubmissionReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionReview.swift; sourceTree = "<group>"; };
 		FA17B95C25EF81F1008BB07F /* TranslateStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateStatus.swift; sourceTree = "<group>"; };
 		FA17B96125EF90E6008BB07F /* SubmissionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionInfo.swift; sourceTree = "<group>"; };
+		FA17B96725EFD0D6008BB07F /* SubmissionListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListHeader.swift; sourceTree = "<group>"; };
 		FA29711E25D04CF2000C99A1 /* GithubLinkSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubLinkSection.swift; sourceTree = "<group>"; };
 		FA29712F25D05208000C99A1 /* ReviewNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewNavigationView.swift; sourceTree = "<group>"; };
 		FA29716D25D28E45000C99A1 /* LabPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabPicker.swift; sourceTree = "<group>"; };
@@ -198,6 +200,14 @@
 				FA17B95C25EF81F1008BB07F /* TranslateStatus.swift */,
 			);
 			path = GRPC;
+			sourceTree = "<group>";
+		};
+		FA17B96625EFD0C2008BB07F /* ListHeaders */ = {
+			isa = PBXGroup;
+			children = (
+				FA17B96725EFD0D6008BB07F /* SubmissionListHeader.swift */,
+			);
+			path = ListHeaders;
 			sourceTree = "<group>";
 		};
 		FA29712325D05121000C99A1 /* Teacher */ = {
@@ -321,6 +331,7 @@
 		FA85798025BEC4B000223DB9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FA17B96625EFD0C2008BB07F /* ListHeaders */,
 				FA85790A25BEB4E900223DB9 /* ContentView.swift */,
 				FA6C3EAF25D45E2000D8A798 /* ListItems */,
 				FA29714925D12432000C99A1 /* Pickers */,
@@ -568,6 +579,7 @@
 				D04B46FD25D1696D00AC8926 /* LabInfo.swift in Sources */,
 				D01B3CD225C2D76900B126FB /* GRPCManager.swift in Sources */,
 				FAB066B025CAC0F000FFE8EB /* ProviderProtocol.swift in Sources */,
+				FA17B96825EFD0D6008BB07F /* SubmissionListHeader.swift in Sources */,
 				FA29716E25D28E45000C99A1 /* LabPicker.swift in Sources */,
 				FA85790925BEB4E900223DB9 /* QuickfeedApp.swift in Sources */,
 			);
