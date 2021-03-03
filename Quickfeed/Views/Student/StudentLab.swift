@@ -30,16 +30,6 @@ struct StudentLab: View {
             Text("\(assignment.name) has no submission yet ")
         } else {
             ScrollView{
-                /*Text("\(assignment.name): \(submission!.score)% Completed")
-                    .font(.title)
-                    .fontWeight(.bold)
-                HStack{
-                    Text("\(assignment.name): ")
-                        .font(.title)
-                        .fontWeight(.bold)
-                    Text("\(submission!.score)% Completed")
-                        .font(.title)
-                }*/
                 Text(assignment.name)
                     .font(.title)
                     .fontWeight(.bold)
@@ -48,48 +38,9 @@ struct StudentLab: View {
                     .accentColor(color())
                 Divider()
                 if assignment.skipTests {
-                    Text("Skip Test")
+                    ManuallyGraded()
                 } else {
-                    HStack{
-                        Spacer()
-                        Text("Tests")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                        Spacer()
-                        Text("Lab Information")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                            .frame(width: 300)
-                    }
-                    .padding(.top)
-                    HStack{
-                        VStack{
-                            LabTests(submission: submission!)
-                            Spacer()
-                        }
-                        Divider()
-                        VStack{
-                            LabInfo(submission: submission!, assignment: assignment, teacherView: false, slipdays: viewModel.getSlipdays())
-                                .frame(width: 300)
-                            Spacer()
-                        }
-                    }
-                    .padding(.bottom)
-                    Spacer()
-                    Divider()
-                    Spacer()
-                    Text("Feedback")
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .padding(.top)
-                    ScrollView{
-                        Text(submission!.buildInfoJSON.buildlog)
-                    }
-                    .frame(height: 400, alignment: .leading)
-                    //Text(submission!.buildInfoJSON.buildlog)
-                    
-                    //TODO: ADD FEEDBACK FIELD
-
+                    AutoGraded(assignment: assignment, submission: submission!)
                 }
             }
             .padding()
