@@ -8,13 +8,51 @@
 import SwiftUI
 
 struct AutoGraded: View {
+    var assignment: Assignment
+    var submission: Submission
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack{
+            Spacer()
+            Text("Tests")
+                .font(.title2)
+                .fontWeight(.bold)
+            Spacer()
+            Text("Lab Information")
+                .font(.title2)
+                .fontWeight(.bold)
+                .frame(width: 300)
+        }
+        .padding(.top)
+        HStack{
+            VStack{
+                LabTests(submission: submission)
+                Spacer()
+            }
+            Divider()
+            VStack{
+                LabInfo(submission: submission, assignment: assignment, teacherView: false)
+                    .frame(width: 300)
+                Spacer()
+            }
+        }
+        .padding(.bottom)
+        Spacer()
+        Divider()
+        Spacer()
+        Text("Feedback")
+            .font(.title2)
+            .fontWeight(.bold)
+            .padding(.top)
+        ScrollView{
+            Text(submission.buildInfoJSON.buildlog)
+        }
+        .frame(height: 400, alignment: .leading)
     }
 }
 
-struct AutoGraded_Previews: PreviewProvider {
-    static var previews: some View {
-        AutoGraded()
-    }
-}
+/*struct AutoGraded_Previews: PreviewProvider {
+ static var previews: some View {
+ AutoGraded()
+ }
+ }*/

@@ -12,6 +12,9 @@ struct StudentNavigatorView: View {
     
     var body: some View {
         if viewModel.course.slipDays != 0 {
+            Text(viewModel.course.code)
+                .font(.title)
+                .padding(.leading)
             Text("Remaining Slipdays: \(viewModel.getSlipdays()!)")
                 .padding(.leading)
         }

@@ -199,9 +199,9 @@
 		D04B46E125D12E9D00AC8926 /* Student */ = {
 			isa = PBXGroup;
 			children = (
-				D03EF9CD25F02636008869CA /* Helpers */,
 				D0A6FCB825CA0A8A008C546B /* StudentNavigatorView.swift */,
 				D04B470125D1741300AC8926 /* StudentLab.swift */,
+				D03EF9CD25F02636008869CA /* Helpers */,
 			);
 			path = Student;
 			sourceTree = "<group>";
