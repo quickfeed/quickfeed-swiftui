@@ -18,18 +18,19 @@ struct LabTests: View {
                     .frame(minWidth: 200, maxWidth: .infinity, alignment: .leading)
                 Text("Score")
                     .fontWeight(.bold)
-                    .frame(width: 105, alignment: .leading)
+                    .frame(width: 120, alignment: .leading)
                 Text("Weight")
                     .fontWeight(.bold)
                     .frame(width: 50, alignment: .leading)
                     .padding(.leading)
             }
             ForEach(submission.scoreObj!, id: \.self) { scoreObject in
+                Divider()
                 HStack{
                     Text(scoreObject.TestName)
                         .frame(minWidth: 200, maxWidth: .infinity, alignment: .leading)
                     Text("\(scoreObject.Score) / \(scoreObject.MaxScore) pts")
-                        .frame(width: 105, alignment: .leading)
+                        .frame(width: 120, alignment: .leading)
                     Text(String(scoreObject.Weight))
                         .frame(width: 50, alignment: .leading)
                         .padding(.leading)

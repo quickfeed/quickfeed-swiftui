@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import SwiftUI
 
 func translateSubmissionStatus(statusCode: Submission.Status) -> String{
     switch statusCode {
@@ -36,3 +36,17 @@ func translateUserStatus(status: Enrollment.UserStatus) -> String{
     }
     
 }
+
+func getColorForSubmissionStatus(submissionStatus: Submission.Status) -> Color {
+    switch (submissionStatus){
+    case Submission.Status.approved:
+        return .green
+    case Submission.Status.rejected:
+        return .red
+    case Submission.Status.revision:
+        return .orange
+    default:
+        return .blue
+    }
+}
+

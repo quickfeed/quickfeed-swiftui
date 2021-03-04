@@ -29,19 +29,6 @@ struct LabInfo: View {
         }
     }
     
-    private func color() -> Color {
-        switch (submission.status){
-        case Submission.Status.approved:
-            return .green
-        case Submission.Status.rejected:
-            return .red
-        case Submission.Status.revision:
-            return .orange
-        default:
-            return .blue
-        }
-    }
-    
     private func date(date: String) -> String{
         let dateFormat = DateFormatter()
         dateFormat.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
@@ -70,8 +57,9 @@ struct LabInfo: View {
                 Text("Status")
                 Spacer()
                 Text(submissionStatusToString())
-                    .foregroundColor(color())
+                    .foregroundColor(getColorForSubmissionStatus(submissionStatus: submission.status))
             }
+            Divider()
             HStack{
                 Text("Tests passed")
                 Spacer()
@@ -79,18 +67,21 @@ struct LabInfo: View {
                 
             }
             .padding(.top, 1.0)
+            Divider()
             HStack{
                 Text("Execution time")
                 Spacer()
                 Text("\(String(format: "%.3f", Double(submission.buildInfoJSON.execTime) / 1000)) seconds")
             }
             .padding(.top, 1.0)
+            Divider()
             HStack{
                 Text("Delivered")
                 Spacer()
                 Text(date(date: submission.buildInfoJSON.builddate))
             }
             .padding(.top, 1.0)
+            Divider()
             if showApprovedLine() {
                 HStack{
                     Text("Approved")

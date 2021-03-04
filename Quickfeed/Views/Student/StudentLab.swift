@@ -12,19 +12,6 @@ struct StudentLab: View {
     @ObservedObject var viewModel: StudentViewModel
     var submission: Submission? { return viewModel.getSubmission(assignment: assignment) }
     
-    private func color() -> Color {
-        switch (submission!.status){
-        case Submission.Status.approved:
-            return .green
-        case Submission.Status.rejected:
-            return .red
-        case Submission.Status.revision:
-            return .orange
-        default:
-            return .blue
-        }
-    }
-    
     var body: some View {
         if submission == nil {
             Text("\(assignment.name) has no submission yet ")
@@ -35,7 +22,7 @@ struct StudentLab: View {
                     .fontWeight(.bold)
                 Text("\(submission!.score)% Completed")
                 ProgressView(value: Float(submission!.score), total: 100)
-                    .accentColor(color())
+                    .accentColor(getColorForSubmissionStatus(submissionStatus: submission!.status))
                 Divider()
                 ScrollView{
                     if assignment.skipTests {
@@ -44,6 +31,7 @@ struct StudentLab: View {
                         AutoGraded(assignment: assignment, submission: submission!)
                     }
                 }
+                .frame(minHeight: 500, maxHeight: .infinity)
                 
             }
             .padding()
