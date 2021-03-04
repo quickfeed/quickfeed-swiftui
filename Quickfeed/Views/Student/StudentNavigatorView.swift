@@ -21,6 +21,7 @@ struct StudentNavigatorView: View {
         List{
             LabSection(viewModel: viewModel)
             GithubLinkSection(orgPath: viewModel.course.organizationPath, userLogin: viewModel.user.login, isTeacher: false)
+                .padding(.leading)
         }
     }
 }

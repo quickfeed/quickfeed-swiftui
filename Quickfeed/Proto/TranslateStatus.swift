@@ -12,10 +12,8 @@ func translateSubmissionStatus(statusCode: Submission.Status) -> String{
     switch statusCode {
     case .approved:
         return "Approved"
-        
     case .rejected:
         return "Rejected"
-        
     case .revision:
         return "Revision"
     default:

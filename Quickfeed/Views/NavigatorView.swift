@@ -34,6 +34,7 @@ struct NavigatorView: View {
         .onAppear(perform: {
             self.selectedCourse = self.courses[0].id
         })
+        .navigationViewStyle(DoubleColumnNavigationViewStyle())
     }
 }
 

@@ -46,7 +46,6 @@ struct ReviewNavigationView: View {
         NavigationView{
             VStack(alignment: .leading){
                 LabPicker(labs: viewModel.manuallyGradedAssignments, selectedLab: $selectedLab)
-                    .padding(2)
                 
                 SearchFieldRepresentable(query: $searchQuery)
                     .padding(2)
@@ -58,7 +57,10 @@ struct ReviewNavigationView: View {
                     Section(header: SubmissionListHeader()){
                         ForEach(viewModel.enrollmentLinks.filter({ matchesQuery(user: $0.enrollment.user) }), id: \.enrollment.user.id){ link in
                             NavigationLink(destination: SubmissionReview(user: link.enrollment.user, viewModel: viewModel, submissionLink: selectedSubmissionLink(links: link.submissions), selectedLab: $selectedLab)){
-                                SubmissionListItem(submitterName: link.enrollment.user.name, subLink: selectedSubmissionLink(links: link.submissions))
+                                VStack{
+                                    SubmissionListItem(submitterName: link.enrollment.user.name, subLink: selectedSubmissionLink(links: link.submissions))
+                                    Divider()
+                                }
                             }
                         }
                     }
@@ -67,7 +69,7 @@ struct ReviewNavigationView: View {
                 
             }
             .frame(minWidth: 300)
-            .padding(.horizontal)
+            .padding()
             
         }
         .onAppear(perform: {

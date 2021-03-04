@@ -10,16 +10,16 @@ import SwiftUI
 struct ResultView: View {
     @ObservedObject var viewModel: TeacherViewModel
     @State var searchQuery: String = ""
-    @State private var displayingSubmission = false
+    @State private var displayedSubmissionLink: SubmissionLink? = nil
     
     var body: some View {
         VStack{
-            if !displayingSubmission {
-                ResultGrid(viewModel: viewModel, displayingSubmission: $displayingSubmission)
+            if displayedSubmissionLink == nil {
+                ResultGrid(viewModel: viewModel, displayedSubmissionLink: $displayedSubmissionLink)
             }
-            if displayingSubmission {
+            if displayedSubmissionLink != nil {
                 // SubmissionResults(show: $show)
-                SubmissionResult(displayingSubmission: $displayingSubmission)
+                SubmissionResult(displayedSubmissionLink: $displayedSubmissionLink)
                 
             }
         }

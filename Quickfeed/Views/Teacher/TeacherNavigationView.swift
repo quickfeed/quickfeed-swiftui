@@ -52,15 +52,20 @@ struct TeacherNavigationView: View {
                     }
                     
                 }
+                .onAppear(perform: {
+                    self.selectedLabForManualGrading = self.viewModel.manuallyGradedAssignments[0].id
+                })
             }
             
             GithubLinkSection(orgPath: viewModel.currentCourse.organizationPath, userLogin: viewModel.user.login, isTeacher: true)
+                
         }
         .onAppear(perform: {
             self.viewModel.loadUsers()
             self.viewModel.loadAssignments()
             
-            //self.selectedLabForManualGrading = self.viewModel.manuallyGradedAssignments[0].id
+            
+            
             
         })
     }
