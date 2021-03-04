@@ -59,7 +59,7 @@ struct TeacherNavigationView: View {
             self.viewModel.loadUsers()
             self.viewModel.loadAssignments()
             
-            self.selectedLabForManualGrading = self.viewModel.manuallyGradedAssignments[0].id
+            //self.selectedLabForManualGrading = self.viewModel.manuallyGradedAssignments[0].id
             
         })
     }

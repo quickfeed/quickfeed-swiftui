@@ -12,6 +12,7 @@ class TeacherViewModel: UserViewModelProtocol{
     var provider: ProviderProtocol
     @Published var user: User
     @Published var currentCourse: Course
+    @Published var enrollments: [Enrollment] = []
     @Published var users: [User] = []
     @Published var courses: [Course] = []
     @Published var assignments: [Assignment] = []
@@ -46,9 +47,13 @@ class TeacherViewModel: UserViewModelProtocol{
         self.courses = self.provider.getCourses()
     }
     
-    func loadEnrollments(){
+    func loadEnrollmentLinks(){
         let courseSubmissions = self.provider.getSubmissionsByCourse(courseId: self.currentCourse.id, type: SubmissionsForCourseRequest.TypeEnum.all)
         self.enrollmentLinks = courseSubmissions.links
+    }
+    
+    func loadEnrollments(){
+        self.enrollments = self.provider.getEnrollmentsByCourse(courseId: self.currentCourse.id)
     }
     
     func loadAssignments(){

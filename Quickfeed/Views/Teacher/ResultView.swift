@@ -24,7 +24,7 @@ struct ResultView: View {
             }
         }
         .onAppear(perform: {
-            self.viewModel.loadEnrollments()
+            self.viewModel.loadEnrollmentLinks()
         })
     }
 }

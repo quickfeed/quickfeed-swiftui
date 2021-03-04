@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MemberListHeader: View {
+    var courseTotalSlipDays: UInt32
     var body: some View {
         HStack{
             Text("Name")
@@ -21,6 +22,10 @@ struct MemberListHeader: View {
                 .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
             Text("Approved")
                 .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
+            if courseTotalSlipDays > 0 {
+                Text("Remaining Slip Days")
+                    .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
+            }
             Text("Role")
                 .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
         }
@@ -29,6 +34,6 @@ struct MemberListHeader: View {
 
 struct MemberListHeader_Previews: PreviewProvider {
     static var previews: some View {
-        MemberListHeader()
+        MemberListHeader(courseTotalSlipDays: 2)
     }
 }

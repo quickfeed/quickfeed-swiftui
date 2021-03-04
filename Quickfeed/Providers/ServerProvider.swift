@@ -42,6 +42,11 @@ class ServerProvider: ProviderProtocol{
 
     }
     
+    func getEnrollmentsByCourse(courseId: UInt64) -> [Enrollment]{
+        return self.grpcManager.getEnrollmentsByCourse(courseId: courseId)
+        
+    }
+    
     func isAuthorizedTeacher() -> Bool {
         return grpcManager.isAuthorizedTeacher()
     }
@@ -73,7 +78,7 @@ class ServerProvider: ProviderProtocol{
     }
     
     func getEnrollmentsForCourse(course: Course) -> [Enrollment]? {
-        return self.grpcManager.getEnrollmentsByCourse(course: course)
+        return self.grpcManager.getEnrollmentsByCourse(courseId: course.id)
     }
     
     func addUserToCourse(course: Course, user: User) -> Bool {

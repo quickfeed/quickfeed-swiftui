@@ -159,9 +159,10 @@ class GRPCManager {
     }
     
     
-    func getEnrollmentsByCourse(course: Course) -> [Enrollment]{
+    func getEnrollmentsByCourse(courseId: UInt64) -> [Enrollment]{
         let req = EnrollmentRequest.with{
-            $0.courseID = course.id
+            $0.courseID = courseId
+            $0.withActivity = true
         }
         
         let call = self.quickfeedClient.getEnrollmentsByCourse(req, callOptions: self.defaultOptions)
@@ -221,12 +222,6 @@ class GRPCManager {
     
     // MANUAL GRADING
     
-    func createReview(courseId: UInt64, assignmentId: UInt64){
-        let req = ReviewRequest.with{
-            $0.courseID = courseId
-            
-        }
-    }
     
     
     

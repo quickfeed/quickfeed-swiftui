@@ -71,7 +71,7 @@ struct ReviewNavigationView: View {
             
         }
         .onAppear(perform: {
-            viewModel.loadEnrollments()
+            viewModel.loadEnrollmentLinks()
         })
         
         

@@ -12,8 +12,8 @@ struct MembersView: View {
     @State var searchQuery: String = ""
     
     
-    func filteredUsers() -> [User] {
-        return viewModel.users.filter({ matchesQuery(user: $0) })
+    func filteredEnrollments() -> [Enrollment] {
+        return viewModel.enrollments.filter({ matchesQuery(user: $0.user) })
     }
     
     func matchesQuery(user: User) -> Bool{
@@ -60,9 +60,9 @@ struct MembersView: View {
                 .frame(height: 20)
             
             List{
-                Section(header: MemberListHeader()){
-                    ForEach(self.filteredUsers().indices, id: \.self){ i in
-                        MemberListItem(user: self.filteredUsers()[i], courseId: viewModel.currentCourse.id)
+                Section(header: MemberListHeader(courseTotalSlipDays: self.viewModel.currentCourse.slipDays)){
+                    ForEach(self.filteredEnrollments(), id: \.self){ enrollment in
+                        MemberListItem(enrollment: enrollment, courseTotalSlipDays: self.viewModel.currentCourse.slipDays)
                             
                     }
                 }
@@ -71,7 +71,7 @@ struct MembersView: View {
             }
         }
         .onAppear(perform: {
-            viewModel.loadUsers()
+            viewModel.loadEnrollments()
         })
         
     }
