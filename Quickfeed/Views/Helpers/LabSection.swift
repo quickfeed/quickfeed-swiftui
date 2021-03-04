@@ -11,19 +11,6 @@ struct LabSection: View {
     @ObservedObject var viewModel: StudentViewModel
     var assignments: [Assignment]? { return viewModel.assignments }
     
-    private func image(submission: Submission) -> Image{
-        switch (submission.status){
-        case Submission.Status.approved:
-            return Image(systemName: "checkmark.circle")
-        case Submission.Status.rejected:
-            return Image(systemName: "multiply.circle")
-        case Submission.Status.revision:
-            return Image(systemName: "circlebadge")
-        default:
-            return Image(systemName: "circlebadge")
-        }
-    }
-    
     var body: some View {
         if assignments == nil {
             Text("No Assignments yet")
@@ -32,7 +19,7 @@ struct LabSection: View {
                 ForEach(assignments!, id: \.id){ assignment in
                     NavigationLink(destination: StudentLab(assignment: assignment, viewModel: viewModel)){
                         if viewModel.getSubmission(assignment: assignment) != nil {
-                            image(submission: viewModel.getSubmission(assignment: assignment)!)
+                            getImageForSubmissionStatus(submission: viewModel.getSubmission(assignment: assignment)!.status)
                                 .frame(width: 5)
                                 .foregroundColor(getColorForSubmissionStatus(submissionStatus: viewModel.getSubmission(assignment: assignment)!.status))
                         }
