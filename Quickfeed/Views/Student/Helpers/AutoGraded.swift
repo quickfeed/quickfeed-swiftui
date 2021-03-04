@@ -29,7 +29,8 @@ struct AutoGraded: View {
                 LabTests(submission: submission)
                 Spacer()
             }
-            Divider()
+            .padding(.trailing)
+            //Divider()
             VStack{
                 LabInfo(submission: submission, assignment: assignment, teacherView: false)
                     .frame(width: 300)
@@ -47,7 +48,7 @@ struct AutoGraded: View {
         ScrollView{
             Text(submission.buildInfoJSON.buildlog)
         }
-        .frame(height: 400, alignment: .leading)
+        .frame(height: 450, alignment: .leading)
     }
 }
 
