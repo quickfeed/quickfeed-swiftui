@@ -21,10 +21,9 @@ struct ResultGrid: View {
                 .frame(height: 20)
             List{
                 Section(header: ResultGridListHeader(assignments: self.viewModel.assignments)){
-                    ForEach(self.filteredLinks().indices, id: \.self){ i in
-                        ResultListItem(user: self.filteredLinks()[i].enrollment.user, submissionLinks: self.filteredLinks()[i].submissions)
-                        
-                        
+                    ForEach(self.filteredLinks(), id: \.self){ link in
+                        ResultListItem(user: link.enrollment.user, submissionLinks: link.submissions)
+                        Divider()
                     }
                 }
                 

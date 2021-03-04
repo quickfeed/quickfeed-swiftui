@@ -28,10 +28,9 @@ struct MembersView: View {
                 Section(header: MemberListHeader(courseTotalSlipDays: self.viewModel.currentCourse.slipDays)){
                     ForEach(self.filteredEnrollments(), id: \.self){ enrollment in
                         MemberListItem(enrollment: enrollment, course: self.viewModel.currentCourse)
+                        Divider()
                     }
                 }
-                
-                
             }
         }
         .onAppear(perform: {
