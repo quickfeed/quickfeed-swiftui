@@ -16,13 +16,16 @@ struct MembersView: View {
         return viewModel.enrollments.filter({ matchesQuery(user: $0.user) })
     }
     
-   
+    
     
     var body: some View {
         VStack {
-            Text("Users enrolled in \(viewModel.currentCourse.name)")
+            
+            Text("Members of \(viewModel.currentCourse.name)")
+                .font(.title)
+            
+            
             SearchFieldRepresentable(query: $searchQuery)
-                .padding(.horizontal)
                 .frame(height: 20)
             List{
                 Section(header: MemberListHeader(courseTotalSlipDays: self.viewModel.currentCourse.slipDays)){
@@ -33,6 +36,7 @@ struct MembersView: View {
                 }
             }
         }
+        .padding()
         .onAppear(perform: {
             viewModel.loadEnrollments()
         })

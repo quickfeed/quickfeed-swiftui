@@ -80,3 +80,5 @@ func getImageForGradingCriterionGrade(grade: GradingCriterion.Grade) -> Image{
         return Image(systemName: "circlebadge")
     }
 }
+
+
