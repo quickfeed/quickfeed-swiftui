@@ -29,7 +29,7 @@ struct StudentLab: View {
         if submission == nil {
             Text("\(assignment.name) has no submission yet ")
         } else {
-            ScrollView{
+            VStack{
                 Text(assignment.name)
                     .font(.title)
                     .fontWeight(.bold)
@@ -37,11 +37,14 @@ struct StudentLab: View {
                 ProgressView(value: Float(submission!.score), total: 100)
                     .accentColor(color())
                 Divider()
-                if assignment.skipTests {
-                    ManuallyGraded(submission: submission!)
-                } else {
-                    AutoGraded(assignment: assignment, submission: submission!)
+                ScrollView{
+                    if assignment.skipTests {
+                        ManuallyGraded(submission: submission!)
+                    } else {
+                        AutoGraded(assignment: assignment, submission: submission!)
+                    }
                 }
+                
             }
             .padding()
         }
