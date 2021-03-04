@@ -20,7 +20,7 @@ struct StudentLab: View {
                     .font(.title)
                     .fontWeight(.bold)
                 Text("\(submission!.score)% Completed")
-                ProgressView(value: Float(submission!.score), total: 100)
+                ProgressView(value: Float(submission!.score > 100 ? 100 : submission!.score), total: 100)
                     .accentColor(getColorForSubmissionStatus(submissionStatus: submission!.status))
                 Divider()
                 if assignment.skipTests {

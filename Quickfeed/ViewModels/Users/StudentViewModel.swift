@@ -14,7 +14,6 @@ class StudentViewModel: UserViewModelProtocol{
     @Published var course: Course
     @Published var group: Group?
     @Published var assignments: [Assignment]?
-    @Published var submissions: [Submission]?
     
     init(provider: ProviderProtocol, course: Course) {
         self.provider = provider
@@ -22,7 +21,6 @@ class StudentViewModel: UserViewModelProtocol{
         self.course = course
         self.group = provider.getGroupByUserAndCourse(courseId: course.id, userId: user.id)
         self.assignments = provider.getAssignments(courseID: course.id)
-        self.submissions  = self.getSubmissions()
     }
     
     func getAssignments() -> [Assignment]{
@@ -30,7 +28,8 @@ class StudentViewModel: UserViewModelProtocol{
     }
     
     func getSubmission(assignment: Assignment) -> Submission? {
-        for element in self.submissions! {
+        let submissions = self.getSubmissions()
+        for element in submissions {
             if element.assignmentID == assignment.id {
                 if assignment.isGroupLab && element.groupID != 0 {
                     return element
