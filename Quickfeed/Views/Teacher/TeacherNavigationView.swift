@@ -10,7 +10,6 @@ import SwiftUI
 
 struct TeacherNavigationView: View {
     @ObservedObject var viewModel: TeacherViewModel
-    @State private var users: [User] = []
     @State private var selectedLabForManualGrading: UInt64 = 0
     
     var body: some View {
@@ -39,7 +38,7 @@ struct TeacherNavigationView: View {
             
             if viewModel.manuallyGradedAssignments.count > 0{
                 Section(header:Text("Manual Grading")){
-                    NavigationLink(destination: ReviewNavigationView(viewModel: viewModel, enrolledUsers: $users, selectedLab: $selectedLabForManualGrading)){
+                    NavigationLink(destination: ReviewNavigationView(viewModel: viewModel, selectedLab: $selectedLabForManualGrading)){
                         Image(systemName: "list.dash")
                             .frame(width: 20)
                             .foregroundColor(.blue)
@@ -61,9 +60,7 @@ struct TeacherNavigationView: View {
             self.viewModel.loadUsers()
             self.viewModel.loadAssignments()
             
-            if self.viewModel.manuallyGradedAssignments.count > 0{
-                self.selectedLabForManualGrading = self.viewModel.manuallyGradedAssignments[0].id
-            }
+            //self.selectedLabForManualGrading = self.viewModel.manuallyGradedAssignments[0].id
             
         })
     }

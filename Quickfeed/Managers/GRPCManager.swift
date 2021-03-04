@@ -25,19 +25,21 @@ class GRPCManager {
         self.eventLoopGroup = MultiThreadedEventLoopGroup(numberOfThreads: 1)
         self.channel = ClientConnection.insecure(group: self.eventLoopGroup)
             .connect(host: hostname, port: port)
-    
+        
         self.quickfeedClient = AutograderServiceClient(channel: channel)
 
         let headers: HPACKHeaders = ["custom-header-1": "value1", "user": "166"]
         
         self.defaultOptions = CallOptions()
         self.defaultOptions.customMetadata = headers
-
+        
         
     }
     
+    
+    
     func isAuthorizedTeacher() -> Bool{
-       
+        
         let call = self.quickfeedClient.isAuthorizedTeacher(Void(), callOptions: self.defaultOptions)
         
         do {
@@ -81,7 +83,8 @@ class GRPCManager {
         return nil
     }
     
-
+    
+    
     func getCourses(userStatus: Enrollment.UserStatus, userId: UInt64) -> [Course]{
         
         let req = EnrollmentStatusRequest.with{
@@ -138,6 +141,23 @@ class GRPCManager {
         
     }
     
+    func getSubmissionsByCourse(courseId: UInt64, type: SubmissionsForCourseRequest.TypeEnum) -> CourseSubmissions{
+        let req = SubmissionsForCourseRequest.with{
+            $0.courseID = courseId
+            $0.type = type
+        }
+        
+        let call = self.quickfeedClient.getSubmissionsByCourse(req, callOptions: self.defaultOptions)
+        do {
+            let response = try call.response.wait()
+            return response
+
+            } catch {
+            print("Call failed: \(error)")
+        }
+        
+        return CourseSubmissions()
+    }
     func getSubbmissionByGroup(courseID: UInt64, groupID: UInt64) -> [Submission] {
         let req = SubmissionRequest.with{
             $0.courseID = courseID
@@ -153,6 +173,7 @@ class GRPCManager {
         
         return []
     }
+    
     
     func getEnrollmentsByUser(userID: UInt64) -> [Enrollment] {
         let req = EnrollmentStatusRequest.with{
@@ -171,9 +192,10 @@ class GRPCManager {
         return []
     }
     
-    func getEnrollmentsByCourse(course: Course) -> [Enrollment]{
+    func getEnrollmentsByCourse(courseId: UInt64) -> [Enrollment]{
         let req = EnrollmentRequest.with{
-            $0.courseID = course.id
+            $0.courseID = courseId
+            $0.withActivity = true
         }
         
         let call = self.quickfeedClient.getEnrollmentsByCourse(req, callOptions: self.defaultOptions)
@@ -246,6 +268,30 @@ class GRPCManager {
             print("Call failed: \(error)")
         }
         
+    }
+    
+    
+    // MANUAL GRADING
+    
+    
+    
+    
+    func loadCriteria(courseId: UInt64, assignmentId: UInt64) -> [GradingBenchmark]{
+        let req = LoadCriteriaRequest.with{
+            $0.courseID = courseId
+            $0.assignmentID = assignmentId
+        }
+        
+        let call = self.quickfeedClient.loadCriteria(req, callOptions: self.defaultOptions)
+        
+        do {
+            let resp = try call.response.wait()
+            return resp.benchmarks
+        } catch {
+            print("Call failed: \(error)")
+        }
+        
+        return []
     }
     
     

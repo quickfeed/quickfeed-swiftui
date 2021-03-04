@@ -10,9 +10,15 @@ import SwiftUI
 struct ReviewNavigationView: View {
     @ObservedObject var viewModel: TeacherViewModel
     @State private var searchQuery: String = ""
-    @Binding var enrolledUsers: [User]
     @Binding var selectedLab: UInt64
     @State private var showCompleted: Bool = true
+    
+    
+    func selectedSubmissionLink(links: [SubmissionLink]) -> SubmissionLink {
+        return links.first(where: {
+            $0.assignment.id == self.selectedLab
+        }) ?? links[0]
+    }
     
     
     func matchesQuery(user: User) -> Bool{
@@ -44,24 +50,30 @@ struct ReviewNavigationView: View {
                 
                 SearchFieldRepresentable(query: $searchQuery)
                     .padding(2)
+                    .frame(height: 25)
                 
                 Toggle("Show completed", isOn: $showCompleted)
                 
                 List{
-                    Section(header: Text("Submissions")){
-                        ForEach(enrolledUsers.filter({ matchesQuery(user: $0) }), id: \.id){ user in
-                            NavigationLink(destination: Text(user.name)){
-                                SubmissionListItem(submitterName: user.name, totalReviewers: 1, reviews: 1, markedAsReady: true)
+                    Section(header: SubmissionListHeader()){
+                        ForEach(viewModel.enrollmentLinks.filter({ matchesQuery(user: $0.enrollment.user) }), id: \.enrollment.user.id){ link in
+                            NavigationLink(destination: SubmissionReview(user: link.enrollment.user, viewModel: viewModel, submissionLink: selectedSubmissionLink(links: link.submissions), selectedLab: $selectedLab)){
+                                SubmissionListItem(submitterName: link.enrollment.user.name, subLink: selectedSubmissionLink(links: link.submissions))
                             }
                         }
                     }
                 }
-                .padding(2)
+                
                 
             }
             .frame(minWidth: 300)
+            .padding(.horizontal)
             
         }
+        .onAppear(perform: {
+            viewModel.loadEnrollmentLinks()
+        })
+        
         
         
     }
@@ -69,6 +81,6 @@ struct ReviewNavigationView: View {
 
 struct ReviewNavigatorView_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewNavigationView(viewModel: TeacherViewModel(provider: FakeProvider(), course: Course()), enrolledUsers: .constant([]), selectedLab: .constant(1))
+        ReviewNavigationView(viewModel: TeacherViewModel(provider: FakeProvider(), course: Course()), selectedLab: .constant(1))
     }
 }

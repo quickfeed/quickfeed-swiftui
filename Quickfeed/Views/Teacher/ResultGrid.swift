@@ -10,47 +10,33 @@ import SwiftUI
 struct ResultGrid: View {
     @ObservedObject var viewModel: TeacherViewModel
     @Binding var displayingSubmission: Bool
-   
-    @State var users: [User] = []
     @State var searchQuery: String = ""
-    
     
     var body: some View {
         VStack{
             Text("Results for \(viewModel.currentCourse.name)")
             Button("test"){self.displayingSubmission = true}
-            HStack{
-                SearchFieldRepresentable(query: $searchQuery)
-                    .frame(width: 180, height: 20)
-                
-                ForEach(self.viewModel.assignments, id: \.self) {assignment in
-                    Text(assignment.name)
-                }
-            }
+            SearchFieldRepresentable(query: $searchQuery)
+                .padding(.horizontal)
+                .frame(height: 20)
             List{
-                ForEach(self.filteredUsers().indices, id: \.self){ i in
-                    
-                    ResultListItem(user: self.filteredUsers()[i], submissions: self.viewModel.getSubmissionsByUser(courseId: viewModel.currentCourse.id, userId: self.filteredUsers()[i].id))
+                Section(header: ResultGridListHeader(assignments: self.viewModel.assignments)){
+                    ForEach(self.filteredLinks().indices, id: \.self){ i in
+                        ResultListItem(user: self.filteredLinks()[i].enrollment.user, submissionLinks: self.filteredLinks()[i].submissions)
                         
-                        .frame(maxWidth: .infinity)
-                        .listRowBackground(RoundedRectangle(cornerRadius: 4)
-                                            .foregroundColor(Color(.unemphasizedSelectedTextBackgroundColor))
-                                            .opacity(i % 2 == 0 ? 0 : 100)
-                        )
+                        
+                    }
                 }
                 
             }
-            
-            
-            Spacer()
+            .padding(.top, 0)
         }
         .onAppear(perform: {
-            users = viewModel.getStudentsForCourse(courseId: self.viewModel.currentCourse.id)
         })
     }
     
-    func filteredUsers() -> [User] {
-        return users.filter({ matchesQuery(user: $0) })
+    func filteredLinks() -> [EnrollmentLink] {
+        return viewModel.enrollmentLinks.filter({ matchesQuery(user: $0.enrollment.user) })
     }
     
     func matchesQuery(user: User) -> Bool{

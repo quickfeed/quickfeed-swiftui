@@ -12,8 +12,8 @@ struct MembersView: View {
     @State var searchQuery: String = ""
     
     
-    func filteredUsers() -> [User] {
-        return viewModel.users.filter({ matchesQuery(user: $0) })
+    func filteredEnrollments() -> [Enrollment] {
+        return viewModel.enrollments.filter({ matchesQuery(user: $0.user) })
     }
     
     func matchesQuery(user: User) -> Bool{
@@ -60,42 +60,18 @@ struct MembersView: View {
                 .frame(height: 20)
             
             List{
-                HStack{
-                    Text("Name")
-                        .padding(.leading, 4)
-                        .frame(minWidth: 200, maxWidth: .infinity, alignment: .leading)
-                    Text("Email")
-                        .frame(minWidth: 200, maxWidth: .infinity, alignment: .leading)
-                    Text("Student ID")
-                        .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
-                    Text("Activity")
-                        .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
-                    Text("Approved")
-                        .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
-                    Text("Role")
-                        .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
+                Section(header: MemberListHeader(courseTotalSlipDays: self.viewModel.currentCourse.slipDays)){
+                    ForEach(self.filteredEnrollments(), id: \.self){ enrollment in
+                        MemberListItem(enrollment: enrollment, courseTotalSlipDays: self.viewModel.currentCourse.slipDays)
+                            
+                    }
                 }
-                .padding(2)
-                .frame(maxWidth: .infinity)
-                .listRowBackground(RoundedRectangle(cornerRadius: 4)
-                                    .foregroundColor(Color(.unemphasizedSelectedTextBackgroundColor))
-                                    )
                 
                 
-                ForEach(self.filteredUsers().indices, id: \.self){ i in
-                    
-                    MemberListItem(user: self.filteredUsers()[i], courseId: viewModel.currentCourse.id)
-
-                    .frame(maxWidth: .infinity)
-                    .listRowBackground(RoundedRectangle(cornerRadius: 4)
-                                        .foregroundColor(Color(.unemphasizedSelectedTextBackgroundColor))
-                                        .opacity(i % 2 == 0 ? 0 : 100)
-                                        )
-                }
             }
         }
         .onAppear(perform: {
-            viewModel.loadUsers()
+            viewModel.loadEnrollments()
         })
         
     }

@@ -29,6 +29,7 @@ struct NavigatorView: View {
                     Text(viewModel.user.name)
                 }
             }
+            
         }
         .onAppear(perform: {
             self.selectedCourse = self.courses[0].id

@@ -65,7 +65,7 @@ struct LabSection: View {
 
 struct LabSection_Previews: PreviewProvider {
     static var previews: some View {
-        let provider = FakeProvider()
+        
         List{
             LabSection(viewModel: StudentViewModel(provider: FakeProvider(), course: Course()))
         }

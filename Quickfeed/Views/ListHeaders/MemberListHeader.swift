@@ -1,42 +1,39 @@
 //
-//  MemberListItem.swift
+//  MemberListHeader.swift
 //  Quickfeed
 //
-//  Created by Oskar Gjølga on 22/02/2021.
+//  Created by Oskar Gjølga on 03/03/2021.
 //
 
 import SwiftUI
 
-struct MemberListItem: View {
-    var enrollment: Enrollment
+struct MemberListHeader: View {
     var courseTotalSlipDays: UInt32
-    
     var body: some View {
-        HStack {
-            Text(enrollment.user.name)
+        HStack{
+            Text("Name")
                 .padding(.leading, 4)
                 .frame(minWidth: 200, maxWidth: .infinity, alignment: .leading)
-            Link(enrollment.user.email, destination: URL(string: "mailto:" + enrollment.user.email)!)
+            Text("Email")
                 .frame(minWidth: 200, maxWidth: .infinity, alignment: .leading)
-            Text(enrollment.user.studentID)
+            Text("Student ID")
                 .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
-            Text("\(enrollment.lastActivityDate != "" ? enrollment.lastActivityDate : "Inactive")")
+            Text("Activity")
                 .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
-            Text("\(enrollment.totalApproved)")
+            Text("Approved")
                 .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
             if courseTotalSlipDays > 0 {
-                Text("\(enrollment.slipDaysRemaining)")
+                Text("Remaining Slip Days")
                     .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
             }
-            Text(translateUserStatus(status: enrollment.status))
+            Text("Role")
                 .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
-            
         }
     }
 }
 
-struct MemberListItem_Previews: PreviewProvider {
+struct MemberListHeader_Previews: PreviewProvider {
     static var previews: some View {
-        MemberListItem(enrollment: Enrollment(), courseTotalSlipDays: 2)
+        MemberListHeader(courseTotalSlipDays: 2)
     }
 }

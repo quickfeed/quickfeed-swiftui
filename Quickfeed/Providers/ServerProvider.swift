@@ -7,19 +7,6 @@
 import Foundation
 
 class ServerProvider: ProviderProtocol{
-    
-    func getUsersForCourse(course: Course) -> [User] {
-        let enrollments = self.getEnrollmentsForCourse(course: course) ?? []
-        var users: [User] = []
-        for enrollment in enrollments{
-            var user = enrollment.user
-            user.enrollments.append(enrollment)
-            users.append(user)
-        }
-        
-        return users
-    }
-    
     var currentUser: User
     var grpcManager: GRPCManager = GRPCManager()
 
@@ -37,10 +24,27 @@ class ServerProvider: ProviderProtocol{
         return courses
     }
     
+    func getUsersForCourse(course: Course) -> [User] {
+        let enrollments = self.getEnrollmentsForCourse(course: course) ?? []
+        var users: [User] = []
+        for enrollment in enrollments{
+            var user = enrollment.user
+            user.enrollments.append(enrollment)
+            users.append(user)
+        }
+        
+        return users
+    }
+    
     func getCoursesForCurrentUser() -> [Course]? {
 
         return grpcManager.getCourses(userStatus: Enrollment.UserStatus.teacher, userId: self.currentUser.id)
 
+    }
+    
+    func getEnrollmentsByCourse(courseId: UInt64) -> [Enrollment]{
+        return self.grpcManager.getEnrollmentsByCourse(courseId: courseId)
+        
     }
     
     func isAuthorizedTeacher() -> Bool {
@@ -74,7 +78,7 @@ class ServerProvider: ProviderProtocol{
     }
     
     func getEnrollmentsForCourse(course: Course) -> [Enrollment]? {
-        return self.grpcManager.getEnrollmentsByCourse(course: course)
+        return self.grpcManager.getEnrollmentsByCourse(courseId: course.id)
     }
     
     func addUserToCourse(course: Course, user: User) -> Bool {
@@ -138,8 +142,8 @@ class ServerProvider: ProviderProtocol{
         //fatalError("Not implemented")
     }
     
-    func getSubmissionsByCourse(courseId: UInt64, type: SubmissionsForCourseRequest.Type) -> [AllSubmissionsForEnrollment] {
-        fatalError("Not implemented")
+    func getSubmissionsByCourse(courseId: UInt64, type: SubmissionsForCourseRequest.TypeEnum) -> CourseSubmissions {
+        return self.grpcManager.getSubmissionsByCourse(courseId: courseId, type: type)
     }
     
     func getEnrollmentsForUser(userId: UInt64) -> [Enrollment] {
@@ -172,6 +176,13 @@ class ServerProvider: ProviderProtocol{
     
     func getRepositories(courseId: UInt64, types: [Repository.Type]) {
         fatalError("Not implemented")
+    }
+    
+    
+    // MANUAL GRADING
+    
+    func loadCriteria(courseId: UInt64, assignmentId: UInt64) -> [GradingBenchmark] {
+        return self.grpcManager.loadCriteria(courseId: courseId, assignmentId: assignmentId)
     }
     
     
