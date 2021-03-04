@@ -8,15 +8,18 @@
 import SwiftUI
 
 struct SubmissionResult: View {
-    @Binding var displayingSubmission: Bool
+    @Binding var displayedSubmissionLink: SubmissionLink?
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-        Button("Back"){self.displayingSubmission = false}
+        Button(action: {displayedSubmissionLink = nil}){
+            Text("Back")
+        }
+        ManuallyGraded(submission: displayedSubmissionLink?.submission ?? Submission())
+        
     }
 }
 
 struct SubmissionResult_Previews: PreviewProvider {
     static var previews: some View {
-        SubmissionResult(displayingSubmission: .constant(true))
+        SubmissionResult(displayedSubmissionLink: .constant(nil))
     }
 }
