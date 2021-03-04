@@ -9,8 +9,7 @@ import SwiftUI
 
 struct StudentLab: View {
     var assignment: Assignment
-    @ObservedObject var viewModel: StudentViewModel
-    var submission: Submission? { return viewModel.getSubmission(assignment: assignment) }
+    var submission: Submission?
     
     var body: some View {
         if submission == nil {
@@ -39,10 +38,10 @@ struct StudentLab: View {
     }
 }
 
-struct StudentLab_Previews: PreviewProvider {
+/*struct StudentLab_Previews: PreviewProvider {
     static var previews: some View {
         let provider = FakeProvider()
         let assignment = provider.getAssignments(courseID: 111)[0]
         StudentLab(assignment: assignment, viewModel: StudentViewModel(provider: FakeProvider(), course: Course()))
     }
-}
+}*/
