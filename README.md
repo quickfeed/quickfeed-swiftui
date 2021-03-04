@@ -1,3 +1,3 @@
 # QuickFeed SwiftUI
 
-macOs client for [Quickfeed](https://github.com/autograde/quickfeed)
+macOs client for [QuickFeed](https://github.com/autograde/quickfeed)
