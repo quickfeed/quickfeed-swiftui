@@ -24,20 +24,6 @@ struct LabSection: View {
         }
     }
     
-    private func color(submission: Submission) -> Color {
-        switch (submission.status){
-        case Submission.Status.approved:
-            return .green
-        case Submission.Status.rejected:
-            return .red
-        case Submission.Status.revision:
-            return .orange
-        default:
-            return .blue
-        }
-    }
-    
-    
     var body: some View {
         if assignments == nil {
             Text("No Assignments yet")
@@ -48,7 +34,7 @@ struct LabSection: View {
                         if viewModel.getSubmission(assignment: assignment) != nil {
                             image(submission: viewModel.getSubmission(assignment: assignment)!)
                                 .frame(width: 5)
-                                .foregroundColor(color(submission: viewModel.getSubmission(assignment: assignment)!))
+                                .foregroundColor(getColorForSubmissionStatus(submissionStatus: viewModel.getSubmission(assignment: assignment)!.status))
                         }
                         Text(assignment.name)
                         Spacer()
