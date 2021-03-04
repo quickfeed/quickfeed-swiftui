@@ -12,36 +12,31 @@ struct ManuallyGraded: View {
     var review: Review { return submission.reviews[0] }
     
     var body: some View {
-        Text("Feedback")
-            .font(.title2)
-            .fontWeight(.bold)
-            .padding(.top)
-        Text("HELLO")
         List{
-            Text("HELLO")
-            Text("HELLO")
-            Text("HELLO")
-            Text("HELLO")
-            Text("HELLO")
-        }
-        .frame(height: 50)
-        /*VStack(alignment: .leading){
-            List{
-                Text("Hello")
-                /*ForEach(review.benchmarks, id: \.self){ benchmarks in
-                    Section(header: Text(benchmarks.heading)){
-                        ForEach(benchmarks.criteria, id: \.self){ criteria in
-                            Text(String(criteria.points))
-                            if criteria.comment != "" {
-                                Text(criteria.comment)
+            ForEach(review.benchmarks, id: \.self){ benchmarks in
+                Section(header: Text(benchmarks.heading)){
+                    ForEach(benchmarks.criteria, id: \.self){ criteria in
+                        HStack{
+                            Text(String(criteria.description_p))
+                            Spacer()
+                            getImageForGradingCriterionGrade(grade: criteria.grade)
+                                .foregroundColor(getColorForGradingCriterionGrade(grade: criteria.grade))
+                        }
+                        if criteria.comment != "" {
+                            HStack{
+                                Spacer()
+                                    .frame(width: 50)
+                                Text("Comment: \(criteria.comment)")
+                                    .foregroundColor(.secondary)
                             }
                         }
-                        .padding(.leading)
+                        Divider()
                     }
-                }*/
-                
+                    .padding(.leading)
+                }
             }
-        }*/
+            
+        }
     }
 }
 

@@ -28,7 +28,7 @@ class GRPCManager {
         
         self.quickfeedClient = AutograderServiceClient(channel: channel)
 
-        let headers: HPACKHeaders = ["custom-header-1": "value1", "user": "166"]
+        let headers: HPACKHeaders = ["custom-header-1": "value1", "user": "144"]
         
         self.defaultOptions = CallOptions()
         self.defaultOptions.customMetadata = headers

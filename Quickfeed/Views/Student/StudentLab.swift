@@ -24,14 +24,14 @@ struct StudentLab: View {
                 ProgressView(value: Float(submission!.score), total: 100)
                     .accentColor(getColorForSubmissionStatus(submissionStatus: submission!.status))
                 Divider()
-                ScrollView{
-                    if assignment.skipTests {
-                        ManuallyGraded(submission: submission!)
-                    } else {
+                if assignment.skipTests {
+                    ManuallyGraded(submission: submission!)
+                } else {
+                    ScrollView{
                         AutoGraded(assignment: assignment, submission: submission!)
                     }
+                    .frame(minHeight: 500, maxHeight: .infinity)
                 }
-                .frame(minHeight: 500, maxHeight: .infinity)
                 
             }
             .padding()
