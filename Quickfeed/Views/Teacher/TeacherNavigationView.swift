@@ -21,17 +21,18 @@ struct TeacherNavigationView: View {
                 Text("Results")
             }
             
-            NavigationLink(destination: Text("Groups")){
-                Image(systemName: "person.2")
-                    .frame(width: 20)
-                    .foregroundColor(.blue)
-                Text("Groups")
-            }
             NavigationLink(destination: MembersView(viewModel: viewModel)){
                 Image(systemName: "person")
                     .frame(width: 20)
                     .foregroundColor(.blue)
                 Text("Members")
+            }
+            
+            NavigationLink(destination: Text("Groups")){
+                Image(systemName: "person.2")
+                    .frame(width: 20)
+                    .foregroundColor(.blue)
+                Text("Groups")
             }
             
             

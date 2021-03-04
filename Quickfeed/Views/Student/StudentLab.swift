@@ -9,14 +9,8 @@ import SwiftUI
 
 struct StudentLab: View {
     var assignment: Assignment
-    var slipdays: UInt32
-    var submission: Submission? { if assignment.submissions == [] {
-                                        return nil
-                                    }else{
-                                        return assignment.submissions[0]
-                                    }
-    
-                                }
+    @ObservedObject var viewModel: StudentViewModel
+    var submission: Submission? { return viewModel.getSubmission(assignment: assignment) }
     
     private func color() -> Color {
         switch (submission!.status){
@@ -32,43 +26,25 @@ struct StudentLab: View {
     }
     
     var body: some View {
-        if submission == nil{
+        if submission == nil {
             Text("\(assignment.name) has no submission yet ")
-        }else{
-            ScrollView{
+        } else {
+            VStack{
                 Text(assignment.name)
                     .font(.title)
                     .fontWeight(.bold)
+                Text("\(submission!.score)% Completed")
                 ProgressView(value: Float(submission!.score), total: 100)
                     .accentColor(color())
                 Divider()
-                HStack{
-                    Spacer()
-                    Text("Tests")
-                        .font(.title2)
-                        .fontWeight(.bold)
-                    Spacer()
-                    Text("Lab Information")
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .frame(width: 300)
-                }
-                .padding(.bottom, 1.0)
-                HStack{
-                    LabTests(submission: submission!)
-                    Divider()
-                    VStack{
-                        LabInfo(submission: submission!, assignment: assignment, teacherView: false, slipdays: slipdays)
-                            .frame(width: 300)
-                        Spacer()
+                ScrollView{
+                    if assignment.skipTests {
+                        ManuallyGraded(submission: submission!)
+                    } else {
+                        AutoGraded(assignment: assignment, submission: submission!)
                     }
                 }
-                Divider()
-                Text("Feedback")
-                    .font(.title2)
-                    .fontWeight(.bold)
                 
-                //TODO: ADD FEEDBACK FIELD
             }
             .padding()
         }
@@ -79,7 +55,6 @@ struct StudentLab_Previews: PreviewProvider {
     static var previews: some View {
         let provider = FakeProvider()
         let assignment = provider.getAssignments(courseID: 111)[0]
-        let slipdays = provider.getCourses()[0].slipDays
-        StudentLab(assignment: assignment, slipdays: slipdays)
+        StudentLab(assignment: assignment, viewModel: StudentViewModel(provider: FakeProvider(), course: Course()))
     }
 }

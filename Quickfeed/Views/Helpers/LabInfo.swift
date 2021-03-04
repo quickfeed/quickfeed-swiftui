@@ -11,7 +11,6 @@ struct LabInfo: View {
     var submission: Submission
     var assignment: Assignment
     var teacherView: Bool
-    var slipdays: UInt32
     
     private func showApprovedLine() -> Bool {
         return submission.status == Submission.Status.approved && submission.approvedDate != ""
@@ -49,7 +48,7 @@ struct LabInfo: View {
         let dateString = dateFormat.date(from: date)!
         
         let stringFormatter = DateFormatter()
-        stringFormatter.dateFormat = "E, d MMM HH:mm"
+        stringFormatter.dateFormat = "E, d MMM YY HH:mm"
         return stringFormatter.string(from: dateString)
     }
     
@@ -74,6 +73,19 @@ struct LabInfo: View {
                     .foregroundColor(color())
             }
             HStack{
+                Text("Tests passed")
+                Spacer()
+                Text("\(passed()) / \(submission.scoreObj!.count)")
+                
+            }
+            .padding(.top, 1.0)
+            HStack{
+                Text("Execution time")
+                Spacer()
+                Text("\(String(format: "%.3f", Double(submission.buildInfoJSON.execTime) / 1000)) seconds")
+            }
+            .padding(.top, 1.0)
+            HStack{
                 Text("Delivered")
                 Spacer()
                 Text(date(date: submission.buildInfoJSON.builddate))
@@ -94,29 +106,6 @@ struct LabInfo: View {
                 
             }
             .padding(.top, 1.0)
-            HStack{
-                Text("Tests passed")
-                Spacer()
-                Text("\(passed()) / \(submission.scoreObj!.count)")
-                
-            }
-            .padding(.top, 1.0)
-            HStack{
-                Text("Execution time")
-                Spacer()
-                Text("\(submission.buildInfoJSON.execTime) seconds")
-                
-            }
-            .padding(.top, 1.0)
-            if !assignment.isGroupLab {
-                HStack{
-                    Text("Slip days")
-                    Spacer()
-                    Text(String(slipdays))
-                    
-                }
-                .padding(.top, 1.0)
-            }
         }
     }
 }
@@ -124,9 +113,8 @@ struct LabInfo: View {
 struct LabInfo_Previews: PreviewProvider {
     static var previews: some View {
         let provider = FakeProvider()
-        let slipdays = provider.getCourses()[0].slipDays
         let assignment = provider.getAssignments(courseID: 111)[0]
         let submission = provider.getAssignments(courseID: 111)[0].submissions[0]
-        LabInfo(submission: submission, assignment: assignment, teacherView: false, slipdays: slipdays)
+        LabInfo(submission: submission, assignment: assignment, teacherView: false)
     }
 }
