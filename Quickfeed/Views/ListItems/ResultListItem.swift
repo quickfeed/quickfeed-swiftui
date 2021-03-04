@@ -18,14 +18,23 @@ struct ResultListItem: View {
             
             ForEach(submissionLinks, id: \.assignment.id){ link in
                 
+                if link.hasSubmission{
+                
                 Button(action: {
                     displayedSubmissionLink = link
                 }) {
                     Text("\(link.submission.score)%")
                         .foregroundColor(getColorForSubmissionStatus(submissionStatus: link.submission.status))
-                        .frame(width: 40)
+                        .frame(width: 40, alignment: .center)
                 }
                 .buttonStyle(PlainButtonStyle())
+                
+                    
+                } else{
+                    Text("N/A")
+                        .foregroundColor(.secondary)
+                        .frame(width: 40)
+                }
                 Spacer()
             }
         }

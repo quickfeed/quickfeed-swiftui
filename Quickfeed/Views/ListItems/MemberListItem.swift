@@ -15,10 +15,10 @@ struct MemberListItem: View {
         HStack {
             Link(enrollment.user.name, destination: URL(string: "https://www.github.com/" + course.organizationPath + "/" + enrollment.user.login + "-labs")!)
                 .frame(minWidth: 200, maxWidth: .infinity, alignment: .leading)
-            Link(enrollment.user.email, destination: URL(string: "mailto:" + enrollment.user.email)!)
-                .frame(minWidth: 200, maxWidth: .infinity, alignment: .leading)
             Text(enrollment.user.studentID)
                 .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
+            Link(enrollment.user.email, destination: URL(string: "mailto:" + enrollment.user.email)!)
+                .frame(minWidth: 200, maxWidth: .infinity, alignment: .leading)
             Text("\(enrollment.lastActivityDate != "" ? enrollment.lastActivityDate : "Inactive")")
                 .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
             Text("\(enrollment.totalApproved)")

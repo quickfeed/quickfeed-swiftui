@@ -19,7 +19,7 @@ struct SubmissionResult: View {
         }
         .padding()
         
-        ManuallyGraded(submission: displayedSubmissionLink?.submission ?? Submission())
+        StudentLab(assignment: displayedSubmissionLink?.assignment ?? Assignment(), submission: displayedSubmissionLink?.submission)
         
     }
 }
