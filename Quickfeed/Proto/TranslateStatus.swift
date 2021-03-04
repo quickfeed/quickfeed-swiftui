@@ -48,3 +48,35 @@ func getColorForSubmissionStatus(submissionStatus: Submission.Status) -> Color {
     }
 }
 
+func getImageForSubmissionStatus(submission: Submission.Status) -> Image{
+    switch (submission){
+    case Submission.Status.approved:
+        return Image(systemName: "checkmark.circle")
+    case Submission.Status.rejected:
+        return Image(systemName: "multiply.circle")
+    default:
+        return Image(systemName: "circlebadge")
+    }
+}
+
+func getColorForGradingCriterionGrade(grade: GradingCriterion.Grade) -> Color {
+    switch (grade){
+    case GradingCriterion.Grade.passed:
+        return .green
+    case GradingCriterion.Grade.failed:
+        return .red
+    default:
+        return .blue
+    }
+}
+
+func getImageForGradingCriterionGrade(grade: GradingCriterion.Grade) -> Image{
+    switch (grade){
+    case GradingCriterion.Grade.passed:
+        return Image(systemName: "checkmark.circle")
+    case GradingCriterion.Grade.failed:
+        return Image(systemName: "multiply.circle")
+    default:
+        return Image(systemName: "circlebadge")
+    }
+}

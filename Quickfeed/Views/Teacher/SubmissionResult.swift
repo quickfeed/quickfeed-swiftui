@@ -10,9 +10,15 @@ import SwiftUI
 struct SubmissionResult: View {
     @Binding var displayedSubmissionLink: SubmissionLink?
     var body: some View {
-        Button(action: {displayedSubmissionLink = nil}){
-            Text("Back")
+        
+        HStack{
+            Button(action: {displayedSubmissionLink = nil}){
+                Text("Back")
+            }
+            Spacer()
         }
+        .padding()
+        
         ManuallyGraded(submission: displayedSubmissionLink?.submission ?? Submission())
         
     }
