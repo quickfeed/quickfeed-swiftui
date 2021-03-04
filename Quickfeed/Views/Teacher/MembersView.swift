@@ -16,6 +16,30 @@ struct MembersView: View {
         return viewModel.enrollments.filter({ matchesQuery(user: $0.user) })
     }
     
+   
+    
+    var body: some View {
+        VStack {
+            Text("Users enrolled in \(viewModel.currentCourse.name)")
+            SearchFieldRepresentable(query: $searchQuery)
+                .padding(.horizontal)
+                .frame(height: 20)
+            List{
+                Section(header: MemberListHeader(courseTotalSlipDays: self.viewModel.currentCourse.slipDays)){
+                    ForEach(self.filteredEnrollments(), id: \.self){ enrollment in
+                        MemberListItem(enrollment: enrollment, course: self.viewModel.currentCourse)
+                    }
+                }
+                
+                
+            }
+        }
+        .onAppear(perform: {
+            viewModel.loadEnrollments()
+        })
+        
+    }
+    
     func matchesQuery(user: User) -> Bool{
         if searchQuery == ""{
             return true
@@ -39,41 +63,6 @@ struct MembersView: View {
         
         
         return false
-    }
-    
-    func getEnrollmentForUser(user: User) -> Enrollment{
-        for enrollment in user.enrollments{
-            if enrollment.courseID == viewModel.currentCourse.id{
-                return enrollment
-            }
-        }
-        
-        return Enrollment()
-    }
-    
-    var body: some View {
-        VStack {
-            Text("Users enrolled in \(viewModel.currentCourse.name)")
-            
-            SearchFieldRepresentable(query: $searchQuery)
-                .padding(.horizontal)
-                .frame(height: 20)
-            
-            List{
-                Section(header: MemberListHeader(courseTotalSlipDays: self.viewModel.currentCourse.slipDays)){
-                    ForEach(self.filteredEnrollments(), id: \.self){ enrollment in
-                        MemberListItem(enrollment: enrollment, courseTotalSlipDays: self.viewModel.currentCourse.slipDays)
-                            
-                    }
-                }
-                
-                
-            }
-        }
-        .onAppear(perform: {
-            viewModel.loadEnrollments()
-        })
-        
     }
     
 }
