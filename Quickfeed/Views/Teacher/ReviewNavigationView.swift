@@ -46,7 +46,6 @@ struct ReviewNavigationView: View {
         NavigationView{
             VStack(alignment: .leading){
                 LabPicker(labs: viewModel.manuallyGradedAssignments, selectedLab: $selectedLab)
-                    .padding(2)
                 
                 SearchFieldRepresentable(query: $searchQuery)
                     .padding(2)
@@ -70,7 +69,7 @@ struct ReviewNavigationView: View {
                 
             }
             .frame(minWidth: 300)
-            .padding(.horizontal)
+            .padding()
             
         }
         .onAppear(perform: {

@@ -38,6 +38,7 @@ struct SubmissionReview: View {
                                 Spacer()
                                 Text("\(crit.grade.rawValue)")
                             }
+                            Divider()
                             
                         }
                     }

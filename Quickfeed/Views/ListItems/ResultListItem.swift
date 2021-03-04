@@ -17,6 +17,7 @@ struct ResultListItem: View {
             
             ForEach(submissionLinks, id: \.assignment.id){ link in
                 Text("\(link.submission.score)%")
+                    .foregroundColor(getColorForSubmissionStatus(submissionStatus: link.submission.status))
                     .frame(width: 40)
                 Spacer()
             }
