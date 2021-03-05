@@ -31,6 +31,7 @@
 		FA17B98E25F2510D008BB07F /* CriterionStatusControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B98D25F2510C008BB07F /* CriterionStatusControl.swift */; };
 		FA17B99325F258FA008BB07F /* GradingCriterionListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B99225F258FA008BB07F /* GradingCriterionListItem.swift */; };
 		FA17B99B25F2630B008BB07F /* GradingBenchmarkSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B99A25F2630B008BB07F /* GradingBenchmarkSection.swift */; };
+		FA17B9A725F2D32A008BB07F /* ReleaseNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B9A625F2D32A008BB07F /* ReleaseNavigationView.swift */; };
 		FA29711F25D04CF2000C99A1 /* GithubLinkSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29711E25D04CF2000C99A1 /* GithubLinkSection.swift */; };
 		FA29716E25D28E45000C99A1 /* LabPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29716D25D28E45000C99A1 /* LabPicker.swift */; };
 		FA29717325D303E0000C99A1 /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29717225D303E0000C99A1 /* SearchField.swift */; };
@@ -122,6 +123,7 @@
 		FA17B98D25F2510C008BB07F /* CriterionStatusControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriterionStatusControl.swift; sourceTree = "<group>"; };
 		FA17B99225F258FA008BB07F /* GradingCriterionListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradingCriterionListItem.swift; sourceTree = "<group>"; };
 		FA17B99A25F2630B008BB07F /* GradingBenchmarkSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradingBenchmarkSection.swift; sourceTree = "<group>"; };
+		FA17B9A625F2D32A008BB07F /* ReleaseNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseNavigationView.swift; sourceTree = "<group>"; };
 		FA29711E25D04CF2000C99A1 /* GithubLinkSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubLinkSection.swift; sourceTree = "<group>"; };
 		FA29712F25D05208000C99A1 /* ReviewNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewNavigationView.swift; sourceTree = "<group>"; };
 		FA29716D25D28E45000C99A1 /* LabPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabPicker.swift; sourceTree = "<group>"; };
@@ -239,8 +241,8 @@
 		FA17B98825F24FC3008BB07F /* Review */ = {
 			isa = PBXGroup;
 			children = (
-				FA17B96125EF90E6008BB07F /* SubmissionInfo.swift */,
 				FA29712F25D05208000C99A1 /* ReviewNavigationView.swift */,
+				FA17B96125EF90E6008BB07F /* SubmissionInfo.swift */,
 				FA17B95425EF7D6F008BB07F /* SubmissionReview.swift */,
 				FA17B99A25F2630B008BB07F /* GradingBenchmarkSection.swift */,
 				FA17B99225F258FA008BB07F /* GradingCriterionListItem.swift */,
@@ -257,6 +259,14 @@
 				FAA8335225E52E3A008C05F4 /* SubmissionResult.swift */,
 			);
 			path = Results;
+			sourceTree = "<group>";
+		};
+		FA17B9A525F2D303008BB07F /* Release */ = {
+			isa = PBXGroup;
+			children = (
+				FA17B9A625F2D32A008BB07F /* ReleaseNavigationView.swift */,
+			);
+			path = Release;
 			sourceTree = "<group>";
 		};
 		FA29712325D05121000C99A1 /* Teacher */ = {
@@ -383,6 +393,7 @@
 				FA29714825D123FC000C99A1 /* SearchBar */,
 				D04B46E125D12E9D00AC8926 /* Student */,
 				FA29712325D05121000C99A1 /* Teacher */,
+				FA17B9A525F2D303008BB07F /* Release */,
 				FA85798C25BEC5B600223DB9 /* Helpers */,
 				D035C75725E92795005AC2BA /* NavigatorView.swift */,
 			);
@@ -597,6 +608,7 @@
 				FAA8333925E502F2008C05F4 /* ResultView.swift in Sources */,
 				FAA8331325E4EF92008C05F4 /* CoursePicker.swift in Sources */,
 				FAB066A625CAC0D300FFE8EB /* FakeProvider.swift in Sources */,
+				FA17B9A725F2D32A008BB07F /* ReleaseNavigationView.swift in Sources */,
 				FA17B95525EF7D6F008BB07F /* SubmissionReview.swift in Sources */,
 				FA6C3EB125D45E4500D8A798 /* SubmissionListItem.swift in Sources */,
 				FA17B98E25F2510D008BB07F /* CriterionStatusControl.swift in Sources */,
