@@ -12,46 +12,31 @@ struct SubmissionReview: View {
     @ObservedObject var viewModel: TeacherViewModel
     @State var submissionLink: SubmissionLink
     @Binding var selectedLab: UInt64
+    @State private var review: Review = Review()
     
     var body: some View {
         VStack{
             Text("\(user.name)'s submission for \(submissionLink.assignment.name)")
                 .font(.title)
                 .fontWeight(.bold)
-            
             SubmissionInfo(viewModel: viewModel, submissionLink: $submissionLink)
                 .padding(.horizontal, 100)
-            
-            
-            
-            
             List{
-                //Section(header: Text("Review")){
-                    
-                //}
-                ForEach(self.viewModel.assignmentMap[submissionLink.assignment.id]?.gradingBenchmarks ?? [], id: \.self){ benchmark in
-                    
-                    Section(header: Text(benchmark.heading)){
-                        ForEach(benchmark.criteria, id: \.self){ crit in
-                            HStack{
-                                Text(crit.description_p)
-                                Spacer()
-                                Text("\(crit.grade.rawValue)")
-                            }
-                            Divider()
-                            
-                        }
-                    }
-                    
+                ForEach(self.review.benchmarks.indices, id: \.self){ idx in
+                    GradingBenchmarkSection(benchmark: $review.benchmarks[idx])
                 }
-                
             }
             .cornerRadius(5)
+            Spacer()
             
         }
         .padding()
+        .onAppear(perform:{
+            print("test")
+            self.review = submissionLink.submission.reviews.first ?? Review()
+        })
         
-        Spacer()
+        
         
     }
 }

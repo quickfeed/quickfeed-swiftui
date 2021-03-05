@@ -18,10 +18,6 @@ class ServerProvider: ProviderProtocol{
         self.currentUser = self.grpcManager.getUser(userId: 100) ?? User()
     }
     
-   
-    
-
-    
     func getUser() -> User? {
         return self.currentUser
     }

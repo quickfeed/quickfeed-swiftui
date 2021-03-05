@@ -28,6 +28,9 @@
 		FA17B96825EFD0D6008BB07F /* SubmissionListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B96725EFD0D6008BB07F /* SubmissionListHeader.swift */; };
 		FA17B97025EFD30F008BB07F /* ResultGridListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B96F25EFD30F008BB07F /* ResultGridListHeader.swift */; };
 		FA17B97525EFD40B008BB07F /* MemberListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B97425EFD40B008BB07F /* MemberListHeader.swift */; };
+		FA17B98E25F2510D008BB07F /* CriterionStatusControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B98D25F2510C008BB07F /* CriterionStatusControl.swift */; };
+		FA17B99325F258FA008BB07F /* GradingCriterionListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B99225F258FA008BB07F /* GradingCriterionListItem.swift */; };
+		FA17B99B25F2630B008BB07F /* GradingBenchmarkSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B99A25F2630B008BB07F /* GradingBenchmarkSection.swift */; };
 		FA29711F25D04CF2000C99A1 /* GithubLinkSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29711E25D04CF2000C99A1 /* GithubLinkSection.swift */; };
 		FA29716E25D28E45000C99A1 /* LabPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29716D25D28E45000C99A1 /* LabPicker.swift */; };
 		FA29717325D303E0000C99A1 /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29717225D303E0000C99A1 /* SearchField.swift */; };
@@ -116,6 +119,9 @@
 		FA17B96725EFD0D6008BB07F /* SubmissionListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListHeader.swift; sourceTree = "<group>"; };
 		FA17B96F25EFD30F008BB07F /* ResultGridListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultGridListHeader.swift; sourceTree = "<group>"; };
 		FA17B97425EFD40B008BB07F /* MemberListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberListHeader.swift; sourceTree = "<group>"; };
+		FA17B98D25F2510C008BB07F /* CriterionStatusControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriterionStatusControl.swift; sourceTree = "<group>"; };
+		FA17B99225F258FA008BB07F /* GradingCriterionListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradingCriterionListItem.swift; sourceTree = "<group>"; };
+		FA17B99A25F2630B008BB07F /* GradingBenchmarkSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradingBenchmarkSection.swift; sourceTree = "<group>"; };
 		FA29711E25D04CF2000C99A1 /* GithubLinkSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubLinkSection.swift; sourceTree = "<group>"; };
 		FA29712F25D05208000C99A1 /* ReviewNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewNavigationView.swift; sourceTree = "<group>"; };
 		FA29716D25D28E45000C99A1 /* LabPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabPicker.swift; sourceTree = "<group>"; };
@@ -236,6 +242,9 @@
 				FA17B96125EF90E6008BB07F /* SubmissionInfo.swift */,
 				FA29712F25D05208000C99A1 /* ReviewNavigationView.swift */,
 				FA17B95425EF7D6F008BB07F /* SubmissionReview.swift */,
+				FA17B99A25F2630B008BB07F /* GradingBenchmarkSection.swift */,
+				FA17B99225F258FA008BB07F /* GradingCriterionListItem.swift */,
+				FA17B98D25F2510C008BB07F /* CriterionStatusControl.swift */,
 			);
 			path = Review;
 			sourceTree = "<group>";
@@ -254,9 +263,9 @@
 			isa = PBXGroup;
 			children = (
 				FAB0671C25CACF8700FFE8EB /* TeacherNavigationView.swift */,
+				FABB233D25DBD91B00317969 /* MembersView.swift */,
 				FA17B98925F24FDA008BB07F /* Results */,
 				FA17B98825F24FC3008BB07F /* Review */,
-				FABB233D25DBD91B00317969 /* MembersView.swift */,
 			);
 			path = Teacher;
 			sourceTree = "<group>";
@@ -315,9 +324,9 @@
 			isa = PBXGroup;
 			children = (
 				FAB066A425CAC09F00FFE8EB /* Providers */,
+				FAC5364F25C0321600784980 /* Managers */,
 				FAB066F825CAC84200FFE8EB /* ViewModels */,
 				FA85798025BEC4B000223DB9 /* Views */,
-				FAC5364F25C0321600784980 /* Managers */,
 				FA85795A25BEB9AC00223DB9 /* Models */,
 				D0F9FC6C25BEBBDB0080A1F2 /* Proto */,
 				FA85790825BEB4E900223DB9 /* QuickfeedApp.swift */,
@@ -590,10 +599,12 @@
 				FAB066A625CAC0D300FFE8EB /* FakeProvider.swift in Sources */,
 				FA17B95525EF7D6F008BB07F /* SubmissionReview.swift in Sources */,
 				FA6C3EB125D45E4500D8A798 /* SubmissionListItem.swift in Sources */,
+				FA17B98E25F2510D008BB07F /* CriterionStatusControl.swift in Sources */,
 				D04B470225D1741300AC8926 /* StudentLab.swift in Sources */,
 				D06024B125DD23D4009390A1 /* LabTests.swift in Sources */,
 				FAB066FB25CAC89B00FFE8EB /* StudentViewModel.swift in Sources */,
 				D04B470A25D29B7300AC8926 /* JSON.swift in Sources */,
+				FA17B99B25F2630B008BB07F /* GradingBenchmarkSection.swift in Sources */,
 				D0A6FCB925CA0A8A008C546B /* StudentNavigatorView.swift in Sources */,
 				FAF945B725CC4E3200074A2F /* ProtoExstensions.swift in Sources */,
 				FA17B95D25EF81F1008BB07F /* TranslateStatus.swift in Sources */,
@@ -619,6 +630,7 @@
 				D03EF9CF25F0277A008869CA /* AutoGraded.swift in Sources */,
 				FAB066B025CAC0F000FFE8EB /* ProviderProtocol.swift in Sources */,
 				FA17B96825EFD0D6008BB07F /* SubmissionListHeader.swift in Sources */,
+				FA17B99325F258FA008BB07F /* GradingCriterionListItem.swift in Sources */,
 				FA29716E25D28E45000C99A1 /* LabPicker.swift in Sources */,
 				FA85790925BEB4E900223DB9 /* QuickfeedApp.swift in Sources */,
 				FA17B97025EFD30F008BB07F /* ResultGridListHeader.swift in Sources */,
