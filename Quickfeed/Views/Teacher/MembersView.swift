@@ -21,8 +21,10 @@ struct MembersView: View {
     var body: some View {
         VStack {
             Text("Users enrolled in \(viewModel.currentCourse.name)")
+                .font(.title)
+                .fontWeight(.bold)
+                .padding(.bottom)
             SearchFieldRepresentable(query: $searchQuery)
-                .padding(.horizontal)
                 .frame(height: 20)
             List{
                 Section(header: MemberListHeader(courseTotalSlipDays: self.viewModel.currentCourse.slipDays)){
@@ -32,7 +34,9 @@ struct MembersView: View {
                     }
                 }
             }
+            .cornerRadius(5)
         }
+        .padding()
         .onAppear(perform: {
             viewModel.loadEnrollments()
         })

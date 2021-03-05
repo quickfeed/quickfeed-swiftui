@@ -14,43 +14,40 @@ class StudentViewModel: UserViewModelProtocol{
     @Published var course: Course
     @Published var group: Group?
     @Published var assignments: [Assignment]?
+    @Published var submissions: [Submission]?
     
     init(provider: ProviderProtocol, course: Course) {
         self.provider = provider
         self.user = provider.getUser()!
         self.course = course
         self.group = provider.getGroupByUserAndCourse(courseId: course.id, userId: user.id)
+    }
+    
+    func getAssignments(){
         self.assignments = provider.getAssignments(courseID: course.id)
     }
     
-    func getAssignments() -> [Assignment]{
-        return provider.getAssignments(courseID: course.id)
-    }
-    
     func getSubmission(assignment: Assignment) -> Submission? {
-        let submissions = self.getSubmissions()
-        for element in submissions {
-            if element.assignmentID == assignment.id {
-                if assignment.isGroupLab && element.groupID != 0 {
-                    return element
-                } else if !assignment.isGroupLab && element.groupID == 0{
-                    return element
+        if self.submissions != nil {
+            for element in self.submissions! {
+                if element.assignmentID == assignment.id {
+                    if assignment.isGroupLab && element.groupID != 0 {
+                        return element
+                    } else if !assignment.isGroupLab && element.groupID == 0{
+                        return element
+                    }
                 }
             }
         }
         return nil
     }
     
-    func getSubmissions() -> [Submission]{
+    func getSubmissions(){
         var submissions = provider.getSubmissionsByUser(courseId: course.id, userId: user.id)
         if self.group != nil{
             submissions.append(contentsOf: provider.getSubmissionsByGroub(courseId: course.id, groupId: group!.id))
         }
-        return submissions
-    }
-    
-    func getSubmissionByGroup() -> [Submission]{
-        return provider.getSubmissionsByGroub(courseId: course.id, groupId: group!.id)
+        self.submissions = submissions
     }
     
     func getSlipdays() -> UInt32? {
@@ -61,6 +58,13 @@ class StudentViewModel: UserViewModelProtocol{
             }
         }
         return nil
+    }
+    
+    func reload() {
+        self.getAssignments()
+        self.getSubmissions()
+        /*self.submissions![0].status = Submission.Status.rejected
+        self.submissions![0].score = 40*/
     }
     
     
