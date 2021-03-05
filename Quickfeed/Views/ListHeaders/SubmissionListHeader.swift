@@ -10,7 +10,7 @@ import SwiftUI
 struct SubmissionListHeader: View {
     var body: some View {
         HStack{
-            Text("Submissions")
+            Text("Submitter")
             Spacer()
             Text("Status")
         }

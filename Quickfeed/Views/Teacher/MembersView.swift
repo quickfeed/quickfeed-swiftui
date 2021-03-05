@@ -38,7 +38,7 @@ struct MembersView: View {
         }
         .padding()
         .onAppear(perform: {
-            viewModel.loadEnrollments()
+            
         })
         
     }

@@ -14,7 +14,7 @@ struct ReviewNavigationView: View {
     @State private var showCompleted: Bool = true
     
     
-    func selectedSubmissionLink(links: [SubmissionLink]) -> SubmissionLink {
+    func submissionForSelectedLab(links: [SubmissionLink]) -> SubmissionLink {
         return links.first(where: {
             $0.assignment.id == self.selectedLab
         }) ?? links[0]
@@ -22,6 +22,7 @@ struct ReviewNavigationView: View {
     
     
     func matchesQuery(user: User) -> Bool{
+        
         if searchQuery == ""{
             return true
         }
@@ -45,10 +46,10 @@ struct ReviewNavigationView: View {
         
         NavigationView{
             VStack(alignment: .leading){
+                Text("Review Submissions")
+                    .font(.title)
                 LabPicker(labs: viewModel.manuallyGradedAssignments, selectedLab: $selectedLab)
-                
                 SearchFieldRepresentable(query: $searchQuery)
-                    .padding(2)
                     .frame(height: 25)
                 
                 Toggle("Show completed", isOn: $showCompleted)
@@ -56,9 +57,9 @@ struct ReviewNavigationView: View {
                 List{
                     Section(header: SubmissionListHeader()){
                         ForEach(viewModel.enrollmentLinks.filter({ matchesQuery(user: $0.enrollment.user) }), id: \.enrollment.user.id){ link in
-                            NavigationLink(destination: SubmissionReview(user: link.enrollment.user, viewModel: viewModel, submissionLink: selectedSubmissionLink(links: link.submissions), selectedLab: $selectedLab)){
+                            NavigationLink(destination: SubmissionReview(user: link.enrollment.user, viewModel: viewModel, submissionLink: submissionForSelectedLab(links: link.submissions), selectedLab: $selectedLab)){
                                 VStack{
-                                    SubmissionListItem(submitterName: link.enrollment.user.name, subLink: selectedSubmissionLink(links: link.submissions))
+                                    SubmissionListItem(submitterName: link.enrollment.user.name, subLink: submissionForSelectedLab(links: link.submissions))
                                     Divider()
                                 }
                             }
