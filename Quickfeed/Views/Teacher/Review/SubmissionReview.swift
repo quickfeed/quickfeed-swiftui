@@ -32,10 +32,19 @@ struct SubmissionReview: View {
                 })
                 .cornerRadius(5)
                 
+                HStack{
+                    Spacer()
+                    Button(action: { }, label: {
+                        Text("Mark as ready")
+                    })
+                }
+                
             } else{
                 Text("No Submissions")
             }
             Spacer()
+           
+            
             
             
         }
