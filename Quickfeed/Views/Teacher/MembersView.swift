@@ -32,7 +32,7 @@ struct MembersView: View {
             List{
                 Section(header: MemberListHeader(courseTotalSlipDays: self.viewModel.currentCourse.slipDays)){
                     ForEach(self.filteredEnrollments(), id: \.self){ enrollment in
-                        MemberListItem(enrollment: enrollment, course: self.viewModel.currentCourse)
+                        MemberListItem(enrollment: enrollment, course: enrollment.course)
                         Divider()
                     }
                 }

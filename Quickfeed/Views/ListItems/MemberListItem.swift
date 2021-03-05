@@ -13,22 +13,59 @@ struct MemberListItem: View {
     
     var body: some View {
         HStack {
-            Link(enrollment.user.name, destination: URL(string: "https://www.github.com/" + course.organizationPath + "/" + enrollment.user.login + "-labs")!)
-                .frame(minWidth: 200, maxWidth: .infinity, alignment: .leading)
-            Text(enrollment.user.studentID)
-                .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
-            Link(enrollment.user.email, destination: URL(string: "mailto:" + enrollment.user.email)!)
-                .frame(minWidth: 250, maxWidth: .infinity, alignment: .leading)
-            Text("\(enrollment.lastActivityDate != "" ? enrollment.lastActivityDate : "Inactive")")
-                .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
-            Text("\(enrollment.totalApproved)")
-                .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
-            if course.slipDays > 0 {
-                Text("\(enrollment.slipDaysRemaining)")
-                    .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
+            SwiftUI.Group{
+                Link(destination: URL(string: "https://www.github.com/" + course.organizationPath + "/" + enrollment.user.login + "-labs")!, label:{
+                    Text(enrollment.user.name)
+                        .frame(width: 200, alignment: .leading)
+                })
+                Spacer()
+                
             }
-            Text(translateUserStatus(status: enrollment.status))
-                .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
+            SwiftUI.Group{
+                Text(enrollment.user.studentID)
+                    .frame(width: 60, alignment: .leading)
+                Spacer()
+            }
+            
+            SwiftUI.Group{
+                Link(destination: URL(string: "mailto:" + enrollment.user.email)!, label: {
+                    Text(enrollment.user.email)
+                        .frame(width: 200, alignment: .leading)
+                })
+                
+                Spacer()
+                    
+            }
+            
+            SwiftUI.Group{
+                Text("\(enrollment.lastActivityDate != "" ? enrollment.lastActivityDate : "Inactive")")
+                    .frame(width: 50, alignment: .leading)
+                Spacer()
+            }
+            
+            SwiftUI.Group{
+                Text("\(enrollment.totalApproved)")
+                    .frame(width: 60, alignment: .center)
+                Spacer()
+            }
+            
+            SwiftUI.Group{
+                if course.slipDays > 0 {
+                    Text("\(enrollment.slipDaysRemaining)")
+                        .frame(width: 50, alignment: .leading)
+                    Spacer()
+                }
+            }
+        
+            
+                
+            SwiftUI.Group{
+                Text(translateUserStatus(status: enrollment.status))
+                    .frame(width: 50, alignment: .leading)
+                Spacer()
+            }
+            
+            
             
         }
     }

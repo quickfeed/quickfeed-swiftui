@@ -230,17 +230,33 @@
 			path = ListHeaders;
 			sourceTree = "<group>";
 		};
+		FA17B98825F24FC3008BB07F /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				FA17B96125EF90E6008BB07F /* SubmissionInfo.swift */,
+				FA29712F25D05208000C99A1 /* ReviewNavigationView.swift */,
+				FA17B95425EF7D6F008BB07F /* SubmissionReview.swift */,
+			);
+			path = Review;
+			sourceTree = "<group>";
+		};
+		FA17B98925F24FDA008BB07F /* Results */ = {
+			isa = PBXGroup;
+			children = (
+				FAA8333825E502F2008C05F4 /* ResultView.swift */,
+				FAA8333D25E519E2008C05F4 /* ResultGrid.swift */,
+				FAA8335225E52E3A008C05F4 /* SubmissionResult.swift */,
+			);
+			path = Results;
+			sourceTree = "<group>";
+		};
 		FA29712325D05121000C99A1 /* Teacher */ = {
 			isa = PBXGroup;
 			children = (
 				FAB0671C25CACF8700FFE8EB /* TeacherNavigationView.swift */,
-				FA29712F25D05208000C99A1 /* ReviewNavigationView.swift */,
+				FA17B98925F24FDA008BB07F /* Results */,
+				FA17B98825F24FC3008BB07F /* Review */,
 				FABB233D25DBD91B00317969 /* MembersView.swift */,
-				FAA8333825E502F2008C05F4 /* ResultView.swift */,
-				FAA8333D25E519E2008C05F4 /* ResultGrid.swift */,
-				FAA8335225E52E3A008C05F4 /* SubmissionResult.swift */,
-				FA17B95425EF7D6F008BB07F /* SubmissionReview.swift */,
-				FA17B96125EF90E6008BB07F /* SubmissionInfo.swift */,
 			);
 			path = Teacher;
 			sourceTree = "<group>";
