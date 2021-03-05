@@ -14,6 +14,7 @@ struct GradingBenchmarkSection: View {
         Section(header: Text(benchmark.heading)){
             ForEach(benchmark.criteria.indices, id: \.self){ idx in
                 GradingCriterionListItem(crit: $benchmark.criteria[idx])
+                Divider()
             }
         }
     }

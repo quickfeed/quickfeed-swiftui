@@ -9,15 +9,29 @@ import SwiftUI
 
 struct GradingCriterionListItem: View {
     @Binding var crit: GradingCriterion
+    @State private var addingComment = false
     
     var body: some View {
-        HStack{
-            Text(crit.description_p)
-            Spacer()
-            Divider()
-            CriterionStatusControl(criterionStatus: $crit.grade)
+        VStack{
+            HStack{
+                Text(crit.description_p)
+                Spacer()
+                
+                Divider()
+                CriterionStatusControl(criterionStatus: $crit.grade)
+                Divider()
+                Button(action: {addingComment = !addingComment}, label: {
+                    Image(systemName: crit.comment.isEmpty ? "bubble.left" : "bubble.left.fill")
+                })
+                .buttonStyle(PlainButtonStyle())
+            }
+            if addingComment{
+                TextField("Add a comment", text: $crit.comment)
+                    .padding(.horizontal)
+            }
         }
-        Divider()
+       
+        
     }
 }
 

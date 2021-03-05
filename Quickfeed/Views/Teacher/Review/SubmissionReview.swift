@@ -19,22 +19,28 @@ struct SubmissionReview: View {
             Text("\(user.name)'s submission for \(submissionLink.assignment.name)")
                 .font(.title)
                 .fontWeight(.bold)
+                .padding(.bottom)
             SubmissionInfo(viewModel: viewModel, submissionLink: $submissionLink)
-                .padding(.horizontal, 100)
-            List{
-                ForEach(self.review.benchmarks.indices, id: \.self){ idx in
-                    GradingBenchmarkSection(benchmark: $review.benchmarks[idx])
+            if submissionLink.hasSubmission{
+                List{
+                    ForEach(self.review.benchmarks.indices, id: \.self){ idx in
+                        GradingBenchmarkSection(benchmark: $review.benchmarks[idx])
+                    }
                 }
+                .onAppear(perform:{
+                    self.review = submissionLink.submission.reviews.first ?? viewModel.createReview() ?? Review()
+                })
+                .cornerRadius(5)
+                
+            } else{
+                Text("No Submissions")
             }
-            .cornerRadius(5)
             Spacer()
+            
             
         }
         .padding()
-        .onAppear(perform:{
-            print("test")
-            self.review = submissionLink.submission.reviews.first ?? Review()
-        })
+        
         
         
         
