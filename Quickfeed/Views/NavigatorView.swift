@@ -24,10 +24,19 @@ struct NavigatorView: View {
                 }
                 Spacer()
                 NavigationLink(
-                    destination: Text("UserProfile_HardCoded")){
-                    Image(systemName: "person.fill")
-                    Text(viewModel.user.name)
+                    destination: Text("HARDCODED")){
+                    HStack{
+                        /*RemoteAvatarImage(url: viewModel.user.avatarURL)
+                            .frame(width: 30, height: 30)
+                            .padding(.leading)*/
+                        Text(viewModel.user.name)
+                            .font(.headline)
+                        Spacer()
+                    }
+                    .frame(height: 50)
+                    .contentShape(Rectangle())
                 }
+                .buttonStyle(PlainButtonStyle())
             }
             
         }
