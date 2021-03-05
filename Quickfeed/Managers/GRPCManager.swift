@@ -274,6 +274,25 @@ class GRPCManager {
     // MANUAL GRADING
     
     
+    func createReview(courseId: UInt64, review: Review) -> Review?{
+        let req = ReviewRequest.with{
+            $0.courseID = courseId
+            $0.review = review
+        }
+        
+        let call = self.quickfeedClient.createReview(req, callOptions: self.defaultOptions)
+        do {
+            let resp = try call.response.wait()
+            return resp
+        } catch {
+            print("Call failed: \(error)")
+        }
+        
+        return nil
+        
+    }
+    
+    
     
     
     func loadCriteria(courseId: UInt64, assignmentId: UInt64) -> [GradingBenchmark]{
