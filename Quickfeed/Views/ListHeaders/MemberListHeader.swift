@@ -17,7 +17,7 @@ struct MemberListHeader: View {
             Text("Student ID")
                 .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
             Text("Email")
-                .frame(minWidth: 200, maxWidth: .infinity, alignment: .leading)
+                .frame(minWidth: 250, maxWidth: .infinity, alignment: .leading)
             Text("Activity")
                 .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
             Text("Approved")

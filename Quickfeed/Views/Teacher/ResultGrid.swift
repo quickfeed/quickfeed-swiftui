@@ -14,8 +14,11 @@ struct ResultGrid: View {
     
     var body: some View {
         VStack{
+
             Text("Results of \(viewModel.currentCourse.name)")
                 .font(.title)
+                .fontWeight(.bold)
+                .padding(.bottom)
             SearchFieldRepresentable(query: $searchQuery)
                 .frame(height: 20)
             List{
@@ -27,6 +30,7 @@ struct ResultGrid: View {
                 }
                 
             }
+            .cornerRadius(5)
             .padding(.top, 0)
         }
         .padding()

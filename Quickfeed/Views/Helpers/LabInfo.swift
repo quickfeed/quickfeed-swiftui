@@ -89,6 +89,7 @@ struct LabInfo: View {
                     Text(date(date: submission.approvedDate))
                 }
                 .padding(.top, 1.0)
+                Divider()
             }
             HStack{
                 Text("Deadline")

@@ -9,13 +9,32 @@ import SwiftUI
 
 struct StudentNavigatorView: View {
     @ObservedObject var viewModel: StudentViewModel
+    //@State var reload: Bool = false
+    
+    init(viewModel: StudentViewModel) {
+        self.viewModel = viewModel
+        viewModel.getAssignments()
+        viewModel.getSubmissions()
+    }
     
     var body: some View {
-        Text(viewModel.course.code)
-            .font(.title)
-            .padding([.leading, .top])
+        HStack{
+            Text(viewModel.course.code)
+                .font(.title)
+                .padding([.leading, .top])
+            Spacer()
+                Image(systemName: "arrow.clockwise")
+                    .padding([.top, .trailing])
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        viewModel.reload()
+                    }
+        }
         if viewModel.course.slipDays != 0 {
-            Text("Remaining Slipdays: \(viewModel.getSlipdays()!)")
+            Text("Remaining SlipDays: \(viewModel.getSlipdays()!)")
+                .padding(.leading)
+        } else {
+            Text("No SlipDays for this course")
                 .padding(.leading)
         }
         List{

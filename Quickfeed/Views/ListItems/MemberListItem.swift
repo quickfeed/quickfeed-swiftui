@@ -18,7 +18,7 @@ struct MemberListItem: View {
             Text(enrollment.user.studentID)
                 .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
             Link(enrollment.user.email, destination: URL(string: "mailto:" + enrollment.user.email)!)
-                .frame(minWidth: 200, maxWidth: .infinity, alignment: .leading)
+                .frame(minWidth: 250, maxWidth: .infinity, alignment: .leading)
             Text("\(enrollment.lastActivityDate != "" ? enrollment.lastActivityDate : "Inactive")")
                 .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
             Text("\(enrollment.totalApproved)")

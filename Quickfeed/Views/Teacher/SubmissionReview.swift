@@ -16,8 +16,8 @@ struct SubmissionReview: View {
     var body: some View {
         VStack{
             Text("\(user.name)'s submission for \(submissionLink.assignment.name)")
-                .font(.headline)
-                .padding(2)
+                .font(.title)
+                .fontWeight(.bold)
             
             SubmissionInfo(viewModel: viewModel, submissionLink: $submissionLink)
                 .padding(.horizontal, 100)
@@ -26,9 +26,9 @@ struct SubmissionReview: View {
             
             
             List{
-                Section(header: Text("Review")){
+                //Section(header: Text("Review")){
                     
-                }
+                //}
                 ForEach(self.viewModel.assignmentMap[submissionLink.assignment.id]?.gradingBenchmarks ?? [], id: \.self){ benchmark in
                     
                     Section(header: Text(benchmark.heading)){
@@ -46,9 +46,10 @@ struct SubmissionReview: View {
                 }
                 
             }
+            .cornerRadius(5)
             
         }
-        .padding(5)
+        .padding()
         
         Spacer()
         

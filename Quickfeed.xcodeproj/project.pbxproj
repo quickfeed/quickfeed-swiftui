@@ -351,8 +351,8 @@
 		FA85798025BEC4B000223DB9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FA17B96625EFD0C2008BB07F /* ListHeaders */,
 				FA85790A25BEB4E900223DB9 /* ContentView.swift */,
+				FA17B96625EFD0C2008BB07F /* ListHeaders */,
 				FA6C3EAF25D45E2000D8A798 /* ListItems */,
 				FA29714925D12432000C99A1 /* Pickers */,
 				FA29714825D123FC000C99A1 /* SearchBar */,

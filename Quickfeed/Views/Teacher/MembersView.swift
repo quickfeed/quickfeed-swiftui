@@ -23,6 +23,8 @@ struct MembersView: View {
             
             Text("Members of \(viewModel.currentCourse.name)")
                 .font(.title)
+                .fontWeight(.bold)
+                .padding(.bottom)
             
             
             SearchFieldRepresentable(query: $searchQuery)
@@ -35,10 +37,11 @@ struct MembersView: View {
                     }
                 }
             }
+            .cornerRadius(5)
         }
         .padding()
         .onAppear(perform: {
-            
+            viewModel.loadEnrollments()
         })
         
     }

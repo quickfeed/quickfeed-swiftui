@@ -66,6 +66,7 @@ struct ReviewNavigationView: View {
                         }
                     }
                 }
+                .cornerRadius(5)
                 
                 
             }
