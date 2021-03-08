@@ -48,6 +48,8 @@ class TeacherViewModel: UserViewModelProtocol{
     }
     
     func loadEnrollmentLinks(){
+        
+        
         let courseSubmissions = self.provider.getSubmissionsByCourse(courseId: self.currentCourse.id, type: SubmissionsForCourseRequest.TypeEnum.all)
         self.enrollmentLinks = courseSubmissions.links
     }

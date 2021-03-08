@@ -10,7 +10,7 @@ import SwiftUI
 struct NavigatorView: View {
     @ObservedObject var viewModel: UserViewModel
     var courses: [Course] { return viewModel.courses }
-    @State var selectedCourse: UInt64
+    @State private var selectedCourse: UInt64 = 0
     
     var body: some View {
         NavigationView{
@@ -40,6 +40,6 @@ struct NavigatorView: View {
 
 struct NavigatorView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigatorView(viewModel: UserViewModel(provider: FakeProvider()), selectedCourse: 111)
+        NavigatorView(viewModel: UserViewModel(provider: FakeProvider()))
     }
 }
