@@ -9,18 +9,10 @@ import Foundation
 class ServerProvider: ProviderProtocol{
     var currentUser: User
     var grpcManager: GRPCManager = GRPCManager()
-    
-    
-    
-    
   
     init() {
         self.currentUser = self.grpcManager.getUser(userId: 100) ?? User()
     }
-    
-   
-    
-
     
     func getUser() -> User? {
         return self.currentUser
@@ -191,6 +183,10 @@ class ServerProvider: ProviderProtocol{
     
     func loadCriteria(courseId: UInt64, assignmentId: UInt64) -> [GradingBenchmark] {
         return self.grpcManager.loadCriteria(courseId: courseId, assignmentId: assignmentId)
+    }
+    
+    func createReview(courseId: UInt64, review: Review) -> Review?{
+        return self.grpcManager.createReview(courseId: courseId, review: review)
     }
     
     

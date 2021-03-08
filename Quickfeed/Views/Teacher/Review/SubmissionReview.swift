@@ -12,46 +12,46 @@ struct SubmissionReview: View {
     @ObservedObject var viewModel: TeacherViewModel
     @State var submissionLink: SubmissionLink
     @Binding var selectedLab: UInt64
+    @State private var review: Review = Review()
     
     var body: some View {
         VStack{
             Text("\(user.name)'s submission for \(submissionLink.assignment.name)")
                 .font(.title)
                 .fontWeight(.bold)
-            
+                .padding(.bottom)
             SubmissionInfo(viewModel: viewModel, submissionLink: $submissionLink)
-                .padding(.horizontal, 100)
-            
-            
-            
-            
-            List{
-                //Section(header: Text("Review")){
-                    
-                //}
-                ForEach(self.viewModel.assignmentMap[submissionLink.assignment.id]?.gradingBenchmarks ?? [], id: \.self){ benchmark in
-                    
-                    Section(header: Text(benchmark.heading)){
-                        ForEach(benchmark.criteria, id: \.self){ crit in
-                            HStack{
-                                Text(crit.description_p)
-                                Spacer()
-                                Text("\(crit.grade.rawValue)")
-                            }
-                            Divider()
-                            
-                        }
+            if submissionLink.hasSubmission{
+                List{
+                    ForEach(self.review.benchmarks.indices, id: \.self){ idx in
+                        GradingBenchmarkSection(benchmark: $review.benchmarks[idx])
                     }
-                    
+                }
+                .onAppear(perform:{
+                    self.review = submissionLink.submission.reviews.first ?? viewModel.createReview() ?? Review()
+                })
+                .cornerRadius(5)
+                
+                HStack{
+                    Spacer()
+                    Button(action: { }, label: {
+                        Text("Mark as ready")
+                    })
                 }
                 
+            } else{
+                Text("No Submissions")
             }
-            .cornerRadius(5)
+            Spacer()
+           
+            
+            
             
         }
         .padding()
         
-        Spacer()
+        
+        
         
     }
 }

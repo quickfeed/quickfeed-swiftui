@@ -112,6 +112,14 @@ class TeacherViewModel: UserViewModelProtocol{
         
     }
     
+    // MANUAL GRADING
+    func createReview() -> Review?{
+        let review = Review()
+        
+        return self.provider.createReview(courseId: self.currentCourse.id, review: review)
+    }
+    
+    
     func reset() {
         
     }

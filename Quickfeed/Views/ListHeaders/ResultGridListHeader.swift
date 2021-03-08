@@ -16,6 +16,7 @@ struct ResultGridListHeader: View {
                 .frame(width: 180, alignment: .leading)
             ForEach(assignments, id: \.self) {assignment in
                 Text(assignment.name)
+                    .frame(width: 90, alignment: .center)
                 Spacer()
             }
         }

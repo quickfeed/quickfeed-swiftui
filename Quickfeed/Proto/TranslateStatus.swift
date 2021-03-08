@@ -77,7 +77,18 @@ func getImageForGradingCriterionGrade(grade: GradingCriterion.Grade) -> Image{
     case GradingCriterion.Grade.failed:
         return Image(systemName: "multiply.circle")
     default:
-        return Image(systemName: "circlebadge")
+        return Image(systemName: "circle")
+    }
+}
+
+func getSystemNameForGradingCriterionGrade(grade: GradingCriterion.Grade) -> String{
+    switch grade{
+    case .passed:
+        return "checkmark.circle"
+    case .failed:
+        return "multiply.circle"
+    default:
+        return "circle"
     }
 }
 

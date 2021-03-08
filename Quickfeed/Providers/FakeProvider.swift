@@ -8,6 +8,10 @@
 import Foundation
 
 class FakeProvider: ProviderProtocol, ObservableObject{
+    func createReview(courseId: UInt64, review: Review) -> Review? {
+        fatalError("Not implemented")
+    }
+    
     func getEnrollmentsByCourse(courseId: UInt64) -> [Enrollment] {
         fatalError("Not implemented")
     }

@@ -25,7 +25,7 @@ struct ResultListItem: View {
                 }) {
                     Text("\(link.submission.score)%")
                         .foregroundColor(getColorForSubmissionStatus(submissionStatus: link.submission.status))
-                        .frame(width: 40, alignment: .center)
+                        .frame(width: 90, alignment: .center)
                 }
                 .buttonStyle(PlainButtonStyle())
                 
@@ -33,7 +33,7 @@ struct ResultListItem: View {
                 } else{
                     Text("N/A")
                         .foregroundColor(.secondary)
-                        .frame(width: 40)
+                        .frame(width: 90, alignment: .center)
                 }
                 Spacer()
             }
