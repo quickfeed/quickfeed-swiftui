@@ -8,10 +8,12 @@ import Foundation
 
 class ServerProvider: ProviderProtocol{
     var currentUser: User
-    var grpcManager: GRPCManager = GRPCManager()
+    var grpcManager: GRPCManager
   
     init() {
-        self.currentUser = self.grpcManager.getUser(userId: 100) ?? User()
+        let userID = UInt64(100)
+        self.grpcManager = GRPCManager(userID: userID)
+        self.currentUser = self.grpcManager.getUser(userId: userID) ?? User()
     }
     
     func getUser() -> User? {

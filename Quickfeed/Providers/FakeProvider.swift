@@ -29,21 +29,14 @@ class FakeProvider: ProviderProtocol, ObservableObject{
     @Published var currentUser: User
     var dummyUsers: [User]
     var courses: [Course]
-    var grpcManager: GRPCManager
     
     init() {
-        self.grpcManager = GRPCManager()
         self.courses = []
         self.dummyUsers = []
         self.currentUser = User(name: "Current user", id: 1, studentID: "111111", isAdmin: true, email: "test2@testmail.com", enrollments: [], login: "currusr")
         self.initDummyUsers()
         self.initTestCourses()
         self.initTestEnrollments()
-        
-        // self.grpcManager.getProviders()
-        // self.grpcManager.getOrganization(orgName: "testorg")
-        
-        
     }
     
     

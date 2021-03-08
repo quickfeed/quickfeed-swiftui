@@ -26,9 +26,10 @@ struct NavigatorView: View {
                 NavigationLink(
                     destination: Text("HARDCODED")){
                     HStack{
-                        /*RemoteAvatarImage(url: viewModel.user.avatarURL)
+                        Image(systemName: "person.fill")
+                            .data(url: URL(string: viewModel.user.avatarURL)!)
                             .frame(width: 30, height: 30)
-                            .padding(.leading)*/
+                            .padding(.leading)
                         Text(viewModel.user.name)
                             .font(.headline)
                         Spacer()
@@ -43,7 +44,6 @@ struct NavigatorView: View {
         .onAppear(perform: {
             self.selectedCourse = self.courses[0].id
         })
-        .navigationViewStyle(DoubleColumnNavigationViewStyle())
     }
 }
 
@@ -51,4 +51,16 @@ struct NavigatorView_Previews: PreviewProvider {
     static var previews: some View {
         NavigatorView(viewModel: UserViewModel(provider: FakeProvider()), selectedCourse: 111)
     }
+}
+
+extension Image {
+    func data(url:URL) -> Self {
+        if let data = try? Data(contentsOf: url) {
+            return Image(nsImage: NSImage(data: data)!)
+                .resizable()
+        }
+        return self
+            .resizable()
+    }
+    
 }
