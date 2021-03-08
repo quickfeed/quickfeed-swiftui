@@ -55,7 +55,7 @@ func getImageForSubmissionStatus(submission: Submission.Status) -> Image{
     case Submission.Status.rejected:
         return Image(systemName: "multiply.circle")
     default:
-        return Image(systemName: "circlebadge")
+        return Image(systemName: "circle")
     }
 }
 

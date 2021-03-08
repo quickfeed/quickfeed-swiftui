@@ -14,7 +14,9 @@ struct StudentLab: View {
     var body: some View {
         if submission == nil {
             Text("\(assignment.name) has no submission yet ")
-        } else {
+        } /*else if submission!.released == true {
+            Text("\(assignment.name) has a submission, but has not been graded yet")
+        } */else {
             VStack{
                 Text(assignment.name)
                     .font(.title)
@@ -26,7 +28,7 @@ struct StudentLab: View {
                 if assignment.skipTests {
                     ManuallyGraded(submission: submission!)
                 } else {
-                    ScrollView{
+                    ScrollView(showsIndicators: false){
                         AutoGraded(assignment: assignment, submission: submission!)
                     }
                     .frame(minHeight: 500, maxHeight: .infinity)

@@ -19,23 +19,20 @@ struct StudentNavigatorView: View {
     
     var body: some View {
         HStack{
-            Text(viewModel.course.code)
-                .font(.title)
-                .padding([.leading, .top])
+            if viewModel.course.slipDays != 0 {
+                Text("Remaining SlipDays: \(viewModel.getSlipdays()!)")
+                    .padding(.leading)
+            } else {
+                Text("No SlipDays for this course")
+                    .padding(.leading)
+            }
             Spacer()
-                Image(systemName: "arrow.clockwise")
-                    .padding([.top, .trailing])
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        viewModel.reload()
-                    }
-        }
-        if viewModel.course.slipDays != 0 {
-            Text("Remaining SlipDays: \(viewModel.getSlipdays()!)")
-                .padding(.leading)
-        } else {
-            Text("No SlipDays for this course")
-                .padding(.leading)
+            Image(systemName: "arrow.clockwise")
+                .padding(.trailing)
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    viewModel.reload()
+                }
         }
         List{
             LabSection(viewModel: viewModel)

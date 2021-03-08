@@ -45,7 +45,7 @@ struct AutoGraded: View {
             .font(.title2)
             .fontWeight(.bold)
             .padding(.top)
-        ScrollView{
+        ScrollView(showsIndicators: false){
             Text(submission.buildInfoJSON.buildlog)
         }
         .frame(height: 450, alignment: .leading)
