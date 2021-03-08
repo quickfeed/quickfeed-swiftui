@@ -40,7 +40,7 @@ struct SubmissionReview: View {
                 }
                 
             } else{
-                Text("No Submissions")
+                Text("No submissions for this assignment")
             }
             Spacer()
            

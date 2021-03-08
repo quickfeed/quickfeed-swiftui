@@ -75,7 +75,6 @@ class ServerProvider: ProviderProtocol{
     }
     
     func getAssignments(courseID: UInt64) -> [Assignment] {
-        assert(courseID != 111)
         return self.grpcManager.getAssignments(courseId: courseID)
     }
     
@@ -136,11 +135,12 @@ class ServerProvider: ProviderProtocol{
     }
     
     func getSubmissionsByUser(courseId: UInt64, userId: UInt64) -> [Submission] {
-        self.grpcManager.getSubmissionsForEnrollment(courseId: courseId, userId: userId)
+        let submissions = self.grpcManager.getSubmissionsForEnrollment(courseId: courseId, userId: userId)
+        return submissions
     }
     
     func getSubmissionsByGroub(courseId: UInt64, groupId: UInt64) -> [Submission] {
-        self.grpcManager.getSubbmissionByGroup(courseID: courseId, groupID: groupId)
+        return self.grpcManager.getSubbmissionByGroup(courseID: courseId, groupID: groupId)
         //fatalError("Not implemented")
     }
     
@@ -149,7 +149,7 @@ class ServerProvider: ProviderProtocol{
     }
     
     func getEnrollmentsForUser(userId: UInt64) -> [Enrollment] {
-        self.grpcManager.getEnrollmentsByUser(userID: userId)
+        return self.grpcManager.getEnrollmentsByUser(userID: userId)
     }
     
     func getOrganization(orgName: String) -> Organization {
@@ -184,6 +184,7 @@ class ServerProvider: ProviderProtocol{
     // MANUAL GRADING
     
     func loadCriteria(courseId: UInt64, assignmentId: UInt64) -> [GradingBenchmark] {
+
         return self.grpcManager.loadCriteria(courseId: courseId, assignmentId: assignmentId)
     }
     

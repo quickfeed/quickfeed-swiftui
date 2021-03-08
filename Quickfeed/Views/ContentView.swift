@@ -10,8 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
 
-        NavigatorView(viewModel: UserViewModel(provider: ServerProvider()), selectedCourse: 4)
-
+        NavigatorView(viewModel: UserViewModel(provider: ServerProvider()))
     
     }
     
