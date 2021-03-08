@@ -18,7 +18,7 @@ class GRPCManager {
     var defaultOptions: CallOptions
     
     
-    init(){
+    init(userID: UInt64){
         let hostname = "localhost"
         let port = 9090
         
@@ -28,7 +28,7 @@ class GRPCManager {
         
         self.quickfeedClient = AutograderServiceClient(channel: channel)
 
-        let headers: HPACKHeaders = ["custom-header-1": "value1", "user": "100"]
+        let headers: HPACKHeaders = ["custom-header-1": "value1", "user": "\(userID)"]
         
         self.defaultOptions = CallOptions()
         self.defaultOptions.customMetadata = headers
