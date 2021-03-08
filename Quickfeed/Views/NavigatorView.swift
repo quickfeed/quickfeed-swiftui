@@ -19,9 +19,12 @@ struct NavigatorView: View {
                     .padding([.horizontal, .top])
                 if viewModel.getCourse(courseId: selectedCourse).enrolled == Enrollment.UserStatus.teacher {
                     TeacherNavigationView(viewModel: TeacherViewModel(provider: ServerProvider(), course: viewModel.getCourse(courseId: selectedCourse)))
-                } else {
+                } else if viewModel.getCourse(courseId: selectedCourse).enrolled == Enrollment.UserStatus.student{
                     StudentNavigatorView(viewModel: StudentViewModel(provider: ServerProvider(), course: viewModel.getCourse(courseId: selectedCourse)))
+                } else{
+                    Text("Log in")
                 }
+                
                 Spacer()
                 NavigationLink(
                     destination: Text("HARDCODED")){
