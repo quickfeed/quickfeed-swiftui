@@ -12,6 +12,7 @@ struct AutoGraded: View {
     var submission: Submission
     
     var body: some View {
+        ScrollView(showsIndicators: false){
         HStack{
             Spacer()
             Text("Tests")
@@ -49,6 +50,8 @@ struct AutoGraded: View {
             Text(submission.buildInfoJSON.buildlog)
         }
         .frame(height: 450, alignment: .leading)
+    }
+    .frame(minHeight: 500, maxHeight: .infinity)
     }
 }
 

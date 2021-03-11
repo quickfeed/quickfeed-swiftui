@@ -15,6 +15,7 @@ struct UserProfile: View {
             HStack{
                 Image(systemName: "person.fill")
                     .data(url: URL(string: viewModel.user.avatarURL)!)
+                    .cornerRadius(10)
                     //.clipShape(Circle())
                     //.padding(1.0)
                     .frame(width: 100, height: 100)

@@ -31,6 +31,7 @@ struct NavigatorView: View {
                     HStack{
                         Image(systemName: "person.fill")
                             .data(url: URL(string: viewModel.user.avatarURL)!)
+                            .cornerRadius(7.5)
                             //.clipShape(Circle())
                             .frame(width: 30, height: 30)
                             .padding(.leading)

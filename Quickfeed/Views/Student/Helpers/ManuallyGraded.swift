@@ -9,9 +9,13 @@ import SwiftUI
 
 struct ManuallyGraded: View {
     var submission: Submission
-    var review: Review { return submission.reviews[0] }
+    var review: Review
+    //{ return submission.reviews[0] }
+    //var reviews: [Review] { return submission.reviews }
+    //@State private var selectedReview: Int = 0
     
     var body: some View {
+        //ReviewPicker(reviews: reviews, selectedReview: $selectedReview, viewModel: nil)
         List{
             ForEach(review.benchmarks, id: \.self){ benchmarks in
                 Section(header: Text(benchmarks.heading)){
