@@ -13,6 +13,7 @@ struct SubmissionReview: View {
     @State var submissionLink: SubmissionLink
     @Binding var selectedLab: UInt64
     @State private var review: Review = Review()
+    @State private var selectedReview: UInt64 = 0
     
     var body: some View {
         VStack{
@@ -22,6 +23,8 @@ struct SubmissionReview: View {
                 .padding(.bottom)
             SubmissionInfo(viewModel: viewModel, submissionLink: $submissionLink)
             if submissionLink.hasSubmission{
+                
+                
                 List{
                     ForEach(self.review.benchmarks.indices, id: \.self){ idx in
                         GradingBenchmarkSection(benchmark: $review.benchmarks[idx])
