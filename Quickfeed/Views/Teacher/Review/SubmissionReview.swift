@@ -11,9 +11,27 @@ struct SubmissionReview: View {
     var user: User
     @ObservedObject var viewModel: TeacherViewModel
     @State var submissionLink: SubmissionLink
-    @Binding var selectedLab: UInt64
+    
     @State private var review: Review = Review()
-    @State private var selectedReview: UInt64 = 0
+    
+    
+    func hasReview() -> Bool{
+        if submissionLink.submission.reviews.count > 0{
+            return true
+        }
+        return false
+    }
+    
+    func hasReviewByUser() -> Bool{
+        if submissionLink.submission.reviews.count > 0{
+            for review in submissionLink.submission.reviews{
+                if review.reviewerID == viewModel.user.id{
+                    return true
+                }
+            }
+        }
+        return false
+    }
     
     var body: some View {
         VStack{
@@ -23,24 +41,41 @@ struct SubmissionReview: View {
                 .padding(.bottom)
             SubmissionInfo(viewModel: viewModel, submissionLink: $submissionLink)
             if submissionLink.hasSubmission{
-                
-                
-                List{
-                    ForEach(self.review.benchmarks.indices, id: \.self){ idx in
-                        GradingBenchmarkSection(benchmark: $review.benchmarks[idx])
+                if hasReviewByUser(){
+                    List{
+                        ForEach(self.review.benchmarks.indices, id: \.self){ idx in
+                            GradingBenchmarkSection(benchmark: $review.benchmarks[idx])
+                        }
                     }
-                }
-                .onAppear(perform:{
-                    self.review = submissionLink.submission.reviews.first ?? viewModel.createReview() ?? Review()
-                })
-                .cornerRadius(5)
-                
-                HStack{
-                    Spacer()
-                    Button(action: { }, label: {
-                        Text("Mark as ready")
+                    .onAppear(perform:{
+                        self.review = submissionLink.submission.reviews.first ?? viewModel.createReview() ?? Review()
                     })
+                    .cornerRadius(5)
+                    
+                    HStack{
+                        Spacer()
+                        Button(action: { }, label: {
+                            Text("Mark as ready")
+                        })
+                    }
+                    
+                } else {
+                    if hasReview(){
+                        HStack{
+                            Text("This assignment is reviewed by: ")
+                            ForEach(submissionLink.submission.reviews, id: \.self){ review in
+                                Text("\(viewModel.getUserName(userId: review.reviewerID))")
+                            }
+                            if submissionLink.submission.released{
+                                Text("Released")
+                            }
+                        }
+                        
+                    }
+                
                 }
+                
+                
                 
             } else{
                 Text("No submissions for this assignment")
@@ -53,14 +88,11 @@ struct SubmissionReview: View {
         }
         .padding()
         
-        
-        
-        
     }
 }
 
 struct SubmissionReview_Previews: PreviewProvider {
     static var previews: some View {
-        SubmissionReview(user: User(), viewModel: TeacherViewModel(provider: FakeProvider(), course: Course()), submissionLink: SubmissionLink(), selectedLab: .constant(0))
+        SubmissionReview(user: User(), viewModel: TeacherViewModel(provider: FakeProvider(), course: Course()), submissionLink: SubmissionLink())
     }
 }

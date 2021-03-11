@@ -75,7 +75,7 @@ struct ReviewNavigationView: View {
                 List{
                     Section(header: SubmissionListHeader()){
                         ForEach(viewModel.enrollmentLinks.filter({ matchesQuery(user: $0.enrollment.user) && isShown(link: submissionForSelectedLab(links: $0.submissions))}), id: \.enrollment.user.id){ link in
-                            NavigationLink(destination: SubmissionReview(user: link.enrollment.user, viewModel: viewModel, submissionLink: submissionForSelectedLab(links: link.submissions), selectedLab: $selectedLab)){
+                            NavigationLink(destination: SubmissionReview(user: link.enrollment.user, viewModel: viewModel, submissionLink: submissionForSelectedLab(links: link.submissions))){
                                 VStack{
                                     SubmissionListItem(submitterName: link.enrollment.user.name, subLink: submissionForSelectedLab(links: link.submissions))
                                     Divider()
