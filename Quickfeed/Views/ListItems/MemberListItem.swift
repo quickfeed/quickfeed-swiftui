@@ -62,7 +62,6 @@ struct MemberListItem: View {
             SwiftUI.Group{
                 Text(translateUserStatus(status: enrollment.status))
                     .frame(width: 50, alignment: .leading)
-                Spacer()
             }
             
             

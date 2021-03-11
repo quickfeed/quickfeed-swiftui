@@ -54,7 +54,7 @@ struct MemberListHeader: View {
             SwiftUI.Group{
                 Text("Role")
                     .frame(width: 50, alignment: .leading)
-                Spacer()
+                
             }
         }
     }

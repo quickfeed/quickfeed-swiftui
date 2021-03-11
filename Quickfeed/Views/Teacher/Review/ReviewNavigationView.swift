@@ -64,8 +64,6 @@ struct ReviewNavigationView: View {
         
         NavigationView{
             VStack(alignment: .leading){
-                Text("Review Submissions")
-                    .font(.title)
                 LabPicker(labs: viewModel.manuallyGradedAssignments, selectedLab: $selectedLab)
 
                 SearchFieldRepresentable(query: $searchQuery)
@@ -97,6 +95,12 @@ struct ReviewNavigationView: View {
         .onAppear(perform: {
             viewModel.loadEnrollmentLinks()
         })
+        
+        .navigationTitle("Review Submissions")
+        
+        .toolbar{
+            Text("")
+        }
         
         
         

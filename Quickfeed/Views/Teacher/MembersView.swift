@@ -20,15 +20,6 @@ struct MembersView: View {
     
     var body: some View {
         VStack {
-            
-            Text("Members of \(viewModel.currentCourse.name)")
-                .font(.title)
-                .fontWeight(.bold)
-                .padding(.bottom)
-            
-            
-            SearchFieldRepresentable(query: $searchQuery)
-                .frame(height: 20)
             List{
                 Section(header: MemberListHeader(courseTotalSlipDays: self.viewModel.currentCourse.slipDays)){
                     ForEach(self.filteredEnrollments(), id: \.self){ enrollment in
@@ -43,7 +34,13 @@ struct MembersView: View {
         .onAppear(perform: {
             viewModel.loadEnrollments()
         })
+        .navigationTitle("Members of \(viewModel.currentCourse.name)")
+        .toolbar{
+            SearchFieldRepresentable(query: $searchQuery)
+                .frame(minWidth: 200, maxWidth: 350)
+        }
         
+       
     }
     
     func matchesQuery(user: User) -> Bool{

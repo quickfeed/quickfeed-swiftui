@@ -14,33 +14,26 @@ struct ResultGrid: View {
     
     var body: some View {
         VStack{
-            
-            Text("Results of \(viewModel.currentCourse.name)")
-                .font(.title)
-                .fontWeight(.bold)
-                .padding(.bottom)
-            SearchFieldRepresentable(query: $searchQuery)
-                .frame(height: 20)
-            
             List{
-                
                 Section(header: ResultGridListHeader(assignments: self.viewModel.assignments)){
                     ForEach(self.filteredLinks(), id: \.self){ link in
                         ResultListItem(user: link.enrollment.user, submissionLinks: link.submissions, displayedSubmissionLink: $displayedSubmissionLink)
                         Divider()
                     }
                 }
-                
-                
             }
             .cornerRadius(5)
             .padding(.top, 0)
-            
             
         }
         .padding()
         .onAppear(perform: {
         })
+        
+        .toolbar{
+            SearchFieldRepresentable(query: $searchQuery)
+                .frame(minWidth: 200, maxWidth: 350)
+        }
     }
     
     func filteredLinks() -> [EnrollmentLink] {
