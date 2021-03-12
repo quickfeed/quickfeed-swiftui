@@ -38,12 +38,6 @@ struct SubmissionInfo: View {
                 Text(translateSubmissionStatus(statusCode: submissionLink.submission.status))
             }
             Divider()
-            HStack{
-                Text("Reviewer: ")
-                Spacer()
-                Text("\(viewModel.getUserName(userId: submissionLink.submission.reviews.last?.reviewerID ?? 0))")
-            }
-            Divider()
             
             
             

@@ -26,6 +26,8 @@ class TeacherViewModel: UserViewModelProtocol{
         self.provider = provider
         self.user = provider.getUser() ?? User()
         self.currentCourse = course
+        self.loadAssignments()
+        self.loadUsers()
     }
     
     
@@ -58,6 +60,7 @@ class TeacherViewModel: UserViewModelProtocol{
     
     func loadAssignments(){
         self.assignments =  self.provider.getAssignments(courseID: self.currentCourse.id)
+        print(self.assignments.count)
         self.loadManuallyGradedAssignments(courseId: self.currentCourse.id)
         for assignment in assignments{
             self.assignmentMap[assignment.id] = assignment
