@@ -10,6 +10,7 @@ import Foundation
 class UserViewModel: UserViewModelProtocol {
     var provider: ProviderProtocol
     @Published var user: User
+    @Published var remoteImage: RemoteImageLoader?
     var courses: [Course]
     
     init(provider: ProviderProtocol) {
@@ -25,6 +26,10 @@ class UserViewModel: UserViewModelProtocol {
             }
         }
         return Course()
+    }
+    
+    func getRemoteImage() {
+        self.remoteImage = RemoteImageLoader(url: self.user.avatarURL)
     }
     
     func reset() {

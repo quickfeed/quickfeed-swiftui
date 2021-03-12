@@ -20,6 +20,7 @@
 		D06D9AD325F638AE0016BD59 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06D9AD225F638AE0016BD59 /* UserProfile.swift */; };
 		D08BA18525FA3B2F008A3F6D /* ReviewPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08BA18425FA3B2F008A3F6D /* ReviewPicker.swift */; };
 		D08BA18A25FA4875008A3F6D /* SubmissionScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08BA18925FA4875008A3F6D /* SubmissionScore.swift */; };
+		D08BA18F25FA68CB008A3F6D /* RemoteImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08BA18E25FA68CB008A3F6D /* RemoteImageLoader.swift */; };
 		D0A6FCB925CA0A8A008C546B /* StudentNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A6FCB825CA0A8A008C546B /* StudentNavigatorView.swift */; };
 		D0F9FC6325BEB9A90080A1F2 /* GRPC in Frameworks */ = {isa = PBXBuildFile; productRef = D0F9FC6225BEB9A90080A1F2 /* GRPC */; };
 		D0F9FC6525BEB9A90080A1F2 /* CGRPCZlib in Frameworks */ = {isa = PBXBuildFile; productRef = D0F9FC6425BEB9A90080A1F2 /* CGRPCZlib */; };
@@ -117,6 +118,7 @@
 		D06D9AD225F638AE0016BD59 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		D08BA18425FA3B2F008A3F6D /* ReviewPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPicker.swift; sourceTree = "<group>"; };
 		D08BA18925FA4875008A3F6D /* SubmissionScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionScore.swift; sourceTree = "<group>"; };
+		D08BA18E25FA68CB008A3F6D /* RemoteImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImageLoader.swift; sourceTree = "<group>"; };
 		D0A6FCB825CA0A8A008C546B /* StudentNavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentNavigatorView.swift; sourceTree = "<group>"; };
 		D0F9FC6D25BEBC360080A1F2 /* ag.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ag.pb.swift; sourceTree = "<group>"; };
 		D0F9FC6E25BEBC360080A1F2 /* ag.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ag.grpc.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				D0F9FC6E25BEBC360080A1F2 /* ag.grpc.swift */,
 				D0F9FC6D25BEBC360080A1F2 /* ag.pb.swift */,
 				FA17B95C25EF81F1008BB07F /* TranslateStatus.swift */,
+				D08BA18E25FA68CB008A3F6D /* RemoteImageLoader.swift */,
 			);
 			path = Proto;
 			sourceTree = "<group>";
@@ -653,6 +656,7 @@
 				D03EF9CF25F0277A008869CA /* AutoGraded.swift in Sources */,
 				FAB066B025CAC0F000FFE8EB /* ProviderProtocol.swift in Sources */,
 				FA17B96825EFD0D6008BB07F /* SubmissionListHeader.swift in Sources */,
+				D08BA18F25FA68CB008A3F6D /* RemoteImageLoader.swift in Sources */,
 				FA17B99325F258FA008BB07F /* GradingCriterionListItem.swift in Sources */,
 				D06D9AD325F638AE0016BD59 /* UserProfile.swift in Sources */,
 				FA29716E25D28E45000C99A1 /* LabPicker.swift in Sources */,
