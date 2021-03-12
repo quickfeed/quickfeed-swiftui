@@ -52,7 +52,7 @@ struct MemberListItem: View {
             SwiftUI.Group{
                 if course.slipDays > 0 {
                     Text("\(enrollment.slipDaysRemaining)")
-                        .frame(width: 50, alignment: .leading)
+                        .frame(width: 60, alignment: .center)
                     Spacer()
                 }
             }

@@ -15,7 +15,6 @@ struct MemberListHeader: View {
                 Text("Name")
                     .frame(width: 200, alignment: .leading)
                 Spacer()
-                
             }
             SwiftUI.Group{
                 Text("StudentID")
@@ -44,7 +43,7 @@ struct MemberListHeader: View {
             SwiftUI.Group{
                 if courseTotalSlipDays > 0 {
                     Text("Slip Days")
-                        .frame(width: 50, alignment: .leading)
+                        .frame(width: 60, alignment: .center)
                     Spacer()
                 }
             }
