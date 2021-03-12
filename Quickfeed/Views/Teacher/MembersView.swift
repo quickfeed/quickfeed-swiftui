@@ -16,6 +16,33 @@ struct MembersView: View {
         return viewModel.enrollments.filter({ matchesQuery(user: $0.user) })
     }
     
+    
+    
+    var body: some View {
+        VStack {
+            List{
+                Section(header: MemberListHeader(courseTotalSlipDays: self.viewModel.currentCourse.slipDays)){
+                    ForEach(self.filteredEnrollments(), id: \.self){ enrollment in
+                        MemberListItem(enrollment: enrollment, course: enrollment.course)
+                        Divider()
+                    }
+                }
+            }
+            .cornerRadius(5)
+        }
+        .padding()
+        .onAppear(perform: {
+            viewModel.loadEnrollments()
+        })
+        .navigationTitle("Members of \(viewModel.currentCourse.name)")
+        .toolbar{
+            SearchFieldRepresentable(query: $searchQuery)
+                .frame(minWidth: 200, maxWidth: 350)
+        }
+        
+       
+    }
+    
     func matchesQuery(user: User) -> Bool{
         if searchQuery == ""{
             return true
@@ -39,41 +66,6 @@ struct MembersView: View {
         
         
         return false
-    }
-    
-    func getEnrollmentForUser(user: User) -> Enrollment{
-        for enrollment in user.enrollments{
-            if enrollment.courseID == viewModel.currentCourse.id{
-                return enrollment
-            }
-        }
-        
-        return Enrollment()
-    }
-    
-    var body: some View {
-        VStack {
-            Text("Users enrolled in \(viewModel.currentCourse.name)")
-            
-            SearchFieldRepresentable(query: $searchQuery)
-                .padding(.horizontal)
-                .frame(height: 20)
-            
-            List{
-                Section(header: MemberListHeader(courseTotalSlipDays: self.viewModel.currentCourse.slipDays)){
-                    ForEach(self.filteredEnrollments(), id: \.self){ enrollment in
-                        MemberListItem(enrollment: enrollment, courseTotalSlipDays: self.viewModel.currentCourse.slipDays)
-                            
-                    }
-                }
-                
-                
-            }
-        }
-        .onAppear(perform: {
-            viewModel.loadEnrollments()
-        })
-        
     }
     
 }

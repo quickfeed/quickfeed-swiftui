@@ -11,23 +11,51 @@ struct MemberListHeader: View {
     var courseTotalSlipDays: UInt32
     var body: some View {
         HStack{
-            Text("Name")
-                .padding(.leading, 4)
-                .frame(minWidth: 200, maxWidth: .infinity, alignment: .leading)
-            Text("Email")
-                .frame(minWidth: 200, maxWidth: .infinity, alignment: .leading)
-            Text("Student ID")
-                .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
-            Text("Activity")
-                .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
-            Text("Approved")
-                .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
-            if courseTotalSlipDays > 0 {
-                Text("Remaining Slip Days")
-                    .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
+            SwiftUI.Group{
+                Text("Name")
+                    .frame(width: 200, alignment: .leading)
+                Spacer()
+                
             }
-            Text("Role")
-                .frame(idealWidth: 50, maxWidth: .infinity, alignment: .leading)
+            SwiftUI.Group{
+                Text("StudentID")
+                    .frame(width: 60, alignment: .leading)
+                Spacer()
+            }
+            
+            SwiftUI.Group{
+                Text("Email")
+                    .frame(width: 200, alignment: .leading)
+                Spacer()
+            }
+            
+            SwiftUI.Group{
+                Text("Activity")
+                    .frame(width: 50, alignment: .leading)
+                Spacer()
+            }
+            
+            SwiftUI.Group{
+                Text("Approved")
+                    .frame(width: 60, alignment: .center)
+                Spacer()
+            }
+            
+            SwiftUI.Group{
+                if courseTotalSlipDays > 0 {
+                    Text("Slip Days")
+                        .frame(width: 50, alignment: .leading)
+                    Spacer()
+                }
+            }
+        
+            
+                
+            SwiftUI.Group{
+                Text("Role")
+                    .frame(width: 50, alignment: .leading)
+                
+            }
         }
     }
 }

@@ -12,10 +12,8 @@ func translateSubmissionStatus(statusCode: Submission.Status) -> String{
     switch statusCode {
     case .approved:
         return "Approved"
-        
     case .rejected:
         return "Rejected"
-        
     case .revision:
         return "Revision"
     default:
@@ -57,7 +55,7 @@ func getImageForSubmissionStatus(submission: Submission.Status) -> Image{
     case Submission.Status.rejected:
         return Image(systemName: "multiply.circle")
     default:
-        return Image(systemName: "circlebadge")
+        return Image(systemName: "circle")
     }
 }
 
@@ -79,6 +77,19 @@ func getImageForGradingCriterionGrade(grade: GradingCriterion.Grade) -> Image{
     case GradingCriterion.Grade.failed:
         return Image(systemName: "multiply.circle")
     default:
-        return Image(systemName: "circlebadge")
+        return Image(systemName: "circle")
     }
 }
+
+func getSystemNameForGradingCriterionGrade(grade: GradingCriterion.Grade) -> String{
+    switch grade{
+    case .passed:
+        return "checkmark.circle"
+    case .failed:
+        return "multiply.circle"
+    default:
+        return "circle"
+    }
+}
+
+

@@ -17,7 +17,7 @@ struct LabSection: View {
         } else {
             Section(header: Text("Labs")){
                 ForEach(assignments!, id: \.id){ assignment in
-                    NavigationLink(destination: StudentLab(assignment: assignment, viewModel: viewModel)){
+                    NavigationLink(destination: StudentLab(assignment: assignment, submission: viewModel.getSubmission(assignment: assignment))){
                         if viewModel.getSubmission(assignment: assignment) != nil {
                             getImageForSubmissionStatus(submission: viewModel.getSubmission(assignment: assignment)!.status)
                                 .frame(width: 5)

@@ -44,7 +44,7 @@ struct TeacherNavigationView: View {
                             .foregroundColor(.blue)
                         Text("Review")
                     }
-                    NavigationLink(destination: Text("Release")){
+                    NavigationLink(destination: ReleaseNavigationView(viewModel: viewModel, selectedLab: $selectedLabForManualGrading)){
                         Image(systemName: "arrow.up.doc.fill")
                             .frame(width: 20)
                             .foregroundColor(.blue)
@@ -52,15 +52,20 @@ struct TeacherNavigationView: View {
                     }
                     
                 }
+                .onAppear(perform: {
+                    self.selectedLabForManualGrading = self.viewModel.manuallyGradedAssignments[0].id
+                })
             }
             
             GithubLinkSection(orgPath: viewModel.currentCourse.organizationPath, userLogin: viewModel.user.login, isTeacher: true)
+                
         }
         .onAppear(perform: {
             self.viewModel.loadUsers()
-            self.viewModel.loadAssignments()
+
             
-            //self.selectedLabForManualGrading = self.viewModel.manuallyGradedAssignments[0].id
+            
+            
             
         })
     }

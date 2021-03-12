@@ -18,7 +18,7 @@ class GRPCManager {
     var defaultOptions: CallOptions
     
     
-    init(){
+    init(userID: UInt64){
         let hostname = "localhost"
         let port = 9090
         
@@ -28,7 +28,7 @@ class GRPCManager {
         
         self.quickfeedClient = AutograderServiceClient(channel: channel)
 
-        let headers: HPACKHeaders = ["custom-header-1": "value1", "user": "144"]
+        let headers: HPACKHeaders = ["custom-header-1": "value1", "user": "\(userID)"]
         
         self.defaultOptions = CallOptions()
         self.defaultOptions.customMetadata = headers
@@ -272,6 +272,25 @@ class GRPCManager {
     
     
     // MANUAL GRADING
+    
+    
+    func createReview(courseId: UInt64, review: Review) -> Review?{
+        let req = ReviewRequest.with{
+            $0.courseID = courseId
+            $0.review = review
+        }
+        
+        let call = self.quickfeedClient.createReview(req, callOptions: self.defaultOptions)
+        do {
+            let resp = try call.response.wait()
+            return resp
+        } catch {
+            print("Call failed: \(error)")
+        }
+        
+        return nil
+        
+    }
     
     
     

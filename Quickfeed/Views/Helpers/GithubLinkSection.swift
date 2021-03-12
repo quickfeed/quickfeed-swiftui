@@ -21,7 +21,6 @@ struct GithubLinkSection: View {
                 Link("tests", destination: URL(string: "https://github.com/" + orgPath + "/tests")!)
             }
         }
-        .padding(.leading)
     }
 }
 

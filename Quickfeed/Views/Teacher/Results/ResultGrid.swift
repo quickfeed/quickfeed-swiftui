@@ -9,30 +9,31 @@ import SwiftUI
 
 struct ResultGrid: View {
     @ObservedObject var viewModel: TeacherViewModel
-    @Binding var displayingSubmission: Bool
+    @Binding var displayedSubmissionLink: SubmissionLink?
     @State var searchQuery: String = ""
     
     var body: some View {
         VStack{
-            Text("Results for \(viewModel.currentCourse.name)")
-            Button("test"){self.displayingSubmission = true}
-            SearchFieldRepresentable(query: $searchQuery)
-                .padding(.horizontal)
-                .frame(height: 20)
             List{
                 Section(header: ResultGridListHeader(assignments: self.viewModel.assignments)){
-                    ForEach(self.filteredLinks().indices, id: \.self){ i in
-                        ResultListItem(user: self.filteredLinks()[i].enrollment.user, submissionLinks: self.filteredLinks()[i].submissions)
-                        
-                        
+                    ForEach(self.filteredLinks(), id: \.self){ link in
+                        ResultListItem(user: link.enrollment.user, submissionLinks: link.submissions, displayedSubmissionLink: $displayedSubmissionLink)
+                        Divider()
                     }
                 }
-                
             }
+            .cornerRadius(5)
             .padding(.top, 0)
+            
         }
+        .padding()
         .onAppear(perform: {
         })
+        
+        .toolbar{
+            SearchFieldRepresentable(query: $searchQuery)
+                .frame(minWidth: 200, maxWidth: 350)
+        }
     }
     
     func filteredLinks() -> [EnrollmentLink] {
@@ -67,6 +68,6 @@ struct ResultGrid: View {
 
 struct ResultGrid_Previews: PreviewProvider {
     static var previews: some View {
-        ResultGrid(viewModel: TeacherViewModel(provider: FakeProvider(), course: Course()), displayingSubmission: .constant(false))
+        ResultGrid(viewModel: TeacherViewModel(provider: FakeProvider(), course: Course()), displayedSubmissionLink: .constant(nil))
     }
 }

@@ -19,6 +19,7 @@ struct SubmissionListItem: View {
                 .frame( width: 200, alignment: .leading)
             Spacer()
             Image(systemName: statusSymbol())
+                .foregroundColor(statusColor())
         }
     }
     
@@ -29,6 +30,14 @@ struct SubmissionListItem: View {
         }
         
         return subLink.submission.reviews.last?.ready ?? false ? "checkmark.circle" : "circle"
+    }
+    
+    func statusColor() -> Color{
+        if !subLink.hasSubmission{
+            return .blue
+        }
+        
+        return subLink.submission.reviews.last?.ready ?? false ? .green : .orange
     }
 }
 

@@ -19,28 +19,25 @@ struct SubmissionInfo: View {
                 Spacer()
                 Text("\(submissionLink.submission.score)%")
             }
+            Divider()
             HStack{
                 Text("Reviews:")
                 Spacer()
                 Text("\(submissionLink.submission.reviews.count) / \(submissionLink.assignment.reviewers)")
             }
-            
+            Divider()
             HStack {
                 Text("Review Status:")
                 Spacer()
                 Text("\(submissionLink.submission.reviews.last?.ready ?? false ? "Ready" : "In progress")")
             }
+            Divider()
             HStack{
                 Text("Submission Status:")
                 Spacer()
                 Text(translateSubmissionStatus(statusCode: submissionLink.submission.status))
             }
-            
-            HStack{
-                Text("Reviewer: ")
-                Spacer()
-                Text("\(viewModel.getUserName(userId: submissionLink.submission.reviews.last?.reviewerID ?? 0))")
-            }
+            Divider()
             
             
             

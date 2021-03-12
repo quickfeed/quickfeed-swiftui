@@ -9,12 +9,27 @@ import SwiftUI
 
 struct ManuallyGraded: View {
     var submission: Submission
-    var review: Review { return submission.reviews[0] }
+    var review: Review
+    //{ return submission.reviews[0] }
+    //var reviews: [Review] { return submission.reviews }
+    //@State private var selectedReview: Int = 0
     
     var body: some View {
+        //ReviewPicker(reviews: reviews, selectedReview: $selectedReview, viewModel: nil)
         List{
             ForEach(review.benchmarks, id: \.self){ benchmarks in
                 Section(header: Text(benchmarks.heading)){
+                    if benchmarks.comment != "" {
+                        HStack{
+                            Spacer()
+                                .frame(width: 50)
+                            Text("Comment: \(benchmarks.comment)")
+                                .foregroundColor(.secondary)
+                                .padding(.leading)
+                        }
+                        Divider()
+                        .padding(.leading)
+                    }
                     ForEach(benchmarks.criteria, id: \.self){ criteria in
                         HStack{
                             Text(String(criteria.description_p))
@@ -35,8 +50,15 @@ struct ManuallyGraded: View {
                     .padding(.leading)
                 }
             }
-            
+            if review.feedback != "" {
+                Section(header: Text("Feedback")){
+                    Text("Comment: \(review.feedback)")
+                        .foregroundColor(.secondary)
+                        .padding(.leading)
+                }
+            }
         }
+        .cornerRadius(5)
     }
 }
 

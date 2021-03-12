@@ -9,18 +9,35 @@ import SwiftUI
 
 struct StudentNavigatorView: View {
     @ObservedObject var viewModel: StudentViewModel
+    //@State var reload: Bool = false
+    
+    init(viewModel: StudentViewModel) {
+        self.viewModel = viewModel
+        viewModel.getAssignments()
+        viewModel.getSubmissions()
+    }
     
     var body: some View {
-        Text(viewModel.course.code)
-            .font(.title)
-            .padding([.leading, .top])
-        if viewModel.course.slipDays != 0 {
-            Text("Remaining Slipdays: \(viewModel.getSlipdays()!)")
-                .padding(.leading)
+        HStack{
+            if viewModel.course.slipDays != 0 {
+                Text("Remaining SlipDays: \(viewModel.getSlipdays()!)")
+                    .padding(.leading)
+            } else {
+                Text("No SlipDays for this course")
+                    .padding(.leading)
+            }
+            Spacer()
+            Image(systemName: "arrow.clockwise")
+                .padding(.trailing)
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    viewModel.reload()
+                }
         }
         List{
             LabSection(viewModel: viewModel)
             GithubLinkSection(orgPath: viewModel.course.organizationPath, userLogin: viewModel.user.login, isTeacher: false)
+                .padding(.leading)
         }
     }
 }

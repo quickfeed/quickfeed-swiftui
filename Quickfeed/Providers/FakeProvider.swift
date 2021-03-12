@@ -8,6 +8,10 @@
 import Foundation
 
 class FakeProvider: ProviderProtocol, ObservableObject{
+    func createReview(courseId: UInt64, review: Review) -> Review? {
+        fatalError("Not implemented")
+    }
+    
     func getEnrollmentsByCourse(courseId: UInt64) -> [Enrollment] {
         fatalError("Not implemented")
     }
@@ -25,21 +29,14 @@ class FakeProvider: ProviderProtocol, ObservableObject{
     @Published var currentUser: User
     var dummyUsers: [User]
     var courses: [Course]
-    var grpcManager: GRPCManager
     
     init() {
-        self.grpcManager = GRPCManager()
         self.courses = []
         self.dummyUsers = []
         self.currentUser = User(name: "Current user", id: 1, studentID: "111111", isAdmin: true, email: "test2@testmail.com", enrollments: [], login: "currusr")
         self.initDummyUsers()
         self.initTestCourses()
         self.initTestEnrollments()
-        
-        // self.grpcManager.getProviders()
-        // self.grpcManager.getOrganization(orgName: "testorg")
-        
-        
     }
     
     
