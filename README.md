@@ -14,7 +14,7 @@ macOS client for [QuickFeed](https://github.com/autograde/quickfeed)
 * `git pull git@github.com:oskargj/quickfeed.git`
 * `git checkout local-docker`
 * add a db file
-* buld `docker-compose up`
+* build: `docker-compose up`
 
 ### quickfeed-swiftui
 * open the xcode project
