@@ -60,7 +60,7 @@ class TeacherViewModel: UserViewModelProtocol{
     
     func loadAssignments(){
         self.assignments =  self.provider.getAssignments(courseID: self.currentCourse.id)
-        print(self.assignments.count)
+        //print(self.assignments.count)
         self.loadManuallyGradedAssignments(courseId: self.currentCourse.id)
         for assignment in assignments{
             self.assignmentMap[assignment.id] = assignment

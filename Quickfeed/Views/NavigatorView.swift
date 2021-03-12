@@ -41,7 +41,7 @@ struct NavigatorView: View {
                                 .foregroundColor(.blue)
                             Text("Admin")
                                 .font(.headline)
-                                //.padding(.leading)
+                            //.padding(.leading)
                             Spacer()
                         }
                         //.frame(height: 30)
@@ -53,22 +53,18 @@ struct NavigatorView: View {
                 NavigationLink(
                     destination: UserProfile(viewModel: viewModel)){
                     HStack{
-                            if viewModel.remoteImage!.state == RemoteImageLoader.State.failure {
-                                Image(systemName: "person.fill")
-                                    .cornerRadius(7.5)
-                                    .frame(width: 30, height: 30)
-                                    .padding(.leading)
-                            } else {
-                                Image(nsImage: NSImage(data: viewModel.remoteImage!.data)!)
-                                    .cornerRadius(7.5)
-                                    .frame(width: 30, height: 30)
-                                    .padding(.leading)
-                            }
-                        /*Image(systemName: "person.fill")
-                            .data(url: URL(string: viewModel.user.avatarURL)!)
-                            .cornerRadius(7.5)
-                            .frame(width: 30, height: 30)
-                            .padding(.leading)*/
+                        if viewModel.remoteImage!.state == RemoteImageLoader.State.failure {
+                            Image(systemName: "person.fill")
+                                .cornerRadius(7.5)
+                                .frame(width: 30, height: 30)
+                                .padding(.leading)
+                        } else {
+                            Image(nsImage: NSImage(data: viewModel.remoteImage!.data)!)
+                                .resizable()
+                                .cornerRadius(7.5)
+                                .frame(width: 30, height: 30)
+                                .padding(.leading)
+                        }
                         Text(viewModel.user.name)
                             .font(.headline)
                         Spacer()
