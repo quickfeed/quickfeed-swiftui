@@ -208,9 +208,6 @@ struct ReviewNavigationView: View {
         
         .navigationTitle("Review Submissions")
         
-        .toolbar{
-            Text("")
-        }
         
         
         

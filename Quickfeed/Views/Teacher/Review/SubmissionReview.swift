@@ -66,16 +66,11 @@ struct SubmissionReview: View {
                             ForEach(submissionLink.submission.reviews, id: \.self){ review in
                                 Text("\(viewModel.getUserName(userId: review.reviewerID))")
                             }
-                            if submissionLink.submission.released{
-                                Text("Released")
-                            }
                         }
                         
                     }
                 
                 }
-                
-                
                 
             } else{
                 Text("No submissions for this assignment")
