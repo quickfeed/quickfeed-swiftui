@@ -11,58 +11,94 @@ struct ReviewNavigationView: View {
     @ObservedObject var viewModel: TeacherViewModel
     @State private var searchQuery: String = ""
     @Binding var selectedLab: UInt64
-    @State private var filterReady: Bool = false
-    @State private var filterInProgress: Bool = false
-    @State private var filterNone: Bool = false
-    @State private var filterApproved: Bool = false
-    @State private var filterRevision: Bool = false
-    @State private var filterNoReviews: Bool = false
+   
     
+   
     
     var filteredEnrollmentLinks: [EnrollmentLink] {
         return viewModel.enrollmentLinks.filter({
                 matchesQuery(user: $0.enrollment.user)
-                    && isShown(link: submissionForSelectedLab(links: $0.submissions))
         })
     }
-    func isShown(link: SubmissionLink) -> Bool{
-        if filterReady{
-            for review in link.submission.reviews{
-                if review.ready{
-                    continue
-                }
-            }
-            return false
+    
+    var awaitingReviewEnrollments: [EnrollmentLink] {
+        return filteredEnrollmentLinks.filter{
+            hasSubmissionForSelectedLab(link: $0) &&
+            !hasReview(link: $0)
         }
-        if filterNoReviews{
-            if link.submission.reviews.count > 0{
-                return false
+    }
+    
+    var inProgressEnrollments: [EnrollmentLink]{
+        return filteredEnrollmentLinks.filter({
+            hasSubmissionForSelectedLab(link: $0) &&
+            hasNonReadyReview(link: $0)
+        })
+    }
+    
+    var readyEnrollments: [EnrollmentLink]{
+        return filteredEnrollmentLinks.filter({
+            hasReadyReviewForAssignment(link: $0)
+        })
+    }
+    
+    var missingSubmissionEnrollments: [EnrollmentLink]{
+        return filteredEnrollmentLinks.filter({
+            !hasSubmissionForSelectedLab(link: $0)
+        })
+    }
+    
+    func hasReview(link: EnrollmentLink) -> Bool{
+        let subForLab = submissionForSelectedLab(links: link.submissions)
+        if subForLab != nil{
+            if subForLab!.submission.reviews.count > 0{
+               return true
             }
+        }
+        return false
+    }
+    
+    func hasNonReadyReview(link: EnrollmentLink) -> Bool{
+        let subForLab = submissionForSelectedLab(links: link.submissions)
+        if subForLab != nil{
+            if subForLab!.submission.reviews.count > 0 && subForLab!.submission.reviews.allSatisfy({!$0.ready}){
+               return true
+            }
+        }
+        return false
+        
+    }
+    
+   
+    
+    func hasSubmissionForSelectedLab(link: EnrollmentLink) -> Bool{
+        let subForLab = link.submissions.first(where: { $0.assignment.id == selectedLab } )
+        if subForLab != nil{
+            if subForLab!.hasSubmission{
+                return true
+            }
+            
         }
         
-        return true
+        return false
     }
     
-    
-    func submissionForSelectedLab(links: [SubmissionLink]) -> SubmissionLink {
+    func submissionForSelectedLab(links: [SubmissionLink]) -> SubmissionLink? {
         return links.first(where: {
             $0.assignment.id == self.selectedLab
-        }) ?? links[0]
+        })
     }
     
     
     
-    
-    func countMissingSubmissions() -> Int{
-        var count = 0
-        for enrollmentLink in viewModel.enrollmentLinks{
-            if !enrollmentLink.submissions.contains(where: {$0.submission.assignmentID == selectedLab}){
-                count += 1
+    func hasReadyReviewForAssignment(link: EnrollmentLink) -> Bool{
+        let subForLab = submissionForSelectedLab(links: link.submissions)
+        if subForLab != nil{
+            if subForLab!.submission.reviews.contains(where: {$0.ready}){
+               return true
             }
         }
-        return count
+        return false
     }
-    
   
     
     func matchesQuery(user: User) -> Bool{
@@ -94,33 +130,70 @@ struct ReviewNavigationView: View {
                 SearchFieldRepresentable(query: $searchQuery)
                     .frame(height: 25)
                 
-                
-                HStack{
-                    Toggle("Ready", isOn: $filterReady)
-                    Toggle("In progress", isOn: $filterInProgress)
-                    Toggle("No reviews", isOn: $filterNoReviews)
-                }
-                HStack{
-                    Toggle("None", isOn: $filterNone)
-                    Toggle("Approved", isOn: $filterApproved)
-                    Toggle("Revision", isOn: $filterRevision)
-                }
-                
                     
                     
               
                 List{
-                    Section(header: SubmissionListHeader()){
-                        ForEach(filteredEnrollmentLinks, id: \.enrollment.user.id){ link in
-                            NavigationLink(destination: SubmissionReview(user: link.enrollment.user, viewModel: viewModel, submissionLink: submissionForSelectedLab(links: link.submissions))){
-                                VStack{
-                                    SubmissionListItem(submitterName: link.enrollment.user.name, subLink: submissionForSelectedLab(links: link.submissions))
-                                    Divider()
+                    if awaitingReviewEnrollments.count > 0{
+                        Section(header: Text("To Do (\(awaitingReviewEnrollments.count))")){
+                            ForEach(awaitingReviewEnrollments, id: \.self){ link in
+                                NavigationLink(destination: SubmissionReview(user: link.enrollment.user, viewModel: viewModel, submissionLink: submissionForSelectedLab(links: link.submissions)!)){
+                                    VStack{
+                                        SubmissionListItem(submitterName: link.enrollment.user.name, subLink: submissionForSelectedLab(links: link.submissions)!)
+                                        Divider()
+                                    }
                                 }
                             }
                         }
                     }
+                    
+                   
+                    
+                    if inProgressEnrollments.count > 0{
+                        Section(header: Text("In Progress (\(inProgressEnrollments.count))")){
+                            ForEach(inProgressEnrollments, id: \.self){ link in
+                                NavigationLink(destination: SubmissionReview(user: link.enrollment.user, viewModel: viewModel, submissionLink: submissionForSelectedLab(links: link.submissions)!)){
+                                    VStack{
+                                        SubmissionListItem(submitterName: link.enrollment.user.name, subLink: submissionForSelectedLab(links: link.submissions)!)
+                                        Divider()
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                    if readyEnrollments.count > 0{
+                        Section(header: Text("Ready (\(readyEnrollments.count))")){
+                            ForEach(readyEnrollments, id: \.self){ link in
+                                NavigationLink(destination: SubmissionReview(user: link.enrollment.user, viewModel: viewModel, submissionLink: submissionForSelectedLab(links: link.submissions)!)){
+                                    VStack{
+                                        SubmissionListItem(submitterName: link.enrollment.user.name, subLink: submissionForSelectedLab(links: link.submissions)!)
+                                        Divider()
+                                    }
+                                }
+                            }
+                        }
+                        
+                    }
+                    
+                    if missingSubmissionEnrollments.count > 0{
+                        Section(header: Text("No submissions (\(missingSubmissionEnrollments.count))")){
+                            ForEach(missingSubmissionEnrollments, id: \.self){ link in
+                                NavigationLink(destination: SubmissionReview(user: link.enrollment.user, viewModel: viewModel, submissionLink: submissionForSelectedLab(links: link.submissions)!)){
+                                    VStack{
+                                        SubmissionListItem(submitterName: link.enrollment.user.name, subLink: submissionForSelectedLab(links: link.submissions)!)
+                                        Divider()
+                                    }
+                                }
+                            }
+                        }
+                        
+                    }
+                    
+                    
+                    
                 }
+                .listStyle(SidebarListStyle())
                 .cornerRadius(5)
                 
                 
