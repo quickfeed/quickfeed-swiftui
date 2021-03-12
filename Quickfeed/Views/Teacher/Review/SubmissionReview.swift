@@ -54,7 +54,7 @@ struct SubmissionReview: View {
                     
                     HStack{
                         Spacer()
-                        Button(action: { }, label: {
+                        Button(action: { review.ready = true }, label: {
                             Text("Mark as ready")
                         })
                     }
