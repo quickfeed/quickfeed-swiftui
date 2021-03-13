@@ -5,7 +5,7 @@ macOS client for [QuickFeed](https://github.com/autograde/quickfeed)
 
 ## Guide
 ### Reqirements
-* Macos 
+* macOS 
 * Xcode
 * Go
 * Docker
