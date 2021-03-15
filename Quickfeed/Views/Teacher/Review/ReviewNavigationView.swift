@@ -8,6 +8,7 @@
 import SwiftUI
 
 
+// Overides translusent background for the list
 extension NSTableView {
   open override func viewDidMoveToWindow() {
     super.viewDidMoveToWindow()
