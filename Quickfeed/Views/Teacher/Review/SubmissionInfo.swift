@@ -10,8 +10,6 @@ import SwiftUI
 struct SubmissionInfo: View {
     @ObservedObject var viewModel: TeacherViewModel
     @Binding var submissionLink: SubmissionLink
-    
-    
     var body: some View {
         VStack{
             HStack{
