@@ -141,22 +141,14 @@ class GRPCManager {
         
     }
     
-    func getSubmissionsByCourse(courseId: UInt64, type: SubmissionsForCourseRequest.TypeEnum) -> CourseSubmissions{
+    func getSubmissionsByCourse(courseId: UInt64, type: SubmissionsForCourseRequest.TypeEnum) -> EventLoopFuture<CourseSubmissions>{
         let req = SubmissionsForCourseRequest.with{
             $0.courseID = courseId
             $0.type = type
         }
         
         let call = self.quickfeedClient.getSubmissionsByCourse(req, callOptions: self.defaultOptions)
-        do {
-            let response = try call.response.wait()
-            return response
-
-            } catch {
-            print("Call failed: \(error)")
-        }
-        
-        return CourseSubmissions()
+        return call.response
     }
     func getSubbmissionByGroup(courseID: UInt64, groupID: UInt64) -> [Submission] {
         let req = SubmissionRequest.with{

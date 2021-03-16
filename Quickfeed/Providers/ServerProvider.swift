@@ -5,6 +5,7 @@
 //  Created by Oskar Gjølga on 25/02/2021.
 //
 import Foundation
+import NIO
 
 class ServerProvider: ProviderProtocol{
     var currentUser: User
@@ -144,7 +145,7 @@ class ServerProvider: ProviderProtocol{
         //fatalError("Not implemented")
     }
     
-    func getSubmissionsByCourse(courseId: UInt64, type: SubmissionsForCourseRequest.TypeEnum) -> CourseSubmissions {
+    func getSubmissionsByCourse(courseId: UInt64, type: SubmissionsForCourseRequest.TypeEnum) -> EventLoopFuture<CourseSubmissions> {
         return self.grpcManager.getSubmissionsByCourse(courseId: courseId, type: type)
     }
     

@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import NIO
 
 
 protocol ProviderProtocol{
@@ -41,7 +42,7 @@ protocol ProviderProtocol{
     func updateGroup(group: Group) -> Status
     func getSubmissionsByUser(courseId: UInt64, userId: UInt64) -> [Submission]
     func getSubmissionsByGroub(courseId: UInt64, groupId: UInt64) -> [Submission]
-    func getSubmissionsByCourse(courseId: UInt64, type: SubmissionsForCourseRequest.TypeEnum) -> CourseSubmissions
+    func getSubmissionsByCourse(courseId: UInt64, type: SubmissionsForCourseRequest.TypeEnum) -> EventLoopFuture<CourseSubmissions>
     func getEnrollmentsForUser(userId: UInt64) -> [Enrollment]
     func getOrganization(orgName: String) -> Organization
     func getProviders() -> [String]

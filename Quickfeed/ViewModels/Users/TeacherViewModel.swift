@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import NIO
 
 class TeacherViewModel: UserViewModelProtocol{
     var provider: ProviderProtocol
@@ -28,6 +29,9 @@ class TeacherViewModel: UserViewModelProtocol{
         self.currentCourse = course
         self.loadAssignments()
         self.loadUsers()
+        
+        self.loadEnrollmentLinks()
+        
     }
     
     
@@ -50,8 +54,17 @@ class TeacherViewModel: UserViewModelProtocol{
     }
     
     func loadEnrollmentLinks(){
-        let courseSubmissions = self.provider.getSubmissionsByCourse(courseId: self.currentCourse.id, type: SubmissionsForCourseRequest.TypeEnum.all)
-        self.enrollmentLinks = courseSubmissions.links
+        let response = self.provider.getSubmissionsByCourse(courseId: self.currentCourse.id, type: SubmissionsForCourseRequest.TypeEnum.all)
+        _ = response.always {(response: Result<CourseSubmissions, Error>) in
+            switch response {
+            case .success(let response):
+                DispatchQueue.main.async {
+                    self.enrollmentLinks = response.links
+                }
+            case .failure(let err):
+                print("[Error] Connection error or item not found: \(err)")
+            }
+        }
     }
     
     func loadEnrollments(){

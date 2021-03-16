@@ -136,10 +136,7 @@ struct ReviewNavigationView: View {
         
         NavigationView{
             VStack(alignment: .leading){
-                LabPicker(labs: viewModel.manuallyGradedAssignments, selectedLab: $selectedLab)
-
-                SearchFieldRepresentable(query: $searchQuery)
-                    .frame(height: 25)
+                
                 
                 List{
                     if awaitingReviewEnrollments.count > 0{
@@ -212,6 +209,12 @@ struct ReviewNavigationView: View {
         })
         
         .navigationTitle("Review Submissions")
+        .toolbar{
+            LabPicker(labs: viewModel.manuallyGradedAssignments, selectedLab: $selectedLab)
+
+            SearchFieldRepresentable(query: $searchQuery)
+                .frame(minWidth: 200, maxWidth: 350)
+        }
         
         
         
