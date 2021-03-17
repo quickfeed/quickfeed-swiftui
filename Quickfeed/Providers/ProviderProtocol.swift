@@ -16,7 +16,7 @@ protocol ProviderProtocol{
     func getAllCoursesForCurrentUser() -> [Course]?
     func getCoursesForCurrentUser() -> [Course]?
     func isAuthorizedTeacher() -> Bool
-    func getCourses() -> [Course]
+    func getCourses() -> [Course]?
     func getUsers() -> [User]?
     func updateUser(user: User)
     

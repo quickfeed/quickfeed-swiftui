@@ -10,6 +10,12 @@ import SwiftUI
 struct AdminUsers: View {
     @ObservedObject var viewModel: AdminViewModel
     @State var searchQuery: String = ""
+    @Binding var showUsers: Bool
+    
+    
+    func filteredUsers() -> [User] {
+        return viewModel.users!.filter({ matchesQuery(user: $0) })
+    }
     
     var body: some View {
         List{
@@ -26,7 +32,7 @@ struct AdminUsers: View {
                 Text("IsAdmin")
                     .frame(width: 60, alignment: .trailing)
             }){
-                ForEach(viewModel.users!, id: \.self){ user in
+                ForEach(self.filteredUsers(), id: \.self){ user in
                     HStack{
                         Link(destination: URL(string: "https://www.github.com/" + user.login)!, label:{
                             Text(user.name)
@@ -53,12 +59,40 @@ struct AdminUsers: View {
         }
         .navigationTitle("Manage Users")
         .toolbar{
+            Button(action: {self.showUsers = false}, label: {
+                Text("Courses")
+            })
             SearchFieldRepresentable(query: $searchQuery)
                 .frame(minWidth: 200, maxWidth: 350)
         }
+        
+    }
+    
+    func matchesQuery(user: User) -> Bool{
+        if searchQuery == ""{
+            return true
+        }
+        
+        if  user.name.lowercased().contains(self.searchQuery.lowercased()){
+            return true
+        }
+        
+        if  user.email.lowercased().contains(self.searchQuery.lowercased()){
+            return true
+        }
+        
+        if user.studentID.lowercased().contains(self.searchQuery.lowercased()){
+            return true
+        }
+        
+        if user.login.lowercased().contains(self.searchQuery.lowercased()){
+            return true
+        }
+        
+        
+        return false
     }
 }
-
 /*struct AdminUsers_Previews: PreviewProvider {
     static var previews: some View {
         AdminUsers()

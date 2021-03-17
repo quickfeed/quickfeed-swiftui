@@ -11,11 +11,13 @@ class AdminViewModel: UserViewModelProtocol {
     var provider: ProviderProtocol
     var user: User
     @Published var users: [User]?
+    @Published var courses: [Course]?
     
     init(provider: ProviderProtocol) {
         self.provider = provider
         self.user = provider.getUser()!
         getUsers()
+        getCourses()
     }
     
     func updateUser(user: User){
@@ -27,6 +29,10 @@ class AdminViewModel: UserViewModelProtocol {
     
     func getUsers(){
         self.users = provider.getUsers()
+    }
+    
+    func getCourses(){
+        self.courses = provider.getCourses()
     }
     
     

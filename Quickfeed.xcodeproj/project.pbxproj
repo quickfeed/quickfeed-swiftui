@@ -13,6 +13,9 @@
 		D03EF9D425F027A2008869CA /* ManuallyGraded.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03EF9D325F027A2008869CA /* ManuallyGraded.swift */; };
 		D04331D326028CD60034C4B9 /* AdminViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04331D226028CD60034C4B9 /* AdminViewModel.swift */; };
 		D04331D926028ECD0034C4B9 /* AdminUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04331D826028ECD0034C4B9 /* AdminUsers.swift */; };
+		D04331E12602A5750034C4B9 /* AdminCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04331E02602A5750034C4B9 /* AdminCourses.swift */; };
+		D04331E62602B35C0034C4B9 /* HelpFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04331E52602B35C0034C4B9 /* HelpFunctions.swift */; };
+		D04331EB2602B9FF0034C4B9 /* Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04331EA2602B9FF0034C4B9 /* Admin.swift */; };
 		D04B46EC25D1301200AC8926 /* LabSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B46EB25D1301200AC8926 /* LabSection.swift */; };
 		D04B46FD25D1696D00AC8926 /* LabInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B46FC25D1696D00AC8926 /* LabInfo.swift */; };
 		D04B470225D1741300AC8926 /* StudentLab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B470125D1741300AC8926 /* StudentLab.swift */; };
@@ -114,6 +117,9 @@
 		D03EF9D325F027A2008869CA /* ManuallyGraded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuallyGraded.swift; sourceTree = "<group>"; };
 		D04331D226028CD60034C4B9 /* AdminViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewModel.swift; sourceTree = "<group>"; };
 		D04331D826028ECD0034C4B9 /* AdminUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminUsers.swift; sourceTree = "<group>"; };
+		D04331E02602A5750034C4B9 /* AdminCourses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminCourses.swift; sourceTree = "<group>"; };
+		D04331E52602B35C0034C4B9 /* HelpFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpFunctions.swift; sourceTree = "<group>"; };
+		D04331EA2602B9FF0034C4B9 /* Admin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Admin.swift; sourceTree = "<group>"; };
 		D04B46EB25D1301200AC8926 /* LabSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabSection.swift; sourceTree = "<group>"; };
 		D04B46FC25D1696D00AC8926 /* LabInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabInfo.swift; sourceTree = "<group>"; };
 		D04B470125D1741300AC8926 /* StudentLab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLab.swift; sourceTree = "<group>"; };
@@ -227,6 +233,8 @@
 			isa = PBXGroup;
 			children = (
 				D04331D826028ECD0034C4B9 /* AdminUsers.swift */,
+				D04331E02602A5750034C4B9 /* AdminCourses.swift */,
+				D04331EA2602B9FF0034C4B9 /* Admin.swift */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
@@ -248,6 +256,7 @@
 				D0F9FC6D25BEBC360080A1F2 /* ag.pb.swift */,
 				FA17B95C25EF81F1008BB07F /* TranslateStatus.swift */,
 				D08BA18E25FA68CB008A3F6D /* RemoteImageLoader.swift */,
+				D04331E52602B35C0034C4B9 /* HelpFunctions.swift */,
 			);
 			path = Proto;
 			sourceTree = "<group>";
@@ -637,6 +646,7 @@
 				FAA8333925E502F2008C05F4 /* ResultView.swift in Sources */,
 				FAA8331325E4EF92008C05F4 /* CoursePicker.swift in Sources */,
 				D04331D926028ECD0034C4B9 /* AdminUsers.swift in Sources */,
+				D04331E12602A5750034C4B9 /* AdminCourses.swift in Sources */,
 				FAB066A625CAC0D300FFE8EB /* FakeProvider.swift in Sources */,
 				FA17B9A725F2D32A008BB07F /* ReleaseNavigationView.swift in Sources */,
 				FA17B95525EF7D6F008BB07F /* SubmissionReview.swift in Sources */,
@@ -646,6 +656,7 @@
 				D04B470225D1741300AC8926 /* StudentLab.swift in Sources */,
 				D06024B125DD23D4009390A1 /* LabTests.swift in Sources */,
 				D04331D326028CD60034C4B9 /* AdminViewModel.swift in Sources */,
+				D04331EB2602B9FF0034C4B9 /* Admin.swift in Sources */,
 				FAB066FB25CAC89B00FFE8EB /* StudentViewModel.swift in Sources */,
 				D04B470A25D29B7300AC8926 /* JSON.swift in Sources */,
 				FA17B99B25F2630B008BB07F /* GradingBenchmarkSection.swift in Sources */,
@@ -675,6 +686,7 @@
 				D03EF9CF25F0277A008869CA /* AutoGraded.swift in Sources */,
 				FAB066B025CAC0F000FFE8EB /* ProviderProtocol.swift in Sources */,
 				FA17B96825EFD0D6008BB07F /* SubmissionListHeader.swift in Sources */,
+				D04331E62602B35C0034C4B9 /* HelpFunctions.swift in Sources */,
 				D08BA18F25FA68CB008A3F6D /* RemoteImageLoader.swift in Sources */,
 				FA17B99325F258FA008BB07F /* GradingCriterionListItem.swift in Sources */,
 				D06D9AD325F638AE0016BD59 /* UserProfile.swift in Sources */,

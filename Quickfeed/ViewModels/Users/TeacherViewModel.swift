@@ -54,7 +54,7 @@ class TeacherViewModel: UserViewModelProtocol{
     
     
     func loadCourses() {
-        self.courses = self.provider.getCourses()
+        self.courses = self.provider.getCourses()!
     }
     
     func loadGroups(){

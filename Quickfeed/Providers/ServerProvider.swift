@@ -17,7 +17,7 @@ class ServerProvider: ProviderProtocol{
     var grpcManager: GRPCManager
   
     init() {
-        let userID = UInt64(2)
+        let userID = UInt64(151)
         self.grpcManager = GRPCManager(userID: userID)
         self.currentUser = self.grpcManager.getUser(userId: userID) ?? User()
     }
@@ -52,8 +52,8 @@ class ServerProvider: ProviderProtocol{
         return grpcManager.isAuthorizedTeacher()
     }
     
-    func getCourses() -> [Course] {
-        fatalError("Not implemented")
+    func getCourses() -> [Course]? {
+        return grpcManager.getCourses()
     }
     
     func getUsers() -> [User]? {

@@ -120,7 +120,7 @@ class FakeProvider: ProviderProtocol, ObservableObject{
         return nil
     }
     
-    func getCourses() -> [Course] {
+    func getCourses() -> [Course]? {
         return self.courses
     }
     

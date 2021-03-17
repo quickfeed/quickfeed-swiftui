@@ -30,7 +30,7 @@ struct NavigatorView: View {
                 Spacer()
                 if viewModel.user.isAdmin{
                     NavigationLink(
-                        destination: AdminUsers(viewModel: AdminViewModel(provider: ServerProvider()))){
+                        destination: Admin(viewModel: AdminViewModel(provider: ServerProvider()))){
                         HStack{
                             Image(systemName: "folder.badge.gear")
                                 .frame(width: 30)
