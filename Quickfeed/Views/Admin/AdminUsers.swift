@@ -14,7 +14,7 @@ struct AdminUsers: View {
     
     
     func filteredUsers() -> [User] {
-        return viewModel.users!.filter({ matchesQuery(user: $0) })
+        return viewModel.users!.filter({ matchesQuery(searchQuery: searchQuery, user: $0) })
     }
     
     var body: some View {
@@ -66,31 +66,6 @@ struct AdminUsers: View {
                 .frame(minWidth: 200, maxWidth: 350)
         }
         
-    }
-    
-    func matchesQuery(user: User) -> Bool{
-        if searchQuery == ""{
-            return true
-        }
-        
-        if  user.name.lowercased().contains(self.searchQuery.lowercased()){
-            return true
-        }
-        
-        if  user.email.lowercased().contains(self.searchQuery.lowercased()){
-            return true
-        }
-        
-        if user.studentID.lowercased().contains(self.searchQuery.lowercased()){
-            return true
-        }
-        
-        if user.login.lowercased().contains(self.searchQuery.lowercased()){
-            return true
-        }
-        
-        
-        return false
     }
 }
 /*struct AdminUsers_Previews: PreviewProvider {
