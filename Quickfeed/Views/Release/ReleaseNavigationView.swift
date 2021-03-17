@@ -15,14 +15,17 @@ struct ReleaseNavigationView: View {
     var body: some View {
         NavigationView{
             VStack(alignment: .leading){
-                Text("Release Submissions")
-                    .font(.title)
-                LabPicker(labs: viewModel.manuallyGradedAssignments, selectedLab: $selectedLab)
-                SearchFieldRepresentable(query: $searchQuery)
-                    .frame(height: 25)
-                Spacer()
+
+                
             }
             .padding()
+        }
+        .navigationTitle("Release Submissions")
+        .toolbar{
+            LabPicker(labs: viewModel.manuallyGradedAssignments, selectedLab: $selectedLab)
+
+            SearchFieldRepresentable(query: $searchQuery)
+                .frame(minWidth: 200, maxWidth: 350)
         }
     }
 }

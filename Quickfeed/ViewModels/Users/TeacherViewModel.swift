@@ -63,6 +63,7 @@ class TeacherViewModel: UserViewModelProtocol{
                 }
             case .failure(let err):
                 print("[Error] Connection error or item not found: \(err)")
+                self.enrollmentLinks = []
             }
         }
     }

@@ -28,7 +28,7 @@ struct TeacherNavigationView: View {
                 Text("Members")
             }
             
-            NavigationLink(destination: Text("Groups")){
+            NavigationLink(destination: GroupsView(viewModel: viewModel)){
                 Image(systemName: "person.2")
                     .frame(width: 20)
                     .foregroundColor(.blue)
