@@ -30,6 +30,7 @@ class TeacherViewModel: UserViewModelProtocol{
         self.currentCourse = course
         self.loadAssignments()
         self.loadUsers()
+        self.loadGroups()
         
         self.loadEnrollmentLinks()
         
@@ -56,6 +57,21 @@ class TeacherViewModel: UserViewModelProtocol{
         self.courses = self.provider.getCourses()
     }
     
+    func loadGroups(){
+        let response = self.provider.getGroupsByCourse(courseId: self.currentCourse.id)
+        _ = response.always {(response: Result<Groups, Error>) in
+            switch response {
+            case .success(let response):
+                DispatchQueue.main.async {
+                    self.groups = response.groups
+                }
+            case .failure(let err):
+                print("[Error] Connection error or groups not found: \(err)")
+                self.groups = []
+            }
+        }
+    }
+    
     func loadEnrollmentLinks(){
         let response = self.provider.getSubmissionsByCourse(courseId: self.currentCourse.id, type: SubmissionsForCourseRequest.TypeEnum.all)
         _ = response.always {(response: Result<CourseSubmissions, Error>) in
@@ -65,7 +81,7 @@ class TeacherViewModel: UserViewModelProtocol{
                     self.enrollmentLinks = response.links
                 }
             case .failure(let err):
-                print("[Error] Connection error or item not found: \(err)")
+                print("[Error] Connection error or enrollments not found: \(err)")
                 self.enrollmentLinks = []
             }
         }
@@ -80,7 +96,7 @@ class TeacherViewModel: UserViewModelProtocol{
                     self.enrollments = response.enrollments
                 }
             case .failure(let err):
-                print("[Error] Connection error or item not found: \(err)")
+                print("[Error] Connection error or enrollments not found: \(err)")
                 self.enrollments = []
             }
         }

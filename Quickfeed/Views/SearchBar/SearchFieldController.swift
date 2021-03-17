@@ -11,7 +11,7 @@ import AppKit
 class SearchFieldController: NSViewController {
     
     @Binding var query: String
-    var isFirstResponder : Bool = true
+    var isFirstResponder : Bool = false
     
     
     init(query: Binding<String>, isFirstResponder : Bool = true) {
@@ -31,9 +31,9 @@ class SearchFieldController: NSViewController {
         self.view = searchField
     }
     
-    override func viewDidAppear() {
-       self.view.window?.makeFirstResponder(self.view)
-     }
+    //override func viewDidAppear() {
+    //   self.view.window?.makeFirstResponder(self.view)
+    // }
     
     
 }

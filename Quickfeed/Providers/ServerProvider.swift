@@ -8,6 +8,7 @@ import Foundation
 import NIO
 
 class ServerProvider: ProviderProtocol{
+    
     func getUsersForCourse(course: Course) -> [User] {
         fatalError("Not implemented")
     }
@@ -122,6 +123,10 @@ class ServerProvider: ProviderProtocol{
     
     func getGroupByUserAndCourse(courseId: UInt64, userId: UInt64) -> Group? {
         return self.grpcManager.getGroupByUserAndCourse(userID: userId, courseID: courseId)
+    }
+    
+    func getGroupsByCourse(courseId: UInt64) -> EventLoopFuture<Groups> {
+        return self.grpcManager.getGroupsByCourse(courseId: courseId)
     }
     
     func updateGroup(group: Group) -> Status {

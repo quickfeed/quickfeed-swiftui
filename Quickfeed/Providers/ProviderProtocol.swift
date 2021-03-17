@@ -39,6 +39,7 @@ protocol ProviderProtocol{
     func getGroup(groupId: UInt64) -> Group?
     func deleteGroup(courseId: UInt64, groupId: UInt64) -> Status
     func getGroupByUserAndCourse(courseId: UInt64, userId: UInt64) -> Group?
+    func getGroupsByCourse(courseId: UInt64) -> EventLoopFuture<Groups>
     func updateGroup(group: Group) -> Status
     func getSubmissionsByUser(courseId: UInt64, userId: UInt64) -> [Submission]
     func getSubmissionsByGroub(courseId: UInt64, groupId: UInt64) -> [Submission]
@@ -52,7 +53,6 @@ protocol ProviderProtocol{
     func rebuildSubmission(assignmentId: UInt64, submissionId: UInt64) -> Submission?
     func getRepositories(courseId: UInt64, types: [Repository.Type])
     func getEnrollmentsByCourse(courseId: UInt64) -> EventLoopFuture<Enrollments>
- 
     
     func createReview(courseId: UInt64, review: Review) -> Review?
     func loadCriteria(courseId: UInt64, assignmentId: UInt64) -> [GradingBenchmark] 

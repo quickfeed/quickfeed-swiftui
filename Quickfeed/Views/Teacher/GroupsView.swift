@@ -12,10 +12,19 @@ struct GroupsView: View {
     @State var searchQuery: String = ""
     var body: some View {
         VStack{
-            Text("Hello world")
-            
+            if viewModel.groups.count > 0{
+                List{
+                    ForEach(self.viewModel.groups, id: \.self){ group in
+                        Text(group.name)
+                    }
+                    
+                }
+            }
+            else {
+                Text("No groups to show")
+            }
         }
-        .navigationTitle("Groups of ")
+        .navigationTitle("Groups of \(viewModel.currentCourse.name)")
         .toolbar{
             SearchFieldRepresentable(query: $searchQuery)
                 .frame(minWidth: 200, maxWidth: 350)
