@@ -45,7 +45,9 @@ class TeacherViewModel: UserViewModelProtocol{
     }
     
     func loadUsers(){
-        self.users = self.getStudentsForCourse(courseId: self.currentCourse.id)
+        for enrollment in self.enrollments{
+            self.users.append(enrollment.user)
+        }
     }
     
     
@@ -69,7 +71,18 @@ class TeacherViewModel: UserViewModelProtocol{
     }
     
     func loadEnrollments(){
-        self.enrollments = self.provider.getEnrollmentsByCourse(courseId: self.currentCourse.id)
+        let response = self.provider.getEnrollmentsByCourse(courseId: self.currentCourse.id)
+        _ = response.always {(response: Result<Enrollments, Error>) in
+            switch response {
+            case .success(let response):
+                DispatchQueue.main.async {
+                    self.enrollments = response.enrollments
+                }
+            case .failure(let err):
+                print("[Error] Connection error or item not found: \(err)")
+                self.enrollments = []
+            }
+        }
     }
     
     func loadAssignments(){

@@ -8,6 +8,10 @@ import Foundation
 import NIO
 
 class ServerProvider: ProviderProtocol{
+    func getUsersForCourse(course: Course) -> [User] {
+        fatalError("Not implemented")
+    }
+    
     var currentUser: User
     var grpcManager: GRPCManager
   
@@ -27,17 +31,6 @@ class ServerProvider: ProviderProtocol{
         return courses
     }
     
-    func getUsersForCourse(course: Course) -> [User] {
-        let enrollments = self.getEnrollmentsForCourse(course: course) ?? []
-        var users: [User] = []
-        for enrollment in enrollments{
-            var user = enrollment.user
-            user.enrollments.append(enrollment)
-            users.append(user)
-        }
-        
-        return users
-    }
     
     func getCoursesForCurrentUser() -> [Course]? {
 
@@ -45,7 +38,7 @@ class ServerProvider: ProviderProtocol{
 
     }
     
-    func getEnrollmentsByCourse(courseId: UInt64) -> [Enrollment]{
+    func getEnrollmentsByCourse(courseId: UInt64) -> EventLoopFuture<Enrollments>{
         return self.grpcManager.getEnrollmentsByCourse(courseId: courseId)
         
     }
@@ -79,7 +72,7 @@ class ServerProvider: ProviderProtocol{
         return self.grpcManager.getAssignments(courseId: courseID)
     }
     
-    func getEnrollmentsForCourse(course: Course) -> [Enrollment]? {
+    func getEnrollmentsForCourse(course: Course) -> EventLoopFuture<Enrollments> {
         return self.grpcManager.getEnrollmentsByCourse(courseId: course.id)
     }
     

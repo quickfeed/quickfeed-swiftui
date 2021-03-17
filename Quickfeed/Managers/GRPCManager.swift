@@ -184,7 +184,7 @@ class GRPCManager {
         return []
     }
     
-    func getEnrollmentsByCourse(courseId: UInt64) -> [Enrollment]{
+    func getEnrollmentsByCourse(courseId: UInt64) -> EventLoopFuture<Enrollments>{
         let req = EnrollmentRequest.with{
             $0.courseID = courseId
             $0.withActivity = true
@@ -192,14 +192,8 @@ class GRPCManager {
         
         let call = self.quickfeedClient.getEnrollmentsByCourse(req, callOptions: self.defaultOptions)
         
-        do {
-            let response = try call.response.wait()
-            return response.enrollments
-        } catch {
-            print("Call failed: \(error)")
-        }
+        return call.response
         
-        return []
     }
     
     func getGroupByUserAndCourse(userID: UInt64, courseID: UInt64) -> Group? {

@@ -11,9 +11,10 @@ import AppKit
 class SearchFieldController: NSViewController {
     
     @Binding var query: String
+    var isFirstResponder : Bool = true
     
     
-    init(query: Binding<String>) {
+    init(query: Binding<String>, isFirstResponder : Bool = true) {
         self._query = query
         super.init(nibName: nil, bundle: nil)
     }
@@ -26,8 +27,13 @@ class SearchFieldController: NSViewController {
         let searchField = NSSearchField()
         searchField.delegate = self
         
+        
         self.view = searchField
     }
+    
+    override func viewDidAppear() {
+       self.view.window?.makeFirstResponder(self.view)
+     }
     
     
 }

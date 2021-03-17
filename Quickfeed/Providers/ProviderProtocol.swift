@@ -51,7 +51,7 @@ protocol ProviderProtocol{
     func updateSubmissions(assignmentID: UInt64, courseID: UInt64, score: UInt32, release: Bool, approve: Bool)
     func rebuildSubmission(assignmentId: UInt64, submissionId: UInt64) -> Submission?
     func getRepositories(courseId: UInt64, types: [Repository.Type])
-    func getEnrollmentsByCourse(courseId: UInt64) -> [Enrollment]
+    func getEnrollmentsByCourse(courseId: UInt64) -> EventLoopFuture<Enrollments>
  
     
     func createReview(courseId: UInt64, review: Review) -> Review?
