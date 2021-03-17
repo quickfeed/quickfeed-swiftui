@@ -115,7 +115,7 @@ class FakeProvider: ProviderProtocol, ObservableObject{
         return true
     }
     
-    func getUsers() -> [User] {
+    func getUsers() -> [User]? {
         return self.dummyUsers
     }
     

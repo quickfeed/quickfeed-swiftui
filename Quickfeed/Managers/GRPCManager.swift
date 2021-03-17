@@ -87,6 +87,19 @@ class GRPCManager {
         _ = self.quickfeedClient.updateUser(user, callOptions: self.defaultOptions)
     }
     
+    func getUsers() -> [User]? {
+        let call = self.quickfeedClient.getUsers(Void(), callOptions: self.defaultOptions)
+        
+        do {
+            let users = try call.response.wait()
+            return users.users
+        } catch {
+            print("Call failed: \(error)")
+        }
+        
+        return nil
+    }
+    
     
     
     func getCourses(userStatus: Enrollment.UserStatus, userId: UInt64) -> [Course]{

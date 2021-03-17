@@ -12,11 +12,6 @@ struct NavigatorView: View {
     var courses: [Course] { return viewModel.courses }
     @State private var selectedCourse: UInt64 = 0
     
-    init(viewModel: UserViewModel) {
-        self.viewModel = viewModel
-        self.viewModel.getRemoteImage()
-    }
-    
     var body: some View {
         NavigationView{
             VStack(alignment: .leading){
@@ -33,7 +28,7 @@ struct NavigatorView: View {
                 Spacer()
                 if viewModel.user.isAdmin{
                     NavigationLink(
-                        destination: Text("ADMIN")){
+                        destination: AdminUsers(viewModel: AdminViewModel(provider: ServerProvider()))){
                         HStack{
                             Image(systemName: "folder.badge.gear")
                                 .frame(width: 30)
@@ -53,18 +48,10 @@ struct NavigatorView: View {
                 NavigationLink(
                     destination: UserProfile(viewModel: viewModel, selectedCourse: $selectedCourse)){
                     HStack{
-                        if viewModel.remoteImage!.state == RemoteImageLoader.State.failure {
                             Image(systemName: "person.fill")
                                 .cornerRadius(7.5)
                                 .frame(width: 30, height: 30)
                                 .padding(.leading)
-                        } else {
-                            Image(nsImage: NSImage(data: viewModel.remoteImage!.data)!)
-                                .resizable()
-                                .cornerRadius(7.5)
-                                .frame(width: 30, height: 30)
-                                .padding(.leading)
-                        }
                         Text(viewModel.user.name)
                             .font(.headline)
                         Spacer()
@@ -79,7 +66,6 @@ struct NavigatorView: View {
         }
         .onAppear(perform: {
             self.selectedCourse = self.courses[0].id
-            viewModel.getRemoteImage()
             viewModel.getEnrollments()
         })
     }

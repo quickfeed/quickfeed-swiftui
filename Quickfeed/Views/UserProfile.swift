@@ -13,18 +13,6 @@ struct UserProfile: View {
     
     var body: some View {
         HStack{
-            if viewModel.remoteImage!.state == RemoteImageLoader.State.failure {
-                Image(systemName: "person.fill")
-                    .resizable()
-                    .cornerRadius(10)
-                    .frame(width: 100, height: 100)
-            } else {
-                Image(nsImage: NSImage(data: viewModel.remoteImage!.data)!)
-                    .resizable()
-                    .cornerRadius(20)
-                    .frame(width: 60, height: 60)
-                
-            }
             Text(viewModel.user.name)
                 .font(.title)
                 .fontWeight(.bold)

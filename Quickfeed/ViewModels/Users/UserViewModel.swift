@@ -33,10 +33,6 @@ class UserViewModel: UserViewModelProtocol {
         self.enrollments = self.provider.getEnrollmentsForUser(userId: self.user.id)
     }
     
-    func getRemoteImage() {
-        self.remoteImage = RemoteImageLoader(url: self.user.avatarURL)
-    }
-    
     func reset() {
         
     }
