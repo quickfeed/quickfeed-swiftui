@@ -13,7 +13,7 @@ struct MemberListHeader: View {
         HStack{
             SwiftUI.Group{
                 Text("Name")
-                    .frame(width: 200, alignment: .leading)
+                    .frame(width: 180, alignment: .leading)
                 Spacer()
             }
             SwiftUI.Group{

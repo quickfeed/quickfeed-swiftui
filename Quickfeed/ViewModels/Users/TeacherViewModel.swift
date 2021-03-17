@@ -16,6 +16,7 @@ class TeacherViewModel: UserViewModelProtocol{
     @Published var enrollments: [Enrollment] = []
     @Published var users: [User] = []
     @Published var courses: [Course] = []
+    @Published var groups: [Group] = []
     @Published var assignments: [Assignment] = []
     @Published var manuallyGradedAssignments: [Assignment] = []
     @Published var enrollmentLinks: [EnrollmentLink] = []
