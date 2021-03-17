@@ -6,8 +6,21 @@
 //
 
 import Foundation
+import NIO
 
 class FakeProvider: ProviderProtocol, ObservableObject{
+    func getGroupsByCourse(courseId: UInt64) -> EventLoopFuture<Groups> {
+        fatalError("not implemented")
+    }
+    
+    func getEnrollmentsByCourse(courseId: UInt64) -> EventLoopFuture<Enrollments> {
+        fatalError("not implemented")
+    }
+    
+    func getSubmissionsByCourse(courseId: UInt64, type: SubmissionsForCourseRequest.TypeEnum) -> EventLoopFuture<CourseSubmissions> {
+        fatalError("Not implemented")
+    }
+    
     func createReview(courseId: UInt64, review: Review) -> Review? {
         fatalError("Not implemented")
     }

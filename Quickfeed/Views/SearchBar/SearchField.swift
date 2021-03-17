@@ -10,6 +10,7 @@ import AppKit
 
 struct SearchFieldRepresentable: NSViewControllerRepresentable {
     @Binding var query: String
+  
     
     func makeNSViewController(
         context: NSViewControllerRepresentableContext<SearchFieldRepresentable>

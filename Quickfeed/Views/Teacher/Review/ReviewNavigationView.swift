@@ -7,14 +7,25 @@
 
 import SwiftUI
 
+
+// Overides translusent background for the list
+extension NSTableView {
+  open override func viewDidMoveToWindow() {
+    super.viewDidMoveToWindow()
+
+    backgroundColor = NSColor.clear
+    enclosingScrollView!.drawsBackground = false
+  }
+}
+
+
+
+
 struct ReviewNavigationView: View {
     @ObservedObject var viewModel: TeacherViewModel
     @State private var searchQuery: String = ""
     @Binding var selectedLab: UInt64
    
-    
-   
-    
     var filteredEnrollmentLinks: [EnrollmentLink] {
         return viewModel.enrollmentLinks.filter({
                 matchesQuery(user: $0.enrollment.user)
@@ -125,14 +136,8 @@ struct ReviewNavigationView: View {
         
         NavigationView{
             VStack(alignment: .leading){
-                LabPicker(labs: viewModel.manuallyGradedAssignments, selectedLab: $selectedLab)
-
-                SearchFieldRepresentable(query: $searchQuery)
-                    .frame(height: 25)
                 
-                    
-                    
-              
+                
                 List{
                     if awaitingReviewEnrollments.count > 0{
                         Section(header: Text("To Do (\(awaitingReviewEnrollments.count))")){
@@ -189,14 +194,11 @@ struct ReviewNavigationView: View {
                         }
                         
                     }
-                    
-                    
-                    
                 }
-                .listStyle(SidebarListStyle())
                 .cornerRadius(5)
+                .listStyle(SidebarListStyle())
                 
-                
+
             }
             .frame(minWidth: 300)
             .padding()
@@ -207,6 +209,12 @@ struct ReviewNavigationView: View {
         })
         
         .navigationTitle("Review Submissions")
+        .toolbar{
+            LabPicker(labs: viewModel.manuallyGradedAssignments, selectedLab: $selectedLab)
+
+            SearchFieldRepresentable(query: $searchQuery)
+                .frame(minWidth: 200, maxWidth: 350)
+        }
         
         
         

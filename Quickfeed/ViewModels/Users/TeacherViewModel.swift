@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import NIO
 
 class TeacherViewModel: UserViewModelProtocol{
     var provider: ProviderProtocol
@@ -15,6 +16,7 @@ class TeacherViewModel: UserViewModelProtocol{
     @Published var enrollments: [Enrollment] = []
     @Published var users: [User] = []
     @Published var courses: [Course] = []
+    @Published var groups: [Group] = []
     @Published var assignments: [Assignment] = []
     @Published var manuallyGradedAssignments: [Assignment] = []
     @Published var enrollmentLinks: [EnrollmentLink] = []
@@ -28,6 +30,10 @@ class TeacherViewModel: UserViewModelProtocol{
         self.currentCourse = course
         self.loadAssignments()
         self.loadUsers()
+        self.loadGroups()
+        
+        self.loadEnrollmentLinks()
+        
     }
     
     
@@ -41,7 +47,9 @@ class TeacherViewModel: UserViewModelProtocol{
     }
     
     func loadUsers(){
-        self.users = self.getStudentsForCourse(courseId: self.currentCourse.id)
+        for enrollment in self.enrollments{
+            self.users.append(enrollment.user)
+        }
     }
     
     
@@ -49,23 +57,57 @@ class TeacherViewModel: UserViewModelProtocol{
         self.courses = self.provider.getCourses()
     }
     
+    func loadGroups(){
+        let response = self.provider.getGroupsByCourse(courseId: self.currentCourse.id)
+        _ = response.always {(response: Result<Groups, Error>) in
+            switch response {
+            case .success(let response):
+                DispatchQueue.main.async {
+                    self.groups = response.groups
+                }
+            case .failure(let err):
+                print("[Error] Connection error or groups not found: \(err)")
+                self.groups = []
+            }
+        }
+    }
+    
     func loadEnrollmentLinks(){
-        let courseSubmissions = self.provider.getSubmissionsByCourse(courseId: self.currentCourse.id, type: SubmissionsForCourseRequest.TypeEnum.all)
-        self.enrollmentLinks = courseSubmissions.links
+        let response = self.provider.getSubmissionsByCourse(courseId: self.currentCourse.id, type: SubmissionsForCourseRequest.TypeEnum.all)
+        _ = response.always {(response: Result<CourseSubmissions, Error>) in
+            switch response {
+            case .success(let response):
+                DispatchQueue.main.async {
+                    self.enrollmentLinks = response.links
+                }
+            case .failure(let err):
+                print("[Error] Connection error or enrollments not found: \(err)")
+                self.enrollmentLinks = []
+            }
+        }
     }
     
     func loadEnrollments(){
-        self.enrollments = self.provider.getEnrollmentsByCourse(courseId: self.currentCourse.id)
+        let response = self.provider.getEnrollmentsByCourse(courseId: self.currentCourse.id)
+        _ = response.always {(response: Result<Enrollments, Error>) in
+            switch response {
+            case .success(let response):
+                DispatchQueue.main.async {
+                    self.enrollments = response.enrollments
+                }
+            case .failure(let err):
+                print("[Error] Connection error or enrollments not found: \(err)")
+                self.enrollments = []
+            }
+        }
     }
     
     func loadAssignments(){
         self.assignments =  self.provider.getAssignments(courseID: self.currentCourse.id)
-        //print(self.assignments.count)
         self.loadManuallyGradedAssignments(courseId: self.currentCourse.id)
         for assignment in assignments{
             self.assignmentMap[assignment.id] = assignment
         }
-        
     }
     
     func loadManuallyGradedAssignments(courseId: UInt64){
