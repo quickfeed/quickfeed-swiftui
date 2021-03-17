@@ -83,6 +83,10 @@ class GRPCManager {
         return nil
     }
     
+    func updateUser(user: User) {
+        _ = self.quickfeedClient.updateUser(user, callOptions: self.defaultOptions)
+    }
+    
     
     
     func getCourses(userStatus: Enrollment.UserStatus, userId: UInt64) -> [Course]{

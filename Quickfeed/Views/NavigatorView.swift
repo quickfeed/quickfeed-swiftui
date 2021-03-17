@@ -51,7 +51,7 @@ struct NavigatorView: View {
                     .buttonStyle(PlainButtonStyle())
                 }
                 NavigationLink(
-                    destination: UserProfile(viewModel: viewModel)){
+                    destination: UserProfile(viewModel: viewModel, selectedCourse: $selectedCourse)){
                     HStack{
                         if viewModel.remoteImage!.state == RemoteImageLoader.State.failure {
                             Image(systemName: "person.fill")
@@ -80,6 +80,7 @@ struct NavigatorView: View {
         .onAppear(perform: {
             self.selectedCourse = self.courses[0].id
             viewModel.getRemoteImage()
+            viewModel.getEnrollments()
         })
     }
 }

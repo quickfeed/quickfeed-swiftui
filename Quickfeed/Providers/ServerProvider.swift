@@ -11,13 +11,17 @@ class ServerProvider: ProviderProtocol{
     var grpcManager: GRPCManager
   
     init() {
-        let userID = UInt64(100)
+        let userID = UInt64(151)
         self.grpcManager = GRPCManager(userID: userID)
         self.currentUser = self.grpcManager.getUser(userId: userID) ?? User()
     }
     
     func getUser() -> User? {
         return self.currentUser
+    }
+    
+    func updateUser(user: User) {
+        grpcManager.updateUser(user: user)
     }
     
     func getAllCoursesForCurrentUser() -> [Course]? {
