@@ -15,7 +15,7 @@ class TeacherViewModel: UserViewModelProtocol{
     @Published var currentCourse: Course
     @Published var enrollments: [Enrollment] = []
     @Published var users: [User] = []
-    @Published var courses: [Course] = []
+    
     @Published var groups: [Group] = []
     @Published var assignments: [Assignment] = []
     @Published var manuallyGradedAssignments: [Assignment] = []
@@ -37,14 +37,6 @@ class TeacherViewModel: UserViewModelProtocol{
     }
     
     
-    func getCourse(courseId: UInt64) -> Course{
-        for course in self.courses{
-            if course.id == courseId{
-                return course
-            }
-        }
-        return Course()
-    }
     
     func loadUsers(){
         for enrollment in self.enrollments{
@@ -52,10 +44,7 @@ class TeacherViewModel: UserViewModelProtocol{
         }
     }
     
-    
-    func loadCourses() {
-        self.courses = self.provider.getCourses()
-    }
+
     
     func loadGroups(){
         let response = self.provider.getGroupsByCourse(courseId: self.currentCourse.id)
@@ -127,16 +116,7 @@ class TeacherViewModel: UserViewModelProtocol{
     }
     
     
-    func getAssignmentById(id: UInt64) -> Assignment{
-        for course in self.courses{
-            for assignment in course.assignments{
-                if assignment.id == id{
-                    return assignment
-                }
-            }
-        }
-        return Assignment()
-    }
+  
     
     func getUserName(userId: UInt64) -> String{
         for user in self.users{
