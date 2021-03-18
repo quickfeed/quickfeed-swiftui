@@ -242,8 +242,8 @@
 		FA17B98825F24FC3008BB07F /* Review */ = {
 			isa = PBXGroup;
 			children = (
-				FA6C3EB025D45E4500D8A798 /* SubmissionListItem.swift */,
 				FA29712F25D05208000C99A1 /* ReviewNavigationView.swift */,
+				FA6C3EB025D45E4500D8A798 /* SubmissionListItem.swift */,
 				FA17B96125EF90E6008BB07F /* SubmissionInfo.swift */,
 				FA17B95425EF7D6F008BB07F /* SubmissionReview.swift */,
 				FA17B99A25F2630B008BB07F /* GradingBenchmarkSection.swift */,
@@ -276,9 +276,9 @@
 		FA29712325D05121000C99A1 /* Teacher */ = {
 			isa = PBXGroup;
 			children = (
+				FAB0671C25CACF8700FFE8EB /* TeacherNavigationView.swift */,
 				FA4A88AB2603674D00A21CDA /* Groups */,
 				FA4A88AA2603673500A21CDA /* Members */,
-				FAB0671C25CACF8700FFE8EB /* TeacherNavigationView.swift */,
 				FA17B98925F24FDA008BB07F /* Results */,
 				FA17B98825F24FC3008BB07F /* Review */,
 			);

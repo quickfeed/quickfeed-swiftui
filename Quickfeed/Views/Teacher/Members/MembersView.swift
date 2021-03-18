@@ -36,8 +36,13 @@ struct MembersView: View {
         })
         .navigationTitle("Members of \(viewModel.currentCourse.name)")
         .toolbar{
+            Button(action: {}, label: {
+                Image(systemName: "square.and.pencil")
+            })
+            .help("Manage users")
             SearchFieldRepresentable(query: $searchQuery)
                 .frame(minWidth: 200, maxWidth: 350)
+            
         }
         
        

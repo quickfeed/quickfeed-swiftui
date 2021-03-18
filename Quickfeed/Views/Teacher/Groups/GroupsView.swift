@@ -33,6 +33,10 @@ struct GroupsView: View {
         .padding()
         .navigationTitle("Groups of \(viewModel.currentCourse.name)")
         .toolbar{
+            Button(action: {}, label: {
+                Image(systemName: "plus")
+            })
+            .help("Add new group")
             SearchFieldRepresentable(query: $searchQuery)
                 .frame(minWidth: 200, maxWidth: 350)
         }
