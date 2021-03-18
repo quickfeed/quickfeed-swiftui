@@ -14,7 +14,9 @@ struct AdminUsers: View {
     
     
     func filteredUsers() -> [User] {
-        return viewModel.users!.filter({ matchesQuery(searchQuery: searchQuery, user: $0) })
+        var users = viewModel.users!
+            users.sort { $0.isAdmin && !$1.isAdmin }
+        return users.filter({ matchesQuery(searchQuery: searchQuery, user: $0) })
     }
     
     var body: some View {
@@ -30,7 +32,7 @@ struct AdminUsers: View {
                     .frame(width: 60, alignment: .leading)
                 Spacer()
                 Text("IsAdmin")
-                    .frame(width: 60, alignment: .trailing)
+                    .frame(width: 60, alignment: .leading)
             }){
                 ForEach(self.filteredUsers(), id: \.self){ user in
                     HStack{
@@ -47,11 +49,14 @@ struct AdminUsers: View {
                         Text(user.studentID)
                             .frame(width: 60, alignment: .leading)
                         Spacer()
-                        Text(user.isAdmin ? "Admin" : "Student")
-                            .frame(width: 60, alignment: .trailing)
-                    }
-                    .onTapGesture {
-                        viewModel.updateUser(user: user)
+                        Button(action: {
+                            viewModel.updateUser(user: user)
+                        }, label: {
+                            Text(user.isAdmin ? "Demote" : "Promote")
+                        })
+                        .frame(width: 60)
+                        .padding(.trailing)
+                        
                     }
                     Divider()
                 }
@@ -62,6 +67,7 @@ struct AdminUsers: View {
             Button(action: {self.showUsers = false}, label: {
                 Text("Courses")
             })
+            .help("Manage Courses")
             SearchFieldRepresentable(query: $searchQuery)
                 .frame(minWidth: 200, maxWidth: 350)
         }
@@ -69,7 +75,7 @@ struct AdminUsers: View {
     }
 }
 /*struct AdminUsers_Previews: PreviewProvider {
-    static var previews: some View {
-        AdminUsers()
-    }
-}*/
+ static var previews: some View {
+ AdminUsers()
+ }
+ }*/

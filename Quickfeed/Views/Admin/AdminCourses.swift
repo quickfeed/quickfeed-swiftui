@@ -61,6 +61,7 @@ struct AdminCourses: View {
                 Text("Users")
             })
             Image(systemName: "plus")
+                .help("Create New Course")
                 .imageScale(.large)
             SearchFieldRepresentable(query: $searchQuery)
                 .frame(minWidth: 200, maxWidth: 350)
