@@ -10,7 +10,9 @@ import Foundation
 class UserViewModel: UserViewModelProtocol {
     var provider: ProviderProtocol
     @Published var user: User
+    @Published var remoteImage: RemoteImageLoader?
     var courses: [Course]
+    @Published var enrollments: [Enrollment]?
     
     init(provider: ProviderProtocol) {
         self.provider = provider
@@ -25,6 +27,10 @@ class UserViewModel: UserViewModelProtocol {
             }
         }
         return Course()
+    }
+    
+    func getEnrollments() {
+        self.enrollments = self.provider.getEnrollmentsForUser(userId: self.user.id)
     }
     
     func reset() {
