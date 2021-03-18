@@ -9,9 +9,6 @@ import NIO
 
 class ServerProvider: ProviderProtocol{
     
-    func getUsersForCourse(course: Course) -> [User] {
-        fatalError("Not implemented")
-    }
     
     var currentUser: User
     var grpcManager: GRPCManager
@@ -80,6 +77,11 @@ class ServerProvider: ProviderProtocol{
     func addUserToCourse(course: Course, user: User) -> Bool {
         fatalError("Not implemented")
     }
+    
+    func getUsersForCourse(course: Course) -> [User] {
+        fatalError("Not implemented")
+    }
+    
     
     func changeUserStatus(enrollment: Enrollment, status: Enrollment.UserStatus) -> Status {
         fatalError("Not implemented")
