@@ -15,7 +15,14 @@ struct AdminUsers: View {
     
     func filteredUsers() -> [User] {
         var users = viewModel.users!
-        users.sort { $0.isAdmin && !$1.isAdmin }
+        users.sort {
+            if $0.isAdmin != $1.isAdmin{
+                return $0.isAdmin && !$1.isAdmin
+            } else {
+                return $0.name.trimmingCharacters(in: .whitespacesAndNewlines) < $1.name.trimmingCharacters(in: .whitespacesAndNewlines)
+            }
+            
+        }
         return users.filter({ matchesQuery(searchQuery: searchQuery, user: $0) })
     }
     

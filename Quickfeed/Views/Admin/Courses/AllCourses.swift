@@ -12,6 +12,7 @@ struct AllCourses: View {
     @State var searchQuery: String = ""
     @Binding var showUsers: Bool
     @Binding var editCourse: Bool
+    @Binding var course: Course?
     
     func filteredCourse() -> [Course] {
         var courses = viewModel.courses!
@@ -49,7 +50,10 @@ struct AllCourses: View {
                         Text("\(String(course.year))")
                             .frame(width: 100, alignment: .leading)
                         Divider()
-                        Button(action: {print("Hello, World!")}, label: {
+                        Button(action: {
+                            self.course = course
+                            self.editCourse = !self.editCourse
+                        }, label: {
                             Text("Edit")
                         })
                         .frame(width: 60)
@@ -63,12 +67,24 @@ struct AllCourses: View {
             Button(action: {self.showUsers = true}, label: {
                 Text("Users")
             })
-            Image(systemName: "plus")
+            /*Toggle(isOn: $editCourse, label: {
+                   Image(systemName: "plus")
+               })
+            .help("Create New Course")*/
+            Button(action: {
+                self.course = nil
+                self.editCourse = !self.editCourse
+            }, label: {
+                Image(systemName: "plus")
+            })
+            .help("Create New Course")
+            /*Image(systemName: "plus")
                 .help("Create New Course")
                 .imageScale(.large)
                 .onTapGesture {
+                    self.course = nil
                     self.editCourse = !self.editCourse
-                }
+                }*/
             SearchFieldRepresentable(query: $searchQuery)
                 .frame(minWidth: 200, maxWidth: 350)
         }

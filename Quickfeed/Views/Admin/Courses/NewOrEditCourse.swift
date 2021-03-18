@@ -8,13 +8,25 @@
 import SwiftUI
 
 struct NewOrEditCourse: View {
+    var course: Course?
+    @Binding var editCourse: Bool
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text(course != nil ? "Edit \(course!.code)" : "New Course")
+            .navigationTitle(course != nil ? "\(course!.code) \(course!.name)" : "New Course")
+            .toolbar{
+                ToolbarItem(placement: .navigation){
+                    Toggle(isOn: $editCourse, label: {
+                           Image(systemName: "chevron.backward")
+                       })
+                    .help("Return to course list")
+                }
+            }
     }
 }
 
-struct NewOrEditCourse_Previews: PreviewProvider {
+/*struct NewOrEditCourse_Previews: PreviewProvider {
     static var previews: some View {
         NewOrEditCourse()
     }
-}
+}*/
