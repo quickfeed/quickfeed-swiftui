@@ -64,27 +64,18 @@ struct AllCourses: View {
         }
         .navigationTitle("Manage Courses")
         .toolbar{
-            Button(action: {self.showUsers = true}, label: {
-                Text("Users")
-            })
-            /*Toggle(isOn: $editCourse, label: {
-                   Image(systemName: "plus")
-               })
-            .help("Create New Course")*/
             Button(action: {
                 self.course = nil
                 self.editCourse = !self.editCourse
             }, label: {
                 Image(systemName: "plus")
             })
-            .help("Create New Course")
-            /*Image(systemName: "plus")
-                .help("Create New Course")
-                .imageScale(.large)
-                .onTapGesture {
-                    self.course = nil
-                    self.editCourse = !self.editCourse
-                }*/
+            .keyboardShortcut("c")
+            Button(action: {self.showUsers = true}, label: {
+                Text("Users")
+            })
+            .keyboardShortcut("u")
+            .help("Show Users")
             SearchFieldRepresentable(query: $searchQuery)
                 .frame(minWidth: 200, maxWidth: 350)
         }
@@ -92,7 +83,7 @@ struct AllCourses: View {
 }
 
 /*struct AllCourses_Previews: PreviewProvider {
-    static var previews: some View {
-        AllCourses()
-    }
-}*/
+ static var previews: some View {
+ AllCourses()
+ }
+ }*/

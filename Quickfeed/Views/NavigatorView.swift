@@ -38,10 +38,8 @@ struct NavigatorView: View {
                                 .foregroundColor(.blue)
                             Text("Admin")
                                 .font(.headline)
-                            //.padding(.leading)
                             Spacer()
                         }
-                        //.frame(height: 30)
                         .contentShape(Rectangle())
                     }
                     .padding(.bottom, 0.0)

@@ -74,6 +74,7 @@ struct AdminUsers: View {
             Button(action: {self.showUsers = false}, label: {
                 Text("Courses")
             })
+            .keyboardShortcut("c")
             .help("Manage Courses")
             SearchFieldRepresentable(query: $searchQuery)
                 .frame(minWidth: 200, maxWidth: 350)

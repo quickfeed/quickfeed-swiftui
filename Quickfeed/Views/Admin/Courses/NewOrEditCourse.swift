@@ -17,16 +17,18 @@ struct NewOrEditCourse: View {
             .toolbar{
                 ToolbarItem(placement: .navigation){
                     Toggle(isOn: $editCourse, label: {
-                           Image(systemName: "chevron.backward")
-                       })
+                        Image(systemName: "chevron.backward")
+                    })
+                    .keyboardShortcut("b")
                     .help("Return to course list")
                 }
             }
+            .onDisappear(perform: { self.editCourse = true })
     }
 }
 
 /*struct NewOrEditCourse_Previews: PreviewProvider {
-    static var previews: some View {
-        NewOrEditCourse()
-    }
-}*/
+ static var previews: some View {
+ NewOrEditCourse()
+ }
+ }*/
