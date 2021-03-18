@@ -14,8 +14,14 @@ struct GroupsView: View {
         VStack{
             if viewModel.groups.count > 0{
                 List{
-                    ForEach(self.viewModel.groups, id: \.self){ group in
-                        Text(group.name)
+                    Section(header: GroupListHeader()){
+                        ForEach(viewModel.groups, id: \.self){ group in
+                            GroupListItem(group: group)
+                                .focusable(true, onFocusChange: {_ in 
+                                    print(group.name)
+                                })
+                            Divider()
+                        }
                     }
                     
                 }
@@ -24,6 +30,7 @@ struct GroupsView: View {
                 Text("No groups to show")
             }
         }
+        .padding()
         .navigationTitle("Groups of \(viewModel.currentCourse.name)")
         .toolbar{
             SearchFieldRepresentable(query: $searchQuery)
