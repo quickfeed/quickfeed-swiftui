@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import AppKit
+
 
 struct SubmissionReview: View {
     var user: User
@@ -33,12 +35,34 @@ struct SubmissionReview: View {
         return false
     }
     
+    func setClipboardString(userLogin: String){
+        let pasteboard = NSPasteboard.general
+        pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
+        pasteboard.setString(userLogin + "-labs", forType: NSPasteboard.PasteboardType.string)
+    }
+    
     var body: some View {
         VStack{
             Text("\(user.name)'s submission for \(submissionLink.assignment.name)")
                 .font(.title)
                 .fontWeight(.bold)
                 .padding(.bottom)
+            HStack{
+                Link(destination: URL(string: "https://www.github.com/" + viewModel.currentCourse.organizationPath + "/" + user.login + "-labs")!, label:{
+                    Text(user.login + "/" + submissionLink.assignment.name)
+                })
+                Button(action: { setClipboardString(userLogin: user.login) }, label: {
+                    Image(systemName: "doc.on.doc")
+                        .padding()
+                })
+                .buttonStyle(PlainButtonStyle())
+                .help("Copy repo name to clipboard")
+            }
+            
+
+                
+            
+            
             SubmissionInfo(viewModel: viewModel, submissionLink: $submissionLink)
             if submissionLink.hasSubmission{
                 if hasReviewByUser(){
@@ -54,7 +78,7 @@ struct SubmissionReview: View {
                     
                     HStack{
                         Spacer()
-                        Button(action: { }, label: {
+                        Button(action: { review.ready = true }, label: {
                             Text("Mark as ready")
                         })
                     }

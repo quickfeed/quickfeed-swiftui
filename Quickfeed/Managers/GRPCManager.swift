@@ -141,22 +141,14 @@ class GRPCManager {
         
     }
     
-    func getSubmissionsByCourse(courseId: UInt64, type: SubmissionsForCourseRequest.TypeEnum) -> CourseSubmissions{
+    func getSubmissionsByCourse(courseId: UInt64, type: SubmissionsForCourseRequest.TypeEnum) -> EventLoopFuture<CourseSubmissions>{
         let req = SubmissionsForCourseRequest.with{
             $0.courseID = courseId
             $0.type = type
         }
         
         let call = self.quickfeedClient.getSubmissionsByCourse(req, callOptions: self.defaultOptions)
-        do {
-            let response = try call.response.wait()
-            return response
-
-            } catch {
-            print("Call failed: \(error)")
-        }
-        
-        return CourseSubmissions()
+        return call.response
     }
     func getSubbmissionByGroup(courseID: UInt64, groupID: UInt64) -> [Submission] {
         let req = SubmissionRequest.with{
@@ -192,7 +184,7 @@ class GRPCManager {
         return []
     }
     
-    func getEnrollmentsByCourse(courseId: UInt64) -> [Enrollment]{
+    func getEnrollmentsByCourse(courseId: UInt64) -> EventLoopFuture<Enrollments>{
         let req = EnrollmentRequest.with{
             $0.courseID = courseId
             $0.withActivity = true
@@ -200,14 +192,8 @@ class GRPCManager {
         
         let call = self.quickfeedClient.getEnrollmentsByCourse(req, callOptions: self.defaultOptions)
         
-        do {
-            let response = try call.response.wait()
-            return response.enrollments
-        } catch {
-            print("Call failed: \(error)")
-        }
+        return call.response
         
-        return []
     }
     
     func getGroupByUserAndCourse(userID: UInt64, courseID: UInt64) -> Group? {
@@ -226,6 +212,16 @@ class GRPCManager {
         }
         
         return nil
+    }
+    
+    func getGroupsByCourse(courseId: UInt64) -> EventLoopFuture<Groups>{
+        let req = CourseRequest.with{
+            $0.courseID = courseId
+        }
+        
+        let call = self.quickfeedClient.getGroupsByCourse(req, callOptions: self.defaultOptions)
+        
+        return call.response
     }
     
     func getAssignments(courseId: UInt64) -> [Assignment]{

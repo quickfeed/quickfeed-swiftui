@@ -10,8 +10,6 @@ import SwiftUI
 struct SubmissionInfo: View {
     @ObservedObject var viewModel: TeacherViewModel
     @Binding var submissionLink: SubmissionLink
-    
-    
     var body: some View {
         VStack{
             HStack{
@@ -29,7 +27,16 @@ struct SubmissionInfo: View {
             HStack {
                 Text("Review Status:")
                 Spacer()
-                Text("\(submissionLink.submission.reviews.last?.ready ?? false ? "Ready" : "In progress")")
+                if !hasReview(){
+                    Text("None")
+                }
+                else if hasReviewInProgress(){
+                    Text("In Progress")
+                }
+                else{
+                    Text("Ready")
+                }
+            
             }
             Divider()
             HStack{
@@ -43,6 +50,23 @@ struct SubmissionInfo: View {
             
         }
     }
+    
+    func hasReview() -> Bool{
+        if submissionLink.submission.reviews.count == 0{
+            return false
+        }
+        return true
+    }
+    
+    func hasReviewInProgress() -> Bool{
+        if submissionLink.submission.reviews.count > 0 && submissionLink.submission.reviews.allSatisfy({!$0.ready}){
+           return true
+        }
+    
+        return false
+        
+    }
+    
 }
 
 struct SubmissionInfo_Previews: PreviewProvider {

@@ -17,7 +17,7 @@ struct ResultListItem: View {
                 .frame(width: 180, alignment: .leading)
             
             ForEach(submissionLinks, id: \.assignment.id){ link in
-                
+                Spacer()
                 if link.hasSubmission{
                 
                 Button(action: {
@@ -35,7 +35,7 @@ struct ResultListItem: View {
                         .foregroundColor(.secondary)
                         .frame(width: 90, alignment: .center)
                 }
-                Spacer()
+                
             }
         }
         

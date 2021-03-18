@@ -5,8 +5,11 @@
 //  Created by Oskar Gjølga on 25/02/2021.
 //
 import Foundation
+import NIO
 
 class ServerProvider: ProviderProtocol{
+    
+    
     var currentUser: User
     var grpcManager: GRPCManager
   
@@ -26,17 +29,6 @@ class ServerProvider: ProviderProtocol{
         return courses
     }
     
-    func getUsersForCourse(course: Course) -> [User] {
-        let enrollments = self.getEnrollmentsForCourse(course: course) ?? []
-        var users: [User] = []
-        for enrollment in enrollments{
-            var user = enrollment.user
-            user.enrollments.append(enrollment)
-            users.append(user)
-        }
-        
-        return users
-    }
     
     func getCoursesForCurrentUser() -> [Course]? {
 
@@ -44,7 +36,7 @@ class ServerProvider: ProviderProtocol{
 
     }
     
-    func getEnrollmentsByCourse(courseId: UInt64) -> [Enrollment]{
+    func getEnrollmentsByCourse(courseId: UInt64) -> EventLoopFuture<Enrollments>{
         return self.grpcManager.getEnrollmentsByCourse(courseId: courseId)
         
     }
@@ -78,13 +70,18 @@ class ServerProvider: ProviderProtocol{
         return self.grpcManager.getAssignments(courseId: courseID)
     }
     
-    func getEnrollmentsForCourse(course: Course) -> [Enrollment]? {
+    func getEnrollmentsForCourse(course: Course) -> EventLoopFuture<Enrollments> {
         return self.grpcManager.getEnrollmentsByCourse(courseId: course.id)
     }
     
     func addUserToCourse(course: Course, user: User) -> Bool {
         fatalError("Not implemented")
     }
+    
+    func getUsersForCourse(course: Course) -> [User] {
+        fatalError("Not implemented")
+    }
+    
     
     func changeUserStatus(enrollment: Enrollment, status: Enrollment.UserStatus) -> Status {
         fatalError("Not implemented")
@@ -130,6 +127,10 @@ class ServerProvider: ProviderProtocol{
         return self.grpcManager.getGroupByUserAndCourse(userID: userId, courseID: courseId)
     }
     
+    func getGroupsByCourse(courseId: UInt64) -> EventLoopFuture<Groups> {
+        return self.grpcManager.getGroupsByCourse(courseId: courseId)
+    }
+    
     func updateGroup(group: Group) -> Status {
         fatalError("Not implemented")
     }
@@ -144,7 +145,7 @@ class ServerProvider: ProviderProtocol{
         //fatalError("Not implemented")
     }
     
-    func getSubmissionsByCourse(courseId: UInt64, type: SubmissionsForCourseRequest.TypeEnum) -> CourseSubmissions {
+    func getSubmissionsByCourse(courseId: UInt64, type: SubmissionsForCourseRequest.TypeEnum) -> EventLoopFuture<CourseSubmissions> {
         return self.grpcManager.getSubmissionsByCourse(courseId: courseId, type: type)
     }
     

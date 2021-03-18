@@ -15,8 +15,10 @@ struct NavigatorView: View {
     var body: some View {
         NavigationView{
             VStack(alignment: .leading){
+                
                 CoursePicker(courses: courses, selectedCourse: $selectedCourse)
                     .padding([.horizontal, .top])
+    
                 if viewModel.getCourse(courseId: selectedCourse).enrolled == Enrollment.UserStatus.teacher {
                     TeacherNavigationView(viewModel: TeacherViewModel(provider: ServerProvider(), course: viewModel.getCourse(courseId: selectedCourse)))
                 } else if viewModel.getCourse(courseId: selectedCourse).enrolled == Enrollment.UserStatus.student{

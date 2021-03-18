@@ -16,7 +16,7 @@ struct MemberListItem: View {
             SwiftUI.Group{
                 Link(destination: URL(string: "https://www.github.com/" + course.organizationPath + "/" + enrollment.user.login + "-labs")!, label:{
                     Text(enrollment.user.name)
-                        .frame(width: 200, alignment: .leading)
+                        .frame(width: 180, alignment: .leading)
                 })
                 Spacer()
                 
@@ -52,7 +52,7 @@ struct MemberListItem: View {
             SwiftUI.Group{
                 if course.slipDays > 0 {
                     Text("\(enrollment.slipDaysRemaining)")
-                        .frame(width: 50, alignment: .leading)
+                        .frame(width: 60, alignment: .center)
                     Spacer()
                 }
             }
