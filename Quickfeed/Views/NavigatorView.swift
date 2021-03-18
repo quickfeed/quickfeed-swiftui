@@ -28,14 +28,30 @@ struct NavigatorView: View {
                 }
                 
                 Spacer()
+                if viewModel.user.isAdmin{
+                    NavigationLink(
+                        destination: Admin(viewModel: AdminViewModel(provider: ServerProvider()))){
+                        HStack{
+                            Image(systemName: "folder.badge.gear")
+                                .frame(width: 30)
+                                .padding(.leading)
+                                .foregroundColor(.blue)
+                            Text("Admin")
+                                .font(.headline)
+                            Spacer()
+                        }
+                        .contentShape(Rectangle())
+                    }
+                    .padding(.bottom, 0.0)
+                    .buttonStyle(PlainButtonStyle())
+                }
                 NavigationLink(
-                    destination: UserProfile(viewModel: viewModel)){
+                    destination: UserProfile(viewModel: viewModel, selectedCourse: $selectedCourse)){
                     HStack{
-                        Image(systemName: "person.fill")
-                            .data(url: URL(string: viewModel.user.avatarURL)!)
-                            .cornerRadius(7.5)
-                            .frame(width: 30, height: 30)
-                            .padding(.leading)
+                            Image(systemName: "person.fill")
+                                .cornerRadius(7.5)
+                                .frame(width: 30, height: 30)
+                                .padding(.leading)
                         Text(viewModel.user.name)
                             .font(.headline)
                         Spacer()
@@ -43,12 +59,14 @@ struct NavigatorView: View {
                     .frame(height: 50)
                     .contentShape(Rectangle())
                 }
+                .padding(.top, 0.0)
                 .buttonStyle(PlainButtonStyle())
             }
             
         }
         .onAppear(perform: {
             self.selectedCourse = self.courses[0].id
+            viewModel.getEnrollments()
         })
     }
 }
@@ -57,16 +75,4 @@ struct NavigatorView_Previews: PreviewProvider {
     static var previews: some View {
         NavigatorView(viewModel: UserViewModel(provider: FakeProvider()))
     }
-}
-
-extension Image {
-    func data(url:URL) -> Self {
-        if let data = try? Data(contentsOf: url) {
-            return Image(nsImage: NSImage(data: data)!)
-                .resizable()
-        }
-        return self
-            .resizable()
-    }
-    
 }

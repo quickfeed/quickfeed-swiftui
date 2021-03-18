@@ -57,6 +57,10 @@ class FakeProvider: ProviderProtocol, ObservableObject{
         return currentUser
     }
     
+    func updateUser(user: User) {
+        fatalError("Not Implemented yet")
+    }
+    
     func getUsersForCourse(course: Course) -> [User] {
         let enrollments: [Enrollment] = course.enrollments
         var users: [User] = []
@@ -116,7 +120,7 @@ class FakeProvider: ProviderProtocol, ObservableObject{
         return nil
     }
     
-    func getCourses() -> [Course] {
+    func getCourses() -> [Course]? {
         return self.courses
     }
     
@@ -124,7 +128,7 @@ class FakeProvider: ProviderProtocol, ObservableObject{
         return true
     }
     
-    func getUsers() -> [User] {
+    func getUsers() -> [User]? {
         return self.dummyUsers
     }
     

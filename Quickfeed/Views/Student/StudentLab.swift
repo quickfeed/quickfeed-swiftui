@@ -19,7 +19,7 @@ struct StudentLab: View {
             Text("\(assignment.name) has a submission, but has not been graded yet")
         } else {
             VStack{
-                SubmissionScore(assignmentName: assignment.name, submissionScore: submission!.score, submissionStatus: submission!.status)
+                SubmissionScore(assignment: assignment, submissionScore: submission!.score, submissionStatus: submission!.status)
                 Divider()
                 if assignment.skipTests {
                     if submission!.reviews.count > 1{
