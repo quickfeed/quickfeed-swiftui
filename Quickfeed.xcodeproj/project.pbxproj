@@ -23,6 +23,8 @@
 		D06024B125DD23D4009390A1 /* LabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06024B025DD23D4009390A1 /* LabTests.swift */; };
 		D06A115D25ECE1A4004B0047 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06A115C25ECE1A4004B0047 /* UserViewModel.swift */; };
 		D06D9AD325F638AE0016BD59 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06D9AD225F638AE0016BD59 /* UserProfile.swift */; };
+		D083089E260385AA005A1FF0 /* AllCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = D083089D260385AA005A1FF0 /* AllCourses.swift */; };
+		D08308A6260385C2005A1FF0 /* NewOrEditCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08308A5260385C2005A1FF0 /* NewOrEditCourse.swift */; };
 		D08BA18525FA3B2F008A3F6D /* ReviewPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08BA18425FA3B2F008A3F6D /* ReviewPicker.swift */; };
 		D08BA18A25FA4875008A3F6D /* SubmissionScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08BA18925FA4875008A3F6D /* SubmissionScore.swift */; };
 		D08BA18F25FA68CB008A3F6D /* RemoteImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08BA18E25FA68CB008A3F6D /* RemoteImageLoader.swift */; };
@@ -127,6 +129,8 @@
 		D06024B025DD23D4009390A1 /* LabTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabTests.swift; sourceTree = "<group>"; };
 		D06A115C25ECE1A4004B0047 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		D06D9AD225F638AE0016BD59 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		D083089D260385AA005A1FF0 /* AllCourses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCourses.swift; sourceTree = "<group>"; };
+		D08308A5260385C2005A1FF0 /* NewOrEditCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOrEditCourse.swift; sourceTree = "<group>"; };
 		D08BA18425FA3B2F008A3F6D /* ReviewPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPicker.swift; sourceTree = "<group>"; };
 		D08BA18925FA4875008A3F6D /* SubmissionScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionScore.swift; sourceTree = "<group>"; };
 		D08BA18E25FA68CB008A3F6D /* RemoteImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImageLoader.swift; sourceTree = "<group>"; };
@@ -232,6 +236,7 @@
 		D04331D726028EAB0034C4B9 /* Admin */ = {
 			isa = PBXGroup;
 			children = (
+				D083089C26038577005A1FF0 /* Courses */,
 				D04331D826028ECD0034C4B9 /* AdminUsers.swift */,
 				D04331E02602A5750034C4B9 /* AdminCourses.swift */,
 				D04331EA2602B9FF0034C4B9 /* Admin.swift */,
@@ -247,6 +252,15 @@
 				D03EF9CD25F02636008869CA /* Helpers */,
 			);
 			path = Student;
+			sourceTree = "<group>";
+		};
+		D083089C26038577005A1FF0 /* Courses */ = {
+			isa = PBXGroup;
+			children = (
+				D083089D260385AA005A1FF0 /* AllCourses.swift */,
+				D08308A5260385C2005A1FF0 /* NewOrEditCourse.swift */,
+			);
+			path = Courses;
 			sourceTree = "<group>";
 		};
 		D0F9FC6C25BEBBDB0080A1F2 /* Proto */ = {
@@ -689,10 +703,12 @@
 				D04331E62602B35C0034C4B9 /* HelpFunctions.swift in Sources */,
 				D08BA18F25FA68CB008A3F6D /* RemoteImageLoader.swift in Sources */,
 				FA17B99325F258FA008BB07F /* GradingCriterionListItem.swift in Sources */,
+				D083089E260385AA005A1FF0 /* AllCourses.swift in Sources */,
 				D06D9AD325F638AE0016BD59 /* UserProfile.swift in Sources */,
 				FA29716E25D28E45000C99A1 /* LabPicker.swift in Sources */,
 				FA4A88A02600D3A700A21CDA /* GroupsView.swift in Sources */,
 				FA85790925BEB4E900223DB9 /* QuickfeedApp.swift in Sources */,
+				D08308A6260385C2005A1FF0 /* NewOrEditCourse.swift in Sources */,
 				FA17B97025EFD30F008BB07F /* ResultGridListHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
