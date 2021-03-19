@@ -12,25 +12,26 @@ struct GroupList: View {
     @State var searchQuery: String = ""
     var body: some View {
         
-        VStack{
+        
+        
+        List{
             if viewModel.groups.count > 0{
-                List{
-                    Section(header: GroupListHeader()){
-                        ForEach(viewModel.groups, id: \.self){ group in
-                            GroupListItem(group: group)
-                                .focusable(true, onFocusChange: {_ in
-                                    print(group.name)
-                                })
-                            Divider()
-                        }
+                Section(header: GroupListHeader()){
+                    ForEach(viewModel.groups, id: \.self){ group in
+                        GroupListItem(group: group)
+                            .focusable(true, onFocusChange: {_ in
+                                print(group.name)
+                            })
+                        Divider()
                     }
-                    
                 }
+                
             }
             else{
                 Text("No groups to show")
             }
         }
+        
         .navigationTitle("Groups of \(viewModel.currentCourse.name)")
         .toolbar{
             ToolbarItem{

@@ -20,7 +20,6 @@ struct GroupsView: View {
                 GroupList(viewModel: viewModel)
             }
         }
-        
         .padding()
         .toolbar{
             ToolbarItem(placement: .navigation){
