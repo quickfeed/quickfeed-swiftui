@@ -440,16 +440,16 @@
 		FA85798025BEC4B000223DB9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D04331D726028EAB0034C4B9 /* Admin */,
 				FA85790A25BEB4E900223DB9 /* ContentView.swift */,
-				FA29714925D12432000C99A1 /* Pickers */,
-				FA29714825D123FC000C99A1 /* SearchBar */,
-				D04B46E125D12E9D00AC8926 /* Student */,
-				FA29712325D05121000C99A1 /* Teacher */,
-				FA17B9A525F2D303008BB07F /* Release */,
-				FA85798C25BEC5B600223DB9 /* Helpers */,
 				D035C75725E92795005AC2BA /* NavigatorView.swift */,
 				D06D9AD225F638AE0016BD59 /* UserProfile.swift */,
+				D04331D726028EAB0034C4B9 /* Admin */,
+				D04B46E125D12E9D00AC8926 /* Student */,
+				FA29712325D05121000C99A1 /* Teacher */,
+				FA29714925D12432000C99A1 /* Pickers */,
+				FA29714825D123FC000C99A1 /* SearchBar */,
+				FA17B9A525F2D303008BB07F /* Release */,
+				FA85798C25BEC5B600223DB9 /* Helpers */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -703,7 +703,6 @@
 				D01B3CD225C2D76900B126FB /* GRPCManager.swift in Sources */,
 				D03EF9CF25F0277A008869CA /* AutoGraded.swift in Sources */,
 				FAB066B025CAC0F000FFE8EB /* ProviderProtocol.swift in Sources */,
-				FA17B96825EFD0D6008BB07F /* SubmissionListHeader.swift in Sources */,
 				D04331E62602B35C0034C4B9 /* HelpFunctions.swift in Sources */,
 				D08BA18F25FA68CB008A3F6D /* RemoteImageLoader.swift in Sources */,
 				FA17B99325F258FA008BB07F /* GradingCriterionListItem.swift in Sources */,
