@@ -13,7 +13,6 @@ struct GroupsView: View {
     @State var isAddingGroup = false
     var body: some View {
         VStack{
-            
             if isAddingGroup{
                 AddGroupForm(viewModel: viewModel)
             } else{
@@ -22,14 +21,12 @@ struct GroupsView: View {
         }
         .padding()
         .toolbar{
-            ToolbarItem(placement: .navigation){
-                
+            ToolbarItem(placement: .status){
                 Toggle(isOn: $isAddingGroup, label: {
                     Image(systemName: "plus")
                 })
                 .help("Add new group")
             }
-            
         }
     }
 }
