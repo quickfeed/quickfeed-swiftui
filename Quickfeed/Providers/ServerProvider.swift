@@ -115,11 +115,11 @@ class ServerProvider: ProviderProtocol{
         fatalError("Not implemented")
     }
     
-    func createGroup(groupId: UInt64, name: String, usersIds: [UInt64]) -> Status {
-        fatalError("Not implemented")
+    func createGroup(group: Group) -> EventLoopFuture<Group> {
+        return self.grpcManager.createGroup(gruop: group)
     }
     
-    func getGroup(groupId: UInt64) -> Group? {
+    func getGroup(groupId: UInt64) -> EventLoopFuture<Group> {
         fatalError("Not implemented")
     }
     

@@ -31,7 +31,9 @@ struct GroupList: View {
                 Text("No groups to show")
             }
         }
-        
+        .onAppear(perform: {
+            viewModel.loadGroups()
+        })
         .navigationTitle("Groups of \(viewModel.currentCourse.name)")
         .toolbar{
             ToolbarItem{

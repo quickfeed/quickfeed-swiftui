@@ -242,6 +242,14 @@ class GRPCManager {
         return nil
     }
     
+    
+    func createGroup(gruop: Group) -> EventLoopFuture<Group>{
+        
+        let call = self.quickfeedClient.createGroup(gruop, callOptions: self.defaultOptions)
+        
+        return call.response
+    }
+    
     func getGroupsByCourse(courseId: UInt64) -> EventLoopFuture<Groups>{
         let req = CourseRequest.with{
             $0.courseID = courseId

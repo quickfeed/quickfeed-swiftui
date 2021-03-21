@@ -24,6 +24,28 @@ struct AddGroupForm: View {
         })
     }
     
+    func resetState(){
+        self.selectedMembers = []
+        self.groupName = ""
+        self.searchQuery = ""
+    }
+    
+    
+    func createGroup(){
+        var group = Group()
+        group.courseID = viewModel.currentCourse.id
+        group.users = []
+        for enr in selectedMembers{
+            var user = User()
+            user.id = enr.user.id
+            group.users.append(user)
+        }
+        group.name = groupName
+        group.status = .approved
+        _ = viewModel.createGroup(group: group)
+        resetState()
+    }
+    
     var body: some View {
         VStack{
             VStack{
@@ -79,7 +101,7 @@ struct AddGroupForm: View {
                 
             }
                         
-            Button(action: {}, label: {
+            Button(action: {createGroup()}, label: {
                 Text("Create group")
             })
             
