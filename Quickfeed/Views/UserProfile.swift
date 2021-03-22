@@ -10,6 +10,9 @@ import SwiftUI
 struct UserProfile: View {
     @ObservedObject var viewModel: UserViewModel
     @Binding var selectedCourse: UInt64
+    @State var userName: String = ""
+    @State var userEmail: String = ""
+    @State var userStudentID: String = ""
     
     var body: some View {
         HStack{
@@ -19,14 +22,30 @@ struct UserProfile: View {
         }
         .padding()
         HStack{
-            VStack{
-                Text("Personal Information")
-                Text("Name")
-                Text("Email")
-                Text("StudentID")
+            VStack(alignment: .leading){
+                Text("User Information")
+                    .font(.title)
+                    .bold()
+                    .padding(.bottom)
+                Text("Name:")
+                    .bold()
+                TextField("Enter your name...", text: $userName)
+                Text("Email:")
+                    .bold()
+                TextField("Enter your Email...", text: $userEmail)
+                Text("StudentID:")
+                    .bold()
+                TextField("Enter your studentID...", text: $userStudentID)
+                Spacer()
             }
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .padding()
             Divider()
-            VStack{
+            VStack(alignment: .leading){
+                Text("Enrollments")
+                    .font(.title)
+                    .bold()
+                    .padding(.bottom)
                 ForEach(viewModel.enrollments!, id: \.self){ enrollment in
                     HStack{
                         Text(viewModel.getCourse(courseId: enrollment.courseID).code)
@@ -40,8 +59,14 @@ struct UserProfile: View {
                         self.selectedCourse = enrollment.courseID
                     }
                 }
+                Spacer()
             }
         }
+        .onAppear(perform: {
+            self.userName = viewModel.user.name
+            self.userEmail = viewModel.user.email
+            self.userStudentID = viewModel.user.studentID
+        })
         //TextField("User name (email address)", text: viewModel.user.name)
     }
 }
