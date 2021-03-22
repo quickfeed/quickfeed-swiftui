@@ -9,32 +9,24 @@ import SwiftUI
 
 struct GroupsView: View {
     @ObservedObject var viewModel: TeacherViewModel
-    @State var searchQuery: String = ""
+    
+    @State var isAddingGroup = false
     var body: some View {
         VStack{
-            if viewModel.groups.count > 0{
-                List{
-                    Section(header: GroupListHeader()){
-                        ForEach(viewModel.groups, id: \.self){ group in
-                            GroupListItem(group: group)
-                                .focusable(true, onFocusChange: {_ in 
-                                    print(group.name)
-                                })
-                            Divider()
-                        }
-                    }
-                    
-                }
-            }
-            else {
-                Text("No groups to show")
+            if isAddingGroup{
+                AddGroupForm(viewModel: viewModel)
+            } else{
+                GroupList(viewModel: viewModel)
             }
         }
         .padding()
-        .navigationTitle("Groups of \(viewModel.currentCourse.name)")
         .toolbar{
-            SearchFieldRepresentable(query: $searchQuery)
-                .frame(minWidth: 200, maxWidth: 350)
+            ToolbarItem(placement: .status){
+                Toggle(isOn: $isAddingGroup, label: {
+                    Image(systemName: "plus")
+                })
+                .help("Add new group")
+            }
         }
     }
 }
