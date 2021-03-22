@@ -11,6 +11,7 @@ struct ResultGrid: View {
     @ObservedObject var viewModel: TeacherViewModel
     @Binding var displayedSubmissionLink: SubmissionLink?
     @State var searchQuery: String = ""
+    @State var isSearching: Bool = false
     
     var body: some View {
         
@@ -27,8 +28,17 @@ struct ResultGrid: View {
         })
         
         .toolbar{
-            SearchFieldRepresentable(query: $searchQuery)
-                .frame(minWidth: 200, maxWidth: 350)
+            ToolbarItem{
+                if !isSearching{
+                Toggle(isOn: $isSearching, label: {
+                    Image(systemName: "magnifyingglass")
+                })
+                .keyboardShortcut("f")
+                } else {
+                    SearchFieldRepresentable(query: $searchQuery)
+                        .frame(minWidth: 200, maxWidth: 350)
+                }
+            }
         }
     }
     

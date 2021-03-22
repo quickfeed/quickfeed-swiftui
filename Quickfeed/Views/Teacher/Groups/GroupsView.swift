@@ -29,6 +29,7 @@ struct GroupsView: View {
                 .keyboardShortcut("a")
             }
         }
+    
     }
 }
 

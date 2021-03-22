@@ -11,6 +11,7 @@ struct MembersView: View {
     @ObservedObject var viewModel: TeacherViewModel
     @State var searchQuery: String = ""
     @State private var isEditing = false
+    @State var isSearching: Bool = false
     
     
     func filteredEnrollments() -> [Enrollment] {
@@ -25,25 +26,48 @@ struct MembersView: View {
             Section(header: MemberListHeader(courseTotalSlipDays: self.viewModel.currentCourse.slipDays)){
                 ForEach(self.filteredEnrollments(), id: \.self){ enrollment in
                     MemberListItem(enrollment: enrollment, course: viewModel.currentCourse, isEditing: $isEditing)
+                        
                     Divider()
                 }
+                
             }
+        
         }
+       
         .onAppear(perform: {
             viewModel.loadEnrollments()
         })
         .navigationTitle("Members of \(viewModel.currentCourse.name)")
         .toolbar{
-            Toggle(isOn: $isEditing, label: {
-                Image(systemName: "square.and.pencil")
-            })
-            .help("Manage users")
-            SearchFieldRepresentable(query: $searchQuery)
-                .frame(minWidth: 200, maxWidth: 350)
+            ToolbarItem{
+                Toggle(isOn: $isEditing, label: {
+                    Image(systemName: "square.and.pencil")
+                })
+                .help("Manage users")
+            }
             
+            ToolbarItem{
+                if !isSearching{
+                Toggle(isOn: $isSearching, label: {
+                    Image(systemName: "magnifyingglass")
+                })
+                .keyboardShortcut("f")
+                } else {
+                    SearchFieldRepresentable(query: $searchQuery)
+                        .frame(minWidth: 200, maxWidth: 350)
+                        .onExitCommand(perform: {self.isSearching = false})
+                }
+            }
+            ToolbarItem{
+                if isSearching{
+                    Toggle(isOn: $isSearching, label: {
+                        Image(systemName: "magnifyingglass")
+                    })
+                    .keyboardShortcut("f")
+                    .labelsHidden()
+                }
+            }
         }
-        
-       
     }
     
     func matchesQuery(user: User) -> Bool{
