@@ -62,10 +62,12 @@ struct NavigatorView: View {
                 .buttonStyle(PlainButtonStyle())
             }
             .toolbar{
-                ToolbarItem(placement: .principal){
+                ToolbarItem(placement: .primaryAction){
                     CoursePicker(courses: courses, selectedCourse: $selectedCourse)
+                
                 }
         }
+            .frame(alignment: .center)
         
             
                 
