@@ -31,7 +31,7 @@ struct AllCourses: View {
                 Text("Semester")
                     .frame(width: 120, alignment: .leading)
                 Text("Years")
-                    .frame(width: 100, alignment: .leading)
+                    .frame(width: 80, alignment: .leading)
                 Divider()
                 Text("Edit")
                     .frame(width: 60, alignment: .leading)
@@ -48,7 +48,7 @@ struct AllCourses: View {
                         Text(course.tag)
                             .frame(width: 120, alignment: .leading)
                         Text("\(String(course.year))")
-                            .frame(width: 100, alignment: .leading)
+                            .frame(width: 80, alignment: .leading)
                         Divider()
                         Button(action: {
                             self.course = course
@@ -79,6 +79,19 @@ struct AllCourses: View {
             SearchFieldRepresentable(query: $searchQuery)
                 .frame(minWidth: 200, maxWidth: 350)
         }
+        .focusable()
+        .touchBar(content: {
+            Button(action: {
+                self.course = nil
+                self.editCourse = !self.editCourse
+            }, label: {
+                Image(systemName: "plus")
+            })
+            .keyboardShortcut("c")
+            Button(action: {self.showUsers = true}, label: {
+                Text("Users")
+            })
+        })
     }
 }
 

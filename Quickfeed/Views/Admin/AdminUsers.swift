@@ -39,12 +39,12 @@ struct AdminUsers: View {
                     .frame(width: 60, alignment: .leading)
                 Spacer()
                 Text("IsAdmin")
-                    .frame(width: 60, alignment: .leading)
-            }){
+                    .frame(width: 80, alignment: .leading)
+            }, content: {
                 ForEach(self.filteredUsers(), id: \.self){ user in
                     HStack{
                         Link(destination: URL(string: "https://www.github.com/" + user.login)!, label:{
-                            Text(user.name)
+                            Text(user.name != "" ? user.name : user.login)
                                 .frame(width: 200, alignment: .leading)
                         })
                         Spacer()
@@ -61,14 +61,17 @@ struct AdminUsers: View {
                         }, label: {
                             Text(user.isAdmin ? "Demote" : "Promote")
                         })
-                        .frame(width: 60)
-                        .padding(.trailing)
+                        .foregroundColor(user.isAdmin ? .red : .blue)
+                        .frame(width: 80)
+                        .padding(.leading)
+                        .disabled(user.id == viewModel.user.id)
                         
                     }
                     Divider()
                 }
-            }
+            })
         }
+        .background(Color.clear)
         .navigationTitle("Manage Users")
         .toolbar{
             Button(action: {self.showUsers = false}, label: {
@@ -79,6 +82,13 @@ struct AdminUsers: View {
             SearchFieldRepresentable(query: $searchQuery)
                 .frame(minWidth: 200, maxWidth: 350)
         }
+        .focusable()
+        .touchBar(content: {
+            Spacer()
+            Toggle(isOn: $showUsers, label: {
+                Text("Courses")
+            })
+        })
         
     }
 }
