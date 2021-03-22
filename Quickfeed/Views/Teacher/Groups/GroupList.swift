@@ -10,6 +10,7 @@ import SwiftUI
 struct GroupList: View {
     @ObservedObject var viewModel: TeacherViewModel
     @State var searchQuery: String = ""
+    @State var isSearching: Bool = false
     var body: some View {
         
         
@@ -37,12 +38,22 @@ struct GroupList: View {
         .navigationTitle("Groups of \(viewModel.currentCourse.name)")
         .toolbar{
             ToolbarItem{
-                SearchFieldRepresentable(query: $searchQuery)
-                    .frame(minWidth: 200, maxWidth: 350)
+                if !isSearching{
+                Toggle(isOn: $isSearching, label: {
+                    Image(systemName: "magnifyingglass")
+                })
+                .keyboardShortcut("f")
+                } else {
+                    SearchFieldRepresentable(query: $searchQuery)
+                        .frame(minWidth: 200, maxWidth: 350)
+                }
+                
+               
+                
             }
             
-            
         }
+        
     }
 }
 

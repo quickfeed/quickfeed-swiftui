@@ -31,9 +31,9 @@ class SearchFieldController: NSViewController {
         self.view = searchField
     }
     
-   // override func viewDidAppear() {
-     //  self.view.window?.makeFirstResponder(self.view)
-     //}
+   override func viewDidAppear() {
+    self.view.window?.makeFirstResponder(self.view)
+     }
     
     
 }
