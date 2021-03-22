@@ -26,6 +26,7 @@ struct GroupsView: View {
                     Image(systemName: "plus")
                 })
                 .help("Add new group")
+                .keyboardShortcut("a")
             }
         }
     }
