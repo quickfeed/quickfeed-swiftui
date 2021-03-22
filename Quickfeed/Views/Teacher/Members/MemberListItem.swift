@@ -10,6 +10,7 @@ import SwiftUI
 struct MemberListItem: View {
     var enrollment: Enrollment
     var course: Course
+    @Binding var isEditing: Bool
     
     var body: some View {
         HStack {
@@ -34,7 +35,7 @@ struct MemberListItem: View {
                 })
                 
                 Spacer()
-                    
+                
             }
             
             SwiftUI.Group{
@@ -56,12 +57,32 @@ struct MemberListItem: View {
                     Spacer()
                 }
             }
-        
             
-                
+            
+            
             SwiftUI.Group{
-                Text(translateUserStatus(status: enrollment.status))
-                    .frame(width: 50, alignment: .leading)
+                if isEditing {
+                    HStack{
+                        Text(translateUserStatus(status: enrollment.status))
+                           
+                        Spacer()
+                        Menu("") {
+                            Button("promote", action: {})
+                            Button("reject", action: {})
+                            
+                        }
+                        .menuStyle(BorderlessButtonMenuStyle())
+                        .frame(width: 10)
+                    }
+                    .frame(width: 75, alignment: .center)
+                    
+                    
+                    
+                } else{
+                    Text(translateUserStatus(status: enrollment.status))
+                        .frame(width: 75, alignment: .center)
+                    
+                }
             }
             
             
@@ -72,6 +93,6 @@ struct MemberListItem: View {
 
 struct MemberListItem_Previews: PreviewProvider {
     static var previews: some View {
-        MemberListItem(enrollment: Enrollment(), course: Course())
+        MemberListItem(enrollment: Enrollment(), course: Course(), isEditing: .constant(false))
     }
 }

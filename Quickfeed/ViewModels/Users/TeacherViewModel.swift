@@ -60,6 +60,24 @@ class TeacherViewModel: UserViewModelProtocol{
         }
     }
     
+    func createGroup(group: Group) -> Group?{
+        var newGroup: Group?
+        
+        let response = self.provider.createGroup(group: group)
+        _ = response.always {(response: Result<Group, Error>) in
+            switch response {
+            case .success(let response):
+                DispatchQueue.main.async {
+                    newGroup = response
+                }
+            case .failure(let err):
+                print("[Error] Connection error or groups not found: \(err)")
+                newGroup = nil            }
+        }
+        print(newGroup?.courseID ?? 666)
+        return newGroup
+    }
+    
     func loadEnrollmentLinks(){
         let response = self.provider.getSubmissionsByCourse(courseId: self.currentCourse.id, type: SubmissionsForCourseRequest.TypeEnum.all)
         _ = response.always {(response: Result<CourseSubmissions, Error>) in
