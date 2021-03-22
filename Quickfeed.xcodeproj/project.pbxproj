@@ -91,7 +91,7 @@
 		FABB233E25DBD91B00317969 /* MembersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB233D25DBD91B00317969 /* MembersView.swift */; };
 		FAC5365225C0347300784980 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5365025C0347300784980 /* UserManager.swift */; };
 		FAC5365325C0347300784980 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5365025C0347300784980 /* UserManager.swift */; };
-		FAF0C52A2608A424005A8B66 /* ReleaseNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF0C5292608A424005A8B66 /* ReleaseNavigationView.swift */; };
+		FAF0C5342608A592005A8B66 /* ReleaseNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF0C5332608A592005A8B66 /* ReleaseNavigationView.swift */; };
 		FAF945B725CC4E3200074A2F /* ProtoExstensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF945B625CC4E3200074A2F /* ProtoExstensions.swift */; };
 		FAF945B825CC4E3200074A2F /* ProtoExstensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF945B625CC4E3200074A2F /* ProtoExstensions.swift */; };
 		FAF945B925CC4E3200074A2F /* ProtoExstensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF945B625CC4E3200074A2F /* ProtoExstensions.swift */; };
@@ -188,7 +188,7 @@
 		FAB0671C25CACF8700FFE8EB /* TeacherNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherNavigationView.swift; sourceTree = "<group>"; };
 		FABB233D25DBD91B00317969 /* MembersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersView.swift; sourceTree = "<group>"; };
 		FAC5365025C0347300784980 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
-		FAF0C5292608A424005A8B66 /* ReleaseNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReleaseNavigationView.swift; path = Quickfeed/Views/Teacher/Release/ReleaseNavigationView.swift; sourceTree = "<group>"; };
+		FAF0C5332608A592005A8B66 /* ReleaseNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseNavigationView.swift; sourceTree = "<group>"; };
 		FAF945B625CC4E3200074A2F /* ProtoExstensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtoExstensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -310,6 +310,7 @@
 		FA29712325D05121000C99A1 /* Teacher */ = {
 			isa = PBXGroup;
 			children = (
+				FAF0C5322608A582005A8B66 /* Release */,
 				FAB0671C25CACF8700FFE8EB /* TeacherNavigationView.swift */,
 				FA4A88AB2603674D00A21CDA /* Groups */,
 				FA4A88AA2603673500A21CDA /* Members */,
@@ -363,7 +364,6 @@
 		FA8578FC25BEB4E900223DB9 = {
 			isa = PBXGroup;
 			children = (
-				FAF0C5292608A424005A8B66 /* ReleaseNavigationView.swift */,
 				FA85790725BEB4E900223DB9 /* Quickfeed */,
 				FA85791A25BEB4EA00223DB9 /* QuickfeedTests */,
 				FA85792525BEB4EA00223DB9 /* QuickfeedUITests */,
@@ -510,6 +510,14 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		FAF0C5322608A582005A8B66 /* Release */ = {
+			isa = PBXGroup;
+			children = (
+				FAF0C5332608A592005A8B66 /* ReleaseNavigationView.swift */,
+			);
+			path = Release;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -652,7 +660,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAF0C52A2608A424005A8B66 /* ReleaseNavigationView.swift in Sources */,
 				FAA8333425E4F1D0008C05F4 /* ReviewNavigationView.swift in Sources */,
 				FA17B97525EFD40B008BB07F /* MemberListHeader.swift in Sources */,
 				FA17B96225EF90E6008BB07F /* SubmissionInfo.swift in Sources */,
@@ -667,6 +674,7 @@
 				D04331E12602A5750034C4B9 /* AdminCourses.swift in Sources */,
 				FAB066A625CAC0D300FFE8EB /* FakeProvider.swift in Sources */,
 				FA17B95525EF7D6F008BB07F /* SubmissionReview.swift in Sources */,
+				FAF0C5342608A592005A8B66 /* ReleaseNavigationView.swift in Sources */,
 				FA6C3EB125D45E4500D8A798 /* SubmissionListItem.swift in Sources */,
 				FA17B98E25F2510D008BB07F /* CriterionStatusControl.swift in Sources */,
 				D08BA18525FA3B2F008A3F6D /* ReviewPicker.swift in Sources */,
