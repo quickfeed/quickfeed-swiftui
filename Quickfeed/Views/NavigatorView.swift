@@ -30,19 +30,34 @@ struct NavigatorView: View {
                 Spacer()
                 if viewModel.user.isAdmin{
                     NavigationLink(
-                        destination: Admin(viewModel: AdminViewModel(provider: ServerProvider()))){
+                        destination: Admin(viewModel: AdminViewModel(provider: ServerProvider()), showUsers: false)){
                         HStack{
                             Image(systemName: "folder.badge.gear")
                                 .frame(width: 30)
                                 .padding(.leading)
                                 .foregroundColor(.blue)
-                            Text("Admin")
+                            Text("Courses")
                                 .font(.headline)
                             Spacer()
                         }
                         .contentShape(Rectangle())
                     }
-                    .padding(.bottom, 0.0)
+                    .padding(.bottom, 1.0)
+                    .buttonStyle(PlainButtonStyle())
+                    NavigationLink(
+                        destination: Admin(viewModel: AdminViewModel(provider: ServerProvider()))){
+                        HStack{
+                            Image(systemName: "person.2")
+                                .frame(width: 30)
+                                .padding(.leading)
+                                .foregroundColor(.blue)
+                            Text("Users")
+                                .font(.headline)
+                            Spacer()
+                        }
+                        .contentShape(Rectangle())
+                    }
+                    .padding(.vertical, 1.0)
                     .buttonStyle(PlainButtonStyle())
                 }
                 NavigationLink(
