@@ -12,6 +12,7 @@ struct ContentView: View {
 
         NavigatorView(viewModel: UserViewModel(provider: ServerProvider()))
             .navigationTitle("QuickFeed")
+        
     }
     
 }

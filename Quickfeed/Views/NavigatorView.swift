@@ -16,9 +16,8 @@ struct NavigatorView: View {
         NavigationView{
             VStack(alignment: .leading){
                 
-                CoursePicker(courses: courses, selectedCourse: $selectedCourse)
-                    .padding([.horizontal, .top])
-    
+                
+                
                 if viewModel.getCourse(courseId: selectedCourse).enrolled == Enrollment.UserStatus.teacher {
                     TeacherNavigationView(viewModel: TeacherViewModel(provider: ServerProvider(), course: viewModel.getCourse(courseId: selectedCourse)))
                 } else if viewModel.getCourse(courseId: selectedCourse).enrolled == Enrollment.UserStatus.student{
@@ -48,10 +47,10 @@ struct NavigatorView: View {
                 NavigationLink(
                     destination: UserProfile(viewModel: viewModel, selectedCourse: $selectedCourse)){
                     HStack{
-                            Image(systemName: "person.fill")
-                                .cornerRadius(7.5)
-                                .frame(width: 30, height: 30)
-                                .padding(.leading)
+                        Image(systemName: "person.fill")
+                            .cornerRadius(7.5)
+                            .frame(width: 30, height: 30)
+                            .padding(.leading)
                         Text(viewModel.user.name)
                             .font(.headline)
                         Spacer()
@@ -62,7 +61,14 @@ struct NavigatorView: View {
                 .padding(.top, 0.0)
                 .buttonStyle(PlainButtonStyle())
             }
+            .toolbar{
+                ToolbarItem(placement: .principal){
+                    CoursePicker(courses: courses, selectedCourse: $selectedCourse)
+                }
+        }
+        
             
+                
         }
         .onAppear(perform: {
             self.selectedCourse = self.courses[0].id

@@ -21,11 +21,12 @@ struct GroupsView: View {
         }
         .padding()
         .toolbar{
-            ToolbarItem(placement: .status){
-                Toggle(isOn: $isAddingGroup, label: {
-                    Image(systemName: "plus")
+            ToolbarItem(placement: isAddingGroup ? .navigation : .status){
+                Button(action: {isAddingGroup.toggle()}, label: {
+                    Label("Add Group", systemImage: isAddingGroup ?"chevron.backward" : "plus")
+
                 })
-                .help("Add new group")
+                .help(isAddingGroup ? "back" : "Add group")
                 .keyboardShortcut("a")
             }
         }
