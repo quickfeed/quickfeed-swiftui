@@ -36,8 +36,8 @@ protocol ProviderProtocol{
     func updateCourseVisibility(enrollment: Enrollment) -> Bool
     func getGroupsForCourse(courseId: UInt64) -> [Group]
     func updateGroupStatus(groupId: UInt64, status: Group.GroupStatus) -> Status
-    func createGroup(groupId: UInt64, name: String, usersIds: [UInt64]) -> Status
-    func getGroup(groupId: UInt64) -> Group?
+    func createGroup(group: Group) -> EventLoopFuture<Group>
+    func getGroup(groupId: UInt64) -> EventLoopFuture<Group>
     func deleteGroup(courseId: UInt64, groupId: UInt64) -> Status
     func getGroupByUserAndCourse(courseId: UInt64, userId: UInt64) -> Group?
     func getGroupsByCourse(courseId: UInt64) -> EventLoopFuture<Groups>

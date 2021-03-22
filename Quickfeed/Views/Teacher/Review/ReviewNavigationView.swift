@@ -200,8 +200,8 @@ struct ReviewNavigationView: View {
                 
 
             }
+            .padding(.top)
             .frame(minWidth: 300)
-            .padding()
             
         }
         .onAppear(perform: {
@@ -214,6 +214,7 @@ struct ReviewNavigationView: View {
 
             SearchFieldRepresentable(query: $searchQuery)
                 .frame(minWidth: 200, maxWidth: 350)
+                .focusable(true)
         }
         
         

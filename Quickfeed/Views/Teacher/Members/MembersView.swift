@@ -10,6 +10,7 @@ import SwiftUI
 struct MembersView: View {
     @ObservedObject var viewModel: TeacherViewModel
     @State var searchQuery: String = ""
+    @State private var isEditing = false
     
     
     func filteredEnrollments() -> [Enrollment] {
@@ -19,25 +20,27 @@ struct MembersView: View {
     
     
     var body: some View {
-        VStack {
-            List{
-                Section(header: MemberListHeader(courseTotalSlipDays: self.viewModel.currentCourse.slipDays)){
-                    ForEach(self.filteredEnrollments(), id: \.self){ enrollment in
-                        MemberListItem(enrollment: enrollment, course: viewModel.currentCourse)
-                        Divider()
-                    }
+        
+        List{
+            Section(header: MemberListHeader(courseTotalSlipDays: self.viewModel.currentCourse.slipDays)){
+                ForEach(self.filteredEnrollments(), id: \.self){ enrollment in
+                    MemberListItem(enrollment: enrollment, course: viewModel.currentCourse, isEditing: $isEditing)
+                    Divider()
                 }
             }
-            .cornerRadius(5)
         }
-        .padding()
         .onAppear(perform: {
             viewModel.loadEnrollments()
         })
         .navigationTitle("Members of \(viewModel.currentCourse.name)")
         .toolbar{
+            Toggle(isOn: $isEditing, label: {
+                Image(systemName: "square.and.pencil")
+            })
+            .help("Manage users")
             SearchFieldRepresentable(query: $searchQuery)
                 .frame(minWidth: 200, maxWidth: 350)
+            
         }
         
        

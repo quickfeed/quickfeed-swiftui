@@ -11,34 +11,38 @@ struct SubmissionResult: View {
     @Binding var displayedSubmissionLink: SubmissionLink?
     var body: some View {
         
-        ZStack{
+        VStack{
             StudentLab(assignment: displayedSubmissionLink?.assignment ?? Assignment(), submission: displayedSubmissionLink?.submission)
-            VStack{
-                HStack{
-                    Button(action: {displayedSubmissionLink = nil}){
-                        Text("Back")
-                    }
-                    Spacer()
-                    Button(action: {displayedSubmissionLink = nil}){
-                        Text("Approve")
-                            .foregroundColor(getColorForSubmissionStatus(submissionStatus: .approved))
-                    }
-                    Button(action: {displayedSubmissionLink = nil}){
-                        Text("Revision")
-                            .foregroundColor(getColorForSubmissionStatus(submissionStatus: .revision))
-                    }
-                    Button(action: {displayedSubmissionLink = nil}){
-                        Text("Reject")
-                            .foregroundColor(getColorForSubmissionStatus(submissionStatus: .rejected))
-                    }
-                }
-                Spacer()
-            }
-            //Spacer()
+        
         }
         .padding()
-        
-        //StudentLab(assignment: displayedSubmissionLink?.assignment ?? Assignment(), submission: displayedSubmissionLink?.submission)
+        .navigationTitle("\(displayedSubmissionLink?.assignment.name ?? "")")
+        .toolbar{
+            ToolbarItem(placement: ToolbarItemPlacement.navigation){
+                Button(action: {displayedSubmissionLink = nil}){
+                    Image(systemName: "chevron.backward")
+                }
+            }
+            ToolbarItem{
+                Button(action: {displayedSubmissionLink = nil}){
+                    Text("Approve")
+                        .foregroundColor(getColorForSubmissionStatus(submissionStatus: .approved))
+                }
+            }
+            ToolbarItem{
+                Button(action: {displayedSubmissionLink = nil}){
+                    Text("Revision")
+                        .foregroundColor(getColorForSubmissionStatus(submissionStatus: .revision))
+                }
+            }
+            
+            ToolbarItem{
+                Button(action: {displayedSubmissionLink = nil}){
+                    Text("Reject")
+                        .foregroundColor(getColorForSubmissionStatus(submissionStatus: .rejected))
+                }
+            }
+        }
         
     }
 }
