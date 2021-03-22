@@ -272,29 +272,6 @@ class GRPCManager {
     }
     
     
-    func getOrganization(orgName: String) {
-        
-        let request = OrgRequest.with{
-            $0.orgName = orgName
-        }
-        
-        
-        
-        let unaryCall = self.quickfeedClient.getOrganization(request, callOptions: self.defaultOptions)
-        
-        do {
-            
-            let response = try unaryCall.response.wait()
-            
-            
-            print("Call received: \(response.path)")
-        } catch {
-            print("Call failed: \(error)")
-        }
-        
-    }
-    
-    
     // MANUAL GRADING
     
     
