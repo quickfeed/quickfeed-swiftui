@@ -13,20 +13,16 @@ struct ResultGrid: View {
     @State var searchQuery: String = ""
     
     var body: some View {
-        VStack{
-            List{
-                Section(header: ResultGridListHeader(assignments: self.viewModel.assignments)){
-                    ForEach(self.filteredLinks(), id: \.self){ link in
-                        ResultListItem(user: link.enrollment.user, submissionLinks: link.submissions, displayedSubmissionLink: $displayedSubmissionLink)
-                        Divider()
-                    }
+        
+        List{
+            Section(header: ResultGridListHeader(assignments: self.viewModel.assignments)){
+                ForEach(self.filteredLinks(), id: \.self){ link in
+                    ResultListItem(user: link.enrollment.user, submissionLinks: link.submissions, displayedSubmissionLink: $displayedSubmissionLink)
+                    Divider()
                 }
             }
-            .cornerRadius(5)
-            .padding(.top, 0)
-            
         }
-        .padding()
+        
         .onAppear(perform: {
         })
         
