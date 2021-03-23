@@ -10,7 +10,6 @@ import NIOSSL
 import GRPC
 import NIOHPACK
 
-// TODO: Test connection between server and client
 class GRPCManager {
     let eventLoopGroup: MultiThreadedEventLoopGroup
     let channel: ClientConnection
@@ -192,6 +191,14 @@ class GRPCManager {
         }
         
         return []
+    }
+    
+    func createEnrollment(courseID: UInt64, userID: UInt64) {
+        var enrollment = Enrollment()
+        enrollment.courseID = courseID
+        enrollment.userID = userID
+        
+        _ = self.quickfeedClient.createEnrollment(enrollment, callOptions: self.defaultOptions)
     }
     
     

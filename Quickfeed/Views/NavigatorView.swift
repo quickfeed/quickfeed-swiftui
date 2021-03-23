@@ -9,8 +9,8 @@ import SwiftUI
 
 struct NavigatorView: View {
     @ObservedObject var viewModel: UserViewModel
-    var courses: [Course] { return viewModel.courses }
-    @State private var selectedCourse: UInt64 = 0
+    var courses: [Course] { return viewModel.courses! }
+    @State var selectedCourse: UInt64
     
     var body: some View {
         NavigationView{
@@ -18,13 +18,11 @@ struct NavigatorView: View {
                 
                 CoursePicker(courses: courses, selectedCourse: $selectedCourse)
                     .padding([.horizontal, .top])
-    
-                if viewModel.getCourse(courseId: selectedCourse).enrolled == Enrollment.UserStatus.teacher {
-                    TeacherNavigationView(viewModel: TeacherViewModel(provider: ServerProvider(), course: viewModel.getCourse(courseId: selectedCourse)))
-                } else if viewModel.getCourse(courseId: selectedCourse).enrolled == Enrollment.UserStatus.student{
-                    StudentNavigatorView(viewModel: StudentViewModel(provider: ServerProvider(), course: viewModel.getCourse(courseId: selectedCourse)))
-                } else{
-                    Text("Log in")
+                
+                if viewModel.isTeacherForCourse(courseId: selectedCourse)! {
+                    TeacherNavigationView(viewModel: TeacherViewModel(provider: ServerProvider(), course: viewModel.getCourse(courseID: selectedCourse)!))
+                } else {
+                    StudentNavigatorView(viewModel: StudentViewModel(provider: ServerProvider(), course: viewModel.getCourse(courseID: selectedCourse)!))
                 }
                 
                 Spacer()
@@ -81,13 +79,12 @@ struct NavigatorView: View {
         }
         .onAppear(perform: {
             self.selectedCourse = self.courses[0].id
-            viewModel.getEnrollments()
         })
     }
 }
 
-struct NavigatorView_Previews: PreviewProvider {
+/*struct NavigatorView_Previews: PreviewProvider {
     static var previews: some View {
         NavigatorView(viewModel: UserViewModel(provider: FakeProvider()))
     }
-}
+}*/

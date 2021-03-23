@@ -8,10 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var viewModel: UserViewModel = UserViewModel(provider: ServerProvider())
+    
     var body: some View {
-
-        NavigatorView(viewModel: UserViewModel(provider: ServerProvider()))
-            .navigationTitle("QuickFeed")
+        
+        if viewModel.courses == nil {
+            Text("FATAL ERROR! NO COURSES")
+        } else {
+            NavigatorView(viewModel: viewModel, selectedCourse: viewModel.courses![0].id)
+                .navigationTitle("QuickFeed")
+        }
     }
     
 }

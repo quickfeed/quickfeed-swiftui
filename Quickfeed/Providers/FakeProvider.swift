@@ -23,6 +23,10 @@ class FakeProvider: ProviderProtocol, ObservableObject{
         fatalError("not implemented")
     }
     
+    func createEnrollment(courseID: UInt64, userID: UInt64) {
+        fatalError("not implemented")
+    }
+    
     func getEnrollmentsByCourse(courseId: UInt64) -> EventLoopFuture<Enrollments> {
         fatalError("not implemented")
     }

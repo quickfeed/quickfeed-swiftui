@@ -70,6 +70,7 @@ struct AdminUsers: View {
                 }
             })
         }
+        .frame(minWidth: 700, maxWidth: .infinity)
         .background(Color.clear)
         .navigationTitle("Manage Users")
         .toolbar{

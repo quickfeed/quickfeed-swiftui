@@ -14,7 +14,7 @@ class ServerProvider: ProviderProtocol{
     var grpcManager: GRPCManager
   
     init() {
-        let userID = UInt64(151)
+        let userID = UInt64(100)
         self.grpcManager = GRPCManager(userID: userID)
         self.currentUser = self.grpcManager.getUser(userId: userID) ?? User()
     }
@@ -72,6 +72,10 @@ class ServerProvider: ProviderProtocol{
     
     func getAssignments(courseID: UInt64) -> [Assignment] {
         return self.grpcManager.getAssignments(courseId: courseID)
+    }
+    
+    func createEnrollment(courseID: UInt64, userID: UInt64) {
+        self.grpcManager.createEnrollment(courseID: courseID, userID: userID)
     }
     
     func getEnrollmentsForCourse(course: Course) -> EventLoopFuture<Enrollments> {

@@ -62,6 +62,7 @@ struct AllCourses: View {
                 }
             }
         }
+        .frame(minWidth: 800, maxWidth: .infinity)
         .navigationTitle("Manage Courses")
         .toolbar{
             Button(action: {
