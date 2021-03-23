@@ -15,8 +15,16 @@ class UserViewModel: UserViewModelProtocol {
     
     init(provider: ProviderProtocol) {
         self.provider = provider
-        self.user = provider.getUser() ?? User()
+        self.user = provider.getUser()!
         self.courses = provider.getAllCoursesForCurrentUser() ?? []
+    }
+    
+    func updateUser(name: String, studentID: String, email: String) {
+        self.user.name = name
+        self.user.studentID = studentID
+        self.user.email = email
+        self.provider.updateUser(user: self.user)
+        self.user = provider.getUser()!
     }
     
     func getCourse(courseId: UInt64) -> Course{
