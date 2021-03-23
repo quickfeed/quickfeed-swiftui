@@ -10,7 +10,6 @@ import Foundation
 class UserViewModel: UserViewModelProtocol {
     var provider: ProviderProtocol
     @Published var user: User
-    @Published var remoteImage: RemoteImageLoader?
     var courses: [Course]
     @Published var enrollments: [Enrollment]?
     

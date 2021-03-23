@@ -63,10 +63,10 @@ struct NavigatorView: View {
                 NavigationLink(
                     destination: UserProfile(viewModel: viewModel, selectedCourse: $selectedCourse)){
                     HStack{
-                            Image(systemName: "person.fill")
-                                .cornerRadius(7.5)
-                                .frame(width: 30, height: 30)
-                                .padding(.leading)
+                        RemoteImage(url: viewModel.user.avatarURL)
+                            .cornerRadius(7.5)
+                            .frame(width: 30, height: 30)
+                            .padding(.leading)
                         Text(viewModel.user.name)
                             .font(.headline)
                         Spacer()

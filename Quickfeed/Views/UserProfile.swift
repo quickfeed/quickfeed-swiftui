@@ -17,6 +17,9 @@ struct UserProfile: View {
     
     var body: some View {
         HStack{
+            RemoteImage(url: viewModel.user.avatarURL)
+                .cornerRadius(7.5)
+                .frame(width: 50, height: 50)
             Text(viewModel.user.name)
                 .font(.title)
                 .fontWeight(.bold)
@@ -57,6 +60,7 @@ struct UserProfile: View {
                 .help("Add new group")
             }
             .textFieldStyle(RoundedBorderTextFieldStyle())
+            Spacer()
             Divider()
             VStack(alignment: .leading){
                 Text("Enrollments")
