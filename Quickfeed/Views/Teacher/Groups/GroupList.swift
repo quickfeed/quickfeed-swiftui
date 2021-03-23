@@ -11,7 +11,6 @@ struct GroupList: View {
     @ObservedObject var viewModel: TeacherViewModel
     @State var searchQuery: String = ""
     @State var isSearching: Bool = false
-    @State private var showingPopover = true
     @State private var isEditing = false
     var filteredGroups: [Group] {
         return viewModel.groups.filter({
@@ -52,20 +51,14 @@ struct GroupList: View {
     }
     
     var body: some View {
+        
         List{
             if viewModel.groups.count > 0{
                 Section(header: GroupListHeader()){
                     ForEach(sortedList(), id: \.self){ group in
                         HStack{
-                            GroupListItem(group: group)
-                            if isEditing{
-                                if group.status != .approved{
-                                    Button(action: {}, label: {
-                                        Text("Approve")
-                                    })
-                                }
-                                
-                            }
+                            GroupListItem(group: group, isEditing: $isEditing)
+                            
                         }
                         Divider()
                     }
@@ -75,6 +68,8 @@ struct GroupList: View {
             else{
                 Text("No groups to show")
             }
+        
+           
         }
         .onAppear(perform: {
             viewModel.loadGroups()

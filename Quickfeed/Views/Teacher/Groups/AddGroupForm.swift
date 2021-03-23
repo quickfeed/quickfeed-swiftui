@@ -12,6 +12,7 @@ struct AddGroupForm: View {
     @State var groupName: String = ""
     @State var searchQuery: String = ""
     @State var selectedMembers: [Enrollment] = []
+    @State var addGroupErr: String? = nil
     
     var availableStudents: [Enrollment] {
         return viewModel.enrollments.filter({
@@ -41,8 +42,15 @@ struct AddGroupForm: View {
         }
         group.name = groupName
         group.status = .pending
-        _ = viewModel.createGroup(group: group)
-        resetState()
+        let err = viewModel.createGroup(group: group)
+        
+        if err == nil{
+            resetState()
+        } else{
+            addGroupErr = err
+        }
+        
+    
     }
     
     var body: some View {
@@ -60,11 +68,10 @@ struct AddGroupForm: View {
                 })
                 .disabled(selectedMembers.count > 0 && groupName != "" ? false : true)
             }
+            if addGroupErr != nil{
+                Text(addGroupErr!)
+            }
             Divider()
-            
-            
-           
-            
             VStack{
                 List{
                     Section(header: Text("Available students")){
