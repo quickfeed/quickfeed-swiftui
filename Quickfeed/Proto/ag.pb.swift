@@ -606,7 +606,7 @@ struct Assignment {
   /// defines minimal score limit for auto approval
   var scoreLimit: UInt32 = 0
 
-  /// number of TA's to review submissions for this assignment 
+  /// number of TA's to review submissions for this assignment
   var reviewers: UInt32 = 0
 
   var skipTests: Bool = false
@@ -996,7 +996,7 @@ struct Organizations {
 }
 
 /// EnrollmentRequest is a request for enrolled users of a given course,
-/// whose enrollment status match those provided in the request. To ignore group members 
+/// whose enrollment status match those provided in the request. To ignore group members
 /// that otherwise match the enrollment request, set ignoreGroupMembers to true.
 struct EnrollmentRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -1190,6 +1190,8 @@ struct SubmissionsForCourseRequest {
   var courseID: UInt64 = 0
 
   var type: SubmissionsForCourseRequest.TypeEnum = .all
+
+  var skipBuildInfo: Bool = false
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -3583,6 +3585,7 @@ extension SubmissionsForCourseRequest: SwiftProtobuf.Message, SwiftProtobuf._Mes
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "courseID"),
     2: .same(proto: "type"),
+    3: .same(proto: "skipBuildInfo"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -3593,6 +3596,7 @@ extension SubmissionsForCourseRequest: SwiftProtobuf.Message, SwiftProtobuf._Mes
       switch fieldNumber {
       case 1: try { try decoder.decodeSingularUInt64Field(value: &self.courseID) }()
       case 2: try { try decoder.decodeSingularEnumField(value: &self.type) }()
+      case 3: try { try decoder.decodeSingularBoolField(value: &self.skipBuildInfo) }()
       default: break
       }
     }
@@ -3605,12 +3609,16 @@ extension SubmissionsForCourseRequest: SwiftProtobuf.Message, SwiftProtobuf._Mes
     if self.type != .all {
       try visitor.visitSingularEnumField(value: self.type, fieldNumber: 2)
     }
+    if self.skipBuildInfo != false {
+      try visitor.visitSingularBoolField(value: self.skipBuildInfo, fieldNumber: 3)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   static func ==(lhs: SubmissionsForCourseRequest, rhs: SubmissionsForCourseRequest) -> Bool {
     if lhs.courseID != rhs.courseID {return false}
     if lhs.type != rhs.type {return false}
+    if lhs.skipBuildInfo != rhs.skipBuildInfo {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
