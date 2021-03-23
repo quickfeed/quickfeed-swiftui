@@ -91,6 +91,15 @@ class UserViewModel: UserViewModelProtocol {
     
     func getEnrollments() {
         self.enrollments = self.provider.getEnrollmentsForUser(userId: self.user.id)
+        if self.enrollments?.count != 0 {
+            self.sortEnrollmentsByCode()
+        }
+    }
+    
+    private func sortEnrollmentsByCode() {
+        var enrollments = self.enrollments!
+        enrollments.sort { self.getCourseById(courseId: $0.courseID).code < self.getCourseById(courseId: $1.courseID).code }
+        self.enrollments = enrollments
     }
     
     

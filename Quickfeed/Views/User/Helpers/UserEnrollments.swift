@@ -12,12 +12,6 @@ struct UserEnrollments: View {
     @Binding var selectedCourse: UInt64
     @State private var newEnrollments: Bool = false
     
-    func sortEnrollmentsByCode() -> [Enrollment] {
-        var enrollments = viewModel.enrollments!
-        enrollments.sort { viewModel.getCourseById(courseId: $0.courseID).code < viewModel.getCourseById(courseId: $1.courseID).code }
-        return enrollments
-    }
-    
     func sortCourseByCode() -> [Course] {
         var courses = viewModel.getAllCourses()!
         courses.sort { $0.code < $1.code }
@@ -42,7 +36,7 @@ struct UserEnrollments: View {
                     .buttonStyle(PlainButtonStyle())
                 }
                 List{
-                    ForEach(self.sortEnrollmentsByCode(), id: \.self){ enrollment in
+                    ForEach(viewModel.enrollments!, id: \.self){ enrollment in
                         HStack{
                             Text(viewModel.getCourseById(courseId: enrollment.courseID).code)
                                 .frame(width: 60, alignment: .leading)
