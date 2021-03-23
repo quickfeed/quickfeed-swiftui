@@ -64,7 +64,6 @@ struct NavigatorView: View {
             .toolbar{
                 ToolbarItem(placement: .primaryAction){
                     CoursePicker(courses: courses, selectedCourse: $selectedCourse)
-                
                 }
         }
             .frame(alignment: .center)

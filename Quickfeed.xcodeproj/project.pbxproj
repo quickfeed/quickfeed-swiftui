@@ -49,6 +49,7 @@
 		FA4A88A02600D3A700A21CDA /* GroupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4A889F2600D3A700A21CDA /* GroupsView.swift */; };
 		FA4A88B32603687900A21CDA /* GroupListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4A88B22603687900A21CDA /* GroupListHeader.swift */; };
 		FA4A88B82603688800A21CDA /* GroupListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4A88B72603688800A21CDA /* GroupListItem.swift */; };
+		FA5A40E62609DCA700A20A13 /* SelectedMembers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5A40E52609DCA700A20A13 /* SelectedMembers.swift */; };
 		FA5FBDE225E7E63E007EC0E3 /* ServerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5FBDE125E7E63E007EC0E3 /* ServerProvider.swift */; };
 		FA6C3EB125D45E4500D8A798 /* SubmissionListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6C3EB025D45E4500D8A798 /* SubmissionListItem.swift */; };
 		FA85790925BEB4E900223DB9 /* QuickfeedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA85790825BEB4E900223DB9 /* QuickfeedApp.swift */; };
@@ -158,6 +159,7 @@
 		FA4A889F2600D3A700A21CDA /* GroupsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsView.swift; sourceTree = "<group>"; };
 		FA4A88B22603687900A21CDA /* GroupListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListHeader.swift; sourceTree = "<group>"; };
 		FA4A88B72603688800A21CDA /* GroupListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListItem.swift; sourceTree = "<group>"; };
+		FA5A40E52609DCA700A20A13 /* SelectedMembers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedMembers.swift; sourceTree = "<group>"; };
 		FA5FBDE125E7E63E007EC0E3 /* ServerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerProvider.swift; sourceTree = "<group>"; };
 		FA6C3EB025D45E4500D8A798 /* SubmissionListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListItem.swift; sourceTree = "<group>"; };
 		FA85790525BEB4E900223DB9 /* Quickfeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quickfeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -357,6 +359,7 @@
 				FA4A88B72603688800A21CDA /* GroupListItem.swift */,
 				FA8EA69B26038F5D00A10351 /* AddGroupForm.swift */,
 				FA8EA6A026039B0D00A10351 /* GroupList.swift */,
+				FA5A40E52609DCA700A20A13 /* SelectedMembers.swift */,
 			);
 			path = Groups;
 			sourceTree = "<group>";
@@ -696,6 +699,7 @@
 				FAA8335325E52E3A008C05F4 /* SubmissionResult.swift in Sources */,
 				FA29717325D303E0000C99A1 /* SearchField.swift in Sources */,
 				FABB233E25DBD91B00317969 /* MembersView.swift in Sources */,
+				FA5A40E62609DCA700A20A13 /* SelectedMembers.swift in Sources */,
 				FAA8330525E3E073008C05F4 /* MemberListItem.swift in Sources */,
 				FA29717825D311B5000C99A1 /* SearchFieldController.swift in Sources */,
 				FAA8333E25E519E2008C05F4 /* ResultGrid.swift in Sources */,

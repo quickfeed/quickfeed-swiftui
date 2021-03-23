@@ -13,7 +13,7 @@ struct AddGroupForm: View {
     @State var searchQuery: String = ""
     @State var selectedMembers: [Enrollment] = []
     
-     var availableStudents: [Enrollment] {
+    var availableStudents: [Enrollment] {
         return viewModel.enrollments.filter({
             for enr in selectedMembers{
                 if enr.user.id == $0.user.id{
@@ -29,7 +29,6 @@ struct AddGroupForm: View {
         self.groupName = ""
         self.searchQuery = ""
     }
-    
     
     func createGroup(){
         var group = Group()
@@ -48,39 +47,25 @@ struct AddGroupForm: View {
     
     var body: some View {
         VStack{
-            VStack{
-                HStack{
-                    Text("Name:")
-                    Spacer()
-                    TextField("Enter group name", text: $groupName)
-                        .textFieldStyle(PlainTextFieldStyle())
-                    
-                }
-                Divider()
-                HStack{
-                    Text("Members:")
-                    Spacer()
-                    ForEach(selectedMembers, id: \.self){ enrollment in
-                        HStack{
-                            Text(enrollment.user.name)
-                            Button(action: {}, label: {
-                                Image(systemName: "multiply.circle")
-                            })
-                            .buttonStyle(PlainButtonStyle())
-                        }
-                            .padding(4)
-                        .background(RoundedRectangle(cornerRadius: 4).fill(Color(.selectedTextBackgroundColor)))
-                    }
-                    .animation(.easeIn)
-                }
-                Divider()
-                
-                
-                
+            SelectedMembers(selectedMembers: $selectedMembers, groupCreator: nil)
+            Divider()
+            HStack{
+                Text("Name:")
+                    .frame(width: 75, alignment: .leading)
+                Spacer()
+                TextField("Enter group name", text: $groupName)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                Button(action: {createGroup()}, label: {
+                    Text("Create group")
+                })
+                .disabled(selectedMembers.count > 0 && groupName != "" ? false : true)
             }
+            Divider()
+            
+            
+           
             
             VStack{
-                
                 List{
                     Section(header: Text("Available students")){
                         ForEach(availableStudents, id: \.self){ enrollment in
@@ -94,21 +79,10 @@ struct AddGroupForm: View {
                                 
                             }
                             Divider()
-                            
                         }
                     }
                 }
-                
             }
-                        
-            Button(action: {createGroup()}, label: {
-                Text("Create group")
-            })
-            
-            
-            
-            
-            Spacer()
         }
         .onAppear(perform:{
             viewModel.loadEnrollments()

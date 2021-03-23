@@ -6,6 +6,15 @@
 //
 
 import SwiftUI
+import AppKit
+
+
+class AppDelegate: NSObject, NSApplicationDelegate {
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        print("hello")
+    }
+    
+}
 
 
 struct AppCommands: Commands {
@@ -33,13 +42,15 @@ struct AppCommands: Commands {
 
 @main
 struct QuickfeedApp: App {
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
         .commands{
             AppCommands()
+            TextEditingCommands()
         }
-        
     }
 }

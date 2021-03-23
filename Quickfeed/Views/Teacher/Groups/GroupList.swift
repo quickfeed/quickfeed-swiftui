@@ -11,6 +11,7 @@ struct GroupList: View {
     @ObservedObject var viewModel: TeacherViewModel
     @State var searchQuery: String = ""
     @State var isSearching: Bool = false
+    @State private var showingPopover = true
     var body: some View {
         
         
@@ -20,9 +21,6 @@ struct GroupList: View {
                 Section(header: GroupListHeader()){
                     ForEach(viewModel.groups, id: \.self){ group in
                         GroupListItem(group: group)
-                            .focusable(true, onFocusChange: {_ in
-                                print(group.name)
-                            })
                         Divider()
                     }
                 }
