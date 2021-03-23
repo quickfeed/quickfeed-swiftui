@@ -173,6 +173,7 @@ class GRPCManager {
         let req = SubmissionsForCourseRequest.with{
             $0.courseID = courseId
             $0.type = type
+            $0.skipBuildInfo = true
         }
         
         let call = self.quickfeedClient.getSubmissionsByCourse(req, callOptions: self.defaultOptions)

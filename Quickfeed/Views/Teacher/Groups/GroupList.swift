@@ -58,18 +58,14 @@ struct GroupList: View {
                     ForEach(sortedList(), id: \.self){ group in
                         HStack{
                             GroupListItem(group: group, isEditing: $isEditing)
-                            
                         }
                         Divider()
                     }
                 }
-                
             }
             else{
                 Text("No groups to show")
             }
-        
-           
         }
         .onAppear(perform: {
             viewModel.loadGroups()

@@ -24,7 +24,7 @@ struct ResultView: View {
             }
         }
         .onAppear(perform: {
-            viewModel.loadEnrollmentLinks()
+            //viewModel.loadEnrollmentLinks()
         })
         .navigationTitle("Results of \(viewModel.currentCourse.name)")
         

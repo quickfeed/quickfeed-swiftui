@@ -18,7 +18,7 @@ struct ResultGrid: View {
         List{
             Section(header: ResultGridListHeader(assignments: self.viewModel.assignments)){
                 ForEach(self.filteredLinks(), id: \.self){ link in
-                    ResultListItem(user: link.enrollment.user, submissionLinks: link.submissions, displayedSubmissionLink: $displayedSubmissionLink)
+                    ResultListItem(viewModel: viewModel, user: link.enrollment.user, submissionLinks: link.submissions, displayedSubmissionLink: $displayedSubmissionLink)
                     Divider()
                 }
             }

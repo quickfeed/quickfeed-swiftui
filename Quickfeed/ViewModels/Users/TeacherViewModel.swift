@@ -14,14 +14,12 @@ class TeacherViewModel: UserViewModelProtocol{
     @Published var currentCourse: Course
     @Published var enrollments: [Enrollment] = []
     @Published var users: [User] = []
-    
     @Published var groups: [Group] = []
     @Published var assignments: [Assignment] = []
     @Published var manuallyGradedAssignments: [Assignment] = []
     @Published var enrollmentLinks: [EnrollmentLink] = []
     @Published var gradingBenchmarkForAssignment = [UInt64 : [GradingBenchmark]]()
     @Published var assignmentMap = [UInt64 : Assignment]()
-    
     
     init(provider: ProviderProtocol, course: Course) {
         self.provider = provider
@@ -30,20 +28,14 @@ class TeacherViewModel: UserViewModelProtocol{
         self.loadAssignments()
         self.loadUsers()
         self.loadGroups()
-        
         self.loadEnrollmentLinks()
-        
     }
-    
-    
     
     func loadUsers(){
         for enrollment in self.enrollments{
             self.users.append(enrollment.user)
         }
     }
-    
-
     
     func loadGroups(){
         let response = self.provider.getGroupsByCourse(courseId: self.currentCourse.id)
@@ -79,12 +71,17 @@ class TeacherViewModel: UserViewModelProtocol{
     }
     
     func loadEnrollmentLinks(){
+        let start = DispatchTime.now()
         let response = self.provider.getSubmissionsByCourse(courseId: self.currentCourse.id, type: SubmissionsForCourseRequest.TypeEnum.all)
         _ = response.always {(response: Result<CourseSubmissions, Error>) in
             switch response {
             case .success(let response):
                 DispatchQueue.main.async {
                     self.enrollmentLinks = response.links
+                    let end = DispatchTime.now()
+                    let nanoTime = end.uptimeNanoseconds - start.uptimeNanoseconds // <<<<< Difference in nano seconds (UInt64)
+                    let timeInterval = Double(nanoTime) / 1_000_000_000 // Technically could overflow for long running tests
+                    print("Elapsed time: \(timeInterval) seconds")
                 }
             case .failure(let err):
                 print("[Error] Connection error or enrollments not found: \(err)")
@@ -121,16 +118,38 @@ class TeacherViewModel: UserViewModelProtocol{
             assignment.skipTests // skipTests -> assignments is manually graded
         }
     }
+
     
     func getSubmissionsByUser(courseId: UInt64, userId: UInt64) -> [Submission]{
         return self.provider.getSubmissionsByUser(courseId: courseId, userId: userId)
     }
+    
+    func getSubmissionLink(userId: UInt64, submissionId: UInt64) -> SubmissionLink?{
+        var subLink: SubmissionLink?
+        let submissionsByUser = getSubmissionsByUser(courseId: self.currentCourse.id, userId: userId)
+        for enrollmentlink in self.enrollmentLinks{
+            if enrollmentlink.enrollment.userID == userId{
+                for submissionLink in enrollmentlink.submissions{
+                    if submissionLink.hasSubmission{
+                        if submissionLink.submission.id == submissionId{
+                            subLink = submissionLink
+                            subLink?.submission = submissionsByUser.first(where: {$0.id == submissionId})!
+                            return subLink
+                        }
+                    }
+                }
+            }
+        }
+        return nil
+    }
+    
     
     func loadBenchmarks(){
         for assignment in manuallyGradedAssignments {
             self.gradingBenchmarkForAssignment[assignment.id] = self.provider.loadCriteria(courseId: assignment.courseID, assignmentId: assignment.id)
         }
     }
+
     
     
   
