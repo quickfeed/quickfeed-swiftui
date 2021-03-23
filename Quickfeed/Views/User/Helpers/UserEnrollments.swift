@@ -12,15 +12,9 @@ struct UserEnrollments: View {
     @Binding var selectedCourse: UInt64
     @State private var newEnrollments: Bool = false
     
-    /*func sortedEnrollments() -> [Enrollment] {
-        var enrollments = viewModel.enrollments!
-        enrollments.sort { viewModel.getCourse(courseId: $0.courseID).code < viewModel.getCourse(courseId: $1.courseID).code }
-        return enrollments
-    }*/
-    
     func sortEnrollmentsByCode() -> [Enrollment] {
         var enrollments = viewModel.enrollments!
-        enrollments.sort { viewModel.getCourse(courseID: $0.courseID)!.code < viewModel.getCourse(courseID: $1.courseID)!.code }
+        enrollments.sort { viewModel.getCourseById(courseId: $0.courseID).code < viewModel.getCourseById(courseId: $1.courseID).code }
         return enrollments
     }
     
@@ -57,7 +51,9 @@ struct UserEnrollments: View {
                             Text(translateUserStatus(status: enrollment.status))
                         }
                         .onTapGesture {
-                            self.selectedCourse = enrollment.courseID
+                            if enrollment.course.enrolled == Enrollment.UserStatus.student || enrollment.course.enrolled == Enrollment.UserStatus.teacher {
+                                self.selectedCourse = enrollment.courseID
+                            }
                         }
                         Divider()
                     }
@@ -85,6 +81,10 @@ struct UserEnrollments: View {
                             Text(course.name)
                             Spacer()
                             Text("ENROLL")
+                                .onTapGesture {
+                                    viewModel.createEnrollment(courseID: course.id)
+                                    self.newEnrollments = false
+                                }
                         }
                         Divider()
                     }

@@ -12,7 +12,7 @@ struct ContentView: View {
     
     var body: some View {
         
-        if viewModel.courses == nil {
+        if viewModel.courses?.count == 0 {
             Text("FATAL ERROR! NO COURSES")
         } else {
             NavigatorView(viewModel: viewModel, selectedCourse: viewModel.courses![0].id)
