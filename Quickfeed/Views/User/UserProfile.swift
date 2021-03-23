@@ -21,16 +21,19 @@ struct UserProfile: View {
                 .fontWeight(.bold)
         }
         .padding()
-        HStack{
-            UserInformation(viewModel: viewModel)
-            Divider()
-            UserEnrollments(viewModel: viewModel, selectedCourse: $selectedCourse)
+        GeometryReader { geometry in
+            HStack{
+                UserInformation(viewModel: viewModel)
+                    .frame(width: geometry.size.width * 0.30)
+                    .padding(.trailing)
+                Divider()
+                UserEnrollments(viewModel: viewModel, selectedCourse: $selectedCourse)
+                    .frame(width: geometry.size.width * 0.68)
+            }
         }
+        .frame(minWidth: 550, maxWidth: .infinity, minHeight: 200, maxHeight: .infinity)
         .padding()
         .navigationTitle("UserProfile")
-        .toolbar{
-            Image(systemName: "plus")
-        }
     }
 }
 

@@ -16,30 +16,55 @@ struct UserInformation: View {
     
     var body: some View {
         VStack(alignment: .leading){
-            Text("User Information")
-                .font(.title2)
-                .bold()
-                .padding(.bottom)
+            HStack{
+                Spacer()
+                Text("User Information")
+                    .font(.title2)
+                    .bold()
+                    .padding(.bottom)
+                Spacer()
+            }
             if isEditingUser {
                 Text("Name:")
                     .bold()
                 TextField("Enter your name...", text: $userName)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .foregroundColor(isValidName() ? .primary : .red)
+                    .padding(.leading)
                 Text("Email:")
                     .bold()
                 TextField("Enter your Email...", text: $userEmail)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .foregroundColor(isValidEmail() ? .primary : .red)
+                    .padding(.leading)
                 Text("StudentID:")
                     .bold()
                 TextField("Enter your studentID...", text: $userStudentID)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .foregroundColor(isValidStudentID() ? .primary : .red)
+                    .padding(.leading)
             } else {
                 Text("Name:")
                     .bold()
-                Text(userName)
+                TextField("Enter your name...", text: $userName)
+                    .textFieldStyle(PlainTextFieldStyle())
+                    .disabled(true)
+                    .foregroundColor(.primary)
+                    .padding(.leading)
                 Text("Email:")
                     .bold()
-                Text(userEmail)
+                TextField("Enter your Email...", text: $userEmail)
+                    .textFieldStyle(PlainTextFieldStyle())
+                    .disabled(true)
+                    .foregroundColor(.primary)
+                    .padding(.leading)
                 Text("StudentID:")
                     .bold()
-                Text(userStudentID)
+                TextField("Enter your studentID...", text: $userStudentID)
+                    .textFieldStyle(PlainTextFieldStyle())
+                    .disabled(true)
+                    .foregroundColor(.primary)
+                    .padding(.leading)
             }
             if isEditingUser {
                 Button(action: {
@@ -49,7 +74,7 @@ struct UserInformation: View {
                     Text("Done")
                 })
                 .disabled(!self.isValidEmail() || !self.isValidStudentID() || !self.isValidName())
-            } else {
+            }else {
                 Button(action: {
                     self.isEditingUser = true
                 }, label: {
@@ -58,7 +83,6 @@ struct UserInformation: View {
             }
             Spacer()
         }
-        .textFieldStyle(RoundedBorderTextFieldStyle())
         .onAppear(perform: {
             self.userName = viewModel.user.name
             self.userEmail = viewModel.user.email
@@ -72,7 +96,7 @@ struct UserInformation: View {
     
     func isValidEmail() -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-
+        
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: self.userEmail)
     }
@@ -83,7 +107,7 @@ struct UserInformation: View {
 }
 
 /*struct UserInformation_Previews: PreviewProvider {
-    static var previews: some View {
-        UserInformation()
-    }
-}*/
+ static var previews: some View {
+ UserInformation()
+ }
+ }*/

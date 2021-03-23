@@ -32,7 +32,6 @@ func translateUserStatus(status: Enrollment.UserStatus) -> String{
     default:
         return "None"
     }
-    
 }
 
 func getColorForSubmissionStatus(submissionStatus: Submission.Status) -> Color {
