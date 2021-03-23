@@ -17,7 +17,7 @@ struct UserInformation: View {
     var body: some View {
         VStack(alignment: .leading){
             Text("User Information")
-                .font(.title)
+                .font(.title2)
                 .bold()
                 .padding(.bottom)
             if isEditingUser {
@@ -41,14 +41,21 @@ struct UserInformation: View {
                     .bold()
                 Text(userStudentID)
             }
-            Button(action: {
-                viewModel.updateUser(name: userName, studentID: userStudentID, email: userEmail)
-            }, label: {
-                Text("Submit")
-            })
-            Toggle(isOn: $isEditingUser, label: {
-                Text(isEditingUser ? "Submit" : "Edit")
-            })
+            if isEditingUser {
+                Button(action: {
+                    viewModel.updateUser(name: userName, studentID: userStudentID, email: userEmail)
+                    self.isEditingUser = false
+                }, label: {
+                    Text("Done")
+                })
+                .disabled(!self.isValidEmail() || !self.isValidStudentID() || !self.isValidName())
+            } else {
+                Button(action: {
+                    self.isEditingUser = true
+                }, label: {
+                    Text("Edit")
+                })
+            }
             Spacer()
         }
         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -57,6 +64,21 @@ struct UserInformation: View {
             self.userEmail = viewModel.user.email
             self.userStudentID = viewModel.user.studentID
         })
+    }
+    
+    func isValidName() -> Bool {
+        return self.userName.replacingOccurrences(of: " ", with: "").allSatisfy{ $0.isLetter }
+    }
+    
+    func isValidEmail() -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+
+        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailPred.evaluate(with: self.userEmail)
+    }
+    
+    func isValidStudentID() -> Bool {
+        return self.userStudentID.allSatisfy{ $0.isNumber } && !self.userStudentID.isEmpty
     }
 }
 

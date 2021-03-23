@@ -27,6 +27,10 @@ struct UserProfile: View {
             UserEnrollments(viewModel: viewModel, selectedCourse: $selectedCourse)
         }
         .padding()
+        .navigationTitle("UserProfile")
+        .toolbar{
+            Image(systemName: "plus")
+        }
     }
 }
 

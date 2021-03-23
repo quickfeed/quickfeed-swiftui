@@ -14,7 +14,7 @@ struct UserEnrollments: View {
     var body: some View {
         VStack(alignment: .leading){
             Text("Enrollments")
-                .font(.title)
+                .font(.title2)
                 .bold()
                 .padding(.bottom)
             ForEach(viewModel.enrollments!, id: \.self){ enrollment in
