@@ -40,7 +40,7 @@ struct AddGroupForm: View {
             group.users.append(user)
         }
         group.name = groupName
-        group.status = .approved
+        group.status = .pending
         _ = viewModel.createGroup(group: group)
         resetState()
     }
