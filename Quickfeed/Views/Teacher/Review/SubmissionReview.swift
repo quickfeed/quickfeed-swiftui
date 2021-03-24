@@ -17,6 +17,14 @@ struct SubmissionReview: View {
     @State private var review: Review = Review()
     
     
+    //Initializes a new review
+    func initReview(){
+        var review = Review()
+        review.benchmarks = viewModel.loadCriteria(assignmentId: submissionLink.assignment.id)
+        self.review = review
+    }
+    
+    
     func hasReview() -> Bool{
         if submissionLink.submission.reviews.count > 0{
             return true
@@ -59,10 +67,6 @@ struct SubmissionReview: View {
                 .help("Copy repo name to clipboard")
             }
             
-
-                
-            
-            
             SubmissionInfo(viewModel: viewModel, submissionLink: $submissionLink)
             if submissionLink.hasSubmission{
                 if hasReviewByUser(){
@@ -92,6 +96,15 @@ struct SubmissionReview: View {
                             }
                         }
                         
+                    } else{
+                        
+                        Text("New review")
+                            .onAppear(perform: {initReview()})
+                        List{
+                            ForEach(self.review.benchmarks.indices, id: \.self){ idx in
+                                GradingBenchmarkSection(benchmark: $review.benchmarks[idx])
+                            }
+                        }
                     }
                 
                 }

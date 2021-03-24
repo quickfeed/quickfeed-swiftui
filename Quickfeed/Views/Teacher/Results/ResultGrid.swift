@@ -12,28 +12,47 @@ struct ResultGrid: View {
     @Binding var displayedSubmissionLink: SubmissionLink?
     @State var searchQuery: String = ""
     @State var isSearching: Bool = false
+    @State var showingStats: Bool = false
     
     var body: some View {
-        
-        List{
-            Section(header: ResultGridListHeader(assignments: self.viewModel.assignments)){
-                ForEach(self.filteredLinks(), id: \.self){ link in
-                    ResultListItem(user: link.enrollment.user, submissionLinks: link.submissions, displayedSubmissionLink: $displayedSubmissionLink)
-                    Divider()
+        SwiftUI.Group{
+            if showingStats{
+                ResultStats(viewModel: viewModel)
+            } else{
+                List{
+                    Section(header: ResultGridListHeader(assignments: self.viewModel.assignments)){
+                        ForEach(self.filteredLinks(), id: \.self){ link in
+                            ResultListItem(user: link.enrollment.user, submissionLinks: link.submissions, displayedSubmissionLink: $displayedSubmissionLink)
+                            Divider()
+                        }
+                    }
                 }
+                
             }
         }
-        
         .onAppear(perform: {
         })
         
         .toolbar{
+            ToolbarItem(placement: showingStats ? .navigation : .automatic){
+                if showingStats{
+                    Button(action: {showingStats = false}, label: {
+                        Image(systemName: "chevron.backward")
+                    })
+                } else{
+                    Button(action: {showingStats = true}, label: {
+                        Image(systemName: "chart.bar.fill")
+                    })
+                }
+                
+                
+            }
             ToolbarItem{
                 if !isSearching{
-                Toggle(isOn: $isSearching, label: {
-                    Image(systemName: "magnifyingglass")
-                })
-                .keyboardShortcut("f")
+                    Toggle(isOn: $isSearching, label: {
+                        Image(systemName: "magnifyingglass")
+                    })
+                    .keyboardShortcut("f")
                 } else {
                     SearchFieldRepresentable(query: $searchQuery)
                         .frame(minWidth: 200, maxWidth: 350)

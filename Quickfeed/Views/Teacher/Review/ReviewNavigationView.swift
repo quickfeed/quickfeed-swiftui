@@ -210,6 +210,8 @@ struct ReviewNavigationView: View {
         })
         
         .navigationTitle("Review Submissions")
+        .navigationSubtitle(viewModel.currentCourse.name)
+
         .toolbar{
             ToolbarItem{
             LabPicker(labs: viewModel.manuallyGradedAssignments, selectedLab: $selectedLab)
