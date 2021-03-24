@@ -14,7 +14,7 @@ class ServerProvider: ProviderProtocol{
     var grpcManager: GRPCManager
   
     init() {
-        let userID = UInt64(2)
+        let userID = UInt64(100)
         self.grpcManager = GRPCManager(userID: userID)
         self.currentUser = self.grpcManager.getUser(userId: userID) ?? User()
     }
@@ -144,9 +144,8 @@ class ServerProvider: ProviderProtocol{
         return submissions
     }
     
-    func getSubmissionsByGroub(courseId: UInt64, groupId: UInt64) -> [Submission] {
+    func getSubmissionsByGroup(courseId: UInt64, groupId: UInt64) -> [Submission] {
         return self.grpcManager.getSubbmissionByGroup(courseID: courseId, groupID: groupId)
-        //fatalError("Not implemented")
     }
     
     func getSubmissionsByCourse(courseId: UInt64, type: SubmissionsForCourseRequest.TypeEnum) -> EventLoopFuture<CourseSubmissions> {

@@ -211,7 +211,7 @@ class FakeProvider: ProviderProtocol, ObservableObject{
         fatalError("Not implemented")
     }
     
-    func getSubmissionsByGroub(courseId: UInt64, groupId: UInt64) -> [Submission] {
+    func getSubmissionsByGroup(courseId: UInt64, groupId: UInt64) -> [Submission] {
         fatalError("Not implemented")
     }
     

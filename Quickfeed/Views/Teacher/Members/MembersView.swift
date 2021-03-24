@@ -14,16 +14,34 @@ struct MembersView: View {
     @State var isSearching: Bool = false
     
     
-    func filteredEnrollments() -> [Enrollment] {
+    var filteredEnrollments: [Enrollment] {
         return viewModel.enrollments.filter({ matchesQuery(user: $0.user) })
     }
     
+    func sortedEnrollments() -> [Enrollment] {
+        var enrollments = filteredEnrollments
+        enrollments.sort{
+            if $0.status == .pending && $1.status == .teacher{
+                return true
+            }
+            if $0.status == .pending && $1.status == .student{
+                return true
+            }
+            if $0.status == .teacher && $1.status == .student{
+                return true
+            }
+           
+            return false
+        }
+        return enrollments
+    }
+
     
     
     var body: some View {
         List{
             Section(header: MemberListHeader(courseTotalSlipDays: self.viewModel.currentCourse.slipDays)){
-                ForEach(self.filteredEnrollments(), id: \.self){ enrollment in
+                ForEach(self.sortedEnrollments(), id: \.self){ enrollment in
                     MemberListItem(enrollment: enrollment, course: viewModel.currentCourse, isEditing: $isEditing)
                         
                     Divider()

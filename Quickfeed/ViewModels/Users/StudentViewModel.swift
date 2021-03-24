@@ -45,7 +45,7 @@ class StudentViewModel: UserViewModelProtocol{
     func getSubmissions(){
         var submissions = provider.getSubmissionsByUser(courseId: course.id, userId: user.id)
         if self.group != nil{
-            submissions.append(contentsOf: provider.getSubmissionsByGroub(courseId: course.id, groupId: group!.id))
+            submissions.append(contentsOf: provider.getSubmissionsByGroup(courseId: course.id, groupId: group!.id))
         }
         self.submissions = submissions
     }

@@ -124,11 +124,19 @@ class TeacherViewModel: UserViewModelProtocol{
         return self.provider.getSubmissionsByUser(courseId: courseId, userId: userId)
     }
     
+    func getSubmissionsByGroup(courseId: UInt64, groupId: UInt64) -> [Submission]{
+        return self.provider.getSubmissionsByGroup(courseId: courseId, groupId: groupId)
+    }
+    
     func getSubmissionLink(userId: UInt64, submissionId: UInt64) -> SubmissionLink?{
         var subLink: SubmissionLink?
-        let submissionsByUser = getSubmissionsByUser(courseId: self.currentCourse.id, userId: userId)
+        var submissionsByUser = getSubmissionsByUser(courseId: self.currentCourse.id, userId: userId)
         for enrollmentlink in self.enrollmentLinks{
             if enrollmentlink.enrollment.userID == userId{
+                if enrollmentlink.enrollment.hasGroup{
+                    let groupSubmissions = self.getSubmissionsByGroup(courseId: self.currentCourse.id, groupId: enrollmentlink.enrollment.groupID)
+                    submissionsByUser.append(contentsOf: groupSubmissions)
+                }
                 for submissionLink in enrollmentlink.submissions{
                     if submissionLink.hasSubmission{
                         if submissionLink.submission.id == submissionId{
