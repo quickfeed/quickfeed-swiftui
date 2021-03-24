@@ -35,8 +35,6 @@ class GRPCManager {
         
     }
     
-    
-    
     func isAuthorizedTeacher() -> Bool{
         
         let call = self.quickfeedClient.isAuthorizedTeacher(Void(), callOptions: self.defaultOptions)
@@ -99,8 +97,6 @@ class GRPCManager {
         return nil
     }
     
-    
-    
     func getCourses(userStatus: Enrollment.UserStatus, userId: UInt64) -> [Course]{
         
         let req = EnrollmentStatusRequest.with{
@@ -119,7 +115,15 @@ class GRPCManager {
         }
         
         return []
-        
+    }
+    
+    func updateEnrollment(enrollment: Enrollment){
+        let call = self.quickfeedClient.updateEnrollment(enrollment, callOptions: self.defaultOptions)
+        do {
+            _ = try call.response.wait()
+        } catch {
+            print("Updating enrollment failed: \(error)")
+        }
     }
     
     func getCourse(courseId: UInt64) -> Course? {

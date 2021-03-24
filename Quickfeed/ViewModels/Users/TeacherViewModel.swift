@@ -154,6 +154,10 @@ class TeacherViewModel: UserViewModelProtocol{
         
     }
     
+    func changeUserStatus(enrollment: Enrollment, status: Enrollment.UserStatus){
+        _ = self.provider.changeUserStatus(enrollment: enrollment, status: status)
+    }
+    
     // MANUAL GRADING
     func createReview() -> Review?{
         let review = Review()
