@@ -75,11 +75,7 @@ struct NavigatorView: View {
                 .padding(.top, 0.0)
                 .buttonStyle(PlainButtonStyle())
             }
-            
         }
-        .onAppear(perform: {
-            self.selectedCourse = self.courses[0].id
-        })
     }
 }
 

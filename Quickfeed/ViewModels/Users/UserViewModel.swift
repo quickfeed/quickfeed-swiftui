@@ -71,6 +71,12 @@ class UserViewModel: UserViewModelProtocol {
         return nil
     }
     
+    func sortCourseByCode(courses: [Course]) -> [Course] {
+        var courses = courses
+        courses.sort { $0.code < $1.code }
+        return courses
+    }
+    
     // Enrollment
     
     func createEnrollment(courseID: UInt64) {
@@ -94,6 +100,25 @@ class UserViewModel: UserViewModelProtocol {
         if self.enrollments?.count != 0 {
             self.sortEnrollmentsByCode()
         }
+    }
+    
+    func getCoursesForNewEnrollments() -> [Course]?{
+        var courses = self.getAllCourses()
+        if courses?.count != 0 {
+            for course in courses! {
+                if self.enrollments?.count != 0{
+                    for enrollment in self.enrollments! {
+                        if course.id == enrollment.courseID {
+                            if let index = courses!.firstIndex(of: course) {
+                                courses!.remove(at: index)
+                            }
+                        }
+                    }
+                }
+            }
+            return courses
+        }
+        return nil
     }
     
     private func sortEnrollmentsByCode() {

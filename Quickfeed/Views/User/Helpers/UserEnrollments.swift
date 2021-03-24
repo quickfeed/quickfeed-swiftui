@@ -45,7 +45,7 @@ struct UserEnrollments: View {
                             Text(translateUserStatus(status: enrollment.status))
                         }
                         .onTapGesture {
-                            if enrollment.course.enrolled == Enrollment.UserStatus.student || enrollment.course.enrolled == Enrollment.UserStatus.teacher {
+                            if enrollment.status == Enrollment.UserStatus.student || enrollment.status == Enrollment.UserStatus.teacher {
                                 self.selectedCourse = enrollment.courseID
                             }
                         }
@@ -68,17 +68,18 @@ struct UserEnrollments: View {
                     Spacer()
                 }
                 List{
-                    ForEach(self.sortCourseByCode(), id: \.self){ course in
+                    ForEach(viewModel.sortCourseByCode(courses: viewModel.getCoursesForNewEnrollments()!), id: \.self){ course in
                         HStack{
                             Text(course.code)
                                 .frame(width: 60, alignment: .leading)
                             Text(course.name)
                             Spacer()
-                            Text("ENROLL")
-                                .onTapGesture {
-                                    viewModel.createEnrollment(courseID: course.id)
-                                    self.newEnrollments = false
-                                }
+                            Button(action: {
+                                viewModel.createEnrollment(courseID: course.id)
+                                self.newEnrollments = false
+                            }){
+                                Text("Enroll")
+                            }
                         }
                         Divider()
                     }
