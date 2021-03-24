@@ -74,7 +74,8 @@ struct GroupList: View {
         .onAppear(perform: {
             viewModel.loadGroups()
         })
-        .navigationTitle("Groups of \(viewModel.currentCourse.name)")
+        .navigationTitle("Groups")
+        .navigationSubtitle(viewModel.currentCourse.name)
         .toolbar{
             ToolbarItem(id: "edit"){
                 Toggle(isOn: $isEditing, label: {

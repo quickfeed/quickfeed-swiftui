@@ -8,8 +8,6 @@ import Foundation
 import NIO
 
 class ServerProvider: ProviderProtocol{
-    
-    
     var currentUser: User
     var grpcManager: GRPCManager
   
@@ -74,6 +72,10 @@ class ServerProvider: ProviderProtocol{
         return self.grpcManager.getAssignments(courseId: courseID)
     }
     
+    func createEnrollment(courseID: UInt64, userID: UInt64) {
+        self.grpcManager.createEnrollment(courseID: courseID, userID: userID)
+    }
+    
     func getEnrollmentsForCourse(course: Course) -> EventLoopFuture<Enrollments> {
         return self.grpcManager.getEnrollmentsByCourse(courseId: course.id)
     }
@@ -88,7 +90,10 @@ class ServerProvider: ProviderProtocol{
     
     
     func changeUserStatus(enrollment: Enrollment, status: Enrollment.UserStatus) -> Status {
-        fatalError("Not implemented")
+        var newEnrollment = enrollment
+        newEnrollment.status = status
+        self.grpcManager.updateEnrollment(enrollment: newEnrollment)
+        return Status()
     }
     
     func approveAll(courseId: UInt64) -> Bool {
@@ -189,7 +194,6 @@ class ServerProvider: ProviderProtocol{
     // MANUAL GRADING
     
     func loadCriteria(courseId: UInt64, assignmentId: UInt64) -> [GradingBenchmark] {
-
         return self.grpcManager.loadCriteria(courseId: courseId, assignmentId: assignmentId)
     }
     

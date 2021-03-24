@@ -9,13 +9,14 @@ import SwiftUI
 
 struct NavigatorView: View {
     @ObservedObject var viewModel: UserViewModel
-    var courses: [Course] { return viewModel.courses }
-    @State private var selectedCourse: UInt64 = 0
+    var courses: [Course] { return viewModel.courses! }
+    @State var selectedCourse: UInt64
     
     var body: some View {
         NavigationView{
             VStack(alignment: .leading){
                 
+<<<<<<< HEAD
                 
                 
                 if viewModel.getCourse(courseId: selectedCourse).enrolled == Enrollment.UserStatus.teacher {
@@ -24,30 +25,58 @@ struct NavigatorView: View {
                     StudentNavigatorView(viewModel: StudentViewModel(provider: ServerProvider(), course: viewModel.getCourse(courseId: selectedCourse)))
                 } else{
                     Text("Log in")
+=======
+                CoursePicker(courses: courses, selectedCourse: $selectedCourse)
+                    .padding([.horizontal, .top])
+                
+                if viewModel.isTeacherForCourse(courseId: selectedCourse)! {
+                    TeacherNavigationView(viewModel: TeacherViewModel(provider: ServerProvider(), course: viewModel.getCourse(courseID: selectedCourse)!))
+                } else {
+                    StudentNavigatorView(viewModel: StudentViewModel(provider: ServerProvider(), course: viewModel.getCourse(courseID: selectedCourse)!))
+>>>>>>> 6c4742e3e087e72e332d7e1fcd4a04c1e2cad21c
                 }
                 
                 Spacer()
                 if viewModel.user.isAdmin{
                     NavigationLink(
-                        destination: Admin(viewModel: AdminViewModel(provider: ServerProvider()))){
+                        destination: Admin(viewModel: AdminViewModel(provider: ServerProvider()), showUsers: false)){
                         HStack{
                             Image(systemName: "folder.badge.gear")
                                 .frame(width: 30)
                                 .padding(.leading)
                                 .foregroundColor(.blue)
-                            Text("Admin")
+                            Text("Courses")
                                 .font(.headline)
                             Spacer()
                         }
                         .contentShape(Rectangle())
                     }
-                    .padding(.bottom, 0.0)
+                    .padding(.bottom, 1.0)
+                    .buttonStyle(PlainButtonStyle())
+                    NavigationLink(
+                        destination: Admin(viewModel: AdminViewModel(provider: ServerProvider()))){
+                        HStack{
+                            Image(systemName: "person.2")
+                                .frame(width: 30)
+                                .padding(.leading)
+                                .foregroundColor(.blue)
+                            Text("Users")
+                                .font(.headline)
+                            Spacer()
+                        }
+                        .contentShape(Rectangle())
+                    }
+                    .padding(.vertical, 1.0)
                     .buttonStyle(PlainButtonStyle())
                 }
                 NavigationLink(
                     destination: UserProfile(viewModel: viewModel, selectedCourse: $selectedCourse)){
                     HStack{
+<<<<<<< HEAD
                         Image(systemName: "person.fill")
+=======
+                        RemoteImage(url: viewModel.user.avatarURL)
+>>>>>>> 6c4742e3e087e72e332d7e1fcd4a04c1e2cad21c
                             .cornerRadius(7.5)
                             .frame(width: 30, height: 30)
                             .padding(.leading)
@@ -61,6 +90,7 @@ struct NavigatorView: View {
                 .padding(.top, 0.0)
                 .buttonStyle(PlainButtonStyle())
             }
+<<<<<<< HEAD
             .toolbar{
                 ToolbarItem(placement: .primaryAction){
                     CoursePicker(courses: courses, selectedCourse: $selectedCourse)
@@ -70,16 +100,14 @@ struct NavigatorView: View {
         
             
                 
+=======
+>>>>>>> 6c4742e3e087e72e332d7e1fcd4a04c1e2cad21c
         }
-        .onAppear(perform: {
-            self.selectedCourse = self.courses[0].id
-            viewModel.getEnrollments()
-        })
     }
 }
 
-struct NavigatorView_Previews: PreviewProvider {
+/*struct NavigatorView_Previews: PreviewProvider {
     static var previews: some View {
         NavigatorView(viewModel: UserViewModel(provider: FakeProvider()))
     }
-}
+}*/

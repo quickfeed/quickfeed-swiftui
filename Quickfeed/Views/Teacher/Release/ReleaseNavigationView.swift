@@ -22,6 +22,7 @@ struct ReleaseNavigationView: View {
             .padding()
         }
         .navigationTitle("Release Submissions")
+        .navigationSubtitle(viewModel.currentCourse.name)
         .toolbar{
             LabPicker(labs: viewModel.manuallyGradedAssignments, selectedLab: $selectedLab)
 

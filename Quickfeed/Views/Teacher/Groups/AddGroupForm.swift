@@ -94,7 +94,8 @@ struct AddGroupForm: View {
         .onAppear(perform:{
             viewModel.loadEnrollments()
         })
-        .navigationTitle("New Group")
+        .navigationTitle("Add Group")
+        .navigationSubtitle(viewModel.currentCourse.name)
         .toolbar{
             ToolbarItem{
                 SearchFieldRepresentable(query: $searchQuery)

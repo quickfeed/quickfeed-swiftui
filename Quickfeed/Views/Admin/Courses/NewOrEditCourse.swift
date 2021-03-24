@@ -11,6 +11,7 @@ struct NewOrEditCourse: View {
     var course: Course?
     @Binding var editCourse: Bool
     @State var organization: String = ""
+    var orgUrl: String { return "https://github.com/organizations/\(organization)/settings/oauth_application_policy" }
     
     var body: some View {
         if course == nil{
@@ -43,7 +44,9 @@ struct NewOrEditCourse: View {
                     TextField("Enter Organization Name...", text: $organization)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .frame(width: 450)
-                    Text("Your Organization: \(organization)")
+                    Link(destination: URL(string: orgUrl)!, label:{
+                        Text("here")
+                    })
                 }
                 
             }

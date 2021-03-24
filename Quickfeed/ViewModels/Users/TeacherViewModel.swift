@@ -154,11 +154,19 @@ class TeacherViewModel: UserViewModelProtocol{
         
     }
     
+    func changeUserStatus(enrollment: Enrollment, status: Enrollment.UserStatus){
+        _ = self.provider.changeUserStatus(enrollment: enrollment, status: status)
+    }
+    
     // MANUAL GRADING
     func createReview() -> Review?{
         let review = Review()
         
         return self.provider.createReview(courseId: self.currentCourse.id, review: review)
+    }
+    
+    func loadCriteria(assignmentId: UInt64) -> [GradingBenchmark]{
+        return self.provider.loadCriteria(courseId: currentCourse.id, assignmentId: assignmentId)
     }
     
     

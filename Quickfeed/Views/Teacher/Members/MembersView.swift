@@ -13,30 +13,25 @@ struct MembersView: View {
     @State private var isEditing = false
     @State var isSearching: Bool = false
     
-    
     func filteredEnrollments() -> [Enrollment] {
         return viewModel.enrollments.filter({ matchesQuery(user: $0.user) })
     }
-    
-    
     
     var body: some View {
         List{
             Section(header: MemberListHeader(courseTotalSlipDays: self.viewModel.currentCourse.slipDays)){
                 ForEach(self.filteredEnrollments(), id: \.self){ enrollment in
-                    MemberListItem(enrollment: enrollment, course: viewModel.currentCourse, isEditing: $isEditing)
-                        
+                    MemberListItem(viewModel: viewModel, enrollment: enrollment, isEditing: $isEditing)
                     Divider()
                 }
-                
             }
-        
         }
-       
         .onAppear(perform: {
             viewModel.loadEnrollments()
         })
-        .navigationTitle("Members of \(viewModel.currentCourse.name)")
+        .navigationTitle("Members")
+        .navigationSubtitle(viewModel.currentCourse.name)
+
         .toolbar{
             ToolbarItem{
                 Toggle(isOn: $isEditing, label: {
@@ -44,7 +39,6 @@ struct MembersView: View {
                 })
                 .help("Manage users")
             }
-            
             ToolbarItem{
                 if !isSearching{
                 Toggle(isOn: $isSearching, label: {
@@ -68,32 +62,25 @@ struct MembersView: View {
             }
         }
     }
-    
+
     func matchesQuery(user: User) -> Bool{
         if searchQuery == ""{
             return true
         }
-        
         if  user.name.lowercased().contains(self.searchQuery.lowercased()){
             return true
         }
-        
         if  user.email.lowercased().contains(self.searchQuery.lowercased()){
             return true
         }
-        
         if user.studentID.lowercased().contains(self.searchQuery.lowercased()){
             return true
         }
-        
         if user.login.lowercased().contains(self.searchQuery.lowercased()){
             return true
         }
-        
-        
         return false
     }
-    
 }
 
 struct MembersView_Previews: PreviewProvider {
