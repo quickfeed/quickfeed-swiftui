@@ -11,12 +11,6 @@ struct ContentView: View {
     @ObservedObject var viewModel: UserViewModel = UserViewModel(provider: ServerProvider())
     
     var body: some View {
-<<<<<<< HEAD
-
-        NavigatorView(viewModel: UserViewModel(provider: ServerProvider()))
-            .navigationTitle("QuickFeed")
-        
-=======
         
         if viewModel.courses?.count == 0 {
             Text("FATAL ERROR! NO COURSES")
@@ -24,7 +18,6 @@ struct ContentView: View {
             NavigatorView(viewModel: viewModel, selectedCourse: viewModel.courses![0].id)
                 .navigationTitle("QuickFeed")
         }
->>>>>>> 6c4742e3e087e72e332d7e1fcd4a04c1e2cad21c
     }
     
 }

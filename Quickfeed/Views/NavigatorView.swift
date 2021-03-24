@@ -4,7 +4,6 @@
 //
 //  Created by Bjørn Kristian Teisrud on 26/02/2021.
 //
-
 import SwiftUI
 
 struct NavigatorView: View {
@@ -16,16 +15,6 @@ struct NavigatorView: View {
         NavigationView{
             VStack(alignment: .leading){
                 
-<<<<<<< HEAD
-                
-                
-                if viewModel.getCourse(courseId: selectedCourse).enrolled == Enrollment.UserStatus.teacher {
-                    TeacherNavigationView(viewModel: TeacherViewModel(provider: ServerProvider(), course: viewModel.getCourse(courseId: selectedCourse)))
-                } else if viewModel.getCourse(courseId: selectedCourse).enrolled == Enrollment.UserStatus.student{
-                    StudentNavigatorView(viewModel: StudentViewModel(provider: ServerProvider(), course: viewModel.getCourse(courseId: selectedCourse)))
-                } else{
-                    Text("Log in")
-=======
                 CoursePicker(courses: courses, selectedCourse: $selectedCourse)
                     .padding([.horizontal, .top])
                 
@@ -33,7 +22,6 @@ struct NavigatorView: View {
                     TeacherNavigationView(viewModel: TeacherViewModel(provider: ServerProvider(), course: viewModel.getCourse(courseID: selectedCourse)!))
                 } else {
                     StudentNavigatorView(viewModel: StudentViewModel(provider: ServerProvider(), course: viewModel.getCourse(courseID: selectedCourse)!))
->>>>>>> 6c4742e3e087e72e332d7e1fcd4a04c1e2cad21c
                 }
                 
                 Spacer()
@@ -72,11 +60,7 @@ struct NavigatorView: View {
                 NavigationLink(
                     destination: UserProfile(viewModel: viewModel, selectedCourse: $selectedCourse)){
                     HStack{
-<<<<<<< HEAD
-                        Image(systemName: "person.fill")
-=======
                         RemoteImage(url: viewModel.user.avatarURL)
->>>>>>> 6c4742e3e087e72e332d7e1fcd4a04c1e2cad21c
                             .cornerRadius(7.5)
                             .frame(width: 30, height: 30)
                             .padding(.leading)
@@ -90,24 +74,6 @@ struct NavigatorView: View {
                 .padding(.top, 0.0)
                 .buttonStyle(PlainButtonStyle())
             }
-<<<<<<< HEAD
-            .toolbar{
-                ToolbarItem(placement: .primaryAction){
-                    CoursePicker(courses: courses, selectedCourse: $selectedCourse)
-                }
-        }
-            .frame(alignment: .center)
-        
-            
-                
-=======
->>>>>>> 6c4742e3e087e72e332d7e1fcd4a04c1e2cad21c
         }
     }
 }
-
-/*struct NavigatorView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigatorView(viewModel: UserViewModel(provider: FakeProvider()))
-    }
-}*/
