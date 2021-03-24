@@ -194,7 +194,6 @@ class ServerProvider: ProviderProtocol{
     // MANUAL GRADING
     
     func loadCriteria(courseId: UInt64, assignmentId: UInt64) -> [GradingBenchmark] {
-
         return self.grpcManager.loadCriteria(courseId: courseId, assignmentId: assignmentId)
     }
     

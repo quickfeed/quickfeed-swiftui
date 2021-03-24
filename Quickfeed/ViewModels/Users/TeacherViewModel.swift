@@ -165,6 +165,10 @@ class TeacherViewModel: UserViewModelProtocol{
         return self.provider.createReview(courseId: self.currentCourse.id, review: review)
     }
     
+    func loadCriteria(assignmentId: UInt64) -> [GradingBenchmark]{
+        return self.provider.loadCriteria(courseId: currentCourse.id, assignmentId: assignmentId)
+    }
+    
     
     func reset() {
         
