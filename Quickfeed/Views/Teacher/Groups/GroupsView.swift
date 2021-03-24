@@ -12,20 +12,20 @@ struct GroupsView: View {
     
     @State var isAddingGroup = false
     var body: some View {
-        VStack{
+        SwiftUI.Group{
             if isAddingGroup{
                 AddGroupForm(viewModel: viewModel)
             } else{
                 GroupList(viewModel: viewModel)
             }
         }
-        .padding()
         .toolbar{
-            ToolbarItem(placement: .status){
-                Toggle(isOn: $isAddingGroup, label: {
-                    Image(systemName: "plus")
+            ToolbarItem(id: "add", placement: isAddingGroup ? .navigation : .status){
+                Button(action: {isAddingGroup.toggle()}, label: {
+                    Label("Add Group", systemImage: isAddingGroup ?"chevron.backward" : "plus")
+
                 })
-                .help("Add new group")
+                .help(isAddingGroup ? "back" : "Add group")
                 .keyboardShortcut("a")
             }
         }

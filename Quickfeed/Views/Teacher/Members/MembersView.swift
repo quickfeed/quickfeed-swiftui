@@ -18,7 +18,6 @@ struct MembersView: View {
     }
     
     var body: some View {
-        
         List{
             Section(header: MemberListHeader(courseTotalSlipDays: self.viewModel.currentCourse.slipDays)){
                 ForEach(self.filteredEnrollments(), id: \.self){ enrollment in

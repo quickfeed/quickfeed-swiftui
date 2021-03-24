@@ -9,14 +9,20 @@ import SwiftUI
 
 
 // Overides translusent background for the list
+
 extension NSTableView {
   open override func viewDidMoveToWindow() {
     super.viewDidMoveToWindow()
 
     backgroundColor = NSColor.clear
-    enclosingScrollView!.drawsBackground = false
+    if enclosingScrollView != nil {
+        enclosingScrollView!.drawsBackground = false
+    }
+    
   }
+
 }
+
 
 
 
@@ -111,7 +117,6 @@ struct ReviewNavigationView: View {
         }
         return false
     }
-  
     
     func matchesQuery(user: User) -> Bool{
         if searchQuery == ""{
@@ -196,8 +201,10 @@ struct ReviewNavigationView: View {
                         
                     }
                 }
+                
                 .cornerRadius(5)
                 .listStyle(SidebarListStyle())
+                .background(Color.clear)
                 
 
             }

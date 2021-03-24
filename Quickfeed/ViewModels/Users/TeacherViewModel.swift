@@ -60,22 +60,22 @@ class TeacherViewModel: UserViewModelProtocol{
         }
     }
     
-    func createGroup(group: Group) -> Group?{
-        var newGroup: Group?
+    func createGroup(group: Group) -> String?{
+        var errString: String? = nil
         
         let response = self.provider.createGroup(group: group)
         _ = response.always {(response: Result<Group, Error>) in
             switch response {
-            case .success(let response):
+            case .success( _):
                 DispatchQueue.main.async {
-                    newGroup = response
+                    errString = nil
                 }
             case .failure(let err):
                 print("[Error] Connection error or groups not found: \(err)")
-                newGroup = nil            }
+                errString = err.localizedDescription
+            }
         }
-        print(newGroup?.courseID ?? 666)
-        return newGroup
+        return errString
     }
     
     func loadEnrollmentLinks(){

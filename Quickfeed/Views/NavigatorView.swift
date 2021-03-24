@@ -4,7 +4,6 @@
 //
 //  Created by Bjørn Kristian Teisrud on 26/02/2021.
 //
-
 import SwiftUI
 
 struct NavigatorView: View {
@@ -78,9 +77,3 @@ struct NavigatorView: View {
         }
     }
 }
-
-/*struct NavigatorView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigatorView(viewModel: UserViewModel(provider: FakeProvider()))
-    }
-}*/
