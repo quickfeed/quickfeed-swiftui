@@ -30,7 +30,6 @@ struct MembersView: View {
             if $0.status == .teacher && $1.status == .student{
                 return true
             }
-           
             return false
         }
         return enrollments
@@ -43,14 +42,10 @@ struct MembersView: View {
             Section(header: MemberListHeader(courseTotalSlipDays: self.viewModel.currentCourse.slipDays)){
                 ForEach(self.sortedEnrollments(), id: \.self){ enrollment in
                     MemberListItem(enrollment: enrollment, course: viewModel.currentCourse, isEditing: $isEditing)
-                        
                     Divider()
                 }
-                
             }
-        
         }
-       
         .onAppear(perform: {
             viewModel.loadEnrollments()
         })
@@ -62,7 +57,6 @@ struct MembersView: View {
                 })
                 .help("Manage users")
             }
-            
             ToolbarItem{
                 if !isSearching{
                 Toggle(isOn: $isSearching, label: {
