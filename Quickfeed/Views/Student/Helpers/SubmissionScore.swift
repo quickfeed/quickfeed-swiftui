@@ -18,7 +18,7 @@ struct SubmissionScore: View {
             .fontWeight(.bold)
         Text("\(submissionScore)% Completed")
         ZStack{
-            if !(submissionStatus == Submission.Status.approved){
+            if !(submissionStatus == Submission.Status.approved || submissionStatus == Submission.Status.rejected){
                 ProgressView(value: Float(assignment.scoreLimit), total: 100)
                     .accentColor(Color(NSColor(named: "ScoreLimit")!))
             }

@@ -25,6 +25,7 @@ struct ReviewNavigationView: View {
     @ObservedObject var viewModel: TeacherViewModel
     @State private var searchQuery: String = ""
     @Binding var selectedLab: UInt64
+    @State var isSearching: Bool = false
    
     var filteredEnrollmentLinks: [EnrollmentLink] {
         return viewModel.enrollmentLinks.filter({
@@ -210,11 +211,31 @@ struct ReviewNavigationView: View {
         
         .navigationTitle("Review Submissions")
         .toolbar{
+            ToolbarItem{
             LabPicker(labs: viewModel.manuallyGradedAssignments, selectedLab: $selectedLab)
+            }
 
-            SearchFieldRepresentable(query: $searchQuery)
-                .frame(minWidth: 200, maxWidth: 350)
-                .focusable(true)
+            ToolbarItem{
+                if !isSearching{
+                Toggle(isOn: $isSearching, label: {
+                    Image(systemName: "magnifyingglass")
+                })
+                .keyboardShortcut("f")
+                } else {
+                    SearchFieldRepresentable(query: $searchQuery)
+                        .frame(minWidth: 200, maxWidth: 350)
+                        .onExitCommand(perform: {self.isSearching = false})
+                }
+            }
+            ToolbarItem{
+                if isSearching{
+                    Toggle(isOn: $isSearching, label: {
+                        Image(systemName: "magnifyingglass")
+                    })
+                    .keyboardShortcut("f")
+                    .labelsHidden()
+                }
+            }
         }
         
         

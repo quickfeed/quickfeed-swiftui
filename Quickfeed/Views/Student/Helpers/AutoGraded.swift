@@ -31,7 +31,6 @@ struct AutoGraded: View {
                 Spacer()
             }
             .padding(.trailing)
-            //Divider()
             VStack{
                 LabInfo(submission: submission, assignment: assignment, teacherView: false)
                     .frame(width: 300)
