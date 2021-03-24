@@ -79,9 +79,17 @@ struct MemberListItem: View {
                     
                     
                 } else{
-                    Text(translateUserStatus(status: enrollment.status))
+                    if enrollment.status == .pending{
+                        VStack{
+                            Text(translateUserStatus(status: enrollment.status))
+                            Button("Accept", action: {})
+                        }
                         .frame(width: 75, alignment: .center)
-                    
+                        
+                    } else{
+                        Text(translateUserStatus(status: enrollment.status))
+                            .frame(width: 75, alignment: .center)
+                    }
                 }
             }
             
