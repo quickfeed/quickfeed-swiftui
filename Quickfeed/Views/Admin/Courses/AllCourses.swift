@@ -62,6 +62,7 @@ struct AllCourses: View {
                 }
             }
         }
+        .frame(minWidth: 800, maxWidth: .infinity)
         .navigationTitle("Manage Courses")
         .toolbar{
             Button(action: {
@@ -71,27 +72,9 @@ struct AllCourses: View {
                 Image(systemName: "plus")
             })
             .keyboardShortcut("c")
-            Button(action: {self.showUsers = true}, label: {
-                Text("Users")
-            })
-            .keyboardShortcut("u")
-            .help("Show Users")
             SearchFieldRepresentable(query: $searchQuery)
                 .frame(minWidth: 200, maxWidth: 350)
         }
-        .focusable()
-        .touchBar(content: {
-            Button(action: {
-                self.course = nil
-                self.editCourse = !self.editCourse
-            }, label: {
-                Image(systemName: "plus")
-            })
-            .keyboardShortcut("c")
-            Button(action: {self.showUsers = true}, label: {
-                Text("Users")
-            })
-        })
     }
 }
 

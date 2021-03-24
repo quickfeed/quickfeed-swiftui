@@ -21,7 +21,6 @@ struct AdminUsers: View {
             } else {
                 return $0.name.trimmingCharacters(in: .whitespacesAndNewlines) < $1.name.trimmingCharacters(in: .whitespacesAndNewlines)
             }
-            
         }
         return users.filter({ matchesQuery(searchQuery: searchQuery, user: $0) })
     }
@@ -71,25 +70,13 @@ struct AdminUsers: View {
                 }
             })
         }
+        .frame(minWidth: 700, maxWidth: .infinity)
         .background(Color.clear)
         .navigationTitle("Manage Users")
         .toolbar{
-            Button(action: {self.showUsers = false}, label: {
-                Text("Courses")
-            })
-            .keyboardShortcut("c")
-            .help("Manage Courses")
             SearchFieldRepresentable(query: $searchQuery)
                 .frame(minWidth: 200, maxWidth: 350)
         }
-        .focusable()
-        .touchBar(content: {
-            Spacer()
-            Toggle(isOn: $showUsers, label: {
-                Text("Courses")
-            })
-        })
-        
     }
 }
 /*struct AdminUsers_Previews: PreviewProvider {
