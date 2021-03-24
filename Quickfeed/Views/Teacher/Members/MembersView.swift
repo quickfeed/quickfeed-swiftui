@@ -30,7 +30,9 @@ struct MembersView: View {
         .onAppear(perform: {
             viewModel.loadEnrollments()
         })
-        .navigationTitle("Members of \(viewModel.currentCourse.name)")
+        .navigationTitle("Members")
+        .navigationSubtitle(viewModel.currentCourse.name)
+
         .toolbar{
             ToolbarItem{
                 Toggle(isOn: $isEditing, label: {
