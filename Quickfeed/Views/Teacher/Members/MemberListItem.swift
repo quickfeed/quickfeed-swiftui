@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct MemberListItem: View {
+    @ObservedObject var viewModel: TeacherViewModel
     var enrollment: Enrollment
-    var course: Course
     @Binding var isEditing: Bool
+    
+    func acceptUser(){
+        viewModel.changeUserStatus(enrollment: enrollment, status: .student)
+    }
     
     var body: some View {
         HStack {
             SwiftUI.Group{
-                Link(destination: URL(string: "https://www.github.com/" + course.organizationPath + "/" + enrollment.user.login + "-labs")!, label:{
+                Link(destination: URL(string: "https://www.github.com/" + viewModel.currentCourse.organizationPath + "/" + enrollment.user.login + "-labs")!, label:{
                     Text(enrollment.user.name)
                         .frame(width: 180, alignment: .leading)
                 })
@@ -51,7 +55,7 @@ struct MemberListItem: View {
             }
             
             SwiftUI.Group{
-                if course.slipDays > 0 {
+                if viewModel.currentCourse.slipDays > 0 {
                     Text("\(enrollment.slipDaysRemaining)")
                         .frame(width: 60, alignment: .center)
                     Spacer()
@@ -82,7 +86,7 @@ struct MemberListItem: View {
                     if enrollment.status == .pending{
                         VStack{
                             Text(translateUserStatus(status: enrollment.status))
-                            Button("Accept", action: {})
+                            Button("Accept", action: {acceptUser()})
                         }
                         .frame(width: 75, alignment: .center)
                         
@@ -99,8 +103,3 @@ struct MemberListItem: View {
     }
 }
 
-struct MemberListItem_Previews: PreviewProvider {
-    static var previews: some View {
-        MemberListItem(enrollment: Enrollment(), course: Course(), isEditing: .constant(false))
-    }
-}

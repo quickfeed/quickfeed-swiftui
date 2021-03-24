@@ -90,7 +90,10 @@ class ServerProvider: ProviderProtocol{
     
     
     func changeUserStatus(enrollment: Enrollment, status: Enrollment.UserStatus) -> Status {
-        fatalError("Not implemented")
+        var newEnrollment = enrollment
+        newEnrollment.status = status
+        self.grpcManager.updateEnrollment(enrollment: newEnrollment)
+        return Status()
     }
     
     func approveAll(courseId: UInt64) -> Bool {
