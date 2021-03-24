@@ -332,9 +332,9 @@
 			isa = PBXGroup;
 			children = (
 				FAB0671C25CACF8700FFE8EB /* TeacherNavigationView.swift */,
-				FA4A88AB2603674D00A21CDA /* Groups */,
-				FA4A88AA2603673500A21CDA /* Members */,
 				FA17B98925F24FDA008BB07F /* Results */,
+				FA4A88AA2603673500A21CDA /* Members */,
+				FA4A88AB2603674D00A21CDA /* Groups */,
 				FA17B98825F24FC3008BB07F /* Review */,
 				FAF0C5322608A582005A8B66 /* Release */,
 			);
