@@ -32,6 +32,11 @@ struct StudentLab: View {
                 
             }
             .padding()
+            .navigationTitle("Student")
+            .navigationSubtitle(assignment.name)
+            .toolbar{
+                Text(" ")
+            }
         }
     }
 }
