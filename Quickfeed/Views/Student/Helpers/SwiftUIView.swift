@@ -1,19 +1,34 @@
 //
-//  ManuallyGraded.swift
+//  SwiftUIView.swift
 //  Quickfeed
 //
-//  Created by Bjørn Kristian Teisrud on 03/03/2021.
+//  Created by Bjørn Kristian Teisrud on 26/03/2021.
 //
 
 import SwiftUI
 
-struct ManuallyGraded: View {
-    var submission: Submission
-    var review: Review
+struct SwiftUIView: View {
+    var review: [Review]
+    var benchmarks: [GradingBenchmark]
+    var benchmarkCriteria: [GradingCriterion]
+    
+    init(reviews: [Review]){
+        self.review = getReadyReviews(reviews: reviews)
+        var benchmarks: [GradingBenchmark] = []
+        for review in self.review {
+            benchmarks.append(contentsOf: review.benchmarks)
+        }
+        self.benchmarks = benchmarks
+        var criteria: [GradingCriterion] = []
+        for benchmark in self.benchmarks {
+            criteria.append(contentsOf: benchmark.criteria)
+        }
+        self.benchmarkCriteria = criteria
+    }
     
     var body: some View {
         List{
-            ForEach(review.benchmarks, id: \.self){ benchmarks in
+            ForEach(review[0].benchmarks, id: \.self){ benchmarks in
                 Section(header: Text(benchmarks.heading)){
                     if benchmarks.comment != "" {
                         HStack{
@@ -46,11 +61,13 @@ struct ManuallyGraded: View {
                     .padding(.leading)
                 }
             }
-            if review.feedback != "" {
+            if getReview(reviews: review) != nil {
                 Section(header: Text("Feedback")){
-                    Text("Comment: \(review.feedback)")
-                        .foregroundColor(.secondary)
-                        .padding(.leading)
+                    ForEach(getReview(reviews: review)!.indices){ feedback in
+                        Text("Comment: \(feedback)")
+                            .foregroundColor(.secondary)
+                            .padding(.leading)
+                    }
                 }
             }
         }
@@ -58,8 +75,9 @@ struct ManuallyGraded: View {
     }
 }
 
-/*struct ManuallyGraded_Previews: PreviewProvider {
- static var previews: some View {
- ManuallyGraded()
- }
- }*/
+/*struct SwiftUIView_Previews: PreviewProvider {
+    static var previews: some View {
+        SwiftUIView()
+    }
+}
+*/

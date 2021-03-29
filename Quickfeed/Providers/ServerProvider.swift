@@ -12,7 +12,7 @@ class ServerProvider: ProviderProtocol{
     var grpcManager: GRPCManager
   
     init() {
-        let userID = UInt64(100)
+        let userID = UInt64(23)
         self.grpcManager = GRPCManager(userID: userID)
         self.currentUser = self.grpcManager.getUser(userId: userID) ?? User()
     }
@@ -90,9 +90,9 @@ class ServerProvider: ProviderProtocol{
     
     
     func changeUserStatus(enrollment: Enrollment, status: Enrollment.UserStatus) -> Status {
-        var newEnrollment = enrollment
+        /*var newEnrollment = enrollment
         newEnrollment.status = status
-        self.grpcManager.updateEnrollment(enrollment: newEnrollment)
+        self.grpcManager.updateEnrollment(enrollment: newEnrollment)*/
         return Status()
     }
     

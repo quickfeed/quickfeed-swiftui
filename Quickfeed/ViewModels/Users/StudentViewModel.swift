@@ -60,6 +60,25 @@ class StudentViewModel: UserViewModelProtocol{
         return nil
     }
     
+    func getReview(reviews: [Review]) -> [String]? {
+        var feedback: [String] = []
+        for review in reviews {
+            if review.feedback.count != 0 {
+                feedback.append(review.feedback)
+            }
+        }
+        if feedback.count != 0 {
+            return feedback
+        }
+        return nil
+    }
+    
+    func getCriteriaStatus() -> [Submission.Status] {
+        var criteriaStatus: [Submission.Status] = []
+        
+        return criteriaStatus
+    }
+    
     func reload() {
         self.getAssignments()
         self.getSubmissions()

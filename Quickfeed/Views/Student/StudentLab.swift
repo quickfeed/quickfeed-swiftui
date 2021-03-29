@@ -14,7 +14,8 @@ struct StudentLab: View {
     
     var body: some View {
         if submission == nil {
-            Text("\(assignment.name) has no submission yet ")
+            Text("\(assignment.name) has no submission yet")
+            Text("Deadline is \(date(date: assignment.deadline))")
         } else if submission!.released == false && assignment.skipTests == true{
             Text("\(assignment.name) has a submission, but has not been graded yet")
         } else {
@@ -25,6 +26,7 @@ struct StudentLab: View {
                     if submission!.reviews.count > 1{
                         ReviewPicker(reviews: submission!.reviews, selectedReview: $selectedReview, viewModel: nil)
                     }
+                    //SwiftUIView(reviews: submission!.reviews)
                     ManuallyGraded(submission: submission!, review: submission!.reviews[selectedReview])
                 } else {
                     AutoGraded(assignment: assignment, submission: submission!)

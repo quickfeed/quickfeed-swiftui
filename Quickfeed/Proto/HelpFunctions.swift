@@ -55,3 +55,37 @@ func matchesQuery(searchQuery: String, user: User) -> Bool{
     
     return false
 }
+
+func date(date: String) -> String{
+    let dateFormat = DateFormatter()
+    dateFormat.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+    let dateString = dateFormat.date(from: date)!
+    
+    let stringFormatter = DateFormatter()
+    stringFormatter.dateFormat = "E, d MMM YY HH:mm"
+    return stringFormatter.string(from: dateString)
+}
+
+
+func getReview(reviews: [Review]) -> [String]? {
+    var feedback: [String] = []
+    for review in reviews {
+        if review.feedback.count != 0 {
+            feedback.append(review.feedback)
+        }
+    }
+    if feedback.count != 0 {
+        return feedback
+    }
+    return nil
+}
+
+func getReadyReviews(reviews: [Review]) -> [Review]{
+    var readyReviews: [Review] = []
+    for review in reviews{
+        if review.ready{
+            readyReviews.append(review)
+        }
+    }
+    return readyReviews
+}
