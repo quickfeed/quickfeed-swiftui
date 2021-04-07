@@ -12,7 +12,7 @@ class ServerProvider: ProviderProtocol{
     var grpcManager: GRPCManager
   
     init() {
-        let userID = UInt64(23)
+        let userID = UInt64(151)
         self.grpcManager = GRPCManager(userID: userID)
         self.currentUser = self.grpcManager.getUser(userId: userID) ?? User()
     }
