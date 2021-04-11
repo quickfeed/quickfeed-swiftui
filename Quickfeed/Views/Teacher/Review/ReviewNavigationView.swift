@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import SwiftUIX
 
 // Overides translusent background for the list
 
@@ -139,74 +139,27 @@ struct ReviewNavigationView: View {
     }
     
     var body: some View {
-        
         NavigationView{
             VStack(alignment: .leading){
-                
-                
                 List{
                     if awaitingReviewEnrollments.count > 0{
-                        Section(header: Text("To Do (\(awaitingReviewEnrollments.count))")){
-                            ForEach(awaitingReviewEnrollments, id: \.self){ link in
-                                NavigationLink(destination: SubmissionReview(user: link.enrollment.user, viewModel: viewModel, submissionLink: submissionForSelectedLab(links: link.submissions)!)){
-                                    VStack{
-                                        SubmissionListItem(submitterName: link.enrollment.user.name, subLink: submissionForSelectedLab(links: link.submissions)!)
-                                        Divider()
-                                    }
-                                }
-                            }
-                        }
+                        ReviewListSection(viewModel: viewModel, selectedLab: selectedLab, enrollmentLinks: awaitingReviewEnrollments, heading: "To Do")
                     }
-                    
-                   
-                    
                     if inProgressEnrollments.count > 0{
-                        Section(header: Text("In Progress (\(inProgressEnrollments.count))")){
-                            ForEach(inProgressEnrollments, id: \.self){ link in
-                                NavigationLink(destination: SubmissionReview(user: link.enrollment.user, viewModel: viewModel, submissionLink: submissionForSelectedLab(links: link.submissions)!)){
-                                    VStack{
-                                        SubmissionListItem(submitterName: link.enrollment.user.name, subLink: submissionForSelectedLab(links: link.submissions)!)
-                                        Divider()
-                                    }
-                                }
-                            }
-                        }
+                        ReviewListSection(viewModel: viewModel, selectedLab: selectedLab, enrollmentLinks: inProgressEnrollments, heading: "In Progress")
                     }
                     
                     if readyEnrollments.count > 0{
-                        Section(header: Text("Ready (\(readyEnrollments.count))")){
-                            ForEach(readyEnrollments, id: \.self){ link in
-                                NavigationLink(destination: SubmissionReview(user: link.enrollment.user, viewModel: viewModel, submissionLink: submissionForSelectedLab(links: link.submissions)!)){
-                                    VStack{
-                                        SubmissionListItem(submitterName: link.enrollment.user.name, subLink: submissionForSelectedLab(links: link.submissions)!)
-                                        Divider()
-                                    }
-                                }
-                            }
-                        }
-                        
+                        ReviewListSection(viewModel: viewModel, selectedLab: selectedLab, enrollmentLinks: readyEnrollments, heading: "Ready")
                     }
                     
                     if missingSubmissionEnrollments.count > 0{
-                        Section(header: Text("No submissions (\(missingSubmissionEnrollments.count))")){
-                            ForEach(missingSubmissionEnrollments, id: \.self){ link in
-                                NavigationLink(destination: SubmissionReview(user: link.enrollment.user, viewModel: viewModel, submissionLink: submissionForSelectedLab(links: link.submissions)!)){
-                                    VStack{
-                                        SubmissionListItem(submitterName: link.enrollment.user.name, subLink: submissionForSelectedLab(links: link.submissions)!)
-                                        Divider()
-                                    }
-                                }
-                            }
-                        }
-                        
+                        ReviewListSection(viewModel: viewModel, selectedLab: selectedLab, enrollmentLinks: missingSubmissionEnrollments, heading: "No Submission")
                     }
                 }
-                
                 .cornerRadius(5)
                 .listStyle(SidebarListStyle())
                 .background(Color.clear)
-                
-
             }
             .padding(.top)
             .frame(minWidth: 300)
@@ -218,7 +171,6 @@ struct ReviewNavigationView: View {
         
         .navigationTitle("Review Submissions")
         .navigationSubtitle(viewModel.currentCourse.name)
-
         .toolbar{
             ToolbarItem{
             LabPicker(labs: viewModel.manuallyGradedAssignments, selectedLab: $selectedLab)
@@ -237,6 +189,7 @@ struct ReviewNavigationView: View {
                 }
             }
             ToolbarItem{
+                
                 if isSearching{
                     Toggle(isOn: $isSearching, label: {
                         Image(systemName: "magnifyingglass")
