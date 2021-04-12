@@ -7,18 +7,11 @@
 import Foundation
 import NIO
 
-class ServerProvider: ProviderProtocol{
-    var currentUser: User
-    var grpcManager: GRPCManager
-  
-    init() {
-        let userID = UInt64(151)
-        self.grpcManager = GRPCManager(userID: userID)
-        self.currentUser = self.grpcManager.getUser(userId: userID) ?? User()
-    }
+class ServerProvider: ProviderProtocol{    
+    var grpcManager: GRPCManager = GRPCManager.shared
     
     func getUser() -> User? {
-        return self.currentUser
+        return grpcManager.getUser()
     }
     
     func updateUser(user: User) {
@@ -26,16 +19,14 @@ class ServerProvider: ProviderProtocol{
     }
     
     func getAllCoursesForCurrentUser() -> [Course]? {
-        var courses: [Course]? = grpcManager.getCourses(userStatus: Enrollment.UserStatus.teacher, userId: currentUser.id)
-        courses?.append(contentsOf: grpcManager.getCourses(userStatus: Enrollment.UserStatus.student, userId: currentUser.id))
+        var courses: [Course]? = grpcManager.getCourses(userStatus: Enrollment.UserStatus.teacher, userId: nil)
+        courses?.append(contentsOf: grpcManager.getCourses(userStatus: Enrollment.UserStatus.student, userId: nil))
         return courses
     }
     
     
     func getCoursesForCurrentUser() -> [Course]? {
-
-        return grpcManager.getCourses(userStatus: Enrollment.UserStatus.teacher, userId: self.currentUser.id)
-
+        return grpcManager.getCourses(userStatus: Enrollment.UserStatus.teacher, userId: nil)
     }
     
     func getEnrollmentsByCourse(courseId: UInt64) -> EventLoopFuture<Enrollments>{

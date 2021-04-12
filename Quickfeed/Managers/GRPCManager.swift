@@ -15,13 +15,16 @@ class GRPCManager {
     let channel: ClientConnection
     let quickfeedClient: AutograderServiceClient
     var defaultOptions: CallOptions
-    //static let shared = GRPCManager()
+    static let shared = GRPCManager()
+    var userID: UInt64?
     
-    init(userID: UInt64){
+    private init(){
         let hostname = "localhost"
         let port = 9090
         
-        print("LOCAL")
+        self.userID = 100
+        
+        print(hostname)
         
         self.eventLoopGroup = MultiThreadedEventLoopGroup(numberOfThreads: 1)
         self.channel = ClientConnection.insecure(group: self.eventLoopGroup)
@@ -29,7 +32,7 @@ class GRPCManager {
         
         self.quickfeedClient = AutograderServiceClient(channel: channel)
 
-        let headers: HPACKHeaders = ["custom-header-1": "value1", "user": "\(userID)"]
+        let headers: HPACKHeaders = ["custom-header-1": "value1", "user": "\(self.userID!)"]
         
         self.defaultOptions = CallOptions()
         self.defaultOptions.customMetadata = headers
@@ -69,7 +72,7 @@ class GRPCManager {
         }
     }
     
-    func getUser(userId: UInt64) -> User?{
+    func getUser() -> User?{
         let call = self.quickfeedClient.getUser(Void(), callOptions: self.defaultOptions)
         
         do {
@@ -99,11 +102,15 @@ class GRPCManager {
         return nil
     }
     
-    func getCourses(userStatus: Enrollment.UserStatus, userId: UInt64) -> [Course]{
+    func getCourses(userStatus: Enrollment.UserStatus, userId: UInt64?) -> [Course]{
         
         let req = EnrollmentStatusRequest.with{
             $0.statuses = [userStatus]
-            $0.userID = userId
+            if userId == nil{
+                $0.userID = self.userID!
+            }else{
+                $0.userID = userId!
+            }
         }
         
         let unaryCall = self.quickfeedClient.getCoursesByUser(req, callOptions: self.defaultOptions)
