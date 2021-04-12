@@ -11,16 +11,16 @@ import SwiftUIX
 // Overides translusent background for the list
 
 extension NSTableView {
-  open override func viewDidMoveToWindow() {
-    super.viewDidMoveToWindow()
-
-    backgroundColor = NSColor.clear
-    if enclosingScrollView != nil {
-        enclosingScrollView!.drawsBackground = false
+    open override func viewDidMoveToWindow() {
+        super.viewDidMoveToWindow()
+        
+        backgroundColor = NSColor.clear
+        if enclosingScrollView != nil {
+            enclosingScrollView!.drawsBackground = false
+        }
+        
     }
     
-  }
-
 }
 
 
@@ -32,24 +32,24 @@ struct ReviewNavigationView: View {
     @State private var searchQuery: String = ""
     @Binding var selectedLab: UInt64
     @State var isSearching: Bool = false
-   
+    
     var filteredEnrollmentLinks: [EnrollmentLink] {
         return viewModel.enrollmentLinks.filter({
-                matchesQuery(user: $0.enrollment.user)
+            matchesQuery(user: $0.enrollment.user)
         })
     }
     
     var awaitingReviewEnrollments: [EnrollmentLink] {
         return filteredEnrollmentLinks.filter{
             hasSubmissionForSelectedLab(link: $0) &&
-            !hasReview(link: $0)
+                !hasReview(link: $0)
         }
     }
     
     var inProgressEnrollments: [EnrollmentLink]{
         return filteredEnrollmentLinks.filter({
             hasSubmissionForSelectedLab(link: $0) &&
-            hasNonReadyReview(link: $0)
+                hasNonReadyReview(link: $0)
         })
     }
     
@@ -69,7 +69,7 @@ struct ReviewNavigationView: View {
         let subForLab = submissionForSelectedLab(links: link.submissions)
         if subForLab != nil{
             if subForLab!.submission.reviews.count > 0{
-               return true
+                return true
             }
         }
         return false
@@ -79,14 +79,14 @@ struct ReviewNavigationView: View {
         let subForLab = submissionForSelectedLab(links: link.submissions)
         if subForLab != nil{
             if subForLab!.submission.reviews.count > 0 && subForLab!.submission.reviews.allSatisfy({!$0.ready}){
-               return true
+                return true
             }
         }
         return false
         
     }
     
-   
+    
     
     func hasSubmissionForSelectedLab(link: EnrollmentLink) -> Bool{
         let subForLab = link.submissions.first(where: { $0.assignment.id == selectedLab } )
@@ -112,7 +112,7 @@ struct ReviewNavigationView: View {
         let subForLab = submissionForSelectedLab(links: link.submissions)
         if subForLab != nil{
             if subForLab!.submission.reviews.contains(where: {$0.ready}){
-               return true
+                return true
             }
         }
         return false
@@ -134,28 +134,32 @@ struct ReviewNavigationView: View {
         if user.login.lowercased().contains(self.searchQuery.lowercased()){
             return true
         }
-        
         return false
     }
     
     var body: some View {
         NavigationView{
             VStack(alignment: .leading){
+                
                 List{
-                    if awaitingReviewEnrollments.count > 0{
-                        ReviewListSection(viewModel: viewModel, selectedLab: $selectedLab, enrollmentLinks: awaitingReviewEnrollments, heading: "Pending")
-
-                    }
-                    if inProgressEnrollments.count > 0{
-                        ReviewListSection(viewModel: viewModel, selectedLab: $selectedLab, enrollmentLinks: inProgressEnrollments, heading: "In Progress")
-                    }
-                    
-                    if readyEnrollments.count > 0{
-                        ReviewListSection(viewModel: viewModel, selectedLab: $selectedLab, enrollmentLinks: readyEnrollments, heading: "Ready")
-                    }
-                    
-                    if missingSubmissionEnrollments.count > 0{
-                        ReviewListSection(viewModel: viewModel, selectedLab: $selectedLab, enrollmentLinks: missingSubmissionEnrollments, heading: "No Submission")
+                    if filteredEnrollmentLinks.count > 0{
+                        if awaitingReviewEnrollments.count > 0{
+                            ReviewListSection(viewModel: viewModel, selectedLab: $selectedLab, enrollmentLinks: awaitingReviewEnrollments, heading: "Pending")
+                            
+                        }
+                        if inProgressEnrollments.count > 0{
+                            ReviewListSection(viewModel: viewModel, selectedLab: $selectedLab, enrollmentLinks: inProgressEnrollments, heading: "In Progress")
+                        }
+                        
+                        if readyEnrollments.count > 0{
+                            ReviewListSection(viewModel: viewModel, selectedLab: $selectedLab, enrollmentLinks: readyEnrollments, heading: "Ready")
+                        }
+                        
+                        if missingSubmissionEnrollments.count > 0{
+                            ReviewListSection(viewModel: viewModel, selectedLab: $selectedLab, enrollmentLinks: missingSubmissionEnrollments, heading: "No Submission")
+                        }
+                    } else{
+                        Text("No matches")
                     }
                 }
                 .cornerRadius(5)
@@ -164,33 +168,28 @@ struct ReviewNavigationView: View {
             }
             .padding(.top)
             .frame(minWidth: 300)
-            
         }
         .onAppear(perform: {
             viewModel.loadEnrollmentLinks()
         })
-        
         .navigationTitle("Review Submissions")
         .navigationSubtitle(viewModel.currentCourse.name)
         .toolbar{
             ToolbarItem{
-            LabPicker(labs: viewModel.manuallyGradedAssignments, selectedLab: $selectedLab)
+                LabPicker(labs: viewModel.manuallyGradedAssignments, selectedLab: $selectedLab)
             }
-
             ToolbarItem{
                 if !isSearching{
-                Toggle(isOn: $isSearching, label: {
-                    Image(systemName: "magnifyingglass")
-                })
-                .keyboardShortcut("f")
+                    Toggle(isOn: $isSearching, label: {
+                        Image(systemName: "magnifyingglass")
+                    })
+                    .keyboardShortcut("f")
                 } else {
                     SearchFieldRepresentable(query: $searchQuery)
                         .frame(minWidth: 200, maxWidth: 350)
-                        .onExitCommand(perform: {self.isSearching = false})
                 }
             }
             ToolbarItem{
-                
                 if isSearching{
                     Toggle(isOn: $isSearching, label: {
                         Image(systemName: "magnifyingglass")
