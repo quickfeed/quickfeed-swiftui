@@ -207,8 +207,3 @@ struct ReviewNavigationView: View {
     }
 }
 
-struct ReviewNavigatorView_Previews: PreviewProvider {
-    static var previews: some View {
-        ReviewNavigationView(viewModel: TeacherViewModel(provider: FakeProvider(), course: Course()), selectedLab: .constant(1))
-    }
-}
