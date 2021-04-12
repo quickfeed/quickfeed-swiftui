@@ -11,15 +11,17 @@ import GRPC
 import NIOHPACK
 
 class GRPCManager {
-    let eventLoopGroup: MultiThreadedEventLoopGroup
+    let eventLoopGroup: EventLoopGroup
     let channel: ClientConnection
     let quickfeedClient: AutograderServiceClient
     var defaultOptions: CallOptions
-    
+    //static let shared = GRPCManager()
     
     init(userID: UInt64){
         let hostname = "localhost"
         let port = 9090
+        
+        print("LOCAL")
         
         self.eventLoopGroup = MultiThreadedEventLoopGroup(numberOfThreads: 1)
         self.channel = ClientConnection.insecure(group: self.eventLoopGroup)
