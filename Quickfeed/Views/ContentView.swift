@@ -13,7 +13,8 @@ struct ContentView: View {
     var body: some View {
         
         if viewModel.courses?.count == 0 {
-            Text("FATAL ERROR! NO COURSES")
+            LogIn()
+            //NewUser()
         } else {
             NavigatorView(viewModel: viewModel, selectedCourse: viewModel.courses![0].id)
                 .navigationTitle("QuickFeed")

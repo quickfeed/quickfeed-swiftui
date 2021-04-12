@@ -7,18 +7,11 @@
 import Foundation
 import NIO
 
-class ServerProvider: ProviderProtocol{
-    var currentUser: User
-    var grpcManager: GRPCManager
-  
-    init() {
-        let userID = UInt64(100)
-        self.grpcManager = GRPCManager(userID: userID)
-        self.currentUser = self.grpcManager.getUser(userId: userID) ?? User()
-    }
+class ServerProvider: ProviderProtocol{    
+    var grpcManager: GRPCManager = GRPCManager.shared
     
     func getUser() -> User? {
-        return self.currentUser
+        return grpcManager.getUser()
     }
     
     func updateUser(user: User) {
@@ -26,13 +19,13 @@ class ServerProvider: ProviderProtocol{
     }
     
     func getAllCoursesForCurrentUser() -> [Course]? {
-        var courses: [Course]? = grpcManager.getCourses(userStatus: Enrollment.UserStatus.teacher, userId: currentUser.id)
-        courses?.append(contentsOf: grpcManager.getCourses(userStatus: Enrollment.UserStatus.student, userId: currentUser.id))
+        var courses: [Course]? = grpcManager.getCourses(userStatus: Enrollment.UserStatus.teacher, userId: nil)
+        courses?.append(contentsOf: grpcManager.getCourses(userStatus: Enrollment.UserStatus.student, userId: nil))
         return courses
     }
     
     func getCoursesForCurrentUser() -> [Course]? {
-        return grpcManager.getCourses(userStatus: Enrollment.UserStatus.teacher, userId: self.currentUser.id)
+        return grpcManager.getCourses(userStatus: Enrollment.UserStatus.teacher, userId: nil)
     }
     
     func getEnrollmentsByCourse(courseId: UInt64) -> EventLoopFuture<Enrollments>{
@@ -66,13 +59,6 @@ class ServerProvider: ProviderProtocol{
     
     func getEnrollmentsForCourse(course: Course) -> EventLoopFuture<Enrollments> {
         return self.grpcManager.getEnrollmentsByCourse(courseId: course.id)
-    }
-    
-    func changeUserStatus(enrollment: Enrollment, status: Enrollment.UserStatus) -> Status {
-        var newEnrollment = enrollment
-        newEnrollment.status = status
-        self.grpcManager.updateEnrollment(enrollment: newEnrollment)
-        return Status()
     }
     
     func createGroup(group: Group) -> EventLoopFuture<Group> {
@@ -131,6 +117,14 @@ class ServerProvider: ProviderProtocol{
         fatalError("Not implemented")
     }
     
+    
+    func changeUserStatus(enrollment: Enrollment, status: Enrollment.UserStatus) -> Status {
+        /*var newEnrollment = enrollment
+        newEnrollment.status = status
+        self.grpcManager.updateEnrollment(enrollment: newEnrollment)*/
+        return Status()
+    }
+
     func approveAll(courseId: UInt64) -> Bool {
         fatalError("Not implemented")
     }

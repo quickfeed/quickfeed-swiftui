@@ -66,7 +66,8 @@ struct NewOrEditCourse: View {
                 .onDisappear(perform: { self.editCourse = true })
         } else {
             Text("Edit \(course!.code)")
-                .navigationTitle("\(course!.code): \(course!.name)")
+                .navigationTitle("Edit Course")
+                .navigationSubtitle("\(course!.code): \(course!.name)")
                 .toolbar{
                     ToolbarItem(placement: .navigation){
                         Toggle(isOn: $editCourse, label: {

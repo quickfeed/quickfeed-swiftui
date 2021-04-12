@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D0005CC125E4EF2A00EDECD1 /* GitHubManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0005CC025E4EF2A00EDECD1 /* GitHubManager.swift */; };
+		D0005CC625E4EF8E00EDECD1 /* GitHubLogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0005CC525E4EF8E00EDECD1 /* GitHubLogIn.swift */; };
+		D00A4E11260E050800857BA3 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00A4E10260E050800857BA3 /* SwiftUIView.swift */; };
 		D01B3CD225C2D76900B126FB /* GRPCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B3CD125C2D76900B126FB /* GRPCManager.swift */; };
 		D035C75825E92795005AC2BA /* NavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035C75725E92795005AC2BA /* NavigatorView.swift */; };
 		D03EF9CF25F0277A008869CA /* AutoGraded.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03EF9CE25F0277A008869CA /* AutoGraded.swift */; };
@@ -27,6 +30,8 @@
 		D08308A6260385C2005A1FF0 /* NewOrEditCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08308A5260385C2005A1FF0 /* NewOrEditCourse.swift */; };
 		D08BA18525FA3B2F008A3F6D /* ReviewPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08BA18425FA3B2F008A3F6D /* ReviewPicker.swift */; };
 		D08BA18A25FA4875008A3F6D /* SubmissionScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08BA18925FA4875008A3F6D /* SubmissionScore.swift */; };
+		D08D62962611D72A00343250 /* LogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08D62952611D72A00343250 /* LogIn.swift */; };
+		D08D62A12611DEB200343250 /* NewUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08D62A02611DEB200343250 /* NewUser.swift */; };
 		D0A6FCB925CA0A8A008C546B /* StudentNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A6FCB825CA0A8A008C546B /* StudentNavigatorView.swift */; };
 		D0F6A13C2609DD5000C1D825 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F6A13B2609DD5000C1D825 /* RemoteImage.swift */; };
 		D0F6A1462609F25500C1D825 /* UserInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F6A1452609F25500C1D825 /* UserInformation.swift */; };
@@ -122,6 +127,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D0005CC025E4EF2A00EDECD1 /* GitHubManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubManager.swift; sourceTree = "<group>"; };
+		D0005CC525E4EF8E00EDECD1 /* GitHubLogIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubLogIn.swift; sourceTree = "<group>"; };
+		D00A4E10260E050800857BA3 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		D01B3CD125C2D76900B126FB /* GRPCManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRPCManager.swift; sourceTree = "<group>"; };
 		D029D7B825BF089B00047837 /* GRPCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRPCManager.swift; sourceTree = "<group>"; };
 		D035C75725E92795005AC2BA /* NavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorView.swift; sourceTree = "<group>"; };
@@ -143,6 +151,8 @@
 		D08308A5260385C2005A1FF0 /* NewOrEditCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOrEditCourse.swift; sourceTree = "<group>"; };
 		D08BA18425FA3B2F008A3F6D /* ReviewPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPicker.swift; sourceTree = "<group>"; };
 		D08BA18925FA4875008A3F6D /* SubmissionScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionScore.swift; sourceTree = "<group>"; };
+		D08D62952611D72A00343250 /* LogIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogIn.swift; sourceTree = "<group>"; };
+		D08D62A02611DEB200343250 /* NewUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUser.swift; sourceTree = "<group>"; };
 		D0A6FCB825CA0A8A008C546B /* StudentNavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentNavigatorView.swift; sourceTree = "<group>"; };
 		D0F6A13B2609DD5000C1D825 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
 		D0F6A1452609F25500C1D825 /* UserInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformation.swift; sourceTree = "<group>"; };
@@ -249,6 +259,7 @@
 				D03EF9CE25F0277A008869CA /* AutoGraded.swift */,
 				D03EF9D325F027A2008869CA /* ManuallyGraded.swift */,
 				D08BA18925FA4875008A3F6D /* SubmissionScore.swift */,
+				D00A4E10260E050800857BA3 /* SwiftUIView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -286,6 +297,7 @@
 		D0F6A1432609F20A00C1D825 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				D08D62A02611DEB200343250 /* NewUser.swift */,
 				D06D9AD225F638AE0016BD59 /* UserProfile.swift */,
 				D0F6A1442609F22900C1D825 /* Helpers */,
 			);
@@ -475,6 +487,7 @@
 			isa = PBXGroup;
 			children = (
 				FA85790A25BEB4E900223DB9 /* ContentView.swift */,
+				D08D62952611D72A00343250 /* LogIn.swift */,
 				D035C75725E92795005AC2BA /* NavigatorView.swift */,
 				D0F6A1432609F20A00C1D825 /* User */,
 				D04331D726028EAB0034C4B9 /* Admin */,
@@ -495,6 +508,7 @@
 				D04B46EB25D1301200AC8926 /* LabSection.swift */,
 				D06024B025DD23D4009390A1 /* LabTests.swift */,
 				D0F6A13B2609DD5000C1D825 /* RemoteImage.swift */,
+				D0005CC525E4EF8E00EDECD1 /* GitHubLogIn.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -542,6 +556,7 @@
 			children = (
 				D01B3CD125C2D76900B126FB /* GRPCManager.swift */,
 				FAC5365025C0347300784980 /* UserManager.swift */,
+				D0005CC025E4EF2A00EDECD1 /* GitHubManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -699,7 +714,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAF0C54E2608AA46005A8B66 /* ReleaseNavigationView.swift in Sources */,
+				D08D62962611D72A00343250 /* LogIn.swift in Sources */,
 				FAA8333425E4F1D0008C05F4 /* ReviewNavigationView.swift in Sources */,
+				D00A4E11260E050800857BA3 /* SwiftUIView.swift in Sources */,
 				FA17B97525EFD40B008BB07F /* MemberListHeader.swift in Sources */,
 				FA17B96225EF90E6008BB07F /* SubmissionInfo.swift in Sources */,
 				FA3DBDD625E634EB00FF585C /* ResultViewModel.swift in Sources */,
@@ -722,6 +739,7 @@
 				D04331D326028CD60034C4B9 /* AdminViewModel.swift in Sources */,
 				D0F6A1462609F25500C1D825 /* UserInformation.swift in Sources */,
 				D04331EB2602B9FF0034C4B9 /* Admin.swift in Sources */,
+				D0005CC625E4EF8E00EDECD1 /* GitHubLogIn.swift in Sources */,
 				FAB066FB25CAC89B00FFE8EB /* StudentViewModel.swift in Sources */,
 				D04B470A25D29B7300AC8926 /* JSON.swift in Sources */,
 				FA17B99B25F2630B008BB07F /* GradingBenchmarkSection.swift in Sources */,
@@ -745,12 +763,14 @@
 				FAA8333E25E519E2008C05F4 /* ResultGrid.swift in Sources */,
 				FA5FBDE225E7E63E007EC0E3 /* ServerProvider.swift in Sources */,
 				D04B46EC25D1301200AC8926 /* LabSection.swift in Sources */,
+				D08D62A12611DEB200343250 /* NewUser.swift in Sources */,
 				FA85790B25BEB4E900223DB9 /* ContentView.swift in Sources */,
 				D03EF9D425F027A2008869CA /* ManuallyGraded.swift in Sources */,
 				D06A115D25ECE1A4004B0047 /* UserViewModel.swift in Sources */,
 				FA5A4113260B56C000A20A13 /* ResultStats.swift in Sources */,
 				D0F9FC7025BEBC360080A1F2 /* ag.grpc.swift in Sources */,
 				FAA8334E25E5259B008C05F4 /* ResultListItem.swift in Sources */,
+				D0005CC125E4EF2A00EDECD1 /* GitHubManager.swift in Sources */,
 				D04B46FD25D1696D00AC8926 /* LabInfo.swift in Sources */,
 				FA8EA6A126039B0D00A10351 /* GroupList.swift in Sources */,
 				D01B3CD225C2D76900B126FB /* GRPCManager.swift in Sources */,
