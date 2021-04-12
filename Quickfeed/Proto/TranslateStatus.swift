@@ -58,6 +58,17 @@ func getImageForSubmissionStatus(submission: Submission.Status) -> Image{
     }
 }
 
+func getImageSysNameForSubmissionStatus(status: Submission.Status) -> String{
+    switch (status){
+    case Submission.Status.approved:
+        return "checkmark.circle"
+    case Submission.Status.rejected:
+        return "multiply.circle"
+    default:
+        return "circle"
+    }
+}
+
 func getColorForGradingCriterionGrade(grade: GradingCriterion.Grade) -> Color {
     switch (grade){
     case GradingCriterion.Grade.passed:
