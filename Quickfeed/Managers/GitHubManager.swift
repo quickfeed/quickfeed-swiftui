@@ -20,8 +20,8 @@ class LogInViewModel: NSObject, ObservableObject, ASWebAuthenticationPresentatio
         let session = ASWebAuthenticationSession(url: authURL, callbackURLScheme: nil, completionHandler: { (callbackURL, error) in
                 guard error == nil, let callbackURL = callbackURL else { return }
             
-                let queryItems = URLComponents(string: callbackURL.absoluteString)?.queryItems
-                let tempCode = queryItems?.filter({ $0.name == "code" }).first?.value
+                //let queryItems = URLComponents(string: callbackURL.absoluteString)?.queryItems
+                //let tempCode = queryItems?.filter({ $0.name == "code" }).first?.value
             
                 //self.getAccessToken(authCode: tempCode!)
         })

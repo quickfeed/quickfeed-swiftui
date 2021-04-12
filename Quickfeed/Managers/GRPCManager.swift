@@ -24,14 +24,12 @@ class GRPCManager {
         
         self.userID = 100
         
-        print(hostname)
-        
         self.eventLoopGroup = MultiThreadedEventLoopGroup(numberOfThreads: 1)
         self.channel = ClientConnection.insecure(group: self.eventLoopGroup)
             .connect(host: hostname, port: port)
-        
         self.quickfeedClient = AutograderServiceClient(channel: channel)
 
+        print("Connecting to \(hostname)")
         let headers: HPACKHeaders = ["custom-header-1": "value1", "user": "\(self.userID!)"]
         
         self.defaultOptions = CallOptions()
