@@ -143,7 +143,7 @@ struct ReviewNavigationView: View {
             VStack(alignment: .leading){
                 List{
                     if awaitingReviewEnrollments.count > 0{
-                        ReviewListSection(viewModel: viewModel, selectedLab: $selectedLab, enrollmentLinks: awaitingReviewEnrollments, heading: "To Do")
+                        ReviewListSection(viewModel: viewModel, selectedLab: $selectedLab, enrollmentLinks: awaitingReviewEnrollments, heading: "Pending")
 
                     }
                     if inProgressEnrollments.count > 0{
