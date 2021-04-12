@@ -143,18 +143,19 @@ struct ReviewNavigationView: View {
             VStack(alignment: .leading){
                 List{
                     if awaitingReviewEnrollments.count > 0{
-                        ReviewListSection(viewModel: viewModel, selectedLab: selectedLab, enrollmentLinks: awaitingReviewEnrollments, heading: "To Do")
+                        ReviewListSection(viewModel: viewModel, selectedLab: $selectedLab, enrollmentLinks: awaitingReviewEnrollments, heading: "To Do")
+
                     }
                     if inProgressEnrollments.count > 0{
-                        ReviewListSection(viewModel: viewModel, selectedLab: selectedLab, enrollmentLinks: inProgressEnrollments, heading: "In Progress")
+                        ReviewListSection(viewModel: viewModel, selectedLab: $selectedLab, enrollmentLinks: inProgressEnrollments, heading: "In Progress")
                     }
                     
                     if readyEnrollments.count > 0{
-                        ReviewListSection(viewModel: viewModel, selectedLab: selectedLab, enrollmentLinks: readyEnrollments, heading: "Ready")
+                        ReviewListSection(viewModel: viewModel, selectedLab: $selectedLab, enrollmentLinks: readyEnrollments, heading: "Ready")
                     }
                     
                     if missingSubmissionEnrollments.count > 0{
-                        ReviewListSection(viewModel: viewModel, selectedLab: selectedLab, enrollmentLinks: missingSubmissionEnrollments, heading: "No Submission")
+                        ReviewListSection(viewModel: viewModel, selectedLab: $selectedLab, enrollmentLinks: missingSubmissionEnrollments, heading: "No Submission")
                     }
                 }
                 .cornerRadius(5)

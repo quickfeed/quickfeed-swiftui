@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ReviewListSection: View {
     @ObservedObject var viewModel: TeacherViewModel
-    @State var selectedLab: UInt64
+    @Binding var selectedLab: UInt64
     @State var enrollmentLinks: [EnrollmentLink]
     var heading: String
     
