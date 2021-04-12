@@ -97,6 +97,8 @@
 		FAC5365225C0347300784980 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5365025C0347300784980 /* UserManager.swift */; };
 		FAC5365325C0347300784980 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5365025C0347300784980 /* UserManager.swift */; };
 		FAF0C54E2608AA46005A8B66 /* ReleaseNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF0C5332608A592005A8B66 /* ReleaseNavigationView.swift */; };
+		FAF1329C262087A000795869 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = FAF1329B262087A000795869 /* SwiftUIX */; settings = {ATTRIBUTES = (Weak, ); }; };
+		FAF132A52622F31A00795869 /* ReviewListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF132A42622F31A00795869 /* ReviewListSection.swift */; };
 		FAF945B725CC4E3200074A2F /* ProtoExstensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF945B625CC4E3200074A2F /* ProtoExstensions.swift */; };
 		FAF945B825CC4E3200074A2F /* ProtoExstensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF945B625CC4E3200074A2F /* ProtoExstensions.swift */; };
 		FAF945B925CC4E3200074A2F /* ProtoExstensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF945B625CC4E3200074A2F /* ProtoExstensions.swift */; };
@@ -199,6 +201,7 @@
 		FABB233D25DBD91B00317969 /* MembersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersView.swift; sourceTree = "<group>"; };
 		FAC5365025C0347300784980 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		FAF0C5332608A592005A8B66 /* ReleaseNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseNavigationView.swift; sourceTree = "<group>"; };
+		FAF132A42622F31A00795869 /* ReviewListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewListSection.swift; sourceTree = "<group>"; };
 		FAF945B625CC4E3200074A2F /* ProtoExstensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtoExstensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -207,6 +210,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAF1329C262087A000795869 /* SwiftUIX in Frameworks */,
 				D0F9FC6325BEB9A90080A1F2 /* GRPC in Frameworks */,
 				D0F9FC6525BEB9A90080A1F2 /* CGRPCZlib in Frameworks */,
 			);
@@ -313,6 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				FA29712F25D05208000C99A1 /* ReviewNavigationView.swift */,
+				FAF132A42622F31A00795869 /* ReviewListSection.swift */,
 				FA6C3EB025D45E4500D8A798 /* SubmissionListItem.swift */,
 				FA17B96125EF90E6008BB07F /* SubmissionInfo.swift */,
 				FA17B95425EF7D6F008BB07F /* SubmissionReview.swift */,
@@ -568,6 +573,7 @@
 			packageProductDependencies = (
 				D0F9FC6225BEB9A90080A1F2 /* GRPC */,
 				D0F9FC6425BEB9A90080A1F2 /* CGRPCZlib */,
+				FAF1329B262087A000795869 /* SwiftUIX */,
 			);
 			productName = Quickfeed;
 			productReference = FA85790525BEB4E900223DB9 /* Quickfeed.app */;
@@ -648,6 +654,7 @@
 			mainGroup = FA8578FC25BEB4E900223DB9;
 			packageReferences = (
 				D0F9FC6125BEB9A90080A1F2 /* XCRemoteSwiftPackageReference "grpc-swift" */,
+				FAF1329A262087A000795869 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 			);
 			productRefGroup = FA85790625BEB4E900223DB9 /* Products */;
 			projectDirPath = "";
@@ -732,6 +739,7 @@
 				FABB233E25DBD91B00317969 /* MembersView.swift in Sources */,
 				FA5A40E62609DCA700A20A13 /* SelectedMembers.swift in Sources */,
 				FAA8330525E3E073008C05F4 /* MemberListItem.swift in Sources */,
+				FAF132A52622F31A00795869 /* ReviewListSection.swift in Sources */,
 				FA29717825D311B5000C99A1 /* SearchFieldController.swift in Sources */,
 				FA5A40EB2609F5C000A20A13 /* TranslateError.swift in Sources */,
 				FAA8333E25E519E2008C05F4 /* ResultGrid.swift in Sources */,
@@ -1100,6 +1108,14 @@
 				minimumVersion = "1.0.0-alpha.23";
 			};
 		};
+		FAF1329A262087A000795869 /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1122,6 +1138,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D0F9FC6125BEB9A90080A1F2 /* XCRemoteSwiftPackageReference "grpc-swift" */;
 			productName = GRPC;
+		};
+		FAF1329B262087A000795869 /* SwiftUIX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAF1329A262087A000795869 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
+			productName = SwiftUIX;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

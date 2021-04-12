@@ -22,8 +22,6 @@ struct TeacherNavigationView: View {
                 Text("Results")
             }
             
-            
-            
             NavigationLink(destination: MembersView(viewModel: viewModel), tag: 2, selection: $activeDest){
                 Image(systemName: "person")
                     .frame(width: 20)
