@@ -9,6 +9,10 @@ import Foundation
 import NIO
 
 class FakeProvider: ProviderProtocol, ObservableObject{
+    func getReviewers(submissionId: UInt64, courseId: UInt64) -> Reviewers? {
+        fatalError("not implemented")
+    }
+    
     func createGroup(group: Group) -> EventLoopFuture<Group> {
         fatalError("not implemented")
 
@@ -260,8 +264,6 @@ class FakeProvider: ProviderProtocol, ObservableObject{
 
 // Contains methods not present in the protocol, used for testing
 extension FakeProvider{
-    
-    
     func initDummyUsers(){
         self.dummyUsers.append(User(name: "Test2", id: 2, studentID: "222222", isAdmin: false, email: "test2@testmail.com", enrollments: [], login: "test2"))
         self.dummyUsers.append(User(name: "Test3", id: 3, studentID: "333333", isAdmin: false, email: "test3@testmail.com", enrollments: [], login: "test3"))

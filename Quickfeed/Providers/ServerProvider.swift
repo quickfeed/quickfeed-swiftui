@@ -107,8 +107,11 @@ class ServerProvider: ProviderProtocol{
         return self.grpcManager.createReview(courseId: courseId, review: review)
     }
     
-    // not implemented
+    func getReviewers(submissionId: UInt64, courseId: UInt64) -> Reviewers?{
+        return self.grpcManager.getReviewers(submissionId: submissionId, courseId: courseId)
+    }
     
+    // not implemented
     func addUserToCourse(course: Course, user: User) -> Bool {
         fatalError("Not implemented")
     }
