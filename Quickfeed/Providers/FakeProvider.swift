@@ -9,6 +9,10 @@ import Foundation
 import NIO
 
 class FakeProvider: ProviderProtocol, ObservableObject{
+    func updateReview(courseId: UInt64, review: Review) {
+        fatalError("not implemented")
+    }
+    
     func getReviewers(submissionId: UInt64, courseId: UInt64) -> Reviewers? {
         fatalError("not implemented")
     }

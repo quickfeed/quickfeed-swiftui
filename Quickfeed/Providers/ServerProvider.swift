@@ -107,6 +107,10 @@ class ServerProvider: ProviderProtocol{
         return self.grpcManager.createReview(courseId: courseId, review: review)
     }
     
+    func updateReview(courseId: UInt64, review: Review){
+        return self.grpcManager.updateReview(courseId: courseId, review: review)
+    }
+    
     func getReviewers(submissionId: UInt64, courseId: UInt64) -> Reviewers?{
         return self.grpcManager.getReviewers(submissionId: submissionId, courseId: courseId)
     }

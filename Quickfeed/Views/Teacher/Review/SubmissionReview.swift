@@ -13,7 +13,6 @@ struct SubmissionReview: View {
     var user: User
     @ObservedObject var viewModel: TeacherViewModel
     @State var submissionLink: SubmissionLink
-    
     @State private var review: Review = Review()
     
     
