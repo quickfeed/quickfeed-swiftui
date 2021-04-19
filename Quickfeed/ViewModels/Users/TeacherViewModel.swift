@@ -132,9 +132,6 @@ class TeacherViewModel: UserViewModelProtocol{
         }
     }
     
-    
-  
-    
     func getUserName(userId: UInt64) -> String{
         for user in self.users{
             if user.id == userId{

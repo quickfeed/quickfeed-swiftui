@@ -32,8 +32,4 @@ struct ReleaseNavigationView: View {
     }
 }
 
-struct ReleaseNavigationView_Previews: PreviewProvider {
-    static var previews: some View {
-        ReleaseNavigationView(viewModel: TeacherViewModel(provider: FakeProvider(), course: Course()), selectedLab: .constant(1))
-    }
-}
+

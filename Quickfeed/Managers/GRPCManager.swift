@@ -319,8 +319,39 @@ class GRPCManager {
         
     }
     
+    func updateReview(courseId: UInt64, review: Review){
+        let req = ReviewRequest.with{
+            $0.courseID = courseId
+            $0.review = review
+        }
+        
+        let call = self.quickfeedClient.updateReview(req, callOptions: defaultOptions)
+        
+        do {
+            _ = try call.response.wait()
+            return
+        } catch {
+            print("Call failed: \(error)")
+        }
+        
+        
+    }
     
-    
+    func getReviewers(submissionId: UInt64, courseId: UInt64) -> Reviewers?{
+        let req = SubmissionReviewersRequest.with{
+            $0.courseID = courseId
+            $0.submissionID  = submissionId
+        }
+        
+        let call = self.quickfeedClient.getReviewers(req, callOptions: self.defaultOptions)
+        do {
+            let resp = try call.response.wait()
+            return resp
+        } catch {
+            print("Call failed: \(error)")
+        }
+        return nil
+    }
     
     func loadCriteria(courseId: UInt64, assignmentId: UInt64) -> [GradingBenchmark]{
         let req = LoadCriteriaRequest.with{

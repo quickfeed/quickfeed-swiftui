@@ -23,10 +23,6 @@ extension NSTableView {
     
 }
 
-
-
-
-
 struct ReviewNavigationView: View {
     @ObservedObject var viewModel: TeacherViewModel
     @State private var searchQuery: String = ""
@@ -63,6 +59,75 @@ struct ReviewNavigationView: View {
         return filteredEnrollmentLinks.filter({
             !hasSubmissionForSelectedLab(link: $0)
         })
+    }
+    
+    
+    var body: some View {
+        NavigationView{
+            VStack(alignment: .leading){
+                List{
+                    if filteredEnrollmentLinks.count > 0{
+                        if awaitingReviewEnrollments.count > 0{
+                            ReviewListSection(viewModel: viewModel, selectedLab: $selectedLab, enrollmentLinks: awaitingReviewEnrollments, heading: "Pending")
+                            
+                        }
+                        if inProgressEnrollments.count > 0{
+                            ReviewListSection(viewModel: viewModel, selectedLab: $selectedLab, enrollmentLinks: inProgressEnrollments, heading: "In Progress")
+                        }
+                        
+                        if readyEnrollments.count > 0{
+                            ReviewListSection(viewModel: viewModel, selectedLab: $selectedLab, enrollmentLinks: readyEnrollments, heading: "Ready")
+                        }
+                        
+                        if missingSubmissionEnrollments.count > 0{
+                            ReviewListSection(viewModel: viewModel, selectedLab: $selectedLab, enrollmentLinks: missingSubmissionEnrollments, heading: "No Submission")
+                        }
+                    } else{
+                        Text("No matches")
+                    }
+                }
+                .cornerRadius(5)
+                .listStyle(SidebarListStyle())
+                .background(Color.clear)
+            }
+            .padding(.top)
+            .frame(minWidth: 300)
+        }
+        .onAppear(perform: {
+            viewModel.loadEnrollmentLinks()
+        })
+        .navigationTitle("Review Submissions")
+        .navigationSubtitle(viewModel.currentCourse.name)
+        .toolbar{
+            ToolbarItem{
+                LabPicker(labs: viewModel.manuallyGradedAssignments, selectedLab: $selectedLab)
+            }
+            ToolbarItem{
+                if !isSearching{
+                    Toggle(isOn: $isSearching, label: {
+                        Image(systemName: "magnifyingglass")
+                    })
+                    .keyboardShortcut("f")
+                } else {
+                    
+                    SearchBar("search...", text: $searchQuery, isEditing: $isSearching)
+                        .frame(minWidth: 200, maxWidth: 350)
+                        
+                        
+                    //SearchFieldRepresentable(query: $searchQuery)
+                    //    .frame(minWidth: 200, maxWidth: 350)
+                }
+            }
+            ToolbarItem{
+                if isSearching{
+                    Toggle(isOn: $isSearching, label: {
+                        Image(systemName: "magnifyingglass")
+                    })
+                    .keyboardShortcut("f")
+                    .labelsHidden()
+                }
+            }
+        }
     }
     
     func hasReview(link: EnrollmentLink) -> Bool{
@@ -137,72 +202,5 @@ struct ReviewNavigationView: View {
         return false
     }
     
-    var body: some View {
-        NavigationView{
-            VStack(alignment: .leading){
-                
-                List{
-                    if filteredEnrollmentLinks.count > 0{
-                        if awaitingReviewEnrollments.count > 0{
-                            ReviewListSection(viewModel: viewModel, selectedLab: $selectedLab, enrollmentLinks: awaitingReviewEnrollments, heading: "Pending")
-                            
-                        }
-                        if inProgressEnrollments.count > 0{
-                            ReviewListSection(viewModel: viewModel, selectedLab: $selectedLab, enrollmentLinks: inProgressEnrollments, heading: "In Progress")
-                        }
-                        
-                        if readyEnrollments.count > 0{
-                            ReviewListSection(viewModel: viewModel, selectedLab: $selectedLab, enrollmentLinks: readyEnrollments, heading: "Ready")
-                        }
-                        
-                        if missingSubmissionEnrollments.count > 0{
-                            ReviewListSection(viewModel: viewModel, selectedLab: $selectedLab, enrollmentLinks: missingSubmissionEnrollments, heading: "No Submission")
-                        }
-                    } else{
-                        Text("No matches")
-                    }
-                }
-                .cornerRadius(5)
-                .listStyle(SidebarListStyle())
-                .background(Color.clear)
-            }
-            .padding(.top)
-            .frame(minWidth: 300)
-        }
-        .onAppear(perform: {
-            viewModel.loadEnrollmentLinks()
-        })
-        .navigationTitle("Review Submissions")
-        .navigationSubtitle(viewModel.currentCourse.name)
-        .toolbar{
-            ToolbarItem{
-                LabPicker(labs: viewModel.manuallyGradedAssignments, selectedLab: $selectedLab)
-            }
-            ToolbarItem{
-                if !isSearching{
-                    Toggle(isOn: $isSearching, label: {
-                        Image(systemName: "magnifyingglass")
-                    })
-                    .keyboardShortcut("f")
-                } else {
-                    SearchFieldRepresentable(query: $searchQuery)
-                        .frame(minWidth: 200, maxWidth: 350)
-                }
-            }
-            ToolbarItem{
-                if isSearching{
-                    Toggle(isOn: $isSearching, label: {
-                        Image(systemName: "magnifyingglass")
-                    })
-                    .keyboardShortcut("f")
-                    .labelsHidden()
-                }
-            }
-        }
-        
-        
-        
-        
-    }
 }
 

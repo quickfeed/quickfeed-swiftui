@@ -23,9 +23,3 @@ struct CoursePicker: View {
     }
 }
 
-struct CourseSelectorView_Previews: PreviewProvider {
-    static var previews: some View {
-        let provider = FakeProvider()
-        CoursePicker(courses: provider.getCourses()!, selectedCourse: .constant(111))
-    }
-}

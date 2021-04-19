@@ -106,8 +106,3 @@ struct AddGroupForm: View {
     }
 }
 
-struct AddGroupForm_Previews: PreviewProvider {
-    static var previews: some View {
-        AddGroupForm(viewModel: TeacherViewModel(provider: FakeProvider(), course: Course()))
-    }
-}
