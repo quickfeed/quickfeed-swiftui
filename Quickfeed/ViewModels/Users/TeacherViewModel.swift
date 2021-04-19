@@ -164,9 +164,15 @@ class TeacherViewModel: UserViewModelProtocol{
     }
     
     // MANUAL GRADING
-    func createReview() -> Review?{
-        let review = Review()
+    func createReview(submissionId: UInt64, assignmentId: UInt64) -> Review?{
         
+        var review = Review()
+        let assg = self.assignments.first(where: {$0.id == assignmentId})
+        review.benchmarks = assg!.gradingBenchmarks
+        review.reviewerID = self.user.id
+        review.ready = false
+        review.submissionID = submissionId
+
         return self.provider.createReview(courseId: self.currentCourse.id, review: review)
     }
     

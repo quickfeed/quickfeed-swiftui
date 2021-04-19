@@ -18,11 +18,20 @@ struct SubmissionReview: View {
     
     //Initializes a new review
     func initReview(){
-        //review.benchmarks = viewModel.loadCriteria(assignmentId: submissionLink.assignment.id)
-        
-        //self.review = viewModel.createReview()
+        self.review = viewModel.createReview(submissionId: self.submissionLink.submission.id, assignmentId: submissionLink.assignment.id)!
     }
     
+    func updateReview(){
+        
+    }
+    
+    func assignmentHasCriteriaList() -> Bool{
+        let assg = viewModel.assignments.first(where: {$0.id == submissionLink.assignment.id})
+        if assg!.gradingBenchmarks.count > 0{
+            return true
+        }
+        return false
+    }
     
     func hasReview() -> Bool{
         if submissionLink.submission.reviews.count > 0{
@@ -68,45 +77,47 @@ struct SubmissionReview: View {
             
             SubmissionInfo(viewModel: viewModel, submissionLink: $submissionLink)
             if submissionLink.hasSubmission{
-                if hasReviewByUser(){
-                    List{
-                        ForEach(self.review.benchmarks.indices, id: \.self){ idx in
-                            GradingBenchmarkSection(benchmark: $review.benchmarks[idx])
-                        }
-                    }
-                    .onAppear(perform:{
-                        self.review = submissionLink.submission.reviews.first ?? viewModel.createReview() ?? Review()
-                    })
-                    .cornerRadius(5)
-                    
-                    HStack{
-                        Spacer()
-                        Button(action: { review.ready = true }, label: {
-                            Text("Mark as ready")
-                        })
-                    }
-                    
-                } else {
-                    if hasReview(){
-                        HStack{
-                            Text("This assignment is reviewed by: ")
-                            ForEach(submissionLink.submission.reviews, id: \.self){ review in
-                                Text("\(viewModel.getUserName(userId: review.reviewerID))")
-                            }
-                        }
-                        
-                    } else{
-                        
-                        Text("New review")
-                            .onAppear(perform: {initReview()})
+                if assignmentHasCriteriaList(){
+                    if hasReviewByUser(){
                         List{
                             ForEach(self.review.benchmarks.indices, id: \.self){ idx in
                                 GradingBenchmarkSection(benchmark: $review.benchmarks[idx])
                             }
                         }
+                        .cornerRadius(5)
+                        
+                        HStack{
+                            Spacer()
+                            Button(action: { review.ready = true }, label: {
+                                Text("Mark as ready")
+                            })
+                        }
+                        
+                    } else {
+                        if hasReview(){
+                            HStack{
+                                Text("This assignment is reviewed by: ")
+                                ForEach(submissionLink.submission.reviews, id: \.self){ review in
+                                    Text("\(viewModel.getUserName(userId: review.reviewerID))")
+                                }
+                            }
+                            
+                        } else{
+                            
+                            Text("New review")
+                                .onAppear(perform: {initReview()})
+                            List{
+                                ForEach(self.review.benchmarks.indices, id: \.self){ idx in
+                                    GradingBenchmarkSection(benchmark: $review.benchmarks[idx])
+                                }
+                            }
+                        }
                     }
-                
                 }
+                else{
+                    Text("No criteria list for this assignment")
+                }
+                
                 
             } else{
                 Text("No submissions for this assignment")
