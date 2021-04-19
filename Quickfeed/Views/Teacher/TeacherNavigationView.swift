@@ -36,6 +36,13 @@ struct TeacherNavigationView: View {
                 Text("Groups")
             }
             
+            NavigationLink(destination: AssignmentsView(viewModel: viewModel), tag: 4, selection: $activeDest){
+                Image(systemName: "doc")
+                    .frame(width: 20)
+                    .foregroundColor(.blue)
+                Text("Assignments")
+            }
+            
             
             if viewModel.manuallyGradedAssignments.count > 0{
                 Section(header:Text("Manual Grading")){

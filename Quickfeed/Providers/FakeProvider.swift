@@ -19,12 +19,10 @@ class FakeProvider: ProviderProtocol, ObservableObject{
     
     func createGroup(group: Group) -> EventLoopFuture<Group> {
         fatalError("not implemented")
-
     }
     
     func getGroup(groupId: UInt64) -> EventLoopFuture<Group> {
         fatalError("not implemented")
-
     }
     
     func getGroupsByCourse(courseId: UInt64) -> EventLoopFuture<Groups> {
@@ -58,9 +56,6 @@ class FakeProvider: ProviderProtocol, ObservableObject{
     func getSubmissionsByCourse(courseId: UInt64, type: SubmissionsForCourseRequest.TypeEnum) -> CourseSubmissions {
         fatalError("notImplemented")
     }
-    
-    
-    
     @Published var currentUser: User
     var dummyUsers: [User]
     var courses: [Course]

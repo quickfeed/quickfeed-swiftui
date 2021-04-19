@@ -101,6 +101,7 @@
 		FABB233E25DBD91B00317969 /* MembersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB233D25DBD91B00317969 /* MembersView.swift */; };
 		FAC5365225C0347300784980 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5365025C0347300784980 /* UserManager.swift */; };
 		FAC5365325C0347300784980 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5365025C0347300784980 /* UserManager.swift */; };
+		FAE71C96262CCE9900856FF5 /* AssignmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE71C95262CCE9900856FF5 /* AssignmentsView.swift */; };
 		FAF0C54E2608AA46005A8B66 /* ReleaseNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF0C5332608A592005A8B66 /* ReleaseNavigationView.swift */; };
 		FAF1329C262087A000795869 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = FAF1329B262087A000795869 /* SwiftUIX */; settings = {ATTRIBUTES = (Weak, ); }; };
 		FAF132A52622F31A00795869 /* ReviewListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF132A42622F31A00795869 /* ReviewListSection.swift */; };
@@ -210,6 +211,7 @@
 		FAB0671C25CACF8700FFE8EB /* TeacherNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherNavigationView.swift; sourceTree = "<group>"; };
 		FABB233D25DBD91B00317969 /* MembersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersView.swift; sourceTree = "<group>"; };
 		FAC5365025C0347300784980 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		FAE71C95262CCE9900856FF5 /* AssignmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentsView.swift; sourceTree = "<group>"; };
 		FAF0C5332608A592005A8B66 /* ReleaseNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseNavigationView.swift; sourceTree = "<group>"; };
 		FAF132A42622F31A00795869 /* ReviewListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewListSection.swift; sourceTree = "<group>"; };
 		FAF945B625CC4E3200074A2F /* ProtoExstensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtoExstensions.swift; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 				FA17B98925F24FDA008BB07F /* Results */,
 				FA4A88AA2603673500A21CDA /* Members */,
 				FA4A88AB2603674D00A21CDA /* Groups */,
+				FAE71C9A262CD1A300856FF5 /* Assignments */,
 				FA17B98825F24FC3008BB07F /* Review */,
 				FAF0C5322608A582005A8B66 /* Release */,
 			);
@@ -561,6 +564,14 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		FAE71C9A262CD1A300856FF5 /* Assignments */ = {
+			isa = PBXGroup;
+			children = (
+				FAE71C95262CCE9900856FF5 /* AssignmentsView.swift */,
+			);
+			path = Assignments;
+			sourceTree = "<group>";
+		};
 		FAF0C5322608A582005A8B66 /* Release */ = {
 			isa = PBXGroup;
 			children = (
@@ -716,6 +727,7 @@
 				FAF0C54E2608AA46005A8B66 /* ReleaseNavigationView.swift in Sources */,
 				D08D62962611D72A00343250 /* LogIn.swift in Sources */,
 				FAA8333425E4F1D0008C05F4 /* ReviewNavigationView.swift in Sources */,
+				FAE71C96262CCE9900856FF5 /* AssignmentsView.swift in Sources */,
 				D00A4E11260E050800857BA3 /* SwiftUIView.swift in Sources */,
 				FA17B97525EFD40B008BB07F /* MemberListHeader.swift in Sources */,
 				FA17B96225EF90E6008BB07F /* SubmissionInfo.swift in Sources */,
