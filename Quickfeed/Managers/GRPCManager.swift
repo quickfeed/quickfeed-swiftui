@@ -297,6 +297,22 @@ class GRPCManager {
         return []
     }
     
+    func updateAssignments(courseId: UInt64) -> Bool{
+        let req = CourseRequest.with{
+            $0.courseID = courseId
+        }
+        
+        let call = self.quickfeedClient.updateAssignments(req, callOptions: self.defaultOptions)
+        
+        do {
+            _ = try call.response.wait()
+            return true
+        } catch {  
+            print("Call failed: \(error)")
+            return false
+        }
+    }
+    
     
     // MANUAL GRADING
     

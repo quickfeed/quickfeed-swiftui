@@ -10,29 +10,31 @@ import SwiftUI
 struct AssignmentsView: View {
     @ObservedObject var viewModel: TeacherViewModel
     var body: some View {
-        
-        List{
-            ForEach(viewModel.assignments, id: \.self){ assignment in
-                HStack{
-                    Text("\(assignment.name)")
-                    Spacer()
-                    Button(action: {print(assignment.gradingBenchmarks[0].heading)}, label: {
-                        Text("Load From File")
-                    })
-                    .disabled(assignment.skipTests ? false : true)
+        NavigationView{
+            List{
+                ForEach(viewModel.assignments, id: \.self){ assignment in
+                    NavigationLink(
+                        destination: AssignmentView(viewModel: viewModel, assignment: assignment),
+                        label: {
+                            Text("\(assignment.name)") 
+                        })
+                    
+                    Divider()
                 }
-                Divider()
             }
         }
-        
-        
-        
         
         .navigationTitle("Assignments")
         .navigationSubtitle(viewModel.currentCourse.name)
         .toolbar{
             ToolbarItem{
-                Button(action: {}, label: {
+                Button(action: {
+                    let succeded = viewModel.updateAssignments()
+                    if !succeded{
+                        Alert(title: Text("Updating Assignments failed"))
+                    }
+                    
+                }, label: {
                     Text("Update Course Assignments")
                 })
             }
