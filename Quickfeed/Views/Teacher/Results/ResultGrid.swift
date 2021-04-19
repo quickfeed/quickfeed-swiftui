@@ -91,8 +91,3 @@ struct ResultGrid: View {
     }
 }
 
-struct ResultGrid_Previews: PreviewProvider {
-    static var previews: some View {
-        ResultGrid(viewModel: TeacherViewModel(provider: FakeProvider(), course: Course()), displayedSubmissionLink: .constant(nil))
-    }
-}

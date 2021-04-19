@@ -41,11 +41,3 @@ struct LabTests: View {
     }
 }
 
-struct LabTests_Previews: PreviewProvider {
-    static var previews: some View {
-        let provider = FakeProvider()
-        let submission = provider.getAssignments(courseID: 111)[0].submissions[0]
-        
-        LabTests(submission: submission)
-    }
-}

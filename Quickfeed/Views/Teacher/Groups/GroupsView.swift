@@ -35,9 +35,3 @@ struct GroupsView: View {
     
     }
 }
-
-struct GroupsView_Previews: PreviewProvider {
-    static var previews: some View {
-        GroupsView(viewModel: TeacherViewModel(provider: FakeProvider(), course: Course()))
-    }
-}

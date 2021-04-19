@@ -69,8 +69,3 @@ struct SubmissionInfo: View {
     
 }
 
-struct SubmissionInfo_Previews: PreviewProvider {
-    static var previews: some View {
-        SubmissionInfo(viewModel: TeacherViewModel(provider: FakeProvider(), course: Course()), submissionLink: .constant(SubmissionLink()))
-    }
-}

@@ -102,11 +102,4 @@ struct LabInfo: View {
     }
 }
 
-struct LabInfo_Previews: PreviewProvider {
-    static var previews: some View {
-        let provider = FakeProvider()
-        let assignment = provider.getAssignments(courseID: 111)[0]
-        let submission = provider.getAssignments(courseID: 111)[0].submissions[0]
-        LabInfo(submission: submission, assignment: assignment, teacherView: false)
-    }
-}
+

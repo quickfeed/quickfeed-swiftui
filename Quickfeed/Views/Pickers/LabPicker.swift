@@ -22,11 +22,3 @@ struct LabPicker: View {
     }
 }
 
-struct LabPicker_Previews: PreviewProvider {
-    
-    
-    static var previews: some View {
-        let provider = FakeProvider()
-        LabPicker(labs: provider.courses[0].assignments, selectedLab: .constant(1))
-    }
-}
