@@ -83,9 +83,3 @@ struct MembersView: View {
     }
 }
 
-struct MembersView_Previews: PreviewProvider {
-    static var viewModel = TeacherViewModel(provider: FakeProvider(), course: Course())
-    static var previews: some View {
-        MembersView(viewModel: TeacherViewModel(provider: FakeProvider(), course: Course()))
-    }
-}

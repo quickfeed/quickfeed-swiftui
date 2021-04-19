@@ -33,9 +33,4 @@ struct ResultView: View {
     }
 }
 
-struct ResultGridView_Previews: PreviewProvider {
-    static var previews: some View {
-        ResultView(viewModel: TeacherViewModel(provider: FakeProvider(), course: Course()))
-            
-    }
-}
+

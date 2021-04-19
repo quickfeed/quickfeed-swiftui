@@ -100,8 +100,4 @@ struct GroupList: View {
     }
 }
 
-struct GroupList_Previews: PreviewProvider {
-    static var previews: some View {
-        GroupList(viewModel: TeacherViewModel(provider: FakeProvider(), course: Course()))
-    }
-}
+

@@ -7,7 +7,9 @@
 import Foundation
 import NIO
 
-class ServerProvider: ProviderProtocol{    
+class ServerProvider: ProviderProtocol{
+    
+    
     var grpcManager: GRPCManager = GRPCManager.shared
     
     func getUser() -> User? {
@@ -45,6 +47,9 @@ class ServerProvider: ProviderProtocol{
     
     func getAssignments(courseID: UInt64) -> [Assignment] {
         return self.grpcManager.getAssignments(courseId: courseID)
+    }
+    func updateAssignments(courseId: UInt64) -> Bool {
+        return self.grpcManager.updateAssignments(courseId: courseId)
     }
     
     func createEnrollment(courseID: UInt64, userID: UInt64) {
@@ -101,8 +106,15 @@ class ServerProvider: ProviderProtocol{
         return self.grpcManager.createReview(courseId: courseId, review: review)
     }
     
-    // not implemented
+    func updateReview(courseId: UInt64, review: Review){
+        return self.grpcManager.updateReview(courseId: courseId, review: review)
+    }
     
+    func getReviewers(submissionId: UInt64, courseId: UInt64) -> Reviewers?{
+        return self.grpcManager.getReviewers(submissionId: submissionId, courseId: courseId)
+    }
+    
+    // not implemented
     func addUserToCourse(course: Course, user: User) -> Bool {
         fatalError("Not implemented")
     }
@@ -173,9 +185,6 @@ class ServerProvider: ProviderProtocol{
         fatalError("Not implemented")
     }
     
-    func updateAssignments(courseId: UInt64) -> Bool {
-        fatalError("Not implemented")
-    }
     
     func updateSubmission(courseId: UInt64, submisssion: Submission) -> Bool {
         fatalError("Not implemented")

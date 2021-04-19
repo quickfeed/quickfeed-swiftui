@@ -36,6 +36,13 @@ struct TeacherNavigationView: View {
                 Text("Groups")
             }
             
+            NavigationLink(destination: AssignmentsView(viewModel: viewModel), tag: 4, selection: $activeDest){
+                Image(systemName: "doc")
+                    .frame(width: 20)
+                    .foregroundColor(.blue)
+                Text("Assignments")
+            }
+            
             
             if viewModel.manuallyGradedAssignments.count > 0{
                 Section(header:Text("Manual Grading")){
@@ -64,12 +71,5 @@ struct TeacherNavigationView: View {
         .onAppear(perform: {
             self.viewModel.loadUsers()
         })
-    }
-}
-
-
-struct TeacherNavigationView_Previews: PreviewProvider {
-    static var previews: some View {
-        TeacherNavigationView(viewModel: TeacherViewModel(provider: FakeProvider(), course: Course()))
     }
 }

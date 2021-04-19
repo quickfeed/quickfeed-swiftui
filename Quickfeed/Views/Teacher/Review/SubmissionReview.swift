@@ -13,15 +13,14 @@ struct SubmissionReview: View {
     var user: User
     @ObservedObject var viewModel: TeacherViewModel
     @State var submissionLink: SubmissionLink
-    
     @State private var review: Review = Review()
     
     
     //Initializes a new review
     func initReview(){
-        var review = Review()
-        review.benchmarks = viewModel.loadCriteria(assignmentId: submissionLink.assignment.id)
-        self.review = review
+        //review.benchmarks = viewModel.loadCriteria(assignmentId: submissionLink.assignment.id)
+        
+        //self.review = viewModel.createReview()
     }
     
     
@@ -113,18 +112,8 @@ struct SubmissionReview: View {
                 Text("No submissions for this assignment")
             }
             Spacer()
-           
-            
-            
-            
         }
         .padding()
-        
     }
 }
 
-struct SubmissionReview_Previews: PreviewProvider {
-    static var previews: some View {
-        SubmissionReview(user: User(), viewModel: TeacherViewModel(provider: FakeProvider(), course: Course()), submissionLink: SubmissionLink())
-    }
-}

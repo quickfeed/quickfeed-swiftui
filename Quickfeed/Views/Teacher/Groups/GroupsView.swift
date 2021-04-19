@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct GroupsView: View {
     @ObservedObject var viewModel: TeacherViewModel
     
@@ -18,7 +19,9 @@ struct GroupsView: View {
             } else{
                 GroupList(viewModel: viewModel)
             }
+           
         }
+
         .toolbar{
             ToolbarItem(id: "add", placement: isAddingGroup ? .navigation : .status){
                 Button(action: {isAddingGroup.toggle()}, label: {
@@ -30,11 +33,5 @@ struct GroupsView: View {
             }
         }
     
-    }
-}
-
-struct GroupsView_Previews: PreviewProvider {
-    static var previews: some View {
-        GroupsView(viewModel: TeacherViewModel(provider: FakeProvider(), course: Course()))
     }
 }
