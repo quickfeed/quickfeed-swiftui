@@ -59,5 +59,6 @@ protocol ProviderProtocol{
     func createReview(courseId: UInt64, review: Review) -> Review?
     func getReviewers(submissionId: UInt64, courseId: UInt64) -> Reviewers?
     func updateReview(courseId: UInt64, review: Review)
-    func loadCriteria(courseId: UInt64, assignmentId: UInt64) -> [GradingBenchmark] 
+    func loadCriteria(courseId: UInt64, assignmentId: UInt64) -> [GradingBenchmark]
+    
 }

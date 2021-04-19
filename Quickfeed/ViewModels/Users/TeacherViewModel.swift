@@ -116,6 +116,10 @@ class TeacherViewModel: UserViewModelProtocol{
         }
     }
     
+    func updateAssignments() -> Bool{
+        return self.provider.updateAssignments(courseId: self.currentCourse.id)
+    }
+    
     func loadManuallyGradedAssignments(courseId: UInt64){
         self.manuallyGradedAssignments =  self.assignments.filter{ assignment in
             assignment.skipTests // skipTests -> assignments is manually graded
