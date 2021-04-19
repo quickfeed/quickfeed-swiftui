@@ -14,6 +14,7 @@ class AdminViewModel: UserViewModelProtocol {
     @Published var courses: [Course]?
     
     init(provider: ProviderProtocol) {
+        print("New AdminViewModel")
         self.provider = provider
         self.user = provider.getUser()!
         getUsers()

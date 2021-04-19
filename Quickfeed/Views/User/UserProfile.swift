@@ -13,10 +13,10 @@ struct UserProfile: View {
     
     var body: some View {
         HStack{
-            RemoteImage(url: viewModel.user.avatarURL)
+            RemoteImage(url: viewModel.user!.avatarURL)
                 .cornerRadius(7.5)
                 .frame(width: 50, height: 50)
-            Text(viewModel.user.name)
+            Text(viewModel.user!.name)
                 .font(.title)
                 .fontWeight(.bold)
         }
@@ -34,6 +34,10 @@ struct UserProfile: View {
         .frame(minWidth: 550, maxWidth: .infinity, minHeight: 200, maxHeight: .infinity)
         .padding()
         .navigationTitle("UserProfile")
+        .toolbar{
+            Button(action: {print("Signing out")}, label: Text("Sign Out"))
+                .foregroundColor(.red)
+        }
     }
 }
 

@@ -25,7 +25,7 @@ struct NavigatorView: View {
                 }
                 
                 Spacer()
-                if viewModel.user.isAdmin{
+                if viewModel.user!.isAdmin{
                     NavigationLink(
                         destination: Admin(viewModel: AdminViewModel(provider: ServerProvider()), showUsers: false)){
                         HStack{
@@ -60,11 +60,11 @@ struct NavigatorView: View {
                 NavigationLink(
                     destination: UserProfile(viewModel: viewModel, selectedCourse: $selectedCourse)){
                     HStack{
-                        RemoteImage(url: viewModel.user.avatarURL)
+                        RemoteImage(url: viewModel.user!.avatarURL)
                             .cornerRadius(7.5)
                             .frame(width: 30, height: 30)
                             .padding(.leading)
-                        Text(viewModel.user.name)
+                        Text(viewModel.user!.name)
                             .font(.headline)
                         Spacer()
                     }
@@ -74,6 +74,7 @@ struct NavigatorView: View {
                 .padding(.top, 0.0)
                 .buttonStyle(PlainButtonStyle())
             }
+            .frame(minWidth: 200)
         }
     }
 }

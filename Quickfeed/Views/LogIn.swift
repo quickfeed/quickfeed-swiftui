@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct LogIn: View {
+    @ObservedObject var viewModel: UserViewModel
+    
     var body: some View {
+        
         VStack{
             Text("QuickFeed")
                 .font(.system(.title, design: .monospaced))
@@ -24,15 +27,9 @@ struct LogIn: View {
                 }
             }
             .padding(.horizontal)
-            GitHubLogIn()
+            GitHubLogIn(viewModel: viewModel)
         }
         .frame(width: 300, height: 165)
         
-    }
-}
-
-struct LogIn_Previews: PreviewProvider {
-    static var previews: some View {
-        LogIn()
     }
 }

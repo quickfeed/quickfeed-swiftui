@@ -9,6 +9,6 @@
 import Foundation
 
 protocol UserViewModelProtocol: ObservableObject{
-    var user: User {get set}
+    //var user: User {get set}
     func reset()
 }

@@ -18,14 +18,8 @@ class ServerProvider: ProviderProtocol{
         grpcManager.updateUser(user: user)
     }
     
-    func getAllCoursesForCurrentUser() -> [Course]? {
-        var courses: [Course]? = grpcManager.getCourses(userStatus: Enrollment.UserStatus.teacher, userId: nil)
-        courses?.append(contentsOf: grpcManager.getCourses(userStatus: Enrollment.UserStatus.student, userId: nil))
-        return courses
-    }
-    
     func getCoursesForCurrentUser() -> [Course]? {
-        return grpcManager.getCourses(userStatus: Enrollment.UserStatus.teacher, userId: nil)
+        return grpcManager.getCoursesForCurrentUser()
     }
     
     func getEnrollmentsByCourse(courseId: UInt64) -> EventLoopFuture<Enrollments>{

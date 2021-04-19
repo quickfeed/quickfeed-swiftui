@@ -84,9 +84,9 @@ struct UserInformation: View {
             Spacer()
         }
         .onAppear(perform: {
-            self.userName = viewModel.user.name
-            self.userEmail = viewModel.user.email
-            self.userStudentID = viewModel.user.studentID
+            self.userName = viewModel.user!.name
+            self.userEmail = viewModel.user!.email
+            self.userStudentID = viewModel.user!.studentID
         })
     }
     
