@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct SubmissionResult: View {
+    @ObservedObject var viewModel: TeacherViewModel
     @Binding var displayedSubmissionLink: SubmissionLink?
+    @State var showingAlert: Bool = false
     var body: some View {
         
         VStack{
@@ -23,20 +25,29 @@ struct SubmissionResult: View {
                 }
             }
             ToolbarItem{
-                Button(action: {displayedSubmissionLink = nil}){
+                Button(action: {
+                    displayedSubmissionLink?.submission.status = .approved
+                    _ = viewModel.updateSubmission(submission: displayedSubmissionLink!.submission)
+                }){
                     Text("Approve")
                         .foregroundColor(getColorForSubmissionStatus(submissionStatus: .approved))
                 }
             }
             ToolbarItem{
-                Button(action: {displayedSubmissionLink = nil}){
+                Button(action: {
+                    displayedSubmissionLink?.submission.status = .revision
+                    _ = viewModel.updateSubmission(submission: displayedSubmissionLink!.submission)
+                }){
                     Text("Revision")
                         .foregroundColor(getColorForSubmissionStatus(submissionStatus: .revision))
                 }
             }
             
             ToolbarItem{
-                Button(action: {displayedSubmissionLink = nil}){
+                Button(action: {
+                    displayedSubmissionLink?.submission.status = .rejected
+                    _ = viewModel.updateSubmission(submission: displayedSubmissionLink!.submission)
+                }){
                     Text("Reject")
                         .foregroundColor(getColorForSubmissionStatus(submissionStatus: .rejected))
                 }
@@ -46,8 +57,3 @@ struct SubmissionResult: View {
     }
 }
 
-struct SubmissionResult_Previews: PreviewProvider {
-    static var previews: some View {
-        SubmissionResult(displayedSubmissionLink: .constant(nil))
-    }
-}
