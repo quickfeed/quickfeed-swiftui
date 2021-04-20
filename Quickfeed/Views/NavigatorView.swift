@@ -27,7 +27,7 @@ struct NavigatorView: View {
                 Spacer()
                 if viewModel.user!.isAdmin{
                     NavigationLink(
-                        destination: Admin(viewModel: AdminViewModel(provider: ServerProvider.shared), showUsers: false)){
+                        destination: Admin(viewModel: AdminViewModel.shared, showUsers: false)){
                         HStack{
                             Image(systemName: "folder.badge.gear")
                                 .frame(width: 30)
@@ -42,7 +42,7 @@ struct NavigatorView: View {
                     .padding(.bottom, 1.0)
                     .buttonStyle(PlainButtonStyle())
                     NavigationLink(
-                        destination: Admin(viewModel: AdminViewModel(provider: ServerProvider.shared))){
+                        destination: Admin(viewModel: AdminViewModel.shared)){
                         HStack{
                             Image(systemName: "person.2")
                                 .frame(width: 30)

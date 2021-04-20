@@ -36,7 +36,8 @@ class GitHubManager: NSObject, ObservableObject, ASWebAuthenticationPresentation
         //guard let authURL = URL(string: "http://172.17.0.1:8080/app/login/login/github") else { return }
         //guard let authURL = URL(string: "http://127.0.0.1:8081/app/login/login/github") else { return }
         let session = ASWebAuthenticationSession(url: authURL, callbackURLScheme: "quickfeed", completionHandler: { (callbackURL, error) in
-            guard error == nil, let callbackURL = callbackURL else { return }
+            //guard error == nil, let callbackURL = callbackURL else { return }
+            guard error == nil else { return }
             
             DispatchQueue.main.async {
                 self.viewModel.setUser(userID: 2)
