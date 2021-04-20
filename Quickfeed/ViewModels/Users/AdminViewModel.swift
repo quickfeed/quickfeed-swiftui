@@ -9,15 +9,13 @@ import Foundation
 
 class AdminViewModel: UserViewModelProtocol {
     static let shared: AdminViewModel = AdminViewModel()
-    var provider: ProviderProtocol
-    var user: User
+    var provider: ProviderProtocol = ServerProvider.shared
+    var user: User = ServerProvider.shared.getUser()!
     @Published var users: [User]?
     @Published var courses: [Course]?
     
     private init() {
         print("New AdminViewModel")
-        self.provider = ServerProvider.shared
-        self.user = provider.getUser()!
         getUsers()
         getCourses()
     }

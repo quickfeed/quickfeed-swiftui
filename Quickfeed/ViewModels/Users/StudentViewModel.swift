@@ -17,6 +17,7 @@ class StudentViewModel: UserViewModelProtocol{
     @Published var submissions: [Submission]?
     
     init(provider: ProviderProtocol, course: Course) {
+        print("New StudentViewModel")
         self.provider = provider
         self.user = provider.getUser()!
         self.course = course
