@@ -13,7 +13,6 @@ class ServerProvider: ProviderProtocol{
     
     private init(){
         print("New ServerProvider")
-        self.setUser(userID: 151)
     }
     
     func setUser(userID: UInt64){

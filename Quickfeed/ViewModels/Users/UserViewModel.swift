@@ -15,8 +15,13 @@ class UserViewModel: UserViewModelProtocol {
     
     init(provider: ProviderProtocol) {
         self.provider = provider
+        self.setUser(userID: 2)
         self.getUser()
         print("New UserViewModel")
+    }
+    
+    func setUser(userID: UInt64){
+        self.provider.setUser(userID: userID)
     }
     
     // User
