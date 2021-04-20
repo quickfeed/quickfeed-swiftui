@@ -8,7 +8,6 @@
 import SwiftUI
 import AppKit
 
-
 struct SubmissionReview: View {
     var user: User
     @ObservedObject var viewModel: TeacherViewModel

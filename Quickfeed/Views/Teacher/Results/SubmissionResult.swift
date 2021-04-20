@@ -14,7 +14,10 @@ struct SubmissionResult: View {
     var body: some View {
         
         VStack{
-            StudentLab(assignment: displayedSubmissionLink?.assignment ?? Assignment(), submission: displayedSubmissionLink?.submission)
+            if displayedSubmissionLink != nil{
+                StudentLab(assignment: displayedSubmissionLink!.assignment, submission: displayedSubmissionLink!.submission)
+            }
+            
         }
         .padding()
         .navigationTitle("\(displayedSubmissionLink?.assignment.name ?? "")")

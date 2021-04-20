@@ -116,8 +116,14 @@ struct ReviewNavigationView: View {
             }
             ToolbarItem{
                 if isSearching{
-                    Toggle(isOn: $isSearching, label: {
-                        Image(systemName: "magnifyingglass")
+                    Button(action: {
+                        isSearching = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            isSearching = true
+                        }
+                        
+                    }, label: {
+                        
                     })
                     .keyboardShortcut("f")
                     .labelsHidden()
