@@ -20,6 +20,12 @@ class AdminViewModel: UserViewModelProtocol {
         getCourses()
     }
     
+    // Users
+    
+    func getUsers(){
+        self.users = provider.getUsers()
+    }
+    
     func updateUser(user: User){
         var user = user
         user.isAdmin = !user.isAdmin
@@ -27,15 +33,11 @@ class AdminViewModel: UserViewModelProtocol {
         self.getUsers()
     }
     
-    func getUsers(){
-        self.users = provider.getUsers()
-    }
+    // Courses
     
     func getCourses(){
         self.courses = provider.getCourses()
     }
-    
-    
     
     func reset() {
         

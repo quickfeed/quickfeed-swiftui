@@ -9,17 +9,15 @@ import Foundation
 
 
 class StudentViewModel: UserViewModelProtocol{
-    var provider: ProviderProtocol
-    @Published var user: User
+    var provider: ProviderProtocol = ServerProvider.shared
+    @Published var user: User = ServerProvider.shared.getUser()!
     @Published var course: Course
     @Published var group: Group?
     @Published var assignments: [Assignment]?
     @Published var submissions: [Submission]?
     
-    init(provider: ProviderProtocol, course: Course) {
+    init(course: Course) {
         print("New StudentViewModel")
-        self.provider = provider
-        self.user = provider.getUser()!
         self.course = course
         self.group = provider.getGroupByUserAndCourse(courseId: course.id, userId: user.id)
     }
