@@ -44,6 +44,7 @@ struct AssignmentView: View {
             if assignment.skipTests{
                 GradingCriterionView(viewModel: viewModel, assignment: assignment)
             }
+            Spacer()
             
         }
     }

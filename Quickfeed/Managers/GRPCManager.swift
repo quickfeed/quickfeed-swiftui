@@ -175,6 +175,24 @@ class GRPCManager {
         
     }
     
+    func updateSubmission(courseId: UInt64, submission: Submission) -> Bool{
+        let req = UpdateSubmissionRequest.with{
+            $0.courseID = courseId
+            $0.submissionID = submission.id
+            $0.score = submission.score
+            $0.released = submission.released
+            $0.status = submission.status
+        }
+        let call = self.quickfeedClient.updateSubmission(req, callOptions: self.defaultOptions)
+        do {
+            _ = try call.response.wait()
+            return true
+        } catch {
+            print("Call failed: \(error)")
+            return false
+        }
+    }
+    
     func getSubmissionsByCourse(courseId: UInt64, type: SubmissionsForCourseRequest.TypeEnum) -> EventLoopFuture<CourseSubmissions>{
         let req = SubmissionsForCourseRequest.with{
             $0.courseID = courseId
@@ -255,6 +273,7 @@ class GRPCManager {
         
         return nil
     }
+    
     
     
     func createGroup(gruop: Group) -> EventLoopFuture<Group>{

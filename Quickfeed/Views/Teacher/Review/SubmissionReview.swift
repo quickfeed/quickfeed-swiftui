@@ -8,21 +8,31 @@
 import SwiftUI
 import AppKit
 
-
 struct SubmissionReview: View {
     var user: User
     @ObservedObject var viewModel: TeacherViewModel
     @State var submissionLink: SubmissionLink
     @State private var review: Review = Review()
     
-    
     //Initializes a new review
     func initReview(){
-        //review.benchmarks = viewModel.loadCriteria(assignmentId: submissionLink.assignment.id)
-        
-        //self.review = viewModel.createReview()
+        if !submissionLink.hasSubmission{
+            return
+        }
+        if submissionLink.submission.reviews.count < submissionLink.assignment.reviewers{
+            self.review = viewModel.createReview(submissionId: self.submissionLink.submission.id, assignmentId: submissionLink.assignment.id)!
+        } else{
+            print("Maximum numbers of reviewers reached")
+        }
     }
     
+    func assignmentHasCriteriaList() -> Bool{
+        let assg = viewModel.assignments.first(where: {$0.id == submissionLink.assignment.id})
+        if assg!.gradingBenchmarks.count > 0{
+            return true
+        }
+        return false
+    }
     
     func hasReview() -> Bool{
         if submissionLink.submission.reviews.count > 0{
@@ -42,73 +52,59 @@ struct SubmissionReview: View {
         return false
     }
     
-    func setClipboardString(userLogin: String){
-        let pasteboard = NSPasteboard.general
-        pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
-        pasteboard.setString(userLogin + "-labs", forType: NSPasteboard.PasteboardType.string)
-    }
-    
     var body: some View {
         VStack{
             Text("\(user.name)'s submission for \(submissionLink.assignment.name)")
                 .font(.title)
                 .fontWeight(.bold)
                 .padding(.bottom)
-            HStack{
-                Link(destination: URL(string: "https://www.github.com/" + viewModel.currentCourse.organizationPath + "/" + user.login + "-labs")!, label:{
-                    Text(user.login + "/" + submissionLink.assignment.name)
-                })
-                Button(action: { setClipboardString(userLogin: user.login) }, label: {
-                    Image(systemName: "doc.on.doc")
-                        .padding()
-                })
-                .buttonStyle(PlainButtonStyle())
-                .help("Copy repo name to clipboard")
-            }
-            
+            SubmissionRepoLink(submissionLink: submissionLink, orgPath: viewModel.currentCourse.organizationPath, user: user)
             SubmissionInfo(viewModel: viewModel, submissionLink: $submissionLink)
+                .onAppear(perform: {
+                    if !hasReview(){
+                        initReview()
+                    }
+                })
             if submissionLink.hasSubmission{
-                if hasReviewByUser(){
-                    List{
-                        ForEach(self.review.benchmarks.indices, id: \.self){ idx in
-                            GradingBenchmarkSection(benchmark: $review.benchmarks[idx])
-                        }
-                    }
-                    .onAppear(perform:{
-                        self.review = submissionLink.submission.reviews.first ?? viewModel.createReview() ?? Review()
-                    })
-                    .cornerRadius(5)
-                    
-                    HStack{
-                        Spacer()
-                        Button(action: { review.ready = true }, label: {
-                            Text("Mark as ready")
-                        })
-                    }
-                    
-                } else {
+                if assignmentHasCriteriaList(){
                     if hasReview(){
-                        HStack{
-                            Text("This assignment is reviewed by: ")
-                            ForEach(submissionLink.submission.reviews, id: \.self){ review in
-                                Text("\(viewModel.getUserName(userId: review.reviewerID))")
+                        if hasReviewByUser(){
+                            List {
+                                ForEach(self.review.benchmarks.indices, id: \.self){ idx in
+                                    GradingBenchmarkSection(viewModel: viewModel, benchmark: $review.benchmarks[idx], review: $review)
+                                }
                             }
-                        }
-                        
-                    } else{
-                        
-                        Text("New review")
-                            .onAppear(perform: {initReview()})
-                        List{
-                            ForEach(self.review.benchmarks.indices, id: \.self){ idx in
-                                GradingBenchmarkSection(benchmark: $review.benchmarks[idx])
+                            .onAppear(perform: {
+                                self.review = submissionLink.submission.reviews.first(where: {$0.reviewerID == viewModel.user.id})!
+                            })
+                            HStack{
+                                Spacer()
+                                Button(action: {
+                                    self.review.ready = true
+                                    viewModel.updateReview(review: review)
+                                    viewModel.loadEnrollmentLinks()
+                                }, label: {
+                                    Text("Mark as Ready")
+                                })
+                            }
+                            
+                        } else{
+                            HStack{
+                                Text("This assignment is reviewed by: ")
+                                ForEach(submissionLink.submission.reviews, id: \.self){ review in
+                                    Text("\(viewModel.getUserName(userId: review.reviewerID))")
+                                }
                             }
                         }
                     }
-                
+                    else{
+                        Text("No reviews")
+                    }
                 }
-                
-            } else{
+                else{
+                    Text("No criteria list for this assignment")
+                }
+            } else {
                 Text("No submissions for this assignment")
             }
             Spacer()
