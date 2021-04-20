@@ -8,17 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var viewModel: UserViewModel = UserViewModel(provider: ServerProvider())
+    @ObservedObject var viewModel: UserViewModel = UserViewModel(provider: ServerProvider.shared)
     
     var body: some View {
         
-        if viewModel.courses?.count == 0 {
+        if viewModel.user == nil {
+            LogIn(viewModel: viewModel)
+        } else {
+            if viewModel.user!.name == "" || viewModel.user!.email == "" || viewModel.user!.studentID == "" {
+                NewUserProfile(viewModel: viewModel)
+            } else if viewModel.courses == [] || viewModel.courses == nil{
+                Text("New User Profile")
+            }else {
+                NavigatorView(viewModel: viewModel, selectedCourse: viewModel.courses![0].id)
+            }
+        }
+        
+        /*if viewModel.courses?.count != 0 {
             LogIn()
             //NewUser()
         } else {
             NavigatorView(viewModel: viewModel, selectedCourse: viewModel.courses![0].id)
                 .navigationTitle("QuickFeed")
-        }
+        }*/
     }
     
 }

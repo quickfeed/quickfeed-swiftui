@@ -19,15 +19,15 @@ struct NavigatorView: View {
                     .padding([.horizontal, .top])
                 
                 if viewModel.isTeacherForCourse(courseId: selectedCourse)! {
-                    TeacherNavigationView(viewModel: TeacherViewModel(provider: ServerProvider(), course: viewModel.getCourse(courseID: selectedCourse)!))
+                    TeacherNavigationView(viewModel: TeacherViewModel(provider: ServerProvider.shared, course: viewModel.getCourse(courseID: selectedCourse)!))
                 } else {
-                    StudentNavigatorView(viewModel: StudentViewModel(provider: ServerProvider(), course: viewModel.getCourse(courseID: selectedCourse)!))
+                    StudentNavigatorView(viewModel: StudentViewModel(provider: ServerProvider.shared, course: viewModel.getCourse(courseID: selectedCourse)!))
                 }
                 
                 Spacer()
-                if viewModel.user.isAdmin{
+                if viewModel.user!.isAdmin{
                     NavigationLink(
-                        destination: Admin(viewModel: AdminViewModel(provider: ServerProvider()), showUsers: false)){
+                        destination: Admin(viewModel: AdminViewModel(provider: ServerProvider.shared), showUsers: false)){
                         HStack{
                             Image(systemName: "folder.badge.gear")
                                 .frame(width: 30)
@@ -42,7 +42,7 @@ struct NavigatorView: View {
                     .padding(.bottom, 1.0)
                     .buttonStyle(PlainButtonStyle())
                     NavigationLink(
-                        destination: Admin(viewModel: AdminViewModel(provider: ServerProvider()))){
+                        destination: Admin(viewModel: AdminViewModel(provider: ServerProvider.shared))){
                         HStack{
                             Image(systemName: "person.2")
                                 .frame(width: 30)
@@ -60,11 +60,11 @@ struct NavigatorView: View {
                 NavigationLink(
                     destination: UserProfile(viewModel: viewModel, selectedCourse: $selectedCourse)){
                     HStack{
-                        RemoteImage(url: viewModel.user.avatarURL)
+                        RemoteImage(url: viewModel.user!.avatarURL)
                             .cornerRadius(7.5)
                             .frame(width: 30, height: 30)
                             .padding(.leading)
-                        Text(viewModel.user.name)
+                        Text(viewModel.user!.name)
                             .font(.headline)
                         Spacer()
                     }
@@ -74,6 +74,7 @@ struct NavigatorView: View {
                 .padding(.top, 0.0)
                 .buttonStyle(PlainButtonStyle())
             }
+            .frame(minWidth: 200)
         }
     }
 }

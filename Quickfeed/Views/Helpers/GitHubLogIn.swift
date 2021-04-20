@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct GitHubLogIn: View {
+    @ObservedObject var viewModel: UserViewModel
+    
     var body: some View {
         HStack{
             Spacer()
@@ -23,13 +25,7 @@ struct GitHubLogIn: View {
         .cornerRadius(10.0)
         .contentShape(Rectangle())
         .onTapGesture {
-            LogInViewModel().logInWithGitHub()
+            GitHubManager(viewModel: viewModel).logInWithGitHub()
         }
-    }
-}
-
-struct GitHubLogIn_Previews: PreviewProvider {
-    static var previews: some View {
-        GitHubLogIn()
     }
 }

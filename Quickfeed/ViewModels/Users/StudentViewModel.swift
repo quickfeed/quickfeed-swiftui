@@ -73,11 +73,11 @@ class StudentViewModel: UserViewModelProtocol{
         return nil
     }
     
-    func getCriteriaStatus() -> [Submission.Status] {
+    /*func getCriteriaStatus() -> [Submission.Status] {
         var criteriaStatus: [Submission.Status] = []
         
         return criteriaStatus
-    }
+    }*/
     
     func reload() {
         self.getAssignments()

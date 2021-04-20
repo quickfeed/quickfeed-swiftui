@@ -12,8 +12,8 @@ import NIO
 
 protocol ProviderProtocol{
     //var currentUser: User { get set }
+    func setUser(userID: UInt64)
     func getUser() -> User?
-    func getAllCoursesForCurrentUser() -> [Course]?
     func getCoursesForCurrentUser() -> [Course]?
     func isAuthorizedTeacher() -> Bool
     func getCourses() -> [Course]?

@@ -14,28 +14,29 @@ class GRPCManager {
     let eventLoopGroup: EventLoopGroup
     let channel: ClientConnection
     let quickfeedClient: AutograderServiceClient
-    var defaultOptions: CallOptions
+    var defaultOptions: CallOptions?
     static let shared = GRPCManager()
     var userID: UInt64?
     
     private init(){
         let hostname = "localhost"
         let port = 9090
-        
-        self.userID = 100
-        
+                
         self.eventLoopGroup = MultiThreadedEventLoopGroup(numberOfThreads: 1)
         self.channel = ClientConnection.insecure(group: self.eventLoopGroup)
             .connect(host: hostname, port: port)
         self.quickfeedClient = AutograderServiceClient(channel: channel)
 
         print("Connecting to \(hostname)")
+    }
+    
+    func setUser(userID: UInt64){
+        print("Setting new user \(userID)")
+        self.userID = userID
         let headers: HPACKHeaders = ["custom-header-1": "value1", "user": "\(self.userID!)"]
         
         self.defaultOptions = CallOptions()
-        self.defaultOptions.customMetadata = headers
-        
-        
+        self.defaultOptions!.customMetadata = headers
     }
     
     func isAuthorizedTeacher() -> Bool{
@@ -100,15 +101,10 @@ class GRPCManager {
         return nil
     }
     
-    func getCourses(userStatus: Enrollment.UserStatus, userId: UInt64?) -> [Course]{
-        
+    func getCoursesForCurrentUser() -> [Course]{
         let req = EnrollmentStatusRequest.with{
-            $0.statuses = [userStatus]
-            if userId == nil{
-                $0.userID = self.userID!
-            }else{
-                $0.userID = userId!
-            }
+            $0.statuses = [Enrollment.UserStatus.teacher, Enrollment.UserStatus.student]
+            $0.userID = self.userID!
         }
         
         let unaryCall = self.quickfeedClient.getCoursesByUser(req, callOptions: self.defaultOptions)

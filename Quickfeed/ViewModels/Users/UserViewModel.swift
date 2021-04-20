@@ -9,28 +9,33 @@ import Foundation
 
 class UserViewModel: UserViewModelProtocol {
     var provider: ProviderProtocol
-    @Published var user: User
+    @Published var user: User?
     @Published var courses: [Course]?
     @Published var enrollments: [Enrollment]?
     
     init(provider: ProviderProtocol) {
+        print("New UserViewModel")
         self.provider = provider
+    }
+    
+    // User
+    
+    func setUser(userID: UInt64){
+        self.provider.setUser(userID: userID)
+        self.getUser()
+    }
+    
+    func getUser() {
         self.user = provider.getUser()!
         self.getAllCoursesForCurrentUser()
         self.getEnrollments()
     }
     
-    // User
-    
-    func getUser() {
-        self.user = provider.getUser()!
-    }
-    
     func updateUser(name: String, studentID: String, email: String) {
-        self.user.name = name
-        self.user.studentID = studentID
-        self.user.email = email
-        self.provider.updateUser(user: self.user)
+        self.user!.name = name
+        self.user!.studentID = studentID
+        self.user!.email = email
+        self.provider.updateUser(user: self.user!)
         self.getUser()
     }
     
@@ -56,7 +61,7 @@ class UserViewModel: UserViewModelProtocol {
     }
     
     func getAllCoursesForCurrentUser() {
-        self.courses = self.provider.getAllCoursesForCurrentUser()
+        self.courses = self.provider.getCoursesForCurrentUser()
     }
     
     func isTeacherForCourse(courseId: UInt64) -> Bool? {
@@ -80,7 +85,7 @@ class UserViewModel: UserViewModelProtocol {
     // Enrollment
     
     func createEnrollment(courseID: UInt64) {
-        self.provider.createEnrollment(courseID: courseID, userID: self.user.id)
+        self.provider.createEnrollment(courseID: courseID, userID: self.user!.id)
         self.getEnrollments()
     }
     
@@ -96,7 +101,7 @@ class UserViewModel: UserViewModelProtocol {
     }
     
     func getEnrollments() {
-        self.enrollments = self.provider.getEnrollmentsForUser(userId: self.user.id)
+        self.enrollments = self.provider.getEnrollmentsForUser(userId: self.user!.id)
         if self.enrollments?.count != 0 {
             self.sortEnrollmentsByCode()
         }

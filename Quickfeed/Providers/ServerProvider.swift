@@ -8,9 +8,16 @@ import Foundation
 import NIO
 
 class ServerProvider: ProviderProtocol{
-    
-    
     var grpcManager: GRPCManager = GRPCManager.shared
+    static let shared: ServerProvider = ServerProvider()
+    
+    private init(){
+        print("New ServerProvider")
+    }
+    
+    func setUser(userID: UInt64){
+        grpcManager.setUser(userID: userID)
+    }
     
     func getUser() -> User? {
         return grpcManager.getUser()
@@ -20,14 +27,8 @@ class ServerProvider: ProviderProtocol{
         grpcManager.updateUser(user: user)
     }
     
-    func getAllCoursesForCurrentUser() -> [Course]? {
-        var courses: [Course]? = grpcManager.getCourses(userStatus: Enrollment.UserStatus.teacher, userId: nil)
-        courses?.append(contentsOf: grpcManager.getCourses(userStatus: Enrollment.UserStatus.student, userId: nil))
-        return courses
-    }
-    
     func getCoursesForCurrentUser() -> [Course]? {
-        return grpcManager.getCourses(userStatus: Enrollment.UserStatus.teacher, userId: nil)
+        return grpcManager.getCoursesForCurrentUser()
     }
     
     func getEnrollmentsByCourse(courseId: UInt64) -> EventLoopFuture<Enrollments>{

@@ -28,6 +28,7 @@
 		D06D9AD325F638AE0016BD59 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06D9AD225F638AE0016BD59 /* UserProfile.swift */; };
 		D083089E260385AA005A1FF0 /* AllCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = D083089D260385AA005A1FF0 /* AllCourses.swift */; };
 		D08308A6260385C2005A1FF0 /* NewOrEditCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08308A5260385C2005A1FF0 /* NewOrEditCourse.swift */; };
+		D08A3C1026278B0A00A6E626 /* NewUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08A3C0F26278B0A00A6E626 /* NewUserProfile.swift */; };
 		D08BA18525FA3B2F008A3F6D /* ReviewPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08BA18425FA3B2F008A3F6D /* ReviewPicker.swift */; };
 		D08BA18A25FA4875008A3F6D /* SubmissionScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08BA18925FA4875008A3F6D /* SubmissionScore.swift */; };
 		D08D62962611D72A00343250 /* LogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08D62952611D72A00343250 /* LogIn.swift */; };
@@ -150,6 +151,7 @@
 		D06D9AD225F638AE0016BD59 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		D083089D260385AA005A1FF0 /* AllCourses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCourses.swift; sourceTree = "<group>"; };
 		D08308A5260385C2005A1FF0 /* NewOrEditCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOrEditCourse.swift; sourceTree = "<group>"; };
+		D08A3C0F26278B0A00A6E626 /* NewUserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserProfile.swift; sourceTree = "<group>"; };
 		D08BA18425FA3B2F008A3F6D /* ReviewPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPicker.swift; sourceTree = "<group>"; };
 		D08BA18925FA4875008A3F6D /* SubmissionScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionScore.swift; sourceTree = "<group>"; };
 		D08D62952611D72A00343250 /* LogIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogIn.swift; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				D08D62A02611DEB200343250 /* NewUser.swift */,
+				D08A3C0F26278B0A00A6E626 /* NewUserProfile.swift */,
 				D06D9AD225F638AE0016BD59 /* UserProfile.swift */,
 				D0F6A1442609F22900C1D825 /* Helpers */,
 			);
@@ -658,7 +661,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1230;
-				LastUpgradeCheck = 1230;
+				LastUpgradeCheck = 1240;
 				TargetAttributes = {
 					FA85790425BEB4E900223DB9 = {
 						CreatedOnToolsVersion = 12.3;
@@ -746,6 +749,7 @@
 				FAA5DA36262EC643009DAEDE /* GradingBenchmarkHeader.swift in Sources */,
 				D04331D926028ECD0034C4B9 /* AdminUsers.swift in Sources */,
 				D04331E12602A5750034C4B9 /* AdminCourses.swift in Sources */,
+				D08A3C1026278B0A00A6E626 /* NewUserProfile.swift in Sources */,
 				FA17B95525EF7D6F008BB07F /* SubmissionReview.swift in Sources */,
 				FA6C3EB125D45E4500D8A798 /* SubmissionListItem.swift in Sources */,
 				FA17B98E25F2510D008BB07F /* CriterionStatusControl.swift in Sources */,
@@ -976,6 +980,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Quickfeed/Quickfeed.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Quickfeed/Preview Content\"";
@@ -998,6 +1003,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Quickfeed/Quickfeed.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Quickfeed/Preview Content\"";
