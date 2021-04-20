@@ -15,6 +15,7 @@ class UserViewModel: UserViewModelProtocol {
     
     init(provider: ProviderProtocol) {
         self.provider = provider
+        self.getUser()
         print("New UserViewModel")
     }
     

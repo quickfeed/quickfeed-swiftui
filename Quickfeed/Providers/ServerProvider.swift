@@ -11,6 +11,11 @@ class ServerProvider: ProviderProtocol{
     
     
     var grpcManager: GRPCManager = GRPCManager.shared
+    static let shared: ServerProvider = ServerProvider()
+    
+    private init(){
+        print("New ServerProvider")
+    }
     
     func getUser() -> User? {
         return grpcManager.getUser()
