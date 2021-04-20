@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftUIX
 
-// Overides translusent background for the list
+// Overides translusent background for the sidebarliststyle list
 
 extension NSTableView {
     open override func viewDidMoveToWindow() {
@@ -22,7 +22,6 @@ extension NSTableView {
     }
     
 }
-
 struct ReviewNavigationView: View {
     @ObservedObject var viewModel: TeacherViewModel
     @State private var searchQuery: String = ""
@@ -60,7 +59,6 @@ struct ReviewNavigationView: View {
             !hasSubmissionForSelectedLab(link: $0)
         })
     }
-    
     
     var body: some View {
         NavigationView{

@@ -39,7 +39,7 @@ class GitHubManager: NSObject, ObservableObject, ASWebAuthenticationPresentation
             guard error == nil, let callbackURL = callbackURL else { return }
             
             DispatchQueue.main.async {
-                self.viewModel.setUser(userID: 2)
+                self.viewModel.setUser(userID: 100)
             }
         })
         
