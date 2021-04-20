@@ -38,11 +38,9 @@ class GitHubManager: NSObject, ObservableObject, ASWebAuthenticationPresentation
         let session = ASWebAuthenticationSession(url: authURL, callbackURLScheme: "quickfeed", completionHandler: { (callbackURL, error) in
             guard error == nil, let callbackURL = callbackURL else { return }
             
-            
             DispatchQueue.main.async {
                 self.viewModel.setUser(userID: 2)
             }
-            print(callbackURL)
         })
         
         session.prefersEphemeralWebBrowserSession = false
