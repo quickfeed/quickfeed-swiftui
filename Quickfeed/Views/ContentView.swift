@@ -23,14 +23,6 @@ struct ContentView: View {
                 NavigatorView(viewModel: viewModel, selectedCourse: viewModel.courses![0].id)
             }
         }
-        
-        /*if viewModel.courses?.count != 0 {
-            LogIn()
-            //NewUser()
-        } else {
-            NavigatorView(viewModel: viewModel, selectedCourse: viewModel.courses![0].id)
-                .navigationTitle("QuickFeed")
-        }*/
     }
     
 }

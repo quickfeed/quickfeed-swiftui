@@ -81,8 +81,6 @@ class StudentViewModel: UserViewModelProtocol{
     func reload() {
         self.getAssignments()
         self.getSubmissions()
-        /*self.submissions![0].status = Submission.Status.rejected
-        self.submissions![0].score = 40*/
     }
     
     

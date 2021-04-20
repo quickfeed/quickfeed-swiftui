@@ -32,20 +32,20 @@ class GitHubManager: NSObject, ObservableObject, ASWebAuthenticationPresentation
     }
     
     func logInWithGitHub() {
-        guard let authURL = URL(string: "https://github.com/login/oauth/authorize?client_id=" + GithubConstants.CLIENT_ID + "&scope=" + GithubConstants.SCOPE + "&redirect_uri=" + GithubConstants.REDIRECT_URI + "&state=" + UUID().uuidString) else { return }
-        //guard let authURL = URL(string: "http://172.17.0.1:8080/app/login/login/github") else { return }
+        self.viewModel.setUser(userID: 100)
+        /*guard let authURL = URL(string: "https://github.com/login/oauth/authorize?client_id=" + GithubConstants.CLIENT_ID + "&scope=" + GithubConstants.SCOPE + "&redirect_uri=" + GithubConstants.REDIRECT_URI + "&state=" + UUID().uuidString) else { return }
         //guard let authURL = URL(string: "http://127.0.0.1:8081/app/login/login/github") else { return }
         let session = ASWebAuthenticationSession(url: authURL, callbackURLScheme: "quickfeed", completionHandler: { (callbackURL, error) in
             //guard error == nil, let callbackURL = callbackURL else { return }
             guard error == nil else { return }
             
             DispatchQueue.main.async {
-                self.viewModel.setUser(userID: 78)
+                self.viewModel.setUser(userID: 100)
             }
         })
         
         session.prefersEphemeralWebBrowserSession = false
         session.presentationContextProvider = self
-        session.start()
+        session.start()*/
     }
 }
