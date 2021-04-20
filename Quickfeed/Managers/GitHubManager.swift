@@ -20,7 +20,7 @@ struct GithubConstants {
 
 typealias ASPresentationAnchor = NSWindow
 
-class LogInViewModel: NSObject, ObservableObject, ASWebAuthenticationPresentationContextProviding {
+class GitHubManager: NSObject, ObservableObject, ASWebAuthenticationPresentationContextProviding {
     func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
         return ASPresentationAnchor()
     }

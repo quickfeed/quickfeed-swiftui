@@ -14,14 +14,14 @@ class UserViewModel: UserViewModelProtocol {
     @Published var enrollments: [Enrollment]?
     
     init(provider: ProviderProtocol) {
-        self.provider = provider
-        self.setUser(userID: 2)
-        self.getUser()
         print("New UserViewModel")
+        self.provider = provider
+        self.setUser(userID: 100)
     }
     
     func setUser(userID: UInt64){
         self.provider.setUser(userID: userID)
+        self.getUser()
     }
     
     // User
