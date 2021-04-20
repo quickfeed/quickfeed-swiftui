@@ -15,20 +15,16 @@ struct SubmissionReview: View {
     @State var submissionLink: SubmissionLink
     @State private var review: Review = Review()
     
-    
     //Initializes a new review
     func initReview(){
+        if !submissionLink.hasSubmission{
+            return
+        }
         if submissionLink.submission.reviews.count < submissionLink.assignment.reviewers{
             self.review = viewModel.createReview(submissionId: self.submissionLink.submission.id, assignmentId: submissionLink.assignment.id)!
         } else{
             print("Maximum numbers of reviewers reached")
         }
-        
-    }
-    
-    func updateReview(){
-        print("update review")
-        
     }
     
     func assignmentHasCriteriaList() -> Bool{
@@ -57,8 +53,6 @@ struct SubmissionReview: View {
         return false
     }
     
-    
-    
     var body: some View {
         VStack{
             Text("\(user.name)'s submission for \(submissionLink.assignment.name)")
@@ -78,16 +72,23 @@ struct SubmissionReview: View {
                         if hasReviewByUser(){
                             List {
                                 ForEach(self.review.benchmarks.indices, id: \.self){ idx in
-                                    Text("test")
-                                    GradingBenchmarkSection(benchmark: $review.benchmarks[idx])
+                                    GradingBenchmarkSection(viewModel: viewModel, benchmark: $review.benchmarks[idx], review: $review)
                                 }
-                                .onChange(of: review, perform: { value in
-                                    updateReview()
-                                })
                             }
                             .onAppear(perform: {
                                 self.review = submissionLink.submission.reviews.first(where: {$0.reviewerID == viewModel.user.id})!
                             })
+                            HStack{
+                                Spacer()
+                                Button(action: {
+                                    self.review.ready = true
+                                    viewModel.updateReview(review: review)
+                                    viewModel.loadEnrollmentLinks()
+                                }, label: {
+                                    Text("Mark as Ready")
+                                })
+                            }
+                            
                         } else{
                             HStack{
                                 Text("This assignment is reviewed by: ")
@@ -96,6 +97,9 @@ struct SubmissionReview: View {
                                 }
                             }
                         }
+                    }
+                    else{
+                        Text("No reviews")
                     }
                 }
                 else{

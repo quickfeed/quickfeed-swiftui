@@ -14,7 +14,6 @@ class TeacherViewModel: UserViewModelProtocol{
     @Published var currentCourse: Course
     @Published var enrollments: [Enrollment] = []
     @Published var users: [User] = []
-    
     @Published var groups: [Group] = []
     @Published var assignments: [Assignment] = []
     @Published var manuallyGradedAssignments: [Assignment] = []
@@ -38,8 +37,8 @@ class TeacherViewModel: UserViewModelProtocol{
     
     
     func loadUsers(){
-        for enrollment in self.enrollments{
-            self.users.append(enrollment.user)
+        for enrollmentLink in self.enrollmentLinks{
+            self.users.append(enrollmentLink.enrollment.user)
         }
     }
     
@@ -141,6 +140,10 @@ class TeacherViewModel: UserViewModelProtocol{
     }
     
     func getUserName(userId: UInt64) -> String{
+        if users.count == 0{
+            self.loadUsers()
+            print(users.count)
+        }
         for user in self.users{
             if user.id == userId{
                 return user.name
@@ -165,15 +168,18 @@ class TeacherViewModel: UserViewModelProtocol{
     
     // MANUAL GRADING
     func createReview(submissionId: UInt64, assignmentId: UInt64) -> Review?{
-        
         var review = Review()
         let assg = self.assignments.first(where: {$0.id == assignmentId})
         review.benchmarks = assg!.gradingBenchmarks
         review.reviewerID = self.user.id
         review.ready = false
         review.submissionID = submissionId
-
         return self.provider.createReview(courseId: self.currentCourse.id, review: review)
+    }
+    
+    func updateReview(review: Review){
+        print("Update review")
+        return self.provider.updateReview(courseId: self.currentCourse.id, review: review)
     }
     
     func loadCriteria(assignmentId: UInt64) -> [GradingBenchmark]{

@@ -8,20 +8,17 @@
 import SwiftUI
 
 struct GradingBenchmarkSection: View {
-   @Binding var benchmark: GradingBenchmark
+    @ObservedObject var viewModel: TeacherViewModel
+    @Binding var benchmark: GradingBenchmark
+    @Binding var review: Review
+    
     
     var body: some View {
-        Section(header: Text(benchmark.heading)){
+        Section(header: GradingBenchmarkHeader(viewModel: viewModel, review: $review, comment: $benchmark.comment, header: benchmark.heading)){
             ForEach(benchmark.criteria.indices, id: \.self){ idx in
-                GradingCriterionListItem(crit: $benchmark.criteria[idx])
+                GradingCriterionListItem(viewModel: viewModel, crit: $benchmark.criteria[idx], review: $review)
                 Divider()
             }
         }
-    }
-}
-
-struct GradingBenchmarkSection_Previews: PreviewProvider {
-    static var previews: some View {
-        GradingBenchmarkSection(benchmark: .constant(GradingBenchmark()))
     }
 }

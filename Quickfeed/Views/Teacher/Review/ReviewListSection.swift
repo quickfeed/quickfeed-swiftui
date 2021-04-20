@@ -18,7 +18,7 @@ struct ReviewListSection: View {
             ForEach(enrollmentLinks, id: \.self){ link in
                 NavigationLink(destination: SubmissionReview(user: link.enrollment.user, viewModel: viewModel, submissionLink: submissionForSelectedLab(links: link.submissions)!)){
                     VStack{
-                        SubmissionListItem(submitterName: link.enrollment.user.name, subLink: submissionForSelectedLab(links: link.submissions)!)
+                        SubmissionListItem(submitterName: link.enrollment.user.name, subLink: submissionForSelectedLab(links: link.submissions)!, reviewer: "reviewed by: " + getReviewerName(link: link))
                         Divider()
                     }
                 }
@@ -30,6 +30,17 @@ struct ReviewListSection: View {
         return links.first(where: {
             $0.assignment.id == self.selectedLab
         })
+    }
+    
+    func getReviewerName(link: EnrollmentLink) -> String{
+        let sublink = submissionForSelectedLab(links: link.submissions)
+        if ((sublink?.hasSubmission) != nil){
+            if sublink!.submission.reviews.count > 0{
+                return viewModel.getUserName(userId: sublink?.submission.reviews[0].reviewerID ?? 100)
+            }
+        }
+        
+        return "unknown reviewer"
     }
 }
 

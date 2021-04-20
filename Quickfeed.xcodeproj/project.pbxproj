@@ -68,6 +68,7 @@
 		FA85792725BEB4EA00223DB9 /* QuickfeedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA85792625BEB4EA00223DB9 /* QuickfeedUITests.swift */; };
 		FA8EA69C26038F5D00A10351 /* AddGroupForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8EA69B26038F5D00A10351 /* AddGroupForm.swift */; };
 		FA8EA6A126039B0D00A10351 /* GroupList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8EA6A026039B0D00A10351 /* GroupList.swift */; };
+		FAA5DA36262EC643009DAEDE /* GradingBenchmarkHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA5DA35262EC643009DAEDE /* GradingBenchmarkHeader.swift */; };
 		FAA798B5262D6C82005E2713 /* AssignmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA798B4262D6C82005E2713 /* AssignmentView.swift */; };
 		FAA798BA262D71D4005E2713 /* GradingCriterionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA798B9262D71D4005E2713 /* GradingCriterionView.swift */; };
 		FAA798C5262DB217005E2713 /* SubmissionRepoLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA798C4262DB217005E2713 /* SubmissionRepoLink.swift */; };
@@ -196,6 +197,7 @@
 		FA85792825BEB4EA00223DB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA8EA69B26038F5D00A10351 /* AddGroupForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupForm.swift; sourceTree = "<group>"; };
 		FA8EA6A026039B0D00A10351 /* GroupList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupList.swift; sourceTree = "<group>"; };
+		FAA5DA35262EC643009DAEDE /* GradingBenchmarkHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradingBenchmarkHeader.swift; sourceTree = "<group>"; };
 		FAA798B4262D6C82005E2713 /* AssignmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentView.swift; sourceTree = "<group>"; };
 		FAA798B9262D71D4005E2713 /* GradingCriterionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradingCriterionView.swift; sourceTree = "<group>"; };
 		FAA798C4262DB217005E2713 /* SubmissionRepoLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionRepoLink.swift; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 				FA17B99225F258FA008BB07F /* GradingCriterionListItem.swift */,
 				FA17B98D25F2510C008BB07F /* CriterionStatusControl.swift */,
 				FAA798C4262DB217005E2713 /* SubmissionRepoLink.swift */,
+				FAA5DA35262EC643009DAEDE /* GradingBenchmarkHeader.swift */,
 			);
 			path = Review;
 			sourceTree = "<group>";
@@ -740,6 +743,7 @@
 				D0F6A13C2609DD5000C1D825 /* RemoteImage.swift in Sources */,
 				FAA8333925E502F2008C05F4 /* ResultView.swift in Sources */,
 				FAA8331325E4EF92008C05F4 /* CoursePicker.swift in Sources */,
+				FAA5DA36262EC643009DAEDE /* GradingBenchmarkHeader.swift in Sources */,
 				D04331D926028ECD0034C4B9 /* AdminUsers.swift in Sources */,
 				D04331E12602A5750034C4B9 /* AdminCourses.swift in Sources */,
 				FA17B95525EF7D6F008BB07F /* SubmissionReview.swift in Sources */,
