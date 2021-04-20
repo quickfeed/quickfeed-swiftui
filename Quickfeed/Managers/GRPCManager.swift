@@ -31,6 +31,7 @@ class GRPCManager {
     }
     
     func setUser(userID: UInt64){
+        print("Setting new user \(userID)")
         self.userID = userID
         let headers: HPACKHeaders = ["custom-header-1": "value1", "user": "\(self.userID!)"]
         

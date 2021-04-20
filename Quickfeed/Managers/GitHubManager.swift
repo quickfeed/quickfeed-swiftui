@@ -21,6 +21,12 @@ struct GithubConstants {
 typealias ASPresentationAnchor = NSWindow
 
 class GitHubManager: NSObject, ObservableObject, ASWebAuthenticationPresentationContextProviding {
+    var viewModel: UserViewModel
+    
+    init(viewModel: UserViewModel){
+        self.viewModel = viewModel
+    }
+    
     func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
         return ASPresentationAnchor()
     }
@@ -31,9 +37,14 @@ class GitHubManager: NSObject, ObservableObject, ASWebAuthenticationPresentation
         //guard let authURL = URL(string: "http://127.0.0.1:8081/app/login/login/github") else { return }
         let session = ASWebAuthenticationSession(url: authURL, callbackURLScheme: "quickfeed", completionHandler: { (callbackURL, error) in
             guard error == nil, let callbackURL = callbackURL else { return }
-
+            
+            
+            DispatchQueue.main.async {
+                self.viewModel.setUser(userID: 2)
+            }
             print(callbackURL)
         })
+        
         session.prefersEphemeralWebBrowserSession = false
         session.presentationContextProvider = self
         session.start()

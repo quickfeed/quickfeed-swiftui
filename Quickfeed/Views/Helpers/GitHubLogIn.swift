@@ -25,7 +25,7 @@ struct GitHubLogIn: View {
         .cornerRadius(10.0)
         .contentShape(Rectangle())
         .onTapGesture {
-            GitHubManager().logInWithGitHub()
+            GitHubManager(viewModel: viewModel).logInWithGitHub()
         }
     }
 }
