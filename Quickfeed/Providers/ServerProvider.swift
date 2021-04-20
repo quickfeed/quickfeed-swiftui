@@ -8,13 +8,17 @@ import Foundation
 import NIO
 
 class ServerProvider: ProviderProtocol{
-    
-    
     var grpcManager: GRPCManager = GRPCManager.shared
     static let shared: ServerProvider = ServerProvider()
     
     private init(){
         print("New ServerProvider")
+        self.setUser(userID: 151)
+    }
+    
+    func setUser(userID: UInt64){
+        print("Setting new user \(userID)")
+        grpcManager.setUser(userID: userID)
     }
     
     func getUser() -> User? {
