@@ -19,7 +19,7 @@ struct ResultView: View {
             }
             if displayedSubmissionLink != nil {
                 // SubmissionResults(show: $show)
-                SubmissionResult(displayedSubmissionLink: $displayedSubmissionLink)
+                SubmissionResult(viewModel: viewModel, displayedSubmissionLink: $displayedSubmissionLink)
                 
             }
         }

@@ -193,7 +193,7 @@ class ServerProvider: ProviderProtocol{
     
     
     func updateSubmission(courseId: UInt64, submisssion: Submission) -> Bool {
-        fatalError("Not implemented")
+        return self.grpcManager.updateSubmission(courseId: courseId, submission: submisssion)
     }
     
     func updateSubmissions(assignmentID: UInt64, courseID: UInt64, score: UInt32, release: Bool, approve: Bool) {

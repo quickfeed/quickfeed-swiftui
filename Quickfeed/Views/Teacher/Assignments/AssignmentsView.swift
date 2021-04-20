@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AssignmentsView: View {
     @ObservedObject var viewModel: TeacherViewModel
+    @State var showingAlert: Bool = false
     var body: some View {
         NavigationView{
             List{
@@ -31,11 +32,14 @@ struct AssignmentsView: View {
                 Button(action: {
                     let succeded = viewModel.updateAssignments()
                     if !succeded{
-                        Alert(title: Text("Updating Assignments failed"))
+                        showingAlert = true
                     }
                     
                 }, label: {
                     Text("Update Course Assignments")
+                })
+                .alert(isPresented: $showingAlert, content: {
+                    Alert(title: Text("Updating Assignments failed"))
                 })
             }
         }

@@ -11,8 +11,9 @@ import SwiftUI
 struct SubmissionListItem: View {
     var submitterName: String
     var subLink: SubmissionLink
+    var reviewer: String
     
-    
+   
     var body: some View {
         HStack{
             Text(submitterName)
@@ -21,15 +22,6 @@ struct SubmissionListItem: View {
             Image(systemName: getImageSysNameForSubmissionStatus(status: subLink.submission.status))
                 .foregroundColor(getColorForSubmissionStatus(submissionStatus: subLink.submission.status))
         }
-    }
-}
-
-struct SubmissionListItem_Previews: PreviewProvider {
-    static var previews: some View {
-        List{
-            SubmissionListItem(submitterName: "Ola Nord", subLink: SubmissionLink())
-        }
-        .frame(alignment: .leading)
-        
+        .help(reviewer)
     }
 }

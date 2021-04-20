@@ -68,8 +68,10 @@
 		FA85792725BEB4EA00223DB9 /* QuickfeedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA85792625BEB4EA00223DB9 /* QuickfeedUITests.swift */; };
 		FA8EA69C26038F5D00A10351 /* AddGroupForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8EA69B26038F5D00A10351 /* AddGroupForm.swift */; };
 		FA8EA6A126039B0D00A10351 /* GroupList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8EA6A026039B0D00A10351 /* GroupList.swift */; };
+		FAA5DA36262EC643009DAEDE /* GradingBenchmarkHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA5DA35262EC643009DAEDE /* GradingBenchmarkHeader.swift */; };
 		FAA798B5262D6C82005E2713 /* AssignmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA798B4262D6C82005E2713 /* AssignmentView.swift */; };
 		FAA798BA262D71D4005E2713 /* GradingCriterionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA798B9262D71D4005E2713 /* GradingCriterionView.swift */; };
+		FAA798C5262DB217005E2713 /* SubmissionRepoLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA798C4262DB217005E2713 /* SubmissionRepoLink.swift */; };
 		FAA8330525E3E073008C05F4 /* MemberListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA8330425E3E073008C05F4 /* MemberListItem.swift */; };
 		FAA8331325E4EF92008C05F4 /* CoursePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA44BC1725CDE4FB00FDB9A2 /* CoursePicker.swift */; };
 		FAA8332C25E4F19E008C05F4 /* TeacherNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0671C25CACF8700FFE8EB /* TeacherNavigationView.swift */; };
@@ -195,8 +197,10 @@
 		FA85792825BEB4EA00223DB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA8EA69B26038F5D00A10351 /* AddGroupForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupForm.swift; sourceTree = "<group>"; };
 		FA8EA6A026039B0D00A10351 /* GroupList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupList.swift; sourceTree = "<group>"; };
+		FAA5DA35262EC643009DAEDE /* GradingBenchmarkHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradingBenchmarkHeader.swift; sourceTree = "<group>"; };
 		FAA798B4262D6C82005E2713 /* AssignmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentView.swift; sourceTree = "<group>"; };
 		FAA798B9262D71D4005E2713 /* GradingCriterionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradingCriterionView.swift; sourceTree = "<group>"; };
+		FAA798C4262DB217005E2713 /* SubmissionRepoLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionRepoLink.swift; sourceTree = "<group>"; };
 		FAA8330425E3E073008C05F4 /* MemberListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberListItem.swift; sourceTree = "<group>"; };
 		FAA8333825E502F2008C05F4 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		FAA8333D25E519E2008C05F4 /* ResultGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultGrid.swift; sourceTree = "<group>"; };
@@ -336,6 +340,8 @@
 				FA17B99A25F2630B008BB07F /* GradingBenchmarkSection.swift */,
 				FA17B99225F258FA008BB07F /* GradingCriterionListItem.swift */,
 				FA17B98D25F2510C008BB07F /* CriterionStatusControl.swift */,
+				FAA798C4262DB217005E2713 /* SubmissionRepoLink.swift */,
+				FAA5DA35262EC643009DAEDE /* GradingBenchmarkHeader.swift */,
 			);
 			path = Review;
 			sourceTree = "<group>";
@@ -737,6 +743,7 @@
 				D0F6A13C2609DD5000C1D825 /* RemoteImage.swift in Sources */,
 				FAA8333925E502F2008C05F4 /* ResultView.swift in Sources */,
 				FAA8331325E4EF92008C05F4 /* CoursePicker.swift in Sources */,
+				FAA5DA36262EC643009DAEDE /* GradingBenchmarkHeader.swift in Sources */,
 				D04331D926028ECD0034C4B9 /* AdminUsers.swift in Sources */,
 				D04331E12602A5750034C4B9 /* AdminCourses.swift in Sources */,
 				FA17B95525EF7D6F008BB07F /* SubmissionReview.swift in Sources */,
@@ -756,6 +763,7 @@
 				D0A6FCB925CA0A8A008C546B /* StudentNavigatorView.swift in Sources */,
 				D08BA18A25FA4875008A3F6D /* SubmissionScore.swift in Sources */,
 				FAF945B725CC4E3200074A2F /* ProtoExstensions.swift in Sources */,
+				FAA798C5262DB217005E2713 /* SubmissionRepoLink.swift in Sources */,
 				FA17B95D25EF81F1008BB07F /* TranslateStatus.swift in Sources */,
 				FAB0670C25CAC8D600FFE8EB /* UserViewModelProtocol.swift in Sources */,
 				D035C75825E92795005AC2BA /* NavigatorView.swift in Sources */,
