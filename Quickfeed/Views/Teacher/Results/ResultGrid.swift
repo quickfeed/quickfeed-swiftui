@@ -40,7 +40,11 @@ struct ResultGrid: View {
                         Image(systemName: "chevron.backward")
                     })
                 } else{
-                    Button(action: {showingStats = true}, label: {
+                    Button(action: {
+                        showingStats = true
+                        searchQuery = ""
+                        
+                    }, label: {
                         Image(systemName: "chart.bar.fill")
                     })
                 }

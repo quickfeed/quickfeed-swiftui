@@ -9,9 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var viewModel: UserViewModel = UserViewModel(provider: ServerProvider.shared)
-    
     var body: some View {
-        
         if viewModel.user == nil {
             LogIn(viewModel: viewModel)
         } else {
