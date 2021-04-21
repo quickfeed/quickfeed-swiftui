@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct StudentLab: View {
+    var viewModel: StudentViewModel?
     var assignment: Assignment
     var submission: Submission?
     @State private var selectedReview: Int = 0
@@ -42,7 +43,7 @@ struct StudentLab: View {
                 
             }
             .padding()
-            .navigationTitle("Student")
+            .navigationTitle(viewModel != nil ? viewModel!.user.name : "Student")
             .navigationSubtitle(assignment.name)
             .toolbar{
                 Text(" ")

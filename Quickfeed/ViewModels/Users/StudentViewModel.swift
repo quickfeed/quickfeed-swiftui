@@ -10,20 +10,24 @@ import Foundation
 
 class StudentViewModel: UserViewModelProtocol{
     var provider: ProviderProtocol = ServerProvider.shared
+    static let shared: StudentViewModel = StudentViewModel()
     @Published var user: User = ServerProvider.shared.getUser()!
-    @Published var course: Course
+    @Published var course: Course?
     @Published var group: Group?
     @Published var assignments: [Assignment]?
     @Published var submissions: [Submission]?
     
-    init(course: Course) {
+    private init() {
         print("New StudentViewModel")
+    }
+    
+    func setCourse(course: Course){
         self.course = course
         self.group = provider.getGroupByUserAndCourse(courseId: course.id, userId: user.id)
     }
     
     func getAssignments(){
-        self.assignments = provider.getAssignments(courseID: course.id)
+        self.assignments = provider.getAssignments(courseID: course!.id)
     }
     
     func getSubmission(assignment: Assignment) -> Submission? {
@@ -42,9 +46,9 @@ class StudentViewModel: UserViewModelProtocol{
     }
     
     func getSubmissions(){
-        var submissions = provider.getSubmissionsByUser(courseId: course.id, userId: user.id)
+        var submissions = provider.getSubmissionsByUser(courseId: course!.id, userId: user.id)
         if self.group != nil{
-            submissions.append(contentsOf: provider.getSubmissionsByGroub(courseId: course.id, groupId: group!.id))
+            submissions.append(contentsOf: provider.getSubmissionsByGroub(courseId: course!.id, groupId: group!.id))
         }
         self.submissions = submissions
     }
@@ -52,7 +56,7 @@ class StudentViewModel: UserViewModelProtocol{
     func getSlipdays() -> UInt32? {
         let enrollments = provider.getEnrollmentsForUser(userId: user.id)
         for element in enrollments{
-            if element.courseID == course.id{
+            if element.courseID == course!.id{
                 return element.slipDaysRemaining
             }
         }
