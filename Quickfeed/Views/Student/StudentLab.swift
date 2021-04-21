@@ -32,11 +32,7 @@ struct StudentLab: View {
                 SubmissionScore(assignment: assignment, submissionScore: submission!.score, submissionStatus: submission!.status)
                 Divider()
                 if assignment.skipTests {
-                    if submission!.reviews.count > 1{
-                        ReviewPicker(reviews: submission!.reviews, selectedReview: $selectedReview, viewModel: nil)
-                    }
-                    //SwiftUIView(reviews: submission!.reviews)
-                    ManuallyGraded(submission: submission!, review: submission!.reviews[selectedReview])
+                    ManuallyGraded(reviews: getReadyReviews(reviews: submission!.reviews))
                 } else {
                     AutoGraded(assignment: assignment, submission: submission!)
                 }

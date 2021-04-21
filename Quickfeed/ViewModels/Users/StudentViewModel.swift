@@ -9,8 +9,8 @@ import Foundation
 
 
 class StudentViewModel: UserViewModelProtocol{
-    var provider: ProviderProtocol = ServerProvider.shared
     static let shared: StudentViewModel = StudentViewModel()
+    var provider: ProviderProtocol = ServerProvider.shared
     @Published var user: User = ServerProvider.shared.getUser()!
     @Published var course: Course?
     @Published var group: Group?
@@ -61,6 +61,16 @@ class StudentViewModel: UserViewModelProtocol{
             }
         }
         return nil
+    }
+    
+    func getReviews(reviews: [Review]) -> [Review]{
+        var reviews = reviews
+        for review in reviews{
+            if !review.ready{
+                reviews.remove(at: reviews.firstIndex(of: review)!)
+            }
+        }
+        return reviews
     }
     
     func getReview(reviews: [Review]) -> [String]? {
