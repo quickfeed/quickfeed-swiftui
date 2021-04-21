@@ -14,8 +14,16 @@ struct StudentLab: View {
     
     var body: some View {
         if submission == nil {
-            Text("\(assignment.name) has no submission yet")
-            Text("Deadline is \(date(date: assignment.deadline))")
+            VStack{
+                Text("\(assignment.name) has no submission yet")
+                Text("Deadline is \(date(date: assignment.deadline))")
+            }
+            .frame(minWidth: 500, minHeight: 200)
+            .navigationTitle("Student")
+            .navigationSubtitle(assignment.name)
+            .toolbar{
+                Text(" ")
+            }
         } else if submission!.released == false && assignment.skipTests == true{
             Text("\(assignment.name) has a submission, but has not been graded yet")
         } else {

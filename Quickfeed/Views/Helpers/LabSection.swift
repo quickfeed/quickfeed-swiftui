@@ -10,6 +10,7 @@ import SwiftUI
 struct LabSection: View {
     @ObservedObject var viewModel: StudentViewModel
     var assignments: [Assignment]? { return viewModel.assignments }
+    //@State private var activeDest: Int? = 0
     
     var body: some View {
         if assignments == nil {
