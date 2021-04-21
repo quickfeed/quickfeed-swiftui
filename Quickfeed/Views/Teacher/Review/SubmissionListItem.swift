@@ -12,8 +12,6 @@ struct SubmissionListItem: View {
     var submitterName: String
     var subLink: SubmissionLink
     var reviewer: String
-    
-   
     var body: some View {
         HStack{
             Text(submitterName)

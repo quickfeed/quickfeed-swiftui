@@ -67,16 +67,13 @@ struct ReviewNavigationView: View {
                     if filteredEnrollmentLinks.count > 0{
                         if awaitingReviewEnrollments.count > 0{
                             ReviewListSection(viewModel: viewModel, selectedLab: $selectedLab, enrollmentLinks: awaitingReviewEnrollments, heading: "Pending")
-                            
                         }
                         if inProgressEnrollments.count > 0{
                             ReviewListSection(viewModel: viewModel, selectedLab: $selectedLab, enrollmentLinks: inProgressEnrollments, heading: "In Progress")
                         }
-                        
                         if readyEnrollments.count > 0{
                             ReviewListSection(viewModel: viewModel, selectedLab: $selectedLab, enrollmentLinks: readyEnrollments, heading: "Ready")
                         }
-                        
                         if missingSubmissionEnrollments.count > 0{
                             ReviewListSection(viewModel: viewModel, selectedLab: $selectedLab, enrollmentLinks: missingSubmissionEnrollments, heading: "No Submission")
                         }

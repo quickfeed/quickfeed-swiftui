@@ -31,12 +31,10 @@ class AdminViewModel: UserViewModelProtocol {
     func getUsers(){
         self.users = provider.getUsers()
     }
-    
+
     func getCourses(){
         self.courses = provider.getCourses()
     }
-    
-    
     
     func reset() {
         

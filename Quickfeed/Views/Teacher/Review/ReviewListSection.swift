@@ -39,7 +39,6 @@ struct ReviewListSection: View {
                 return viewModel.getUserName(userId: sublink?.submission.reviews[0].reviewerID ?? 100)
             }
         }
-        
         return "unknown reviewer"
     }
 }

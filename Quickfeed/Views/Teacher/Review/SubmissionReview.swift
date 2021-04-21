@@ -102,7 +102,7 @@ struct SubmissionReview: View {
                     }
                 }
                 else{
-                    Text("No criteria list for this assignment")
+                    Text("Criteria list is not available for this assignment")
                 }
             } else {
                 Text("No submissions for this assignment")
