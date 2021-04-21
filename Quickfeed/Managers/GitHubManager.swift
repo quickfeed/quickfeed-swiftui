@@ -32,7 +32,7 @@ class GitHubManager: NSObject, ObservableObject, ASWebAuthenticationPresentation
     }
     
     func logInWithGitHub() {
-        self.viewModel.setUser(userID: 15)
+        self.viewModel.setUser(userID: 151)
         /*guard let authURL = URL(string: "https://github.com/login/oauth/authorize?client_id=" + GithubConstants.CLIENT_ID + "&scope=" + GithubConstants.SCOPE + "&redirect_uri=" + GithubConstants.REDIRECT_URI + "&state=" + UUID().uuidString) else { return }
         //guard let authURL = URL(string: "http://127.0.0.1:8081/app/login/login/github") else { return }
         let session = ASWebAuthenticationSession(url: authURL, callbackURLScheme: "quickfeed", completionHandler: { (callbackURL, error) in

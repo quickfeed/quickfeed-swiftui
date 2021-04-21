@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var viewModel: UserViewModel = UserViewModel(provider: ServerProvider.shared)
+    @ObservedObject var viewModel: UserViewModel = UserViewModel()
     
     var body: some View {
         
