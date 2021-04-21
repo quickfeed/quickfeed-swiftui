@@ -19,5 +19,5 @@ macOS client for [QuickFeed](https://github.com/autograde/quickfeed)
 ### quickfeed-swiftui
 * open the xcode project
 `open Quickfeed.xcodeproj`
-* specify your userid in `providers/serverProvider:14`
+* specify your userid in `Managers/GitHubManager:35`
 * run the project
