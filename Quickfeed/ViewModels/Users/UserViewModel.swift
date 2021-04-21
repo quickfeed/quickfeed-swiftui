@@ -8,14 +8,13 @@
 import Foundation
 
 class UserViewModel: UserViewModelProtocol {
-    var provider: ProviderProtocol
+    var provider: ProviderProtocol = ServerProvider.shared
     @Published var user: User?
     @Published var courses: [Course]?
     @Published var enrollments: [Enrollment]?
     
-    init(provider: ProviderProtocol) {
+    init() {
         print("New UserViewModel")
-        self.provider = provider
     }
     
     // User

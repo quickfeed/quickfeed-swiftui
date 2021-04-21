@@ -21,13 +21,13 @@ struct NavigatorView: View {
                 if viewModel.isTeacherForCourse(courseId: selectedCourse)! {
                     TeacherNavigationView(viewModel: TeacherViewModel(provider: ServerProvider.shared, course: viewModel.getCourse(courseID: selectedCourse)!))
                 } else {
-                    StudentNavigatorView(viewModel: StudentViewModel(provider: ServerProvider.shared, course: viewModel.getCourse(courseID: selectedCourse)!))
+                    StudentNavigatorView(viewModel: StudentViewModel.shared, course: viewModel.getCourse(courseID: selectedCourse)!)
                 }
                 
                 Spacer()
                 if viewModel.user!.isAdmin{
                     NavigationLink(
-                        destination: Admin(viewModel: AdminViewModel(provider: ServerProvider.shared), showUsers: false)){
+                        destination: Admin(viewModel: AdminViewModel.shared, showUsers: false)){
                         HStack{
                             Image(systemName: "folder.badge.gear")
                                 .frame(width: 30)
@@ -42,7 +42,7 @@ struct NavigatorView: View {
                     .padding(.bottom, 1.0)
                     .buttonStyle(PlainButtonStyle())
                     NavigationLink(
-                        destination: Admin(viewModel: AdminViewModel(provider: ServerProvider.shared))){
+                        destination: Admin(viewModel: AdminViewModel.shared)){
                         HStack{
                             Image(systemName: "person.2")
                                 .frame(width: 30)

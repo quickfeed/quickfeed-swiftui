@@ -11,7 +11,8 @@ struct StudentNavigatorView: View {
     @ObservedObject var viewModel: StudentViewModel
     //@State var reload: Bool = false
     
-    init(viewModel: StudentViewModel) {
+    init(viewModel: StudentViewModel, course: Course) {
+        viewModel.setCourse(course: course)
         self.viewModel = viewModel
         viewModel.getAssignments()
         viewModel.getSubmissions()
@@ -19,7 +20,7 @@ struct StudentNavigatorView: View {
     
     var body: some View {
         HStack{
-            if viewModel.course.slipDays != 0 {
+            if viewModel.course!.slipDays != 0 {
                 Text("Remaining SlipDays: \(viewModel.getSlipdays()!)")
                     .padding(.leading)
             } else {
@@ -36,7 +37,7 @@ struct StudentNavigatorView: View {
         }
         List{
             LabSection(viewModel: viewModel)
-            GithubLinkSection(orgPath: viewModel.course.organizationPath, userLogin: viewModel.user.login, group: viewModel.group, isTeacher: false)
+            GithubLinkSection(orgPath: viewModel.course!.organizationPath, userLogin: viewModel.user.login, group: viewModel.group, isTeacher: false)
                 .padding(.leading)
         }
     }

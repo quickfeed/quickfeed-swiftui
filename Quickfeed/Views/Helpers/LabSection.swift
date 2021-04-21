@@ -10,6 +10,7 @@ import SwiftUI
 struct LabSection: View {
     @ObservedObject var viewModel: StudentViewModel
     var assignments: [Assignment]? { return viewModel.assignments }
+    //@State private var activeDest: Int? = 0
     
     var body: some View {
         if assignments == nil {
@@ -17,7 +18,7 @@ struct LabSection: View {
         } else {
             Section(header: Text("Labs")){
                 ForEach(assignments!, id: \.id){ assignment in
-                    NavigationLink(destination: StudentLab(assignment: assignment, submission: viewModel.getSubmission(assignment: assignment))){
+                    NavigationLink(destination: StudentLab(viewModel: viewModel, assignment: assignment, submission: viewModel.getSubmission(assignment: assignment))){
                         if viewModel.getSubmission(assignment: assignment) != nil {
                             getImageForSubmissionStatus(submission: viewModel.getSubmission(assignment: assignment)!.status)
                                 .frame(width: 5)

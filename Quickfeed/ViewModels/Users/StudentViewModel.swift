@@ -9,22 +9,25 @@ import Foundation
 
 
 class StudentViewModel: UserViewModelProtocol{
-    var provider: ProviderProtocol
-    @Published var user: User
-    @Published var course: Course
+    static let shared: StudentViewModel = StudentViewModel()
+    var provider: ProviderProtocol = ServerProvider.shared
+    @Published var user: User = ServerProvider.shared.getUser()!
+    @Published var course: Course?
     @Published var group: Group?
     @Published var assignments: [Assignment]?
     @Published var submissions: [Submission]?
     
-    init(provider: ProviderProtocol, course: Course) {
-        self.provider = provider
-        self.user = provider.getUser()!
+    private init() {
+        print("New StudentViewModel")
+    }
+    
+    func setCourse(course: Course){
         self.course = course
         self.group = provider.getGroupByUserAndCourse(courseId: course.id, userId: user.id)
     }
     
     func getAssignments(){
-        self.assignments = provider.getAssignments(courseID: course.id)
+        self.assignments = provider.getAssignments(courseID: course!.id)
     }
     
     func getSubmission(assignment: Assignment) -> Submission? {
@@ -43,9 +46,9 @@ class StudentViewModel: UserViewModelProtocol{
     }
     
     func getSubmissions(){
-        var submissions = provider.getSubmissionsByUser(courseId: course.id, userId: user.id)
+        var submissions = provider.getSubmissionsByUser(courseId: course!.id, userId: user.id)
         if self.group != nil{
-            submissions.append(contentsOf: provider.getSubmissionsByGroub(courseId: course.id, groupId: group!.id))
+            submissions.append(contentsOf: provider.getSubmissionsByGroub(courseId: course!.id, groupId: group!.id))
         }
         self.submissions = submissions
     }
@@ -53,11 +56,21 @@ class StudentViewModel: UserViewModelProtocol{
     func getSlipdays() -> UInt32? {
         let enrollments = provider.getEnrollmentsForUser(userId: user.id)
         for element in enrollments{
-            if element.courseID == course.id{
+            if element.courseID == course!.id{
                 return element.slipDaysRemaining
             }
         }
         return nil
+    }
+    
+    func getReviews(reviews: [Review]) -> [Review]{
+        var reviews = reviews
+        for review in reviews{
+            if !review.ready{
+                reviews.remove(at: reviews.firstIndex(of: review)!)
+            }
+        }
+        return reviews
     }
     
     func getReview(reviews: [Review]) -> [String]? {
@@ -82,8 +95,6 @@ class StudentViewModel: UserViewModelProtocol{
     func reload() {
         self.getAssignments()
         self.getSubmissions()
-        /*self.submissions![0].status = Submission.Status.rejected
-        self.submissions![0].score = 40*/
     }
     
     

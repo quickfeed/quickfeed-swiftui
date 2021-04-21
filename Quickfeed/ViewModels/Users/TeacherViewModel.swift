@@ -23,6 +23,7 @@ class TeacherViewModel: UserViewModelProtocol{
     
     
     init(provider: ProviderProtocol, course: Course) {
+        print("New TeacherViewModel")
         self.provider = provider
         self.user = provider.getUser() ?? User()
         self.currentCourse = course
