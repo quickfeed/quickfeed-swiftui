@@ -8,53 +8,53 @@
 import SwiftUI
 
 struct ManuallyGraded: View {
-    var submission: Submission
-    var review: Review
+    var reviews: [Review]
     
     var body: some View {
+        ForEach(reviews, id: \.self){ review in
+            if review.feedback != "" {
+                Text("\(review.feedback)")
+                    .foregroundColor(.secondary)
+                    .padding(.leading)
+            }
+        }
         List{
-            ForEach(review.benchmarks, id: \.self){ benchmarks in
+            ForEach(reviews[0].benchmarks, id: \.self){ benchmarks in
                 Section(header: Text(benchmarks.heading)){
-                    if benchmarks.comment != "" {
+                    ForEach(getBenchmarkComments(reviews: reviews, index: reviews[0].benchmarks.firstIndex(of: benchmarks)!), id: \.self){ comment in
                         HStack{
                             Spacer()
                                 .frame(width: 50)
-                            Text("Comment: \(benchmarks.comment)")
+                            Text("Comment: \(comment)")
                                 .foregroundColor(.secondary)
                                 .padding(.leading)
                         }
                         Divider()
-                        .padding(.leading)
+                            .padding(.leading)
                     }
                     ForEach(benchmarks.criteria, id: \.self){ criteria in
                         HStack{
                             Text(String(criteria.description_p))
                             Spacer()
-                            getImageForGradingCriterionGrade(grade: criteria.grade)
-                                .foregroundColor(getColorForGradingCriterionGrade(grade: criteria.grade))
-                        }
-                        if criteria.comment != "" {
-                            HStack{
-                                Spacer()
-                                    .frame(width: 50)
-                                Text("Comment: \(criteria.comment)")
-                                    .foregroundColor(.secondary)
+                            ForEach(getCriteriaGrade(reviews: reviews, benchmarkIndex: reviews[0].benchmarks.firstIndex(of: benchmarks)!, criteriaIndex: reviews[0].benchmarks[reviews[0].benchmarks.firstIndex(of: benchmarks)!].criteria.firstIndex(of: criteria)!), id: \.self){ grade in
+                                getImageForGradingCriterionGrade(grade: grade)
+                                    .foregroundColor(getColorForGradingCriterionGrade(grade: grade))
                             }
                         }
+                        ForEach(getCriteriaComments(reviews: reviews, benchmarkIndex: reviews[0].benchmarks.firstIndex(of: benchmarks)!, criteriaIndex: reviews[0].benchmarks[reviews[0].benchmarks.firstIndex(of: benchmarks)!].criteria.firstIndex(of: criteria)!), id: \.self){ comment in
+                            Text("Comment: \(comment)")
+                                .foregroundColor(.secondary)
+                                .padding(.leading)
+                        }
+                        
                         Divider()
                     }
                     .padding(.leading)
                 }
             }
-            if review.feedback != "" {
-                Section(header: Text("Feedback")){
-                    Text("Comment: \(review.feedback)")
-                        .foregroundColor(.secondary)
-                        .padding(.leading)
-                }
-            }
         }
         .cornerRadius(5)
+        .frame(minWidth: 600, minHeight: 200)
     }
 }
 

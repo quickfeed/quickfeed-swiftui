@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var viewModel: UserViewModel = UserViewModel(provider: ServerProvider.shared)
+    
     var body: some View {
         if viewModel.user == nil {
             LogIn(viewModel: viewModel)
@@ -21,14 +22,6 @@ struct ContentView: View {
                 NavigatorView(viewModel: viewModel, selectedCourse: viewModel.courses![0].id)
             }
         }
-        
-        /*if viewModel.courses?.count != 0 {
-            LogIn()
-            //NewUser()
-        } else {
-            NavigatorView(viewModel: viewModel, selectedCourse: viewModel.courses![0].id)
-                .navigationTitle("QuickFeed")
-        }*/
     }
     
 }

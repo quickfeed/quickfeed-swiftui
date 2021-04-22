@@ -81,11 +81,46 @@ func getReview(reviews: [Review]) -> [String]? {
 }
 
 func getReadyReviews(reviews: [Review]) -> [Review]{
-    var readyReviews: [Review] = []
+    var reviews = reviews
     for review in reviews{
-        if review.ready{
-            readyReviews.append(review)
+        if !review.ready{
+            reviews.remove(at: reviews.firstIndex(of: review)!)
         }
     }
-    return readyReviews
+    return reviews
+}
+
+func getBenchmarkComments(reviews: [Review], index: Int) -> [String]{
+    var benchmarkComments: [String] = []
+    for review in reviews{
+        if review.benchmarks[index].comment != "" {
+            benchmarkComments.append(review.benchmarks[index].comment)
+            print("Comment")
+        }
+    }
+    return benchmarkComments
+}
+
+func getCriteriaComments(reviews: [Review], benchmarkIndex: Int, criteriaIndex: Int) -> [String]{
+    var criteriaComments: [String] = []
+    for element in reviews{
+        for (index, benchmark) in element.benchmarks.enumerated(){
+            if index == benchmarkIndex && benchmark.criteria[criteriaIndex].comment != ""{
+                criteriaComments.append(benchmark.criteria[criteriaIndex].comment)
+            }
+        }
+    }
+    return criteriaComments
+}
+
+func getCriteriaGrade(reviews: [Review], benchmarkIndex: Int, criteriaIndex: Int) -> [GradingCriterion.Grade]{
+    var grades: [GradingCriterion.Grade] = []
+    for element in reviews{
+        for (index, benchmark) in element.benchmarks.enumerated(){
+            if index == benchmarkIndex && !grades.contains(benchmark.criteria[criteriaIndex].grade){
+                grades.append(benchmark.criteria[criteriaIndex].grade)
+            }
+        }
+    }
+    return grades
 }

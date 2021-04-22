@@ -8,17 +8,22 @@
 import Foundation
 
 class AdminViewModel: UserViewModelProtocol {
-    var provider: ProviderProtocol
-    var user: User
+    static let shared: AdminViewModel = AdminViewModel()
+    var provider: ProviderProtocol = ServerProvider.shared
+    var user: User = ServerProvider.shared.getUser()!
     @Published var users: [User]?
     @Published var courses: [Course]?
     
-    init(provider: ProviderProtocol) {
+    private init() {
         print("New AdminViewModel")
-        self.provider = provider
-        self.user = provider.getUser()!
         getUsers()
         getCourses()
+    }
+    
+    // Users
+    
+    func getUsers(){
+        self.users = provider.getUsers()
     }
     
     func updateUser(user: User){
@@ -28,10 +33,15 @@ class AdminViewModel: UserViewModelProtocol {
         self.getUsers()
     }
     
+<<<<<<< HEAD
     func getUsers(){
         self.users = provider.getUsers()
     }
 
+=======
+    // Courses
+    
+>>>>>>> a6fb8f359f3783879e91f42234d13bbe63cffc4b
     func getCourses(){
         self.courses = provider.getCourses()
     }
