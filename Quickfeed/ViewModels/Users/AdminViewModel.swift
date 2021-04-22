@@ -21,7 +21,6 @@ class AdminViewModel: UserViewModelProtocol {
     }
     
     // Users
-    
     func getUsers(){
         self.users = provider.getUsers()
     }
@@ -33,15 +32,7 @@ class AdminViewModel: UserViewModelProtocol {
         self.getUsers()
     }
     
-<<<<<<< HEAD
-    func getUsers(){
-        self.users = provider.getUsers()
-    }
-
-=======
     // Courses
-    
->>>>>>> a6fb8f359f3783879e91f42234d13bbe63cffc4b
     func getCourses(){
         self.courses = provider.getCourses()
     }
