@@ -28,6 +28,8 @@ struct AllCourses: View {
                 Text("Course Name")
                     .frame(width: 300, alignment: .leading)
                 Spacer()
+                Text("SlipDays")
+                    .frame(width: 120, alignment: .leading)
                 Text("Semester")
                     .frame(width: 120, alignment: .leading)
                 Text("Years")
@@ -45,24 +47,26 @@ struct AllCourses: View {
                         Text(course.name)
                             .frame(width: 300, alignment: .leading)
                         Spacer()
+                        Text(String(course.slipDays))
+                            .frame(width: 120, alignment: .leading)
                         Text(course.tag)
                             .frame(width: 120, alignment: .leading)
                         Text("\(String(course.year))")
                             .frame(width: 80, alignment: .leading)
                         Divider()
-                        Button(action: {
-                            self.course = course
-                            self.editCourse = !self.editCourse
-                        }, label: {
-                            Text("Edit")
-                        })
-                        .frame(width: 60)
+                        Image(systemName: "square.and.pencil")
+                            .frame(width: 60)
+                            .onTapGesture {
+                                self.course = course
+                                self.editCourse = !self.editCourse
+                            }
+                            .help("Edit \(course.code)")
                     }
                     Divider()
                 }
             }
         }
-        .frame(minWidth: 800, maxWidth: .infinity)
+        .frame(minWidth: 920, maxWidth: .infinity, minHeight: 100)
         .navigationTitle("Manage Courses")
         .toolbar{
             Button(action: {
@@ -71,7 +75,7 @@ struct AllCourses: View {
             }, label: {
                 Image(systemName: "plus")
             })
-            .keyboardShortcut("c")
+            .help("Create New Course")
             SearchFieldRepresentable(query: $searchQuery)
                 .frame(minWidth: 200, maxWidth: 350)
         }

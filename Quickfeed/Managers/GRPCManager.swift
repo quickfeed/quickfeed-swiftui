@@ -401,6 +401,18 @@ class GRPCManager {
         return []
     }
     
+    // Course
+    
+    func updateCourse(course: Course){
+        let call = self.quickfeedClient.updateCourse(course, callOptions: self.defaultOptions)
+        
+        do {
+            _ = try call.response.wait()
+        } catch {
+            print("Call failed: \(error)")
+        }
+    }
+    
     func getOrganization(orgName: String) -> Organization? {
         var test = OrgRequest()
         test.orgName = orgName

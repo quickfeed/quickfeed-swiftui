@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var viewModel: UserViewModel = UserViewModel()
+    @State var login: Bool = false
     
     var body: some View {
-        
         if viewModel.user == nil {
             LogIn(viewModel: viewModel)
         } else {
