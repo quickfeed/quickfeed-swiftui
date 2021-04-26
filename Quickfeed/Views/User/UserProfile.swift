@@ -10,6 +10,7 @@ import SwiftUI
 struct UserProfile: View {
     @ObservedObject var viewModel: UserViewModel
     @Binding var selectedCourse: UInt64
+    @Binding var login: Bool
     
     var body: some View {
         HStack{
@@ -35,7 +36,7 @@ struct UserProfile: View {
         .padding()
         .navigationTitle("UserProfile")
         .toolbar{
-            Button(action: {print("Signing out")}, label: Text("Sign Out"))
+            Button(action: {login = !login}, label: Text("Sign Out"))
                 .foregroundColor(.red)
         }
     }

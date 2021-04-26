@@ -12,15 +12,15 @@ struct ContentView: View {
     @State var login: Bool = false
     
     var body: some View {
-        if viewModel.user == nil {
-            LogIn(viewModel: viewModel)
+        if login == false {
+            LogIn(viewModel: viewModel, login: $login)
         } else {
             if viewModel.user!.name == "" || viewModel.user!.email == "" || viewModel.user!.studentID == "" {
                 NewUserProfile(viewModel: viewModel)
             } else if viewModel.courses == [] || viewModel.courses == nil{
                 Text("New User Profile")
             }else {
-                NavigatorView(viewModel: viewModel, selectedCourse: viewModel.courses![0].id)
+                NavigatorView(viewModel: viewModel, selectedCourse: viewModel.courses![0].id, login: $login)
             }
         }
     }

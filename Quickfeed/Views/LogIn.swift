@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LogIn: View {
     @ObservedObject var viewModel: UserViewModel
+    @Binding var login: Bool
     
     var body: some View {
         
@@ -27,7 +28,7 @@ struct LogIn: View {
                 }
             }
             .padding(.horizontal)
-            GitHubLogIn(viewModel: viewModel)
+            GitHubLogIn(viewModel: viewModel, login: $login)
         }
         .frame(width: 300, height: 165)
         
