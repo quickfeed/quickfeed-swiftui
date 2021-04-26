@@ -8,19 +8,18 @@
 import SwiftUI
 
 struct SubmissionRepoLink: View {
-    var submissionLink: SubmissionLink
+    var assignmentName: String
     var orgPath: String
-    var user: User
+    var userLogin: String
     var body: some View {
         HStack{
-            Link(destination: URL(string: "https://www.github.com/" + orgPath + "/" + user.login + "-labs")!, label:{
-                Text(user.login + "/" + submissionLink.assignment.name)
+            Link(destination: URL(string: "https://www.github.com/" + orgPath + "/" + userLogin + "-labs")!, label:{
+                Text(userLogin + "/" + assignmentName)
             })
-            Button(action: { setClipboardString(userLogin: user.login) }, label: {
-                Image(systemName: "doc.on.doc")
-                    .padding()
+            Button(action: { setClipboardString(userLogin: userLogin) }, label: {
+                Image(systemName: "doc.on.clipboard.fill")
+                    
             })
-            .buttonStyle(PlainButtonStyle())
             .help("Copy repo name to clipboard")
         }
     }

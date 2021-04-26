@@ -14,57 +14,15 @@ struct SubmissionReview: View {
     @State var submissionLink: SubmissionLink
     @State private var review: Review = Review()
     
-    //Initializes a new review
-    func initReview(){
-        if !submissionLink.hasSubmission{
-            return
-        }
-        if submissionLink.submission.reviews.count < submissionLink.assignment.reviewers{
-            self.review = viewModel.createReview(submissionId: self.submissionLink.submission.id, assignmentId: submissionLink.assignment.id)!
-        } else{
-            print("Maximum numbers of reviewers reached")
-        }
-    }
     
-    func assignmentHasCriteriaList() -> Bool{
-        let assg = viewModel.assignments.first(where: {$0.id == submissionLink.assignment.id})
-        if assg!.gradingBenchmarks.count > 0{
-            return true
-        }
-        return false
-    }
-    
-    func hasReview() -> Bool{
-        if submissionLink.submission.reviews.count > 0{
-            return true
-        }
-        return false
-    }
-    
-    func hasReviewByUser() -> Bool{
-        if submissionLink.submission.reviews.count > 0{
-            for review in submissionLink.submission.reviews{
-                if review.reviewerID == viewModel.user.id{
-                    return true
-                }
-            }
-        }
-        return false
-    }
     
     var body: some View {
         VStack{
             Text("\(user.name)'s submission for \(submissionLink.assignment.name)")
                 .font(.title)
                 .fontWeight(.bold)
-                .padding(.bottom)
-            SubmissionRepoLink(submissionLink: submissionLink, orgPath: viewModel.currentCourse.organizationPath, user: user)
+            SubmissionRepoLink(assignmentName: submissionLink.assignment.name, orgPath: viewModel.currentCourse.organizationPath, userLogin: user.login)
             SubmissionInfo(viewModel: viewModel, submissionLink: $submissionLink)
-                .onAppear(perform: {
-                    if !hasReview(){
-                        initReview()
-                    }
-                })
             if submissionLink.hasSubmission{
                 if assignmentHasCriteriaList(){
                     if hasReview(){
@@ -109,7 +67,51 @@ struct SubmissionReview: View {
             }
             Spacer()
         }
+        .onAppear(perform: {
+            if !hasReview(){
+                initReview()
+            }
+        })
         .padding()
+    }
+    
+    
+    //Initializes a new review
+    func initReview(){
+        if !submissionLink.hasSubmission{
+            return
+        }
+        if submissionLink.submission.reviews.count < submissionLink.assignment.reviewers{
+            self.review = viewModel.createReview(submissionId: self.submissionLink.submission.id, assignmentId: submissionLink.assignment.id)!
+        } else{
+            print("Maximum numbers of reviewers reached")
+        }
+    }
+    
+    func assignmentHasCriteriaList() -> Bool{
+        let assg = viewModel.assignments.first(where: {$0.id == submissionLink.assignment.id})
+        if assg!.gradingBenchmarks.count > 0{
+            return true
+        }
+        return false
+    }
+    
+    func hasReview() -> Bool{
+        if submissionLink.submission.reviews.count > 0{
+            return true
+        }
+        return false
+    }
+    
+    func hasReviewByUser() -> Bool{
+        if submissionLink.submission.reviews.count > 0{
+            for review in submissionLink.submission.reviews{
+                if review.reviewerID == viewModel.user.id{
+                    return true
+                }
+            }
+        }
+        return false
     }
 }
 
