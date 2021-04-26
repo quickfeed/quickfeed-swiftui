@@ -23,6 +23,7 @@ struct ResultView: View {
                 
             }
         }
+        .frame(minWidth: 900, minHeight: 600)
         .onAppear(perform: {
             viewModel.loadEnrollmentLinks()
         })
