@@ -23,7 +23,6 @@ class TeacherViewModel: UserViewModelProtocol{
     
     
     init(provider: ProviderProtocol, course: Course) {
-        print("New TeacherViewModel")
         self.provider = provider
         self.user = provider.getUser() ?? User()
         self.currentCourse = course
@@ -143,7 +142,6 @@ class TeacherViewModel: UserViewModelProtocol{
     func getUserName(userId: UInt64) -> String{
         if users.count == 0{
             self.loadUsers()
-            print(users.count)
         }
         for user in self.users{
             if user.id == userId{
@@ -156,11 +154,8 @@ class TeacherViewModel: UserViewModelProtocol{
     func getStudentsForCourse(courseId: UInt64) -> [User]{
         let course = provider.getCourse(courseId: courseId)
         let users = provider.getUsersForCourse(course: course ?? Course())
-        
         self.users = users
-        
         return users
-        
     }
     
     func changeUserStatus(enrollment: Enrollment, status: Enrollment.UserStatus){
@@ -187,10 +182,7 @@ class TeacherViewModel: UserViewModelProtocol{
         return self.provider.loadCriteria(courseId: currentCourse.id, assignmentId: assignmentId)
     }
     
-    
     func reset() {
         
     }
-    
-    
 }
