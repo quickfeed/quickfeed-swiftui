@@ -132,7 +132,6 @@
 		D0005CC025E4EF2A00EDECD1 /* GitHubManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubManager.swift; sourceTree = "<group>"; };
 		D0005CC525E4EF8E00EDECD1 /* GitHubLogIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubLogIn.swift; sourceTree = "<group>"; };
 		D01B3CD125C2D76900B126FB /* GRPCManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRPCManager.swift; sourceTree = "<group>"; };
-		D029D7B825BF089B00047837 /* GRPCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRPCManager.swift; sourceTree = "<group>"; };
 		D035C75725E92795005AC2BA /* NavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorView.swift; sourceTree = "<group>"; };
 		D03EF9CE25F0277A008869CA /* AutoGraded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoGraded.swift; sourceTree = "<group>"; };
 		D03EF9D325F027A2008869CA /* ManuallyGraded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuallyGraded.swift; sourceTree = "<group>"; };
@@ -251,14 +250,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D01B3CCA25C2D73100B126FB /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				D029D7B825BF089B00047837 /* GRPCManager.swift */,
-			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
 		D03EF9CD25F02636008869CA /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -425,7 +416,6 @@
 				FA85791A25BEB4EA00223DB9 /* QuickfeedTests */,
 				FA85792525BEB4EA00223DB9 /* QuickfeedUITests */,
 				FA85790625BEB4E900223DB9 /* Products */,
-				D01B3CCA25C2D73100B126FB /* Recovered References */,
 				FAB0667125CABF6E00FFE8EB /* Frameworks */,
 			);
 			sourceTree = "<group>";
