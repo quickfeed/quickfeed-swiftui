@@ -424,9 +424,8 @@ class GRPCManager {
             return resp
         } catch {
             print("Call failed: \(error)")
+            return nil
         }
-        
-        return nil
     }
     
     
