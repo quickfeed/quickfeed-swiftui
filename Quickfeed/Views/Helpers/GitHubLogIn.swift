@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GitHubLogIn: View {
     @ObservedObject var viewModel: UserViewModel
+    @Binding var login: Bool
     
     var body: some View {
         HStack{
@@ -26,6 +27,9 @@ struct GitHubLogIn: View {
         .contentShape(Rectangle())
         .onTapGesture {
             GitHubManager(viewModel: viewModel).logInWithGitHub()
+            if viewModel.user != nil{
+                login = !login
+            }
         }
     }
 }

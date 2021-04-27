@@ -10,6 +10,8 @@ struct NavigatorView: View {
     @ObservedObject var viewModel: UserViewModel
     var courses: [Course] { return viewModel.courses! }
     @State var selectedCourse: UInt64
+    @Binding var login: Bool
+    @State private var activeDest: Int? = 1
     
     var body: some View {
         NavigationView{
@@ -58,7 +60,7 @@ struct NavigatorView: View {
                     .buttonStyle(PlainButtonStyle())
                 }
                 NavigationLink(
-                    destination: UserProfile(viewModel: viewModel, selectedCourse: $selectedCourse)){
+                    destination: UserProfile(viewModel: viewModel, selectedCourse: $selectedCourse, login: $login), tag: 1, selection: $activeDest){
                     HStack{
                         RemoteImage(url: viewModel.user!.avatarURL)
                             .cornerRadius(7.5)

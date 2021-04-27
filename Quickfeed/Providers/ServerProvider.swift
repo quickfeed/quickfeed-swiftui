@@ -99,10 +99,6 @@ class ServerProvider: ProviderProtocol{
         return self.grpcManager.getEnrollmentsByUser(userID: userId)
     }
     
-
- 
-    
-    
     // MANUAL GRADING
     
     func loadCriteria(courseId: UInt64, assignmentId: UInt64) -> [GradingBenchmark] {
@@ -146,8 +142,8 @@ class ServerProvider: ProviderProtocol{
         fatalError("Not implemented")
     }
     
-    func updateCourse(course: Course) -> Status {
-        fatalError("Not implemented")
+    func updateCourse(course: Course) {
+        grpcManager.updateCourse(course: course)
     }
     
     func updateCourseVisibility(enrollment: Enrollment) -> Bool {

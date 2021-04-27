@@ -20,6 +20,10 @@ func matchesQuery(searchQuery: String, course: Course) -> Bool{
         return true
     }
     
+    if String(course.slipDays).contains(searchQuery.lowercased()){
+        return true
+    }
+    
     if course.tag.lowercased().contains(searchQuery.lowercased()){
         return true
     }
