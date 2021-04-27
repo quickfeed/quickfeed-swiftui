@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct NewUser: View {
+    @ObservedObject var viewModel: UserViewModel
     @State private var userName: String = ""
     @State private var userEmail: String = ""
     @State private var userStudentID: String = ""
@@ -42,9 +43,11 @@ struct NewUser: View {
                 .padding(.leading)
             if self.isValidEmail() && self.isValidStudentID() && self.isValidName() {
                 Button(action: {
+                    viewModel.updateUser(name: self.userName, studentID: self.userStudentID, email: self.userEmail)
                 }, label: {
                     Text("Done")
                 })
+                .padding(.top)
             }
             Spacer()
         }
@@ -68,8 +71,8 @@ struct NewUser: View {
     }
 }
 
-struct NewUser_Previews: PreviewProvider {
+/*struct NewUser_Previews: PreviewProvider {
     static var previews: some View {
         NewUser()
     }
-}
+}*/

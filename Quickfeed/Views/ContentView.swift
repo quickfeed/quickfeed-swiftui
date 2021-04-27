@@ -16,7 +16,7 @@ struct ContentView: View {
             LogIn(viewModel: viewModel, login: $login)
         } else {
             if viewModel.user!.name == "" || viewModel.user!.email == "" || viewModel.user!.studentID == "" {
-                NewUserProfile(viewModel: viewModel)
+                NewUser(viewModel: viewModel)
             } else if viewModel.courses == [] || viewModel.courses == nil{
                 Text("New User Profile")
             }else {
