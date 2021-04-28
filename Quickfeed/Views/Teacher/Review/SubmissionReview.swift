@@ -13,6 +13,18 @@ struct SubmissionReview: View {
     @State var submissionLink: SubmissionLink
     var user: User
     
+    var newReview: Review{
+        var review = Review()
+        let assg = self.viewModel.assignments.first(where: {$0.id == submissionLink.assignment.id})
+        review.benchmarks = assg!.gradingBenchmarks
+        review.submissionID = submissionLink.submission.id
+        review.reviewerID = viewModel.user.id
+        review.ready = false
+        review.score = 0
+        review.feedback = ""
+        return review
+    }
+    
     var body: some View {
         VStack{
             Text("\(user.name)'s submission for \(submissionLink.assignment.name)")
@@ -25,7 +37,8 @@ struct SubmissionReview: View {
                     if hasReview(){
                         if hasReviewByUser(){
                             GradingList(viewModel: viewModel,
-                                       review: submissionLink.submission.reviews.first(where: {$0.reviewerID == viewModel.user.id})!)
+                                       review: submissionLink.submission.reviews.first(where: {$0.reviewerID == viewModel.user.id})!,
+                                       isCreated: true)
                         } else{
                             HStack{
                                 Text("This assignment is reviewed by: ")
@@ -36,7 +49,9 @@ struct SubmissionReview: View {
                         }
                     }
                     else{
-                        GradingList(viewModel: viewModel, review: Review())
+                        GradingList(viewModel: viewModel,
+                                    review: newReview,
+                                    isCreated: false)
                     }
                 }
                 else{
