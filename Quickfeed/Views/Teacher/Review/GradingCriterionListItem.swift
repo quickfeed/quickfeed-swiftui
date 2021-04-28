@@ -21,6 +21,7 @@ struct GradingCriterionListItem: View {
                 Spacer()
                 Divider()
                 CriterionStatusControl(criterionStatus: $crit.grade)
+                    .environmentObject(viewModel)
                     .onChange(of: crit.grade, perform: { value in
                         viewModel.updateReview(review: review)
                     })

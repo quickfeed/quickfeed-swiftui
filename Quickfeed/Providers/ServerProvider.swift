@@ -98,10 +98,7 @@ class ServerProvider: ProviderProtocol{
     func getEnrollmentsForUser(userId: UInt64) -> [Enrollment] {
         return self.grpcManager.getEnrollmentsByUser(userID: userId)
     }
-    
 
- 
-    
     
     // MANUAL GRADING
     

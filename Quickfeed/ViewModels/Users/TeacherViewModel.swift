@@ -18,9 +18,8 @@ class TeacherViewModel: UserViewModelProtocol{
     @Published var assignments: [Assignment] = []
     @Published var manuallyGradedAssignments: [Assignment] = []
     @Published var enrollmentLinks: [EnrollmentLink] = []
-    @Published var gradingBenchmarkForAssignment = [UInt64 : [GradingBenchmark]]()
     @Published var assignmentMap = [UInt64 : Assignment]()
-    
+    @Published var reviewInProgress: Review? = nil
     
     init(provider: ProviderProtocol, course: Course) {
         self.provider = provider
@@ -29,20 +28,15 @@ class TeacherViewModel: UserViewModelProtocol{
         self.loadAssignments()
         self.loadUsers()
         self.loadGroups()
-        
         self.loadEnrollmentLinks()
         
     }
-    
-    
     
     func loadUsers(){
         for enrollmentLink in self.enrollmentLinks{
             self.users.append(enrollmentLink.enrollment.user)
         }
     }
-    
-
     
     func loadGroups(){
         let response = self.provider.getGroupsByCourse(courseId: self.currentCourse.id)
@@ -61,7 +55,6 @@ class TeacherViewModel: UserViewModelProtocol{
     
     func createGroup(group: Group) -> String?{
         var errString: String? = nil
-        
         let response = self.provider.createGroup(group: group)
         _ = response.always {(response: Result<Group, Error>) in
             switch response {
@@ -133,12 +126,6 @@ class TeacherViewModel: UserViewModelProtocol{
         return self.provider.getSubmissionsByUser(courseId: courseId, userId: userId)
     }
     
-    func loadBenchmarks(){
-        for assignment in manuallyGradedAssignments {
-            self.gradingBenchmarkForAssignment[assignment.id] = self.provider.loadCriteria(courseId: assignment.courseID, assignmentId: assignment.id)
-        }
-    }
-    
     func getUserName(userId: UInt64) -> String{
         if users.count == 0{
             self.loadUsers()
@@ -163,15 +150,21 @@ class TeacherViewModel: UserViewModelProtocol{
     }
     
     // MANUAL GRADING
-    func createReview(submissionId: UInt64, assignmentId: UInt64) -> Review?{
+    func createReview(submissionId: UInt64, assignmentId: UInt64) -> Bool{
         var review = Review()
         let assg = self.assignments.first(where: {$0.id == assignmentId})
         review.benchmarks = assg!.gradingBenchmarks
         review.reviewerID = self.user.id
         review.ready = false
         review.submissionID = submissionId
-        return self.provider.createReview(courseId: self.currentCourse.id, review: review)
+        self.reviewInProgress = self.provider.createReview(courseId: self.currentCourse.id, review: review)
+        if reviewInProgress != nil{
+            return true
+        } else{
+            return false
+        }
     }
+    
     
     func updateReview(review: Review){
         print("Update review")

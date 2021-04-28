@@ -16,7 +16,7 @@ struct ReviewListSection: View {
     var body: some View {
         Section(header: Text("\(heading) (\(enrollmentLinks.count))")){
             ForEach(enrollmentLinks, id: \.self){ link in
-                NavigationLink(destination: SubmissionReview(user: link.enrollment.user, viewModel: viewModel, submissionLink: submissionForSelectedLab(links: link.submissions)!)){
+                NavigationLink(destination: SubmissionReview(viewModel: viewModel, submissionLink: submissionForSelectedLab(links: link.submissions)!, user: link.enrollment.user)){
                     VStack{
                         SubmissionListItem(submitterName: link.enrollment.user.name, subLink: submissionForSelectedLab(links: link.submissions)!, reviewer: "reviewed by: " + getReviewerName(link: link))
                         Divider()

@@ -20,6 +20,9 @@ struct AddGroupForm: View {
                 if enr.user.id == $0.user.id{
                     return false
                 }
+                if $0.hasGroup{
+                    return false
+                }
             }
             return true
         })
@@ -32,6 +35,7 @@ struct AddGroupForm: View {
     }
     
     func createGroup(){
+        viewModel.loadEnrollments()
         var group = Group()
         group.courseID = viewModel.currentCourse.id
         group.users = []

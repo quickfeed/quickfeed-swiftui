@@ -9,12 +9,9 @@ import SwiftUI
 import AppKit
 
 struct SubmissionReview: View {
-    var user: User
     @ObservedObject var viewModel: TeacherViewModel
     @State var submissionLink: SubmissionLink
-    @State private var review: Review = Review()
-    
-    
+    var user: User
     
     var body: some View {
         VStack{
@@ -27,25 +24,8 @@ struct SubmissionReview: View {
                 if assignmentHasCriteriaList(){
                     if hasReview(){
                         if hasReviewByUser(){
-                            List {
-                                ForEach(self.review.benchmarks.indices, id: \.self){ idx in
-                                    GradingBenchmarkSection(viewModel: viewModel, benchmark: $review.benchmarks[idx], review: $review)
-                                }
-                            }
-                            .onAppear(perform: {
-                                self.review = submissionLink.submission.reviews.first(where: {$0.reviewerID == viewModel.user.id})!
-                            })
-                            HStack{
-                                Spacer()
-                                Button(action: {
-                                    self.review.ready = true
-                                    viewModel.updateReview(review: review)
-                                    viewModel.loadEnrollmentLinks()
-                                }, label: {
-                                    Text("Mark as Ready")
-                                })
-                            }
-                            
+                            GradingList(viewModel: viewModel,
+                                       review: submissionLink.submission.reviews.first(where: {$0.reviewerID == viewModel.user.id})!)
                         } else{
                             HStack{
                                 Text("This assignment is reviewed by: ")
@@ -56,7 +36,7 @@ struct SubmissionReview: View {
                         }
                     }
                     else{
-                        Text("No reviews")
+                        GradingList(viewModel: viewModel, review: Review())
                     }
                 }
                 else{
@@ -67,26 +47,9 @@ struct SubmissionReview: View {
             }
             Spacer()
         }
-        .onAppear(perform: {
-            if !hasReview(){
-                initReview()
-            }
-        })
         .padding()
     }
     
-    
-    //Initializes a new review
-    func initReview(){
-        if !submissionLink.hasSubmission{
-            return
-        }
-        if submissionLink.submission.reviews.count < submissionLink.assignment.reviewers{
-            self.review = viewModel.createReview(submissionId: self.submissionLink.submission.id, assignmentId: submissionLink.assignment.id)!
-        } else{
-            print("Maximum numbers of reviewers reached")
-        }
-    }
     
     func assignmentHasCriteriaList() -> Bool{
         let assg = viewModel.assignments.first(where: {$0.id == submissionLink.assignment.id})
