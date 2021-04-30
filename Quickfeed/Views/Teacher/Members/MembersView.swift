@@ -13,11 +13,13 @@ struct MembersView: View {
     @State private var isEditing = false
     @State var isSearching: Bool = false
     
+    
     func filteredEnrollments() -> [Enrollment] {
         return viewModel.enrollments.filter({ matchesQuery(user: $0.user) })
     }
     
     var body: some View {
+        
         List{
             Section(header: MemberListHeader(courseTotalSlipDays: self.viewModel.currentCourse.slipDays)){
                 ForEach(self.filteredEnrollments(), id: \.self){ enrollment in
@@ -26,12 +28,13 @@ struct MembersView: View {
                 }
             }
         }
+        
         .onAppear(perform: {
             viewModel.loadEnrollments()
         })
         .navigationTitle("Members")
         .navigationSubtitle(viewModel.currentCourse.name)
-
+        
         .toolbar{
             ToolbarItem{
                 Toggle(isOn: $isEditing, label: {
@@ -41,10 +44,10 @@ struct MembersView: View {
             }
             ToolbarItem{
                 if !isSearching{
-                Toggle(isOn: $isSearching, label: {
-                    Image(systemName: "magnifyingglass")
-                })
-                .keyboardShortcut("f")
+                    Toggle(isOn: $isSearching, label: {
+                        Image(systemName: "magnifyingglass")
+                    })
+                    .keyboardShortcut("f")
                 } else {
                     SearchFieldRepresentable(query: $searchQuery)
                         .frame(minWidth: 200, maxWidth: 350)
@@ -62,7 +65,7 @@ struct MembersView: View {
             }
         }
     }
-
+    
     func matchesQuery(user: User) -> Bool{
         if searchQuery == ""{
             return true

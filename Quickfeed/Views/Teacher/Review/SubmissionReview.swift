@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import AppKit
 
 struct SubmissionReview: View {
     @ObservedObject var viewModel: TeacherViewModel
@@ -31,14 +30,15 @@ struct SubmissionReview: View {
                 .font(.title)
                 .fontWeight(.bold)
             SubmissionRepoLink(assignmentName: submissionLink.assignment.name, orgPath: viewModel.currentCourse.organizationPath, userLogin: user.login)
-            SubmissionInfo(viewModel: viewModel, submissionLink: $submissionLink)
+            SubmissionInfo(viewModel: viewModel, submissionLink: submissionLink)
             if submissionLink.hasSubmission{
                 if assignmentHasCriteriaList(){
                     if hasReview(){
                         if hasReviewByUser(){
-                            GradingList(viewModel: viewModel,
-                                       review: submissionLink.submission.reviews.first(where: {$0.reviewerID == viewModel.user.id})!,
-                                       isCreated: true)
+                            GradingBenchmarkList(viewModel: viewModel,
+                                        review: submissionLink.submission.reviews.first(where: {$0.reviewerID == viewModel.user.id})!,
+                                        isCreated: true)
+
                         } else{
                             HStack{
                                 Text("This assignment is reviewed by: ")
@@ -49,7 +49,7 @@ struct SubmissionReview: View {
                         }
                     }
                     else{
-                        GradingList(viewModel: viewModel,
+                        GradingBenchmarkList(viewModel: viewModel,
                                     review: newReview,
                                     isCreated: false)
                     }
@@ -63,6 +63,7 @@ struct SubmissionReview: View {
             Spacer()
         }
         .padding()
+        .onAppear(perform: {self.submissionLink.submission = viewModel.getSubmissionByAssignment(userId: user.id, assigmentID: submissionLink.assignment.id)})
     }
     
     

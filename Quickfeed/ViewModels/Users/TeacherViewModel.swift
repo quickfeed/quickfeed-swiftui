@@ -156,8 +156,12 @@ class TeacherViewModel: UserViewModelProtocol{
     
     
     func updateReview(review: Review){
-        print("Update review")
-        return self.provider.updateReview(courseId: self.currentCourse.id, review: review)
+        self.provider.updateReview(courseId: self.currentCourse.id, review: review)
+    }
+    
+    func getSubmissionByAssignment(userId: UInt64, assigmentID: UInt64) -> Submission{
+        let submissions = provider.getSubmissionsByUser(courseId: self.currentCourse.id, userId: userId)
+        return submissions.first(where: {$0.assignmentID == assigmentID})!
     }
     
     func loadCriteria(assignmentId: UInt64) -> [GradingBenchmark]{

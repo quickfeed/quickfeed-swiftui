@@ -7,10 +7,11 @@
 
 import SwiftUI
 
-struct GradingList: View {
+struct GradingBenchmarkList: View {
     @ObservedObject var viewModel: TeacherViewModel
     @State var review: Review
     @State var isCreated: Bool
+    @State private var isEdited = false
 
     var body: some View {
         if isCreated{
@@ -21,12 +22,21 @@ struct GradingList: View {
                                             review: $review)
                 }
             }
+            .onChange(of: review) { newValue in
+                isEdited = true
+            }
             HStack{
                 Spacer()
                 Button(action: {
-                    review.ready = true
                     viewModel.updateReview(review: review)
                     viewModel.loadEnrollmentLinks()
+                }, label: {
+                    Text("Save Changes")
+                })
+                .disabled(isEdited ? false : true)
+                Button(action: {
+                    review.ready = true
+                    viewModel.updateReview(review: review)
                 }, label: {
                     Text("Mark as Ready")
                 })

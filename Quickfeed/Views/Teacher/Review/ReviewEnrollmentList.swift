@@ -1,5 +1,5 @@
 //
-//  ReviewNavigatorView.swift
+//  ReviewEnrollmentList.swift
 //  Quickfeed
 //
 //  Created by Oskar Gjølga on 07/02/2021.
@@ -8,25 +8,16 @@
 import SwiftUI
 import SwiftUIX
 
-// Overides translusent background for the sidebarliststyle list
 
-extension NSTableView {
-    open override func viewDidMoveToWindow() {
-        super.viewDidMoveToWindow()
-        
-        backgroundColor = NSColor.clear
-        if enclosingScrollView != nil {
-            enclosingScrollView!.drawsBackground = false
-        }
-        
-    }
-    
-}
-struct ReviewNavigationView: View {
+struct ReviewEnrollmentList: View {
     @ObservedObject var viewModel: TeacherViewModel
-    @State private var searchQuery: String = ""
     @Binding var selectedLab: UInt64
+    
+    @State private var searchQuery: String = ""
+    @State private var isShowingSheet = false
     @State var isSearching: Bool = false
+    @State private var displayedEnrollmentLink: EnrollmentLink?
+    
     
     var filteredEnrollmentLinks: [EnrollmentLink] {
         return viewModel.enrollmentLinks.filter({
@@ -34,60 +25,49 @@ struct ReviewNavigationView: View {
         })
     }
     
-    var awaitingReviewEnrollments: [EnrollmentLink] {
-        return filteredEnrollmentLinks.filter{
-            hasSubmissionForSelectedLab(link: $0) &&
-                !hasReview(link: $0)
-        }
-    }
-    
-    var inProgressEnrollments: [EnrollmentLink]{
-        return filteredEnrollmentLinks.filter({
-            hasSubmissionForSelectedLab(link: $0) &&
-                hasNonReadyReview(link: $0)
-        })
-    }
-    
-    var readyEnrollments: [EnrollmentLink]{
-        return filteredEnrollmentLinks.filter({
-            hasReadyReviewForAssignment(link: $0)
-        })
-    }
-    
-    var missingSubmissionEnrollments: [EnrollmentLink]{
-        return filteredEnrollmentLinks.filter({
-            !hasSubmissionForSelectedLab(link: $0)
-        })
-    }
-    
     var body: some View {
-        NavigationView{
-            VStack(alignment: .leading){
-                List{
-                    if filteredEnrollmentLinks.count > 0{
-                        if awaitingReviewEnrollments.count > 0{
-                            ReviewListSection(viewModel: viewModel, selectedLab: $selectedLab, enrollmentLinks: awaitingReviewEnrollments, heading: "Pending")
-                        }
-                        if inProgressEnrollments.count > 0{
-                            ReviewListSection(viewModel: viewModel, selectedLab: $selectedLab, enrollmentLinks: inProgressEnrollments, heading: "In Progress")
-                        }
-                        if readyEnrollments.count > 0{
-                            ReviewListSection(viewModel: viewModel, selectedLab: $selectedLab, enrollmentLinks: readyEnrollments, heading: "Ready")
-                        }
-                        if missingSubmissionEnrollments.count > 0{
-                            ReviewListSection(viewModel: viewModel, selectedLab: $selectedLab, enrollmentLinks: missingSubmissionEnrollments, heading: "No Submission")
-                        }
-                    } else{
-                        Text("No matches")
+        VStack{
+            List{
+                if filteredEnrollmentLinks.count > 0{
+                    ForEach(filteredEnrollmentLinks, id: \.self) { link in
+                        SubmissionListItem(submitterName: link.enrollment.user.name,
+                                           subLink: link.submissions.first(where: {$0.assignment.id == selectedLab})!,
+                                           reviewer: "test")
+                            .onTapGesture(perform: {
+                                displayedEnrollmentLink = link
+                                assert(displayedEnrollmentLink != nil)
+                                isShowingSheet.toggle()
+                            })
+                        Divider()
                     }
+                    .sheet(isPresented: $isShowingSheet,
+                           onDismiss: didDismiss) {
+                        VStack {
+                            HStack{
+                                Spacer()
+                                Button(action: {isShowingSheet.toggle()}, label: {
+                                    Image(systemName: "multiply")
+                                        .padding()
+                                })
+                                .buttonStyle(PlainButtonStyle())
+                            }
+                            if displayedEnrollmentLink == nil{
+                                Text("nil")
+                            } else {
+                                SubmissionReview(viewModel: viewModel,
+                                                 submissionLink: displayedEnrollmentLink!.submissions.first(where: {$0.assignment.id == selectedLab})!,
+                                                 user: displayedEnrollmentLink!.enrollment.user)
+                            }
+                            
+                            
+                        }
+                    }
+                } else{
+                    Text("No matches")
                 }
-                .cornerRadius(5)
-                .listStyle(SidebarListStyle())
-                .background(Color.clear)
             }
-            .padding(.top)
-            .frame(minWidth: 300)
         }
+        
         .onAppear(perform: {
             viewModel.loadEnrollmentLinks()
         })
@@ -116,7 +96,6 @@ struct ReviewNavigationView: View {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                             isSearching = true
                         }
-                        
                     }, label: {
                         
                     })
@@ -125,6 +104,10 @@ struct ReviewNavigationView: View {
                 }
             }
         }
+    }
+    
+    func didDismiss() {
+        // Handle the dismissing action.
     }
     
     func hasReview(link: EnrollmentLink) -> Bool{

@@ -13,7 +13,7 @@ struct GradingCriterionListItem: View {
     @ObservedObject var viewModel: TeacherViewModel
     @Binding var crit: GradingCriterion
     @State private var addingComment = false
-    @Binding var  review: Review
+    @Binding var review: Review
     var body: some View {
         VStack{
             HStack{
@@ -23,7 +23,7 @@ struct GradingCriterionListItem: View {
                 CriterionStatusControl(criterionStatus: $crit.grade)
                     .environmentObject(viewModel)
                     .onChange(of: crit.grade, perform: { value in
-                        viewModel.updateReview(review: review)
+                        
                     })
                 Divider()
                 Button(action: {addingComment = !addingComment}, label: {
@@ -38,7 +38,6 @@ struct GradingCriterionListItem: View {
                     Spacer()
                     Button(action: {
                         self.addingComment = false
-                        viewModel.updateReview(review: review)
                     }, label: {
                         Text("Save")
                     })
