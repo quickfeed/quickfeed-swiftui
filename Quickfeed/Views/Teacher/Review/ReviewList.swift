@@ -1,5 +1,5 @@
 //
-//  ReviewEnrollmentList.swift
+//  ReviewList.swift
 //  Quickfeed
 //
 //  Created by Oskar Gjølga on 07/02/2021.
@@ -9,16 +9,13 @@ import SwiftUI
 import SwiftUIX
 
 
-struct ReviewEnrollmentList: View {
+struct ReviewList: View {
     @ObservedObject var viewModel: TeacherViewModel
     @Binding var selectedLab: UInt64
-    
     @State private var searchQuery: String = ""
     @State private var isShowingSheet = false
     @State var isSearching: Bool = false
     @State private var displayedEnrollmentLink: EnrollmentLink?
-    
-    
     var filteredEnrollmentLinks: [EnrollmentLink] {
         return viewModel.enrollmentLinks.filter({
             matchesQuery(user: $0.enrollment.user)
@@ -26,51 +23,54 @@ struct ReviewEnrollmentList: View {
     }
     
     var body: some View {
-        VStack{
-            List{
-                if filteredEnrollmentLinks.count > 0{
-                    ForEach(filteredEnrollmentLinks, id: \.self) { link in
-                        SubmissionListItem(submitterName: link.enrollment.user.name,
-                                           subLink: link.submissions.first(where: {$0.assignment.id == selectedLab})!,
-                                           reviewer: "test")
-                            .onTapGesture(perform: {
-                                displayedEnrollmentLink = link
-                                assert(displayedEnrollmentLink != nil)
-                                isShowingSheet.toggle()
+        List{
+            Section(header: ReviewListHeader()){
+                ForEach(filteredEnrollmentLinks, id: \.self) { link in
+                    SubmissionListItem(submitterName: link.enrollment.user.name,
+                                       subLink: link.submissions.first(where: {$0.assignment.id == selectedLab})!,
+                                       reviewer: "test")
+                        .onTapGesture(perform: {
+                            displayedEnrollmentLink = link
+                            assert(displayedEnrollmentLink != nil)
+                            isShowingSheet.toggle()
+                        })
+                    Divider()
+                }
+                .sheet(isPresented: $isShowingSheet,
+                       onDismiss: didDismiss) {
+                    VStack {
+                        HStack{
+                            Spacer()
+                            Button(action: {isShowingSheet.toggle()}, label: {
+                                Image(systemName: "multiply")
+                                    .padding()
                             })
-                        Divider()
-                    }
-                    .sheet(isPresented: $isShowingSheet,
-                           onDismiss: didDismiss) {
-                        VStack {
-                            HStack{
-                                Spacer()
-                                Button(action: {isShowingSheet.toggle()}, label: {
-                                    Image(systemName: "multiply")
-                                        .padding()
-                                })
-                                .buttonStyle(PlainButtonStyle())
-                            }
-                            if displayedEnrollmentLink == nil{
-                                Text("nil")
-                            } else {
-                                SubmissionReview(viewModel: viewModel,
-                                                 submissionLink: displayedEnrollmentLink!.submissions.first(where: {$0.assignment.id == selectedLab})!,
-                                                 user: displayedEnrollmentLink!.enrollment.user)
-                            }
-                            
-                            
+                            .help("esc")
+                            .buttonStyle(PlainButtonStyle())
+                        }
+                        if displayedEnrollmentLink == nil{
+                            Text("DEBUG: Enrollment not found")
+                        } else {
+                            SubmissionReview(viewModel: viewModel,
+                                             submissionLink: displayedEnrollmentLink!.submissions.first(where: {$0.assignment.id == selectedLab})!,
+                                             user: displayedEnrollmentLink!.enrollment.user)
                         }
                     }
-                } else{
-                    Text("No matches")
+                    .onKeyboardShortcut(.escape, perform: {
+                        if isShowingSheet{
+                            isShowingSheet.toggle()
+                        }
+                        
+                    })
                 }
+                
             }
+            
+            .onAppear(perform: {
+                viewModel.loadEnrollmentLinks()
+            })
+            
         }
-        
-        .onAppear(perform: {
-            viewModel.loadEnrollmentLinks()
-        })
         .navigationTitle("Review Submissions")
         .navigationSubtitle(viewModel.currentCourse.name)
         .toolbar{
@@ -97,7 +97,6 @@ struct ReviewEnrollmentList: View {
                             isSearching = true
                         }
                     }, label: {
-                        
                     })
                     .keyboardShortcut("f")
                     .labelsHidden()

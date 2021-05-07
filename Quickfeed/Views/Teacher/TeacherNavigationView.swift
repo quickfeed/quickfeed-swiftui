@@ -46,7 +46,7 @@ struct TeacherNavigationView: View {
             
             if viewModel.manuallyGradedAssignments.count > 0{
                 Section(header:Text("Manual Grading")){
-                    NavigationLink(destination: ReviewEnrollmentList(viewModel: viewModel, selectedLab: $selectedLabForManualGrading)){
+                    NavigationLink(destination: ReviewList(viewModel: viewModel, selectedLab: $selectedLabForManualGrading)){
                         Image(systemName: "list.dash")
                             .frame(width: 20)
                             .foregroundColor(.blue)

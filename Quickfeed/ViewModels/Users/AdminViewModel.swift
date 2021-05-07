@@ -33,6 +33,16 @@ class AdminViewModel: UserViewModelProtocol {
     }
     
     // Courses
+    func updateCourse(course: Course, name: String, code: String, year: String, tag: String, slipDays: String){
+        var course = course
+        course.name = name
+        course.code = code
+        course.year = UInt32(year)!
+        course.tag = tag
+        course.slipDays = UInt32(slipDays)!
+        provider.updateCourse(course: course)
+    }
+    
     func getCourses(){
         self.courses = provider.getCourses()
     }

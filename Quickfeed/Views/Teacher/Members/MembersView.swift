@@ -13,13 +13,10 @@ struct MembersView: View {
     @State private var isEditing = false
     @State var isSearching: Bool = false
     
-    
     func filteredEnrollments() -> [Enrollment] {
         return viewModel.enrollments.filter({ matchesQuery(user: $0.user) })
     }
-    
     var body: some View {
-        
         List{
             Section(header: MemberListHeader(courseTotalSlipDays: self.viewModel.currentCourse.slipDays)){
                 ForEach(self.filteredEnrollments(), id: \.self){ enrollment in
@@ -28,13 +25,11 @@ struct MembersView: View {
                 }
             }
         }
-        
         .onAppear(perform: {
             viewModel.loadEnrollments()
         })
         .navigationTitle("Members")
         .navigationSubtitle(viewModel.currentCourse.name)
-        
         .toolbar{
             ToolbarItem{
                 Toggle(isOn: $isEditing, label: {
