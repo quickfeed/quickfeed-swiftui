@@ -16,6 +16,7 @@ struct ReviewList: View {
     @State private var isShowingSheet = false
     @State var isSearching: Bool = false
     @State private var displayedEnrollmentLink: EnrollmentLink?
+    @State private var selection: EnrollmentLink?
     var filteredEnrollmentLinks: [EnrollmentLink] {
         return viewModel.enrollmentLinks.filter({
             matchesQuery(user: $0.enrollment.user)
@@ -23,12 +24,13 @@ struct ReviewList: View {
     }
     
     var body: some View {
-        List{
+        List(selection: $selection){
             Section(header: ReviewListHeader()){
                 ForEach(filteredEnrollmentLinks, id: \.self) { link in
                     SubmissionListItem(submitterName: link.enrollment.user.name,
                                        subLink: link.submissions.first(where: {$0.assignment.id == selectedLab})!,
                                        reviewer: "test")
+                        .contentShape(Rectangle())
                         .onTapGesture(perform: {
                             displayedEnrollmentLink = link
                             assert(displayedEnrollmentLink != nil)
@@ -43,8 +45,9 @@ struct ReviewList: View {
                             Spacer()
                             Button(action: {isShowingSheet.toggle()}, label: {
                                 Image(systemName: "multiply")
-                                    .padding()
+                                    .font(.title)
                             })
+                            .padding()
                             .help("esc")
                             .buttonStyle(PlainButtonStyle())
                         }
@@ -56,21 +59,18 @@ struct ReviewList: View {
                                              user: displayedEnrollmentLink!.enrollment.user)
                         }
                     }
+                    .frame(minWidth: 700, minHeight: 700)
                     .onKeyboardShortcut(.escape, perform: {
                         if isShowingSheet{
                             isShowingSheet.toggle()
                         }
-                        
                     })
                 }
-                
             }
-            
-            .onAppear(perform: {
-                viewModel.loadEnrollmentLinks()
-            })
-            
         }
+        .onAppear(perform: {
+            viewModel.loadEnrollmentLinks()
+        })
         .navigationTitle("Review Submissions")
         .navigationSubtitle(viewModel.currentCourse.name)
         .toolbar{

@@ -36,9 +36,9 @@ struct SubmissionReview: View {
                     if hasReview(){
                         if hasReviewByUser(){
                             GradingBenchmarkList(viewModel: viewModel,
-                                        review: submissionLink.submission.reviews.first(where: {$0.reviewerID == viewModel.user.id})!,
-                                        isCreated: true)
-
+                                                 review: submissionLink.submission.reviews.first(where: {$0.reviewerID == viewModel.user.id})!,
+                                                 isCreated: true)
+                            
                         } else{
                             HStack{
                                 Text("This assignment is reviewed by: ")
@@ -50,8 +50,8 @@ struct SubmissionReview: View {
                     }
                     else{
                         GradingBenchmarkList(viewModel: viewModel,
-                                    review: newReview,
-                                    isCreated: false)
+                                             review: newReview,
+                                             isCreated: false)
                     }
                 }
                 else{
@@ -63,7 +63,11 @@ struct SubmissionReview: View {
             Spacer()
         }
         .padding()
-        .onAppear(perform: {self.submissionLink.submission = viewModel.getSubmissionByAssignment(userId: user.id, assigmentID: submissionLink.assignment.id)})
+        .onAppear(perform: {
+            if submissionLink.hasSubmission{
+                self.submissionLink.submission = viewModel.getSubmissionByAssignment(userId: user.id, assigmentID: submissionLink.assignment.id)
+            }
+        })
     }
     
     

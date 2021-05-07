@@ -36,6 +36,10 @@ class ServerProvider: ProviderProtocol{
         
     }
     
+    func updateSubmission(courseId: UInt64, submisssion: Submission) -> Bool {
+        return self.grpcManager.updateSubmission(courseId: courseId, submission: submisssion)
+    }
+    
     func isAuthorizedTeacher() -> Bool {
         return grpcManager.isAuthorizedTeacher()
     }
@@ -184,11 +188,6 @@ class ServerProvider: ProviderProtocol{
     
     func getProviders() -> [String] {
         fatalError("Not implemented")
-    }
-    
-    
-    func updateSubmission(courseId: UInt64, submisssion: Submission) -> Bool {
-        return self.grpcManager.updateSubmission(courseId: courseId, submission: submisssion)
     }
     
     func updateSubmissions(assignmentID: UInt64, courseID: UInt64, score: UInt32, release: Bool, approve: Bool) {
