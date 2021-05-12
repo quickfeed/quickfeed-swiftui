@@ -6,6 +6,7 @@
 //
 import SwiftUI
 
+
 struct NavigatorView: View {
     @ObservedObject var viewModel: UserViewModel
     var courses: [Course] { return viewModel.courses! }

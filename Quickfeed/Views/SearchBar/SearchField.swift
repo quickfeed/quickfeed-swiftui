@@ -8,30 +8,29 @@
 import SwiftUI
 import AppKit
 
-struct SearchFieldRepresentable: NSViewControllerRepresentable {
+struct SearchField: NSViewControllerRepresentable {
     @Binding var query: String
-  
     
     func makeNSViewController(
-        context: NSViewControllerRepresentableContext<SearchFieldRepresentable>
+        context: NSViewControllerRepresentableContext<SearchField>
     ) -> SearchFieldController {
         return SearchFieldController(query: $query)
     }
     
     func updateNSViewController(
         _ nsViewController: SearchFieldController,
-        context: NSViewControllerRepresentableContext<SearchFieldRepresentable>
+        context: NSViewControllerRepresentableContext<SearchField>
     ) {
     }
-    
-    
 }
+
+
 
 struct SearchField_Previews: PreviewProvider {
     static var previews: some View {
-        SearchFieldRepresentable(query: .constant("test"))
+        SearchField(query: .constant("test"))
         
-        SearchFieldRepresentable(query: .constant("test"))
+        SearchField(query: .constant("test"))
             .preferredColorScheme(.light)
     }
 }

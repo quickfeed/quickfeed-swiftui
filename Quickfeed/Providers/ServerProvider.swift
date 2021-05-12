@@ -36,6 +36,10 @@ class ServerProvider: ProviderProtocol{
         
     }
     
+    func updateSubmission(courseId: UInt64, submisssion: Submission) -> Bool {
+        return self.grpcManager.updateSubmission(courseId: courseId, submission: submisssion)
+    }
+    
     func isAuthorizedTeacher() -> Bool {
         return grpcManager.isAuthorizedTeacher()
     }
@@ -88,7 +92,6 @@ class ServerProvider: ProviderProtocol{
     
     func getSubmissionsByGroub(courseId: UInt64, groupId: UInt64) -> [Submission] {
         return self.grpcManager.getSubbmissionByGroup(courseID: courseId, groupID: groupId)
-        //fatalError("Not implemented")
     }
     
     func getSubmissionsByCourse(courseId: UInt64, type: SubmissionsForCourseRequest.TypeEnum) -> EventLoopFuture<CourseSubmissions> {
@@ -100,7 +103,6 @@ class ServerProvider: ProviderProtocol{
     }
     
     // MANUAL GRADING
-    
     func loadCriteria(courseId: UInt64, assignmentId: UInt64) -> [GradingBenchmark] {
         return self.grpcManager.loadCriteria(courseId: courseId, assignmentId: assignmentId)
     }
@@ -186,11 +188,6 @@ class ServerProvider: ProviderProtocol{
     
     func getProviders() -> [String] {
         fatalError("Not implemented")
-    }
-    
-    
-    func updateSubmission(courseId: UInt64, submisssion: Submission) -> Bool {
-        return self.grpcManager.updateSubmission(courseId: courseId, submission: submisssion)
     }
     
     func updateSubmissions(assignmentID: UInt64, courseID: UInt64, score: UInt32, release: Bool, approve: Bool) {

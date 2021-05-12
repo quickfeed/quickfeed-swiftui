@@ -21,7 +21,6 @@ class AdminViewModel: UserViewModelProtocol {
     }
     
     // Users
-    
     func getUsers(){
         self.users = provider.getUsers()
     }
@@ -34,7 +33,6 @@ class AdminViewModel: UserViewModelProtocol {
     }
     
     // Courses
-    
     func updateCourse(course: Course, name: String, code: String, year: String, tag: String, slipDays: String){
         var course = course
         course.name = name

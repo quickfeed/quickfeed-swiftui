@@ -86,7 +86,7 @@ struct ReleaseNavigationView: View {
                     .keyboardShortcut("f")
                 } else {
                     
-                    SearchFieldRepresentable(query: $searchQuery)
+                    SearchField(query: $searchQuery)
                         .frame(minWidth: 200, maxWidth: 350)
                 }
             }

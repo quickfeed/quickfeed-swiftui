@@ -22,7 +22,7 @@ struct TeacherNavigationView: View {
                 Text("Results")
             }
             
-            NavigationLink(destination: MembersView(viewModel: viewModel), tag: 2, selection: $activeDest){
+            NavigationLink(destination: MemberList(viewModel: viewModel), tag: 2, selection: $activeDest){
                 Image(systemName: "person")
                     .frame(width: 20)
                     .foregroundColor(.blue)
@@ -46,7 +46,7 @@ struct TeacherNavigationView: View {
             
             if viewModel.manuallyGradedAssignments.count > 0{
                 Section(header:Text("Manual Grading")){
-                    NavigationLink(destination: ReviewNavigationView(viewModel: viewModel, selectedLab: $selectedLabForManualGrading)){
+                    NavigationLink(destination: ReviewList(viewModel: viewModel, selectedLab: $selectedLabForManualGrading)){
                         Image(systemName: "list.dash")
                             .frame(width: 20)
                             .foregroundColor(.blue)

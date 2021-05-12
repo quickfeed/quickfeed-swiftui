@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CriterionStatusControl: View {
+    @EnvironmentObject var viewModel: TeacherViewModel
     @Binding var criterionStatus: GradingCriterion.Grade
     var body: some View {
         HStack{
@@ -27,11 +28,5 @@ struct CriterionStatusControl: View {
             })
             .buttonStyle(PlainButtonStyle())
         }
-    }
-}
-
-struct CriterionStatusControl_Previews: PreviewProvider {
-    static var previews: some View {
-        CriterionStatusControl(criterionStatus: .constant(.passed))
     }
 }

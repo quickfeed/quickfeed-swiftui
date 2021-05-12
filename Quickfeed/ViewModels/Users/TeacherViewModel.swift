@@ -18,32 +18,24 @@ class TeacherViewModel: UserViewModelProtocol{
     @Published var assignments: [Assignment] = []
     @Published var manuallyGradedAssignments: [Assignment] = []
     @Published var enrollmentLinks: [EnrollmentLink] = []
-    @Published var gradingBenchmarkForAssignment = [UInt64 : [GradingBenchmark]]()
-    @Published var assignmentMap = [UInt64 : Assignment]()
-    
+    @Published var reviewInProgress: Review? = nil
     
     init(provider: ProviderProtocol, course: Course) {
-        print("New TeacherViewModel")
         self.provider = provider
         self.user = provider.getUser() ?? User()
         self.currentCourse = course
         self.loadAssignments()
         self.loadUsers()
         self.loadGroups()
-        
         self.loadEnrollmentLinks()
         
     }
-    
-    
     
     func loadUsers(){
         for enrollmentLink in self.enrollmentLinks{
             self.users.append(enrollmentLink.enrollment.user)
         }
     }
-    
-
     
     func loadGroups(){
         let response = self.provider.getGroupsByCourse(courseId: self.currentCourse.id)
@@ -62,7 +54,6 @@ class TeacherViewModel: UserViewModelProtocol{
     
     func createGroup(group: Group) -> String?{
         var errString: String? = nil
-        
         let response = self.provider.createGroup(group: group)
         _ = response.always {(response: Result<Group, Error>) in
             switch response {
@@ -111,9 +102,6 @@ class TeacherViewModel: UserViewModelProtocol{
     func loadAssignments(){
         self.assignments =  self.provider.getAssignments(courseID: self.currentCourse.id)
         self.loadManuallyGradedAssignments(courseId: self.currentCourse.id)
-        for assignment in assignments{
-            self.assignmentMap[assignment.id] = assignment
-        }
     }
     
     func updateAssignments() -> Bool{
@@ -134,16 +122,9 @@ class TeacherViewModel: UserViewModelProtocol{
         return self.provider.getSubmissionsByUser(courseId: courseId, userId: userId)
     }
     
-    func loadBenchmarks(){
-        for assignment in manuallyGradedAssignments {
-            self.gradingBenchmarkForAssignment[assignment.id] = self.provider.loadCriteria(courseId: assignment.courseID, assignmentId: assignment.id)
-        }
-    }
-    
     func getUserName(userId: UInt64) -> String{
         if users.count == 0{
             self.loadUsers()
-            print(users.count)
         }
         for user in self.users{
             if user.id == userId{
@@ -156,11 +137,8 @@ class TeacherViewModel: UserViewModelProtocol{
     func getStudentsForCourse(courseId: UInt64) -> [User]{
         let course = provider.getCourse(courseId: courseId)
         let users = provider.getUsersForCourse(course: course ?? Course())
-        
         self.users = users
-        
         return users
-        
     }
     
     func changeUserStatus(enrollment: Enrollment, status: Enrollment.UserStatus){
@@ -168,29 +146,25 @@ class TeacherViewModel: UserViewModelProtocol{
     }
     
     // MANUAL GRADING
-    func createReview(submissionId: UInt64, assignmentId: UInt64) -> Review?{
-        var review = Review()
-        let assg = self.assignments.first(where: {$0.id == assignmentId})
-        review.benchmarks = assg!.gradingBenchmarks
-        review.reviewerID = self.user.id
-        review.ready = false
-        review.submissionID = submissionId
+    func createReview(review: Review) -> Review?{
         return self.provider.createReview(courseId: self.currentCourse.id, review: review)
     }
     
+    
     func updateReview(review: Review){
-        print("Update review")
-        return self.provider.updateReview(courseId: self.currentCourse.id, review: review)
+        self.provider.updateReview(courseId: self.currentCourse.id, review: review)
+    }
+    
+    func getSubmissionByAssignment(userId: UInt64, assigmentID: UInt64) -> Submission{
+        let submissions = provider.getSubmissionsByUser(courseId: self.currentCourse.id, userId: userId)
+        return submissions.first(where: {$0.assignmentID == assigmentID})!
     }
     
     func loadCriteria(assignmentId: UInt64) -> [GradingBenchmark]{
         return self.provider.loadCriteria(courseId: currentCourse.id, assignmentId: assignmentId)
     }
     
-    
     func reset() {
         
     }
-    
-    
 }

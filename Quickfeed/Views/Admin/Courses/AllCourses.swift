@@ -76,7 +76,7 @@ struct AllCourses: View {
                 Image(systemName: "plus")
             })
             .help("Create New Course")
-            SearchFieldRepresentable(query: $searchQuery)
+            SearchField(query: $searchQuery)
                 .frame(minWidth: 200, maxWidth: 350)
         }
     }

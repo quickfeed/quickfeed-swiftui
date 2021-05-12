@@ -6,7 +6,6 @@
 //
 import Foundation
 import NIO
-import NIOSSL
 import GRPC
 import NIOHPACK
 
@@ -14,6 +13,7 @@ class GRPCManager {
     let eventLoopGroup: EventLoopGroup
     let channel: ClientConnection
     let quickfeedClient: AutograderServiceClient
+    let headers: HPACKHeaders? = nil
     var defaultOptions: CallOptions?
     static let shared = GRPCManager()
     var userID: UInt64?
@@ -21,19 +21,16 @@ class GRPCManager {
     private init(){
         let hostname = "localhost"
         let port = 9090
-                
         self.eventLoopGroup = MultiThreadedEventLoopGroup(numberOfThreads: 1)
         self.channel = ClientConnection.insecure(group: self.eventLoopGroup)
             .connect(host: hostname, port: port)
         self.quickfeedClient = AutograderServiceClient(channel: channel)
-
         print("Connecting to \(hostname)")
     }
     
     func setUser(userID: UInt64){
         self.userID = userID
         let headers: HPACKHeaders = ["custom-header-1": "value1", "user": "\(self.userID!)"]
-        
         self.defaultOptions = CallOptions()
         self.defaultOptions!.customMetadata = headers
     }
