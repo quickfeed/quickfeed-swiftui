@@ -28,7 +28,7 @@ struct ReviewList: View {
         List{
             Section(header: ReviewListHeader()){
                 ForEach(filteredEnrollmentLinks, id: \.self) { link in
-                    SubmissionListItem(submitterName: link.enrollment.user.name,
+                    ReviewListItem(submitterName: link.enrollment.user.name,
                                        subLink: link.submissions.first(where: {$0.assignment.id == selectedLab})!
                     )
                     .environmentObject(viewModel)

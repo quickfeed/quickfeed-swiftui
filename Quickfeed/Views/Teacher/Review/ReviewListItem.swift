@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-// Display submitter name and review status
-struct SubmissionListItem: View {
+
+struct ReviewListItem: View {
     @EnvironmentObject var viewModel: TeacherViewModel
     var submitterName: String
     var subLink: SubmissionLink
@@ -37,7 +37,7 @@ struct SubmissionListItem: View {
             Spacer()
             VStack(alignment: .leading){
                 if reviewers.count > 0{
-                    ForEach(reviewers.indices) { i in
+                    ForEach(reviewers.indices, id: \.self) { i in
                         Text(reviewers[i])
                     }
                 } else{
