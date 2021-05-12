@@ -74,7 +74,7 @@ struct AdminUsers: View {
         .background(Color.clear)
         .navigationTitle("Manage Users")
         .toolbar{
-            SearchFieldRepresentable(query: $searchQuery)
+            SearchField(query: $searchQuery)
                 .frame(minWidth: 200, maxWidth: 350)
         }
     }

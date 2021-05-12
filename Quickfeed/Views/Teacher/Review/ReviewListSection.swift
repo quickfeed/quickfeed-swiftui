@@ -18,7 +18,8 @@ struct ReviewListSection: View {
             ForEach(enrollmentLinks, id: \.self){ link in
                 NavigationLink(destination: SubmissionReview(viewModel: viewModel, submissionLink: submissionForSelectedLab(links: link.submissions)!, user: link.enrollment.user)){
                     VStack{
-                        SubmissionListItem(submitterName: link.enrollment.user.name, subLink: submissionForSelectedLab(links: link.submissions)!, reviewer: "reviewed by: " + getReviewerName(link: link))
+                        SubmissionListItem(submitterName: link.enrollment.user.name, subLink: submissionForSelectedLab(links: link.submissions)!)
+                            .environmentObject(viewModel)
                         Divider()
                     }
                 }

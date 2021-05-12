@@ -13,6 +13,7 @@ class GRPCManager {
     let eventLoopGroup: EventLoopGroup
     let channel: ClientConnection
     let quickfeedClient: AutograderServiceClient
+    let headers: HPACKHeaders? = nil
     var defaultOptions: CallOptions?
     static let shared = GRPCManager()
     var userID: UInt64?

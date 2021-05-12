@@ -18,7 +18,6 @@ class TeacherViewModel: UserViewModelProtocol{
     @Published var assignments: [Assignment] = []
     @Published var manuallyGradedAssignments: [Assignment] = []
     @Published var enrollmentLinks: [EnrollmentLink] = []
-    @Published var assignmentMap = [UInt64 : Assignment]()
     @Published var reviewInProgress: Review? = nil
     
     init(provider: ProviderProtocol, course: Course) {
@@ -103,9 +102,6 @@ class TeacherViewModel: UserViewModelProtocol{
     func loadAssignments(){
         self.assignments =  self.provider.getAssignments(courseID: self.currentCourse.id)
         self.loadManuallyGradedAssignments(courseId: self.currentCourse.id)
-        for assignment in assignments{
-            self.assignmentMap[assignment.id] = assignment
-        }
     }
     
     func updateAssignments() -> Bool{

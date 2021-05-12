@@ -1,5 +1,5 @@
 //
-//  MembersView.swift
+//  MemberList.swift
 //  Quickfeed
 //
 //  Created by Oskar Gjølga on 16/02/2021.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MembersView: View {
+struct MemberList: View {
     @ObservedObject var viewModel: TeacherViewModel
     @State var searchQuery: String = ""
     @State private var isEditing = false
@@ -44,7 +44,7 @@ struct MembersView: View {
                     })
                     .keyboardShortcut("f")
                 } else {
-                    SearchFieldRepresentable(query: $searchQuery)
+                    SearchField(query: $searchQuery)
                         .frame(minWidth: 200, maxWidth: 350)
                         .onExitCommand(perform: {self.isSearching = false})
                 }

@@ -22,7 +22,7 @@ struct TeacherNavigationView: View {
                 Text("Results")
             }
             
-            NavigationLink(destination: MembersView(viewModel: viewModel), tag: 2, selection: $activeDest){
+            NavigationLink(destination: MemberList(viewModel: viewModel), tag: 2, selection: $activeDest){
                 Image(systemName: "person")
                     .frame(width: 20)
                     .foregroundColor(.blue)

@@ -16,57 +16,59 @@ struct ReviewList: View {
     @State private var isShowingSheet = false
     @State var isSearching: Bool = false
     @State private var displayedEnrollmentLink: EnrollmentLink?
-    @State private var selection: EnrollmentLink?
     var filteredEnrollmentLinks: [EnrollmentLink] {
         return viewModel.enrollmentLinks.filter({
             matchesQuery(user: $0.enrollment.user)
         })
     }
-    
+    func setLink(link: EnrollmentLink){
+        self.displayedEnrollmentLink = link
+    }
     var body: some View {
-        List(selection: $selection){
+        List{
             Section(header: ReviewListHeader()){
                 ForEach(filteredEnrollmentLinks, id: \.self) { link in
                     SubmissionListItem(submitterName: link.enrollment.user.name,
-                                       subLink: link.submissions.first(where: {$0.assignment.id == selectedLab})!,
-                                       reviewer: "test")
-                        .contentShape(Rectangle())
-                        .onTapGesture(perform: {
-                            displayedEnrollmentLink = link
-                            assert(displayedEnrollmentLink != nil)
-                            isShowingSheet.toggle()
-                        })
+                                       subLink: link.submissions.first(where: {$0.assignment.id == selectedLab})!
+                    )
+                    .environmentObject(viewModel)
+                    .contentShape(Rectangle())
+                    .onTapGesture(perform: {
+                        setLink(link: link)
+                        isShowingSheet.toggle()
+                        
+                    })
                     Divider()
                 }
-                .sheet(isPresented: $isShowingSheet,
-                       onDismiss: didDismiss) {
-                    VStack {
-                        HStack{
-                            Spacer()
-                            Button(action: {isShowingSheet.toggle()}, label: {
-                                Image(systemName: "multiply")
-                                    .font(.title)
-                            })
-                            .padding()
-                            .help("esc")
-                            .buttonStyle(PlainButtonStyle())
-                        }
-                        if displayedEnrollmentLink == nil{
-                            Text("DEBUG: Enrollment not found")
-                        } else {
-                            SubmissionReview(viewModel: viewModel,
-                                             submissionLink: displayedEnrollmentLink!.submissions.first(where: {$0.assignment.id == selectedLab})!,
-                                             user: displayedEnrollmentLink!.enrollment.user)
-                        }
-                    }
-                    .frame(minWidth: 700, minHeight: 700)
-                    .onKeyboardShortcut(.escape, perform: {
-                        if isShowingSheet{
-                            isShowingSheet.toggle()
-                        }
-                    })
-                }
+                
             }
+            
+        }
+        .sheet(isPresented: $isShowingSheet,
+               onDismiss: didDismiss) {
+            VStack {
+                HStack{
+                    Spacer()
+                    Button(action: {isShowingSheet.toggle()}, label: {
+                        Image(systemName: "multiply")
+                            .font(.title)
+                    })
+                    .padding()
+                    .help("esc")
+                    .buttonStyle(PlainButtonStyle())
+                }
+                
+                ReviewSheet(selectedLab: selectedLab, enrollmentLink: $displayedEnrollmentLink)
+                    .environmentObject(viewModel)
+                Spacer()
+                
+            }
+            .frame(minWidth: 700, minHeight: 700)
+            .onKeyboardShortcut(.escape, perform: {
+                if isShowingSheet{
+                    isShowingSheet.toggle()
+                }
+            })
         }
         .onAppear(perform: {
             viewModel.loadEnrollmentLinks()
@@ -85,7 +87,7 @@ struct ReviewList: View {
                     .keyboardShortcut("f")
                 } else {
                     
-                    SearchFieldRepresentable(query: $searchQuery)
+                    SearchField(query: $searchQuery)
                         .frame(minWidth: 200, maxWidth: 350)
                 }
             }
@@ -106,7 +108,7 @@ struct ReviewList: View {
     }
     
     func didDismiss() {
-        // Handle the dismissing action.
+        viewModel.loadEnrollmentLinks()
     }
     
     func hasReview(link: EnrollmentLink) -> Bool{
@@ -140,7 +142,6 @@ struct ReviewList: View {
             }
             
         }
-        
         return false
     }
     
@@ -149,8 +150,6 @@ struct ReviewList: View {
             $0.assignment.id == self.selectedLab
         })
     }
-    
-    
     
     func hasReadyReviewForAssignment(link: EnrollmentLink) -> Bool{
         let subForLab = submissionForSelectedLab(links: link.submissions)

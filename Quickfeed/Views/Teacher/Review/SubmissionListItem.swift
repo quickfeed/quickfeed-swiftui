@@ -9,12 +9,22 @@ import SwiftUI
 
 // Display submitter name and review status
 struct SubmissionListItem: View {
+    @EnvironmentObject var viewModel: TeacherViewModel
     var submitterName: String
     var subLink: SubmissionLink
-    var reviewer: String
     
     var reviews: Int {
         return subLink.submission.reviews.count
+    }
+    
+    var reviewers: [String]{
+        var reviewers = [String]()
+        if reviews > 0{
+            for review in subLink.submission.reviews{
+                reviewers.append(viewModel.getUserName(userId: review.reviewerID))
+            }
+        }
+        return reviewers
     }
     
     var body: some View {
@@ -25,12 +35,19 @@ struct SubmissionListItem: View {
             Text("\(reviews)/\(subLink.assignment.reviewers)")
                 .frame(width: 200, alignment: .leading)
             Spacer()
-            Text(reviewer)
-                .frame(width: 200, alignment: .leading)
+            VStack(alignment: .leading){
+                if reviewers.count > 0{
+                    ForEach(reviewers.indices) { i in
+                        Text(reviewers[i])
+                    }
+                } else{
+                    Text("N/A")
+                }
+            }
+            .frame(width: 200, alignment: .leading)
             Spacer()
             Image(systemName: getImageSysNameForSubmissionStatus(status: subLink.submission.status))
                 .foregroundColor(getColorForSubmissionStatus(submissionStatus: subLink.submission.status))
         }
-        .help(reviewer)
     }
 }

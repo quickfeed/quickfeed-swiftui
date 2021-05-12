@@ -102,7 +102,7 @@ struct AddGroupForm: View {
         .navigationSubtitle(viewModel.currentCourse.name)
         .toolbar{
             ToolbarItem{
-                SearchFieldRepresentable(query: $searchQuery)
+                SearchField(query: $searchQuery)
                     .frame(minWidth: 200, maxWidth: 350)
             }
         }
