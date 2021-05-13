@@ -10,7 +10,6 @@ import SwiftUI
 struct SubmissionResult: View {
     @ObservedObject var viewModel: TeacherViewModel
     @Binding var displayedSubmissionLink: SubmissionLink?
-    @State var showingAlert: Bool = false
     var body: some View {
         
         VStack{
