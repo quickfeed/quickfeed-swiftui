@@ -24,7 +24,6 @@ struct MemberListItem: View {
                         .frame(width: 180, alignment: .leading)
                 })
                 Spacer()
-                
             }
             SwiftUI.Group{
                 Text(enrollment.user.studentID)
@@ -37,9 +36,7 @@ struct MemberListItem: View {
                     Text(enrollment.user.email)
                         .frame(width: 200, alignment: .leading)
                 })
-                
                 Spacer()
-                
             }
             
             SwiftUI.Group{
@@ -68,20 +65,15 @@ struct MemberListItem: View {
                 if isEditing {
                     HStack{
                         Text(translateUserStatus(status: enrollment.status))
-                           
                         Spacer()
                         Menu("") {
                             Button("promote", action: {})
                             Button("reject", action: {})
-                            
                         }
                         .menuStyle(BorderlessButtonMenuStyle())
                         .frame(width: 10)
                     }
                     .frame(width: 75, alignment: .center)
-                    
-                    
-                    
                 } else{
                     if enrollment.status == .pending{
                         VStack{
@@ -96,9 +88,6 @@ struct MemberListItem: View {
                     }
                 }
             }
-            
-            
-            
         }
     }
 }

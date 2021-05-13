@@ -40,7 +40,11 @@ struct ResultGrid: View {
                         Image(systemName: "chevron.backward")
                     })
                 } else{
-                    Button(action: {showingStats = true}, label: {
+                    Button(action: {
+                        showingStats = true
+                        searchQuery = ""
+                        
+                    }, label: {
                         Image(systemName: "chart.bar.fill")
                     })
                 }
@@ -54,7 +58,7 @@ struct ResultGrid: View {
                     })
                     .keyboardShortcut("f")
                 } else {
-                    SearchFieldRepresentable(query: $searchQuery)
+                    SearchField(query: $searchQuery)
                         .frame(minWidth: 200, maxWidth: 350)
                 }
             }

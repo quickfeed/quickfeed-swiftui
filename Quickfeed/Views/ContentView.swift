@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import AppKit
+
+import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var viewModel: UserViewModel = UserViewModel()
@@ -25,10 +28,4 @@ struct ContentView: View {
         }
     }
     
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
 }
