@@ -57,7 +57,7 @@ struct NewGroup: View {
         .navigationSubtitle(viewModel.course!.name)
         .toolbar{
             ToolbarItem{
-                SearchFieldRepresentable(query: $searchQuery)
+                SearchField(query: $searchQuery)
                     .frame(minWidth: 200, maxWidth: 350)
             }
         }

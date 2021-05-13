@@ -36,6 +36,7 @@
 		D08D62A12611DEB200343250 /* NewUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08D62A02611DEB200343250 /* NewUser.swift */; };
 		D0A6FCB925CA0A8A008C546B /* StudentNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A6FCB825CA0A8A008C546B /* StudentNavigatorView.swift */; };
 		D0A8499D263232E800EC0E2F /* CourseFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A8499C263232E800EC0E2F /* CourseFields.swift */; };
+		D0D940F5264D0E8F00A41EF3 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = D0D940F4264D0E8F00A41EF3 /* SwiftUIX */; };
 		D0F6A13C2609DD5000C1D825 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F6A13B2609DD5000C1D825 /* RemoteImage.swift */; };
 		D0F6A1462609F25500C1D825 /* UserInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F6A1452609F25500C1D825 /* UserInformation.swift */; };
 		D0F6A14E2609F54300C1D825 /* UserEnrollments.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F6A14D2609F54300C1D825 /* UserEnrollments.swift */; };
@@ -193,6 +194,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0D940F5264D0E8F00A41EF3 /* SwiftUIX in Frameworks */,
 				D0F9FC6325BEB9A90080A1F2 /* GRPC in Frameworks */,
 				D0F9FC6525BEB9A90080A1F2 /* CGRPCZlib in Frameworks */,
 			);
@@ -531,6 +533,7 @@
 			packageProductDependencies = (
 				D0F9FC6225BEB9A90080A1F2 /* GRPC */,
 				D0F9FC6425BEB9A90080A1F2 /* CGRPCZlib */,
+				D0D940F4264D0E8F00A41EF3 /* SwiftUIX */,
 			);
 			productName = Quickfeed;
 			productReference = FA85790525BEB4E900223DB9 /* Quickfeed.app */;
@@ -561,6 +564,7 @@
 			mainGroup = FA8578FC25BEB4E900223DB9;
 			packageReferences = (
 				D0F9FC6125BEB9A90080A1F2 /* XCRemoteSwiftPackageReference "grpc-swift" */,
+				D0D940F3264D0E8F00A41EF3 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 			);
 			productRefGroup = FA85790625BEB4E900223DB9 /* Products */;
 			projectDirPath = "";
@@ -862,6 +866,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D0D940F3264D0E8F00A41EF3 /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.6;
+			};
+		};
 		D0F9FC6125BEB9A90080A1F2 /* XCRemoteSwiftPackageReference "grpc-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/grpc/grpc-swift";
@@ -873,6 +885,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D0D940F4264D0E8F00A41EF3 /* SwiftUIX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0D940F3264D0E8F00A41EF3 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
+			productName = SwiftUIX;
+		};
 		D0F9FC6225BEB9A90080A1F2 /* GRPC */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D0F9FC6125BEB9A90080A1F2 /* XCRemoteSwiftPackageReference "grpc-swift" */;
