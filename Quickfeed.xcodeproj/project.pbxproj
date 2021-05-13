@@ -10,6 +10,8 @@
 		D0005CC125E4EF2A00EDECD1 /* GitHubManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0005CC025E4EF2A00EDECD1 /* GitHubManager.swift */; };
 		D0005CC625E4EF8E00EDECD1 /* GitHubLogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0005CC525E4EF8E00EDECD1 /* GitHubLogIn.swift */; };
 		D01B3CD225C2D76900B126FB /* GRPCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B3CD125C2D76900B126FB /* GRPCManager.swift */; };
+		D01D732F2639601600D94003 /* NewGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01D732E2639601600D94003 /* NewGroup.swift */; };
+		D01D73312639D95600D94003 /* NewUserEnrollments.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01D73302639D95500D94003 /* NewUserEnrollments.swift */; };
 		D035C75825E92795005AC2BA /* NavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035C75725E92795005AC2BA /* NavigatorView.swift */; };
 		D03EF9CF25F0277A008869CA /* AutoGraded.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03EF9CE25F0277A008869CA /* AutoGraded.swift */; };
 		D03EF9D425F027A2008869CA /* ManuallyGraded.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03EF9D325F027A2008869CA /* ManuallyGraded.swift */; };
@@ -95,6 +97,8 @@
 		D0005CC025E4EF2A00EDECD1 /* GitHubManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubManager.swift; sourceTree = "<group>"; };
 		D0005CC525E4EF8E00EDECD1 /* GitHubLogIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubLogIn.swift; sourceTree = "<group>"; };
 		D01B3CD125C2D76900B126FB /* GRPCManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRPCManager.swift; sourceTree = "<group>"; };
+		D01D732E2639601600D94003 /* NewGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroup.swift; sourceTree = "<group>"; };
+		D01D73302639D95500D94003 /* NewUserEnrollments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserEnrollments.swift; sourceTree = "<group>"; };
 		D035C75725E92795005AC2BA /* NavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorView.swift; sourceTree = "<group>"; };
 		D03EF9CE25F0277A008869CA /* AutoGraded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoGraded.swift; sourceTree = "<group>"; };
 		D03EF9D325F027A2008869CA /* ManuallyGraded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuallyGraded.swift; sourceTree = "<group>"; };
@@ -217,6 +221,7 @@
 			children = (
 				D0A6FCB825CA0A8A008C546B /* StudentNavigatorView.swift */,
 				D04B470125D1741300AC8926 /* StudentLab.swift */,
+				D01D732E2639601600D94003 /* NewGroup.swift */,
 				D03EF9CD25F02636008869CA /* Helpers */,
 			);
 			path = Student;
@@ -248,6 +253,7 @@
 			children = (
 				D0F6A1452609F25500C1D825 /* UserInformation.swift */,
 				D0F6A14D2609F54300C1D825 /* UserEnrollments.swift */,
+				D01D73302639D95500D94003 /* NewUserEnrollments.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -617,6 +623,7 @@
 				D0F6A14E2609F54300C1D825 /* UserEnrollments.swift in Sources */,
 				D0F9FC6F25BEBC360080A1F2 /* ag.pb.swift in Sources */,
 				FAA8335325E52E3A008C05F4 /* SubmissionResult.swift in Sources */,
+				D01D73312639D95600D94003 /* NewUserEnrollments.swift in Sources */,
 				FA29717325D303E0000C99A1 /* SearchField.swift in Sources */,
 				FABB233E25DBD91B00317969 /* MembersView.swift in Sources */,
 				FA5A40E62609DCA700A20A13 /* SelectedMembers.swift in Sources */,
@@ -640,6 +647,7 @@
 				FA8EA6A126039B0D00A10351 /* GroupList.swift in Sources */,
 				D01B3CD225C2D76900B126FB /* GRPCManager.swift in Sources */,
 				D03EF9CF25F0277A008869CA /* AutoGraded.swift in Sources */,
+				D01D732F2639601600D94003 /* NewGroup.swift in Sources */,
 				FAB066B025CAC0F000FFE8EB /* ProviderProtocol.swift in Sources */,
 				D04331E62602B35C0034C4B9 /* HelpFunctions.swift in Sources */,
 				FA17B99325F258FA008BB07F /* GradingCriterionListItem.swift in Sources */,

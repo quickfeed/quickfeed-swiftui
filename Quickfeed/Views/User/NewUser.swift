@@ -70,9 +70,3 @@ struct NewUser: View {
         return self.userStudentID.allSatisfy{ $0.isNumber } && !self.userStudentID.isEmpty
     }
 }
-
-/*struct NewUser_Previews: PreviewProvider {
-    static var previews: some View {
-        NewUser()
-    }
-}*/

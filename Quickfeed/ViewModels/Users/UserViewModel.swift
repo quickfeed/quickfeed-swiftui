@@ -11,7 +11,7 @@ class UserViewModel: UserViewModelProtocol {
     var provider: ProviderProtocol = ServerProvider.shared
     @Published var user: User?
     @Published var courses: [Course]?
-    @Published var enrollments: [Enrollment]?
+    @Published var enrollments: [Enrollment] = []
     
     init() {
         print("New UserViewModel")
@@ -90,7 +90,7 @@ class UserViewModel: UserViewModelProtocol {
     
     func getEnrollmentByCourse(courseID: UInt64) -> Enrollment?{
         if self.enrollments != nil {
-            for enrollment in self.enrollments! {
+            for enrollment in self.enrollments {
                 if enrollment.courseID == courseID {
                     return enrollment
                 }
@@ -101,7 +101,7 @@ class UserViewModel: UserViewModelProtocol {
     
     func getEnrollments() {
         self.enrollments = self.provider.getEnrollmentsForUser(userId: self.user!.id)
-        if self.enrollments?.count != 0 {
+        if self.enrollments.count != 0 {
             self.sortEnrollmentsByCode()
         }
     }
@@ -110,8 +110,8 @@ class UserViewModel: UserViewModelProtocol {
         var courses = self.getAllCourses()
         if courses?.count != 0 {
             for course in courses! {
-                if self.enrollments?.count != 0{
-                    for enrollment in self.enrollments! {
+                if self.enrollments.count != 0{
+                    for enrollment in self.enrollments {
                         if course.id == enrollment.courseID {
                             if let index = courses!.firstIndex(of: course) {
                                 courses!.remove(at: index)
@@ -126,7 +126,7 @@ class UserViewModel: UserViewModelProtocol {
     }
     
     private func sortEnrollmentsByCode() {
-        var enrollments = self.enrollments!
+        var enrollments = self.enrollments
         enrollments.sort { self.getCourseById(courseId: $0.courseID).code < self.getCourseById(courseId: $1.courseID).code }
         self.enrollments = enrollments
     }

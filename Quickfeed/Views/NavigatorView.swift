@@ -17,19 +17,21 @@ struct NavigatorView: View {
         NavigationView{
             VStack(alignment: .leading){
                 
-                CoursePicker(courses: courses, selectedCourse: $selectedCourse)
-                    .padding([.horizontal, .top])
-                
-                if viewModel.isTeacherForCourse(courseId: selectedCourse)! {
-                    TeacherNavigationView(viewModel: TeacherViewModel(provider: ServerProvider.shared, course: viewModel.getCourse(courseID: selectedCourse)!))
-                } else {
-                    StudentNavigatorView(viewModel: StudentViewModel.shared, course: viewModel.getCourse(courseID: selectedCourse)!)
+                if viewModel.courses != nil && viewModel.courses != []{
+                    CoursePicker(courses: courses, selectedCourse: $selectedCourse)
+                        .padding([.horizontal, .top])
+                    
+                    if viewModel.isTeacherForCourse(courseId: selectedCourse)! {
+                        TeacherNavigationView(viewModel: TeacherViewModel(provider: ServerProvider.shared, course: viewModel.getCourse(courseID: selectedCourse)!))
+                    } else {
+                        StudentNavigatorView(viewModelTest: StudentViewModel.shared, course: viewModel.getCourse(courseID: selectedCourse)!)
+                    }
                 }
                 
                 Spacer()
                 if viewModel.user!.isAdmin{
                     NavigationLink(
-                        destination: Admin(viewModel: AdminViewModel.shared, showUsers: false)){
+                        destination: Admin(viewModel: AdminViewModel.shared, showUsers: false), tag: 2, selection: $activeDest){
                         HStack{
                             Image(systemName: "folder.badge.gear")
                                 .frame(width: 30)
@@ -44,7 +46,7 @@ struct NavigatorView: View {
                     .padding(.bottom, 1.0)
                     .buttonStyle(PlainButtonStyle())
                     NavigationLink(
-                        destination: Admin(viewModel: AdminViewModel.shared)){
+                        destination: Admin(viewModel: AdminViewModel.shared), tag: 3, selection: $activeDest){
                         HStack{
                             Image(systemName: "person.2")
                                 .frame(width: 30)
@@ -59,22 +61,41 @@ struct NavigatorView: View {
                     .padding(.vertical, 1.0)
                     .buttonStyle(PlainButtonStyle())
                 }
-                NavigationLink(
-                    destination: UserProfile(viewModel: viewModel, selectedCourse: $selectedCourse, login: $login), tag: 1, selection: $activeDest){
-                    HStack{
-                        RemoteImage(url: viewModel.user!.avatarURL)
-                            .cornerRadius(7.5)
-                            .frame(width: 30, height: 30)
-                            .padding(.leading)
-                        Text(viewModel.user!.name)
-                            .font(.headline)
-                        Spacer()
+                if viewModel.courses != nil && viewModel.courses != []{
+                    NavigationLink(
+                        destination: NewUserProfile(viewModel: viewModel, login: $login), tag: 1, selection: $activeDest){
+                        HStack{
+                            RemoteImage(url: viewModel.user!.avatarURL)
+                                .cornerRadius(7.5)
+                                .frame(width: 30, height: 30)
+                                .padding(.leading)
+                            Text(viewModel.user!.name)
+                                .font(.headline)
+                            Spacer()
+                        }
+                        .frame(height: 50)
+                        .contentShape(Rectangle())
                     }
-                    .frame(height: 50)
-                    .contentShape(Rectangle())
+                    .padding(.top, 0.0)
+                    .buttonStyle(PlainButtonStyle())
+                } else{
+                    NavigationLink(
+                        destination: UserProfile(viewModel: viewModel, selectedCourse: $selectedCourse, login: $login), tag: 1, selection: $activeDest){
+                        HStack{
+                            RemoteImage(url: viewModel.user!.avatarURL)
+                                .cornerRadius(7.5)
+                                .frame(width: 30, height: 30)
+                                .padding(.leading)
+                            Text(viewModel.user!.name)
+                                .font(.headline)
+                            Spacer()
+                        }
+                        .frame(height: 50)
+                        .contentShape(Rectangle())
+                    }
+                    .padding(.top, 0.0)
+                    .buttonStyle(PlainButtonStyle())
                 }
-                .padding(.top, 0.0)
-                .buttonStyle(PlainButtonStyle())
             }
             .frame(minWidth: 200)
         }

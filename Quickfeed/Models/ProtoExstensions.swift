@@ -6,8 +6,6 @@
 //
 import SwiftUI
 import Foundation
-//import Introspect
-
 
 extension User{
     init(name: String, id: UInt64, studentID: String, isAdmin: Bool, email: String, enrollments: [Enrollment], login: String){

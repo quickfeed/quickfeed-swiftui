@@ -243,10 +243,16 @@ class GRPCManager {
         return []
     }
     
-    func getEnrollmentsByCourse(courseId: UInt64) -> EventLoopFuture<Enrollments>{
+    func getEnrollmentsByCourse(courseId: UInt64, ignoreGroupMembers: Bool?, enrollmentStatus: [Enrollment.UserStatus]?) -> EventLoopFuture<Enrollments>{
         let req = EnrollmentRequest.with{
             $0.courseID = courseId
             $0.withActivity = true
+            if ignoreGroupMembers != nil {
+                $0.ignoreGroupMembers = ignoreGroupMembers!
+            }
+            if enrollmentStatus != nil{
+                $0.statuses = enrollmentStatus!
+            }
         }
         
         let call = self.quickfeedClient.getEnrollmentsByCourse(req, callOptions: self.defaultOptions)

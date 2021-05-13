@@ -31,8 +31,8 @@ class ServerProvider: ProviderProtocol{
         return grpcManager.getCoursesForCurrentUser()
     }
     
-    func getEnrollmentsByCourse(courseId: UInt64) -> EventLoopFuture<Enrollments>{
-        return self.grpcManager.getEnrollmentsByCourse(courseId: courseId)
+    func getEnrollmentsByCourse(courseId: UInt64, ignoreGroupMembers: Bool?, enrollmentStatus: [Enrollment.UserStatus]?) -> EventLoopFuture<Enrollments>{
+        return self.grpcManager.getEnrollmentsByCourse(courseId: courseId, ignoreGroupMembers: ignoreGroupMembers, enrollmentStatus: enrollmentStatus)
         
     }
     
@@ -61,10 +61,6 @@ class ServerProvider: ProviderProtocol{
     
     func createEnrollment(courseID: UInt64, userID: UInt64) {
         self.grpcManager.createEnrollment(courseID: courseID, userID: userID)
-    }
-    
-    func getEnrollmentsForCourse(course: Course) -> EventLoopFuture<Enrollments> {
-        return self.grpcManager.getEnrollmentsByCourse(courseId: course.id)
     }
     
     func createGroup(group: Group) -> EventLoopFuture<Group> {
