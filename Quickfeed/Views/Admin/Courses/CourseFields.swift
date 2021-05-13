@@ -19,13 +19,13 @@ struct CourseFields: View {
     @State var tag: String = "Spring"
     
     var body: some View {
-        Text("Code:")
+        Text("Course Code:")
             .bold()
         TextField("Enter course code...", text: $code)
             .textFieldStyle(RoundedBorderTextFieldStyle())
             .frame(width: 400)
             .padding(.leading)
-        Text("Name:")
+        Text("Course Name:")
             .bold()
         TextField("Enter course name...", text: $name)
             .textFieldStyle(RoundedBorderTextFieldStyle())

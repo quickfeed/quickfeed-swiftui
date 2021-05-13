@@ -85,7 +85,7 @@ class TeacherViewModel: UserViewModelProtocol{
     }
     
     func loadEnrollments(){
-        let response = self.provider.getEnrollmentsByCourse(courseId: self.currentCourse.id)
+        let response = self.provider.getEnrollmentsByCourse(courseId: self.currentCourse.id, ignoreGroupMembers: nil, enrollmentStatus: nil)
         _ = response.always {(response: Result<Enrollments, Error>) in
             switch response {
             case .success(let response):

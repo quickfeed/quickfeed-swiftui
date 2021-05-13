@@ -8,21 +8,10 @@
 import Foundation
 import AuthenticationServices
 
-struct GithubConstants {
-    
-    static let CLIENT_ID = "346a971eb8e99da32318"
-    static let CLIENT_SECRET = "ddeb48be1796c3ea996bb24013a7819ff409ee5b"
-    static let REDIRECT_URI = "quickfeed://oauth-callback"
-    static let SCOPE = ""
-    static let TOKENURL = "https://github.com/login/oauth/access_token"
-    
-}
-
 typealias ASPresentationAnchor = NSWindow
 
 class GitHubManager: NSObject, ObservableObject, ASWebAuthenticationPresentationContextProviding {
     var viewModel: UserViewModel
-    
     
     init(viewModel: UserViewModel){
         self.viewModel = viewModel
@@ -34,7 +23,6 @@ class GitHubManager: NSObject, ObservableObject, ASWebAuthenticationPresentation
     
     func logInWithGitHub() {
         self.viewModel.setUser(userID: 100)
-        //guard let authURL = URL(string: "https://github.com/login/oauth/authorize?client_id=" + GithubConstants.CLIENT_ID + "&scope=" + GithubConstants.SCOPE + "&redirect_uri=" + GithubConstants.REDIRECT_URI + "&state=" + UUID().uuidString) else { return }
         /* guard let authURL = URL(string: "https://127.0.0.1:8081/") else { return }
         let session = ASWebAuthenticationSession(url: authURL, callbackURLScheme: "quickfeed", completionHandler: { (callbackURL, error) in
             //guard error == nil, let callbackURL = callbackURL else { return }

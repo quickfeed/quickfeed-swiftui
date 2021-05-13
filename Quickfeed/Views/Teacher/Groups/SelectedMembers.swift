@@ -17,24 +17,17 @@ struct SelectedMembers: View {
                 .frame(width: 75, height: 16, alignment: .leading)
             Spacer()
             HStack{
-                if groupCreator != nil{
-                    HStack{
-                        Text((groupCreator?.name)!)
-                    }
-                    .padding(4)
-                    .background(RoundedRectangle(cornerRadius: 4).fill(Color(.selectedTextBackgroundColor)))
-                    
-                }
                 ForEach(selectedMembers, id: \.self){ enrollment in
                     HStack{
-                        
                         Text(enrollment.user.name)
                             .frame(height: 16, alignment: .leading)
                             .help(enrollment.user.name)
-                        Button(action: {selectedMembers.removeAll(where: {$0.user.id == enrollment.user.id})}, label: {
-                            Image(systemName: "multiply.circle")
-                        })
-                        .buttonStyle(PlainButtonStyle())
+                        if enrollment.user.id != groupCreator?.id{
+                            Button(action: {selectedMembers.removeAll(where: {$0.user.id == enrollment.user.id})}, label: {
+                                Image(systemName: "multiply.circle")
+                            })
+                            .buttonStyle(PlainButtonStyle())
+                        }
                     }
                     .padding(4)
                     .background(RoundedRectangle(cornerRadius: 4).fill(Color(.selectedTextBackgroundColor)))
