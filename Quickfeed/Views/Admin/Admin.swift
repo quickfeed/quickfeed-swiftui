@@ -13,7 +13,7 @@ struct Admin: View {
         if showUsers {
             AdminUsers(viewModel: viewModel)
         } else {
-            AdminCourses(viewModel: viewModel, showUsers: $showUsers)
+            AdminCourses(viewModel: viewModel)
         }
     }
 }

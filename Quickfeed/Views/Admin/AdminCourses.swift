@@ -12,7 +12,7 @@ struct AdminCourses: View {
     
     var body: some View {
         if editCourse {
-            AllCourses(viewModel: viewModel, editCourse: $editCourse, course: $course)
+            AllCourses(viewModel: viewModel, course: $course, editCourse: $editCourse)
         } else {
             NewOrEditCourse(course: course, editCourse: $editCourse)
         }
