@@ -52,15 +52,10 @@ struct ResultGrid: View {
                 
             }
             ToolbarItem{
-                if !isSearching{
-                    Toggle(isOn: $isSearching, label: {
-                        Image(systemName: "magnifyingglass")
-                    })
-                    .keyboardShortcut("f")
-                } else {
-                    SearchField(query: $searchQuery)
-                        .frame(minWidth: 200, maxWidth: 350)
-                }
+                SearchFieldToolbarItem(isSearching: $isSearching, searchQuery: $searchQuery)
+            }
+            ToolbarItem{
+                SearchToggleToolbarItem(isSearching: $isSearching)
             }
         }
     }

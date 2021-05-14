@@ -8,13 +8,18 @@
 import SwiftUI
 
 struct SearchFieldToolbarItem: View {
+    @Binding var isSearching: Bool
+    @Binding var searchQuery: String
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        if !isSearching{
+            Toggle(isOn: $isSearching, label: {
+                Image(systemName: "magnifyingglass")
+            })
+            .keyboardShortcut("f")
+        } else {
+            SearchField(query: $searchQuery)
+                .frame(minWidth: 200, maxWidth: 350)
+        }
     }
 }
 
-struct SearchFieldToolbarItem_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchFieldToolbarItem()
-    }
-}
