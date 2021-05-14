@@ -10,6 +10,7 @@ import SwiftUI
 struct AllCourses: View {
     @ObservedObject var viewModel: AdminViewModel
     @State var searchQuery: String = ""
+    @State var isSearching: Bool = false
     @Binding var showUsers: Bool
     @Binding var editCourse: Bool
     @Binding var course: Course?
@@ -69,21 +70,22 @@ struct AllCourses: View {
         .frame(minWidth: 920, maxWidth: .infinity, minHeight: 100)
         .navigationTitle("Manage Courses")
         .toolbar{
-            Button(action: {
-                self.course = nil
-                self.editCourse = !self.editCourse
-            }, label: {
-                Image(systemName: "plus")
-            })
-            .help("Create New Course")
-            SearchField(query: $searchQuery)
-                .frame(minWidth: 200, maxWidth: 350)
+            ToolbarItem{
+                Button(action: {
+                    self.course = nil
+                    self.editCourse = !self.editCourse
+                }, label: {
+                    Image(systemName: "plus")
+                })
+                .help("Create New Course")
+            }
+            ToolbarItem{
+                SearchFieldToolbarItem(isSearching: $isSearching, searchQuery: $searchQuery)
+            }
+            ToolbarItem{
+                SearchToggleToolbarItem(isSearching: $isSearching)
+            }
         }
     }
 }
 
-/*struct AllCourses_Previews: PreviewProvider {
- static var previews: some View {
- AllCourses()
- }
- }*/

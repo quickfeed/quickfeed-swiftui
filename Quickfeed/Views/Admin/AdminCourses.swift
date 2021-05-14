@@ -22,8 +22,3 @@ struct AdminCourses: View {
     }
 }
 
-/*struct AdminCourses_Previews: PreviewProvider {
-    static var previews: some View {
-        AdminCourses()
-    }
-}*/

@@ -10,6 +10,7 @@ import SwiftUI
 struct AdminUsers: View {
     @ObservedObject var viewModel: AdminViewModel
     @State var searchQuery: String = ""
+    @State var isSearching: Bool = false
     @Binding var showUsers: Bool
     
     
@@ -74,13 +75,12 @@ struct AdminUsers: View {
         .background(Color.clear)
         .navigationTitle("Manage Users")
         .toolbar{
-            SearchField(query: $searchQuery)
-                .frame(minWidth: 200, maxWidth: 350)
+            ToolbarItem{
+                SearchFieldToolbarItem(isSearching: $isSearching, searchQuery: $searchQuery)
+            }
+            ToolbarItem{
+                SearchToggleToolbarItem(isSearching: $isSearching)
+            }
         }
     }
 }
-/*struct AdminUsers_Previews: PreviewProvider {
- static var previews: some View {
- AdminUsers()
- }
- }*/
