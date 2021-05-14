@@ -2,8 +2,6 @@
 //  CourseSelectorView.swift
 //  Quickfeed
 //
-//  Created by Oskar Gjølga on 05/02/2021.
-//
 
 import SwiftUI
 
