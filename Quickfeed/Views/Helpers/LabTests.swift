@@ -2,8 +2,6 @@
 //  LabTests.swift
 //  Quickfeed
 //
-//  Created by Bjørn Kristian Teisrud on 17/02/2021.
-//
 
 import SwiftUI
 
