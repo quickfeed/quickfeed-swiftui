@@ -59,29 +59,10 @@ struct AdminUsers: View {
         .navigationTitle("Manage Users")
         .toolbar{
             ToolbarItem{
-                if !isSearching{
-                    Toggle(isOn: $isSearching, label: {
-                        Image(systemName: "magnifyingglass")
-                    })
-                    .keyboardShortcut("f")
-                } else {
-                    
-                    SearchField(query: $searchQuery)
-                        .frame(minWidth: 200, maxWidth: 350)
-                }
+                SearchFieldToolbarItem(isSearching: $isSearching, searchQuery: $searchQuery)
             }
             ToolbarItem{
-                if isSearching{
-                    Button(action: {
-                        isSearching = false
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                            isSearching = true
-                        }
-                    }, label: {
-                    })
-                    .keyboardShortcut("f")
-                    .labelsHidden()
-                }
+                SearchToggleToolbarItem(isSearching: $isSearching)
             }
         }
     }

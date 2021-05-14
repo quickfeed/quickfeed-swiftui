@@ -55,6 +55,8 @@
 		FA17D89C264D159800C4CC23 /* ReleaseSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17D89B264D159800C4CC23 /* ReleaseSheet.swift */; };
 		FA17D89E264D1C6400C4CC23 /* ReleaseListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17D89D264D1C6400C4CC23 /* ReleaseListItem.swift */; };
 		FA17D8A0264D1C7500C4CC23 /* ReleaseListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17D89F264D1C7500C4CC23 /* ReleaseListHeader.swift */; };
+		FA17D8A2264EE55D00C4CC23 /* SearchFieldToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17D8A1264EE55D00C4CC23 /* SearchFieldToolbarItem.swift */; };
+		FA17D8A4264EE7AB00C4CC23 /* SearchToggleToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17D8A3264EE7AB00C4CC23 /* SearchToggleToolbarItem.swift */; };
 		FA29711F25D04CF2000C99A1 /* GithubLinkSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29711E25D04CF2000C99A1 /* GithubLinkSection.swift */; };
 		FA29716E25D28E45000C99A1 /* LabPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29716D25D28E45000C99A1 /* LabPicker.swift */; };
 		FA29717325D303E0000C99A1 /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29717225D303E0000C99A1 /* SearchField.swift */; };
@@ -143,6 +145,8 @@
 		FA17D89B264D159800C4CC23 /* ReleaseSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseSheet.swift; sourceTree = "<group>"; };
 		FA17D89D264D1C6400C4CC23 /* ReleaseListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseListItem.swift; sourceTree = "<group>"; };
 		FA17D89F264D1C7500C4CC23 /* ReleaseListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseListHeader.swift; sourceTree = "<group>"; };
+		FA17D8A1264EE55D00C4CC23 /* SearchFieldToolbarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFieldToolbarItem.swift; sourceTree = "<group>"; };
+		FA17D8A3264EE7AB00C4CC23 /* SearchToggleToolbarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchToggleToolbarItem.swift; sourceTree = "<group>"; };
 		FA29711E25D04CF2000C99A1 /* GithubLinkSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubLinkSection.swift; sourceTree = "<group>"; };
 		FA29712F25D05208000C99A1 /* ReviewList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewList.swift; sourceTree = "<group>"; };
 		FA29716D25D28E45000C99A1 /* LabPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabPicker.swift; sourceTree = "<group>"; };
@@ -323,13 +327,15 @@
 			path = Teacher;
 			sourceTree = "<group>";
 		};
-		FA29714825D123FC000C99A1 /* SearchBar */ = {
+		FA29714825D123FC000C99A1 /* SearchField */ = {
 			isa = PBXGroup;
 			children = (
 				FA29717225D303E0000C99A1 /* SearchField.swift */,
 				FA29717725D311B5000C99A1 /* SearchFieldController.swift */,
+				FA17D8A1264EE55D00C4CC23 /* SearchFieldToolbarItem.swift */,
+				FA17D8A3264EE7AB00C4CC23 /* SearchToggleToolbarItem.swift */,
 			);
-			path = SearchBar;
+			path = SearchField;
 			sourceTree = "<group>";
 		};
 		FA29714925D12432000C99A1 /* Pickers */ = {
@@ -427,7 +433,7 @@
 				D04B46E125D12E9D00AC8926 /* Student */,
 				FA29712325D05121000C99A1 /* Teacher */,
 				FA29714925D12432000C99A1 /* Pickers */,
-				FA29714825D123FC000C99A1 /* SearchBar */,
+				FA29714825D123FC000C99A1 /* SearchField */,
 				FA85798C25BEC5B600223DB9 /* Helpers */,
 			);
 			path = Views;
@@ -601,6 +607,7 @@
 				FA8EA69C26038F5D00A10351 /* AddGroupForm.swift in Sources */,
 				FAA8332C25E4F19E008C05F4 /* TeacherNavigationView.swift in Sources */,
 				FA4A88B82603688800A21CDA /* GroupListItem.swift in Sources */,
+				FA17D8A2264EE55D00C4CC23 /* SearchFieldToolbarItem.swift in Sources */,
 				D0F6A13C2609DD5000C1D825 /* RemoteImage.swift in Sources */,
 				FAA8333925E502F2008C05F4 /* ResultView.swift in Sources */,
 				FAA8331325E4EF92008C05F4 /* CoursePicker.swift in Sources */,
@@ -663,6 +670,7 @@
 				FA39C856263963CF00906EB4 /* GradingBenchmarkList.swift in Sources */,
 				FAB066B025CAC0F000FFE8EB /* ProviderProtocol.swift in Sources */,
 				D04331E62602B35C0034C4B9 /* HelpFunctions.swift in Sources */,
+				FA17D8A4264EE7AB00C4CC23 /* SearchToggleToolbarItem.swift in Sources */,
 				FA17B99325F258FA008BB07F /* GradingCriterionListItem.swift in Sources */,
 				D083089E260385AA005A1FF0 /* AllCourses.swift in Sources */,
 				D06D9AD325F638AE0016BD59 /* UserProfile.swift in Sources */,

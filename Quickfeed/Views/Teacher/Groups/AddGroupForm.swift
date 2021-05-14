@@ -11,6 +11,7 @@ struct AddGroupForm: View {
     @ObservedObject var viewModel: TeacherViewModel
     @State var groupName: String = ""
     @State var searchQuery: String = ""
+    @State var isSearching: Bool = false
     @State var selectedMembers: [Enrollment] = []
     @State var addGroupErr: String? = nil
     
@@ -102,8 +103,10 @@ struct AddGroupForm: View {
         .navigationSubtitle(viewModel.currentCourse.name)
         .toolbar{
             ToolbarItem{
-                SearchField(query: $searchQuery)
-                    .frame(minWidth: 200, maxWidth: 350)
+                SearchFieldToolbarItem(isSearching: $isSearching, searchQuery: $searchQuery)
+            }
+            ToolbarItem{
+                SearchToggleToolbarItem(isSearching: $isSearching)
             }
         }
         .padding()

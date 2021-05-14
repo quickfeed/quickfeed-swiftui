@@ -39,25 +39,10 @@ struct MemberList: View {
                 .help("Manage users")
             }
             ToolbarItem{
-                if !isSearching{
-                    Toggle(isOn: $isSearching, label: {
-                        Image(systemName: "magnifyingglass")
-                    })
-                    .keyboardShortcut("f")
-                } else {
-                    SearchField(query: $searchQuery)
-                        .frame(minWidth: 200, maxWidth: 350)
-                        .onExitCommand(perform: {self.isSearching = false})
-                }
+                SearchFieldToolbarItem(isSearching: $isSearching, searchQuery: $searchQuery)
             }
             ToolbarItem{
-                if isSearching{
-                    Toggle(isOn: $isSearching, label: {
-                        Image(systemName: "magnifyingglass")
-                    })
-                    .keyboardShortcut("f")
-                    .labelsHidden()
-                }
+                SearchToggleToolbarItem(isSearching: $isSearching)
             }
         }
     }

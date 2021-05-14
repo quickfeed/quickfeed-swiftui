@@ -9,10 +9,9 @@ struct AllCourses: View {
     @ObservedObject var viewModel: AdminViewModel
     @Binding var course: Course?
     @State var searchQuery: String = ""
-    @Binding var editCourse: Bool
     @State var isSearching: Bool = false
+    @Binding var editCourse: Bool
 
-    
     var body: some View {
         List{
             Section(header: HStack{
@@ -21,11 +20,11 @@ struct AllCourses: View {
                 Text("Course Name")
                     .frame(width: 300, alignment: .leading)
                 Spacer()
-                Text("SlipDays")
+                Text("Slip Days")
                     .frame(width: 120, alignment: .leading)
                 Text("Semester")
                     .frame(width: 120, alignment: .leading)
-                Text("Years")
+                Text("Year")
                     .frame(width: 80, alignment: .leading)
                 Divider()
                 Text("Edit")
@@ -72,32 +71,11 @@ struct AllCourses: View {
                 .help("Create New Course")
             }
             ToolbarItem{
-                if !isSearching{
-                    Toggle(isOn: $isSearching, label: {
-                        Image(systemName: "magnifyingglass")
-                    })
-                    .keyboardShortcut("f")
-                } else {
-                    
-                    SearchField(query: $searchQuery)
-                        .frame(minWidth: 200, maxWidth: 350)
-                }
+                SearchFieldToolbarItem(isSearching: $isSearching, searchQuery: $searchQuery)
             }
             ToolbarItem{
-                if isSearching{
-                    Button(action: {
-                        isSearching = false
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                            isSearching = true
-                        }
-                    }, label: {
-                    })
-                    .keyboardShortcut("f")
-                    .labelsHidden()
-                }
+                SearchToggleToolbarItem(isSearching: $isSearching)
             }
-//            SearchField(query: $searchQuery)
-//                .frame(minWidth: 200, maxWidth: 350)
         }
     }
     
@@ -107,3 +85,4 @@ struct AllCourses: View {
         return courses.filter({ matchesQuery(searchQuery: searchQuery, course: $0) })
     }
 }
+
