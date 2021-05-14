@@ -2,8 +2,6 @@
 //  AdminViewModel.swift
 //  Quickfeed
 //
-//  Created by Bjørn Kristian Teisrud on 17/03/2021.
-//
 
 import Foundation
 
@@ -41,6 +39,7 @@ class AdminViewModel: UserViewModelProtocol {
         course.tag = tag
         course.slipDays = UInt32(slipDays)!
         provider.updateCourse(course: course)
+        self.getCourses()
     }
     
     func getCourses(){

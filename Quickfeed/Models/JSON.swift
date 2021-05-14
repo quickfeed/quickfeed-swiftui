@@ -2,8 +2,6 @@
 //  JSON.swift
 //  Quickfeed
 //
-//  Created by Bjørn Kristian Teisrud on 09/02/2021.
-//
 
 import Foundation
 
@@ -20,5 +18,3 @@ struct ScoreObj: Codable, Hashable {
     var MaxScore: Int
     var Weight: Int
 }
-
-

@@ -65,8 +65,8 @@ struct CourseFields: View {
                 slipDays.append(UInt32(index))
             }
             self.slipDaysArray = slipDays
-            let year = Calendar.current.component(.year, from: Date())
             var yearsArray: [String] = []
+            let year = Calendar.current.component(.year, from: Date())
             for index in 0...2 {
                 yearsArray.append(String(year + index))
             }

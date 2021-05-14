@@ -67,7 +67,6 @@
 		FA4A88B32603687900A21CDA /* GroupListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4A88B22603687900A21CDA /* GroupListHeader.swift */; };
 		FA4A88B82603688800A21CDA /* GroupListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4A88B72603688800A21CDA /* GroupListItem.swift */; };
 		FA5A40E62609DCA700A20A13 /* SelectedMembers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5A40E52609DCA700A20A13 /* SelectedMembers.swift */; };
-		FA5A40EB2609F5C000A20A13 /* TranslateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5A40EA2609F5C000A20A13 /* TranslateError.swift */; };
 		FA5A4113260B56C000A20A13 /* ResultStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5A4112260B56C000A20A13 /* ResultStats.swift */; };
 		FA5FBDE225E7E63E007EC0E3 /* ServerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5FBDE125E7E63E007EC0E3 /* ServerProvider.swift */; };
 		FA6C3EB125D45E4500D8A798 /* ReviewListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6C3EB025D45E4500D8A798 /* ReviewListItem.swift */; };
@@ -159,7 +158,6 @@
 		FA4A88B22603687900A21CDA /* GroupListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListHeader.swift; sourceTree = "<group>"; };
 		FA4A88B72603688800A21CDA /* GroupListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListItem.swift; sourceTree = "<group>"; };
 		FA5A40E52609DCA700A20A13 /* SelectedMembers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedMembers.swift; sourceTree = "<group>"; };
-		FA5A40EA2609F5C000A20A13 /* TranslateError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateError.swift; sourceTree = "<group>"; };
 		FA5A4112260B56C000A20A13 /* ResultStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultStats.swift; sourceTree = "<group>"; };
 		FA5FBDE125E7E63E007EC0E3 /* ServerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerProvider.swift; sourceTree = "<group>"; };
 		FA6C3EB025D45E4500D8A798 /* ReviewListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewListItem.swift; sourceTree = "<group>"; };
@@ -273,9 +271,6 @@
 			children = (
 				D0F9FC6E25BEBC360080A1F2 /* ag.grpc.swift */,
 				D0F9FC6D25BEBC360080A1F2 /* ag.pb.swift */,
-				FA17B95C25EF81F1008BB07F /* TranslateStatus.swift */,
-				D04331E52602B35C0034C4B9 /* HelpFunctions.swift */,
-				FA5A40EA2609F5C000A20A13 /* TranslateError.swift */,
 			);
 			path = Proto;
 			sourceTree = "<group>";
@@ -396,6 +391,8 @@
 				FA85798025BEC4B000223DB9 /* Views */,
 				FA85795A25BEB9AC00223DB9 /* Models */,
 				D0F9FC6C25BEBBDB0080A1F2 /* Proto */,
+				FA17B95C25EF81F1008BB07F /* TranslateStatus.swift */,
+				D04331E52602B35C0034C4B9 /* HelpFunctions.swift */,
 				FA85790825BEB4E900223DB9 /* QuickfeedApp.swift */,
 				FA85790C25BEB4EA00223DB9 /* Assets.xcassets */,
 				FA85791125BEB4EA00223DB9 /* Info.plist */,
@@ -471,21 +468,13 @@
 		FAB066F825CAC84200FFE8EB /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				FAB066F925CAC85500FFE8EB /* Users */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		FAB066F925CAC85500FFE8EB /* Users */ = {
-			isa = PBXGroup;
-			children = (
 				FAB066FA25CAC89B00FFE8EB /* StudentViewModel.swift */,
 				FAB0670425CAC8BC00FFE8EB /* TeacherViewModel.swift */,
 				FAB0670B25CAC8D600FFE8EB /* UserViewModelProtocol.swift */,
 				D06A115C25ECE1A4004B0047 /* UserViewModel.swift */,
 				D04331D226028CD60034C4B9 /* AdminViewModel.swift */,
 			);
-			path = Users;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		FAC5364F25C0321600784980 /* Managers */ = {
@@ -647,7 +636,6 @@
 				FA5A40E62609DCA700A20A13 /* SelectedMembers.swift in Sources */,
 				FAA8330525E3E073008C05F4 /* MemberListItem.swift in Sources */,
 				FA29717825D311B5000C99A1 /* SearchFieldController.swift in Sources */,
-				FA5A40EB2609F5C000A20A13 /* TranslateError.swift in Sources */,
 				FAA8333E25E519E2008C05F4 /* ResultGrid.swift in Sources */,
 				FA5FBDE225E7E63E007EC0E3 /* ServerProvider.swift in Sources */,
 				D04B46EC25D1301200AC8926 /* LabSection.swift in Sources */,

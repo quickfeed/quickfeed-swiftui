@@ -2,8 +2,6 @@
 //  HelpFunctions.swift
 //  Quickfeed
 //
-//  Created by Bjørn Kristian Teisrud on 17/03/2021.
-//
 
 import Foundation
 

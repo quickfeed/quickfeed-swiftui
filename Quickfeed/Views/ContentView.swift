@@ -2,8 +2,6 @@
 //  ContentView.swift
 //  Quickfeed
 //
-//  Created by Oskar Gjølga on 25/01/2021.
-//
 
 import SwiftUI
 import AppKit

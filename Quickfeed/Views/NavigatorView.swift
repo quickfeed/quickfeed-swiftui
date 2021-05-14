@@ -2,10 +2,8 @@
 //  NavigatorView.swift
 //  Quickfeed
 //
-//  Created by Bjørn Kristian Teisrud on 26/02/2021.
-//
-import SwiftUI
 
+import SwiftUI
 
 struct NavigatorView: View {
     @ObservedObject var viewModel: UserViewModel
@@ -62,7 +60,7 @@ struct NavigatorView: View {
                     .padding(.vertical, 1.0)
                     .buttonStyle(PlainButtonStyle())
                 }
-                if viewModel.courses != nil && viewModel.courses != []{
+                if viewModel.courses == []{
                     NavigationLink(
                         destination: NewUserProfile(viewModel: viewModel, login: $login), tag: 1, selection: $activeDest){
                         HStack{

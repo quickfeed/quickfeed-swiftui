@@ -2,8 +2,6 @@
 //  UserEnrollments.swift
 //  Quickfeed
 //
-//  Created by Bjørn Kristian Teisrud on 23/03/2021.
-//
 
 import SwiftUI
 
@@ -52,6 +50,8 @@ struct UserEnrollments: View {
                         Divider()
                     }
                 }
+                .cornerRadius(10)
+                .padding(.horizontal)
             }
         } else {
             VStack(alignment: .leading){
@@ -84,6 +84,8 @@ struct UserEnrollments: View {
                         Divider()
                     }
                 }
+                .cornerRadius(10)
+                .padding(.trailing)
             }
         }
     }

@@ -2,8 +2,6 @@
 //  TranslateStatus.swift
 //  Quickfeed
 //
-//  Created by Oskar Gjølga on 03/03/2021.
-//
 
 import Foundation
 import SwiftUI

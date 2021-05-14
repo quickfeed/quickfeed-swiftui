@@ -2,8 +2,6 @@
 //  StudentViewModel.swift
 //  Quickfeed
 //
-//  Created by Oskar Gjølga on 03/02/2021.
-//
 
 import Foundation
 
@@ -112,12 +110,6 @@ class StudentViewModel: UserViewModelProtocol{
         }
         return nil
     }
-    
-    /*func getCriteriaStatus() -> [Submission.Status] {
-        var criteriaStatus: [Submission.Status] = []
-        
-        return criteriaStatus
-    }*/
     
     func reload() {
         self.getAssignments()

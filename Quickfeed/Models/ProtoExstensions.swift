@@ -2,8 +2,7 @@
 //  ProtoModelExstensions.swift
 //  Quickfeed
 //
-//  Created by Oskar Gjølga on 04/02/2021.
-//
+
 import SwiftUI
 import Foundation
 

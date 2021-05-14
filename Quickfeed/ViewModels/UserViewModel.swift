@@ -2,8 +2,6 @@
 //  UserViewModel.swift
 //  Quickfeed
 //
-//  Created by Bjørn Kristian Teisrud on 01/03/2021.
-//
 
 import Foundation
 
