@@ -184,7 +184,6 @@
 		FAB0670B25CAC8D600FFE8EB /* UserViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModelProtocol.swift; sourceTree = "<group>"; };
 		FAB0671C25CACF8700FFE8EB /* TeacherNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherNavigationView.swift; sourceTree = "<group>"; };
 		FABB233D25DBD91B00317969 /* MemberList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberList.swift; sourceTree = "<group>"; };
-		FAC5365025C0347300784980 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		FAE71C95262CCE9900856FF5 /* AssignmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentsView.swift; sourceTree = "<group>"; };
 		FAF945B625CC4E3200074A2F /* ProtoExstensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtoExstensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -487,7 +486,6 @@
 			isa = PBXGroup;
 			children = (
 				D01B3CD125C2D76900B126FB /* GRPCManager.swift */,
-				FAC5365025C0347300784980 /* UserManager.swift */,
 				D0005CC025E4EF2A00EDECD1 /* GitHubManager.swift */,
 			);
 			path = Managers;
