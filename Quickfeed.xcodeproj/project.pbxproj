@@ -271,8 +271,6 @@
 			children = (
 				D0F9FC6E25BEBC360080A1F2 /* ag.grpc.swift */,
 				D0F9FC6D25BEBC360080A1F2 /* ag.pb.swift */,
-				FA17B95C25EF81F1008BB07F /* TranslateStatus.swift */,
-				D04331E52602B35C0034C4B9 /* HelpFunctions.swift */,
 			);
 			path = Proto;
 			sourceTree = "<group>";
@@ -393,6 +391,8 @@
 				FA85798025BEC4B000223DB9 /* Views */,
 				FA85795A25BEB9AC00223DB9 /* Models */,
 				D0F9FC6C25BEBBDB0080A1F2 /* Proto */,
+				FA17B95C25EF81F1008BB07F /* TranslateStatus.swift */,
+				D04331E52602B35C0034C4B9 /* HelpFunctions.swift */,
 				FA85790825BEB4E900223DB9 /* QuickfeedApp.swift */,
 				FA85790C25BEB4EA00223DB9 /* Assets.xcassets */,
 				FA85791125BEB4EA00223DB9 /* Info.plist */,
