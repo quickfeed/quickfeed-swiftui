@@ -2,8 +2,6 @@
 //  NewOrEditCourse.swift
 //  Quickfeed
 //
-//  Created by Bjørn Kristian Teisrud on 18/03/2021.
-//
 
 import SwiftUI
 
@@ -68,15 +66,15 @@ struct NewOrEditCourse: View {
                                 Text("Connect Organization")
                             })
                             .alert(isPresented:$showingAlert) {
-                                        Alert(
-                                            title: Text("An Error Occurred"),
-                                            message: Text("Your github organization must allow Third-party application access policy"),
-                                            primaryButton: .default(Text("Redirect to Organization")) {
-                                                openURL(URL(string: orgUrl)!)
-                                            },
-                                            secondaryButton: .cancel()
-                                        )
-                                    }
+                                Alert(
+                                    title: Text("An Error Occurred"),
+                                    message: Text("Your github organization must allow Third-party application access policy"),
+                                    primaryButton: .default(Text("Redirect to Organization")) {
+                                        openURL(URL(string: orgUrl)!)
+                                    },
+                                    secondaryButton: .cancel()
+                                )
+                            }
                         }
                     } else {
                         CourseFields(course: course)
@@ -129,9 +127,3 @@ struct NewOrEditCourse: View {
         }
     }
 }
-
-/*struct NewOrEditCourse_Previews: PreviewProvider {
- static var previews: some View {
- NewOrEditCourse()
- }
- }*/

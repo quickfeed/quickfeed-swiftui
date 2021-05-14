@@ -2,28 +2,12 @@
 //  AdminUsers.swift
 //  Quickfeed
 //
-//  Created by Bjørn Kristian Teisrud on 17/03/2021.
-//
 
 import SwiftUI
 
 struct AdminUsers: View {
     @ObservedObject var viewModel: AdminViewModel
     @State var searchQuery: String = ""
-    @Binding var showUsers: Bool
-    
-    
-    func filteredUsers() -> [User] {
-        var users = viewModel.users!
-        users.sort {
-            if $0.isAdmin != $1.isAdmin{
-                return $0.isAdmin && !$1.isAdmin
-            } else {
-                return $0.name.trimmingCharacters(in: .whitespacesAndNewlines) < $1.name.trimmingCharacters(in: .whitespacesAndNewlines)
-            }
-        }
-        return users.filter({ matchesQuery(searchQuery: searchQuery, user: $0) })
-    }
     
     var body: some View {
         List{
@@ -71,16 +55,23 @@ struct AdminUsers: View {
             })
         }
         .frame(minWidth: 700, maxWidth: .infinity)
-        .background(Color.clear)
         .navigationTitle("Manage Users")
         .toolbar{
             SearchField(query: $searchQuery)
                 .frame(minWidth: 200, maxWidth: 350)
         }
     }
+    
+    func filteredUsers() -> [User] {
+        var users = viewModel.users!
+        users.sort {
+            if $0.isAdmin != $1.isAdmin{
+                return $0.isAdmin && !$1.isAdmin
+            } else {
+                return $0.name.trimmingCharacters(in: .whitespacesAndNewlines) < $1.name.trimmingCharacters(in: .whitespacesAndNewlines)
+            }
+        }
+        return users.filter({ matchesQuery(searchQuery: searchQuery, user: $0) })
+    }
+    
 }
-/*struct AdminUsers_Previews: PreviewProvider {
- static var previews: some View {
- AdminUsers()
- }
- }*/
