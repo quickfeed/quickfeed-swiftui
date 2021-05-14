@@ -89,7 +89,7 @@ class UserViewModel: UserViewModelProtocol {
     }
     
     func getEnrollmentByCourse(courseID: UInt64) -> Enrollment?{
-        if self.enrollments != nil {
+        if self.enrollments.count > 0 {
             for enrollment in self.enrollments {
                 if enrollment.courseID == courseID {
                     return enrollment
