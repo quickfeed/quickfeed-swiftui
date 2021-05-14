@@ -16,6 +16,7 @@ class StudentViewModel: UserViewModelProtocol{
     @Published var group: Group?
     @Published var assignments: [Assignment]?
     @Published var submissions: [Submission]?
+    @Published var enrollments: [Enrollment] = []
     
     private init() {
         print("New StudentViewModel")
@@ -26,8 +27,34 @@ class StudentViewModel: UserViewModelProtocol{
         self.group = provider.getGroupByUserAndCourse(courseId: course.id, userId: user.id)
     }
     
+    func getEnrollmentsByCourse() {
+        let response = self.provider.getEnrollmentsByCourse(courseId: self.course!.id, ignoreGroupMembers: true, enrollmentStatus: [Enrollment.UserStatus.student])
+        _ = response.always {(response: Result<Enrollments, Error>) in
+            switch response {
+            case .success(let response):
+                DispatchQueue.main.async {
+                    self.enrollments = response.enrollments
+                }
+            case .failure(let err):
+                print("[Error] Connection error or enrollments not found: \(err)")
+                self.enrollments = []
+            }
+        }
+    }
+    
     func getAssignments(){
         self.assignments = provider.getAssignments(courseID: course!.id)
+    }
+    
+    func hasGroupAssignments() -> Bool{
+        if self.assignments != nil{
+            for assignment in self.assignments!{
+                if assignment.isGroupLab{
+                    return true
+                }
+            }
+        }
+        return false
     }
     
     func getSubmission(assignment: Assignment) -> Submission? {

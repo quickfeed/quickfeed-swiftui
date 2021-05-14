@@ -1,22 +1,15 @@
 //
-//  UserEnrollments.swift
+//  NewUserEnrollments.swift
 //  Quickfeed
 //
-//  Created by Bjørn Kristian Teisrud on 23/03/2021.
+//  Created by Bjørn Kristian Teisrud on 28/04/2021.
 //
 
 import SwiftUI
 
-struct UserEnrollments: View {
+struct NewUserEnrollments: View {
     @ObservedObject var viewModel: UserViewModel
-    @Binding var selectedCourse: UInt64
-    @State private var newEnrollments: Bool = false
-    
-    func sortCourseByCode() -> [Course] {
-        var courses = viewModel.getAllCourses()!
-        courses.sort { $0.code < $1.code }
-        return courses
-    }
+    @State private var newEnrollments: Bool = true
     
     var body: some View {
         if !newEnrollments {
@@ -44,11 +37,6 @@ struct UserEnrollments: View {
                             Spacer()
                             Text(translateUserStatus(status: enrollment.status))
                         }
-                        .onTapGesture {
-                            if enrollment.status == Enrollment.UserStatus.student || enrollment.status == Enrollment.UserStatus.teacher {
-                                self.selectedCourse = enrollment.courseID
-                            }
-                        }
                         Divider()
                     }
                 }
@@ -56,10 +44,12 @@ struct UserEnrollments: View {
         } else {
             VStack(alignment: .leading){
                 HStack{
-                    Button(action: { self.newEnrollments = !self.newEnrollments}){
-                        Image(systemName: "chevron.backward")
+                    if viewModel.enrollments != []{
+                        Button(action: { self.newEnrollments = !self.newEnrollments}){
+                            Image(systemName: "chevron.backward")
+                        }
+                        .buttonStyle(PlainButtonStyle())
                     }
-                    .buttonStyle(PlainButtonStyle())
                     Spacer()
                     Text("New Enrollments")
                         .font(.title2)
@@ -88,3 +78,4 @@ struct UserEnrollments: View {
         }
     }
 }
+

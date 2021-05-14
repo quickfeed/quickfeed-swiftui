@@ -67,13 +67,14 @@ struct UserInformation: View {
                     .padding(.leading)
             }
             if isEditingUser {
-                Button(action: {
-                    viewModel.updateUser(name: userName, studentID: userStudentID, email: userEmail)
-                    self.isEditingUser = false
-                }, label: {
-                    Text("Done")
-                })
-                .disabled(!self.isValidEmail() || !self.isValidStudentID() || !self.isValidName())
+                if self.isValidEmail() && self.isValidStudentID() && self.isValidName(){
+                    Button(action: {
+                        viewModel.updateUser(name: userName, studentID: userStudentID, email: userEmail)
+                        self.isEditingUser = false
+                    }, label: {
+                        Text("Done")
+                    })
+                }
             }else {
                 Button(action: {
                     self.isEditingUser = true

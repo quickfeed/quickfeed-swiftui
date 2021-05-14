@@ -22,7 +22,7 @@ struct LogIn: View {
                 VStack{
                     Divider()
                 }
-                Text("Log In")
+                Text("Sign In")
                 VStack{
                     Divider()
                 }

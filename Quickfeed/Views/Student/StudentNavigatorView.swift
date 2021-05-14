@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct StudentNavigatorView: View {
-    @ObservedObject var viewModel: StudentViewModel
+    @ObservedObject var viewModel: StudentViewModel = StudentViewModel.shared
     //@State var reload: Bool = false
     
-    init(viewModel: StudentViewModel, course: Course) {
+    init(viewModelTest: StudentViewModel, course: Course) {
         viewModel.setCourse(course: course)
-        self.viewModel = viewModel
+        //        self.viewModel = viewModel
         viewModel.getAssignments()
         viewModel.getSubmissions()
     }
@@ -37,14 +37,20 @@ struct StudentNavigatorView: View {
         }
         List{
             LabSection(viewModel: viewModel)
+            if viewModel.group == nil && viewModel.hasGroupAssignments(){
+                Section(header: Text("Groups")){
+                    NavigationLink(destination: NewGroup(viewModel: viewModel)){
+                        HStack{
+                            Text("New Group")
+                            Spacer()
+                            Image(systemName: "person.3.fill")
+                        }
+                        .padding(.leading)
+                    }
+                }
+            }
             GithubLinkSection(orgPath: viewModel.course!.organizationPath, userLogin: viewModel.user.login, group: viewModel.group, isTeacher: false)
                 .padding(.leading)
         }
     }
 }
-
-/*struct StudentNavigatorView_Previews: PreviewProvider {
- static var previews: some View {
- StudentNavigatorView(viewModel: StudentViewModel(provider: <#T##ProviderProtocol#>, course: <#T##Course#>))
- }
- }*/
