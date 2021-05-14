@@ -61,7 +61,6 @@ struct ReleaseListItem: View {
     }
     
     func hasReadyReviewForAssignment() -> Bool{
-        
         if subLink.submission.reviews.contains(where: {$0.ready}){
             return true
         }
