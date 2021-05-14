@@ -471,21 +471,13 @@
 		FAB066F825CAC84200FFE8EB /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				FAB066F925CAC85500FFE8EB /* Users */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		FAB066F925CAC85500FFE8EB /* Users */ = {
-			isa = PBXGroup;
-			children = (
 				FAB066FA25CAC89B00FFE8EB /* StudentViewModel.swift */,
 				FAB0670425CAC8BC00FFE8EB /* TeacherViewModel.swift */,
 				FAB0670B25CAC8D600FFE8EB /* UserViewModelProtocol.swift */,
 				D06A115C25ECE1A4004B0047 /* UserViewModel.swift */,
 				D04331D226028CD60034C4B9 /* AdminViewModel.swift */,
 			);
-			path = Users;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		FAC5364F25C0321600784980 /* Managers */ = {

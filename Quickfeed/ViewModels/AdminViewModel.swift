@@ -41,6 +41,7 @@ class AdminViewModel: UserViewModelProtocol {
         course.tag = tag
         course.slipDays = UInt32(slipDays)!
         provider.updateCourse(course: course)
+        self.getCourses()
     }
     
     func getCourses(){
