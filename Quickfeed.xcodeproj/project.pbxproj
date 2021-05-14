@@ -67,7 +67,6 @@
 		FA4A88B32603687900A21CDA /* GroupListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4A88B22603687900A21CDA /* GroupListHeader.swift */; };
 		FA4A88B82603688800A21CDA /* GroupListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4A88B72603688800A21CDA /* GroupListItem.swift */; };
 		FA5A40E62609DCA700A20A13 /* SelectedMembers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5A40E52609DCA700A20A13 /* SelectedMembers.swift */; };
-		FA5A40EB2609F5C000A20A13 /* TranslateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5A40EA2609F5C000A20A13 /* TranslateError.swift */; };
 		FA5A4113260B56C000A20A13 /* ResultStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5A4112260B56C000A20A13 /* ResultStats.swift */; };
 		FA5FBDE225E7E63E007EC0E3 /* ServerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5FBDE125E7E63E007EC0E3 /* ServerProvider.swift */; };
 		FA6C3EB125D45E4500D8A798 /* ReviewListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6C3EB025D45E4500D8A798 /* ReviewListItem.swift */; };
@@ -159,7 +158,6 @@
 		FA4A88B22603687900A21CDA /* GroupListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListHeader.swift; sourceTree = "<group>"; };
 		FA4A88B72603688800A21CDA /* GroupListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListItem.swift; sourceTree = "<group>"; };
 		FA5A40E52609DCA700A20A13 /* SelectedMembers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedMembers.swift; sourceTree = "<group>"; };
-		FA5A40EA2609F5C000A20A13 /* TranslateError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateError.swift; sourceTree = "<group>"; };
 		FA5A4112260B56C000A20A13 /* ResultStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultStats.swift; sourceTree = "<group>"; };
 		FA5FBDE125E7E63E007EC0E3 /* ServerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerProvider.swift; sourceTree = "<group>"; };
 		FA6C3EB025D45E4500D8A798 /* ReviewListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewListItem.swift; sourceTree = "<group>"; };
@@ -275,7 +273,6 @@
 				D0F9FC6D25BEBC360080A1F2 /* ag.pb.swift */,
 				FA17B95C25EF81F1008BB07F /* TranslateStatus.swift */,
 				D04331E52602B35C0034C4B9 /* HelpFunctions.swift */,
-				FA5A40EA2609F5C000A20A13 /* TranslateError.swift */,
 			);
 			path = Proto;
 			sourceTree = "<group>";
@@ -639,7 +636,6 @@
 				FA5A40E62609DCA700A20A13 /* SelectedMembers.swift in Sources */,
 				FAA8330525E3E073008C05F4 /* MemberListItem.swift in Sources */,
 				FA29717825D311B5000C99A1 /* SearchFieldController.swift in Sources */,
-				FA5A40EB2609F5C000A20A13 /* TranslateError.swift in Sources */,
 				FAA8333E25E519E2008C05F4 /* ResultGrid.swift in Sources */,
 				FA5FBDE225E7E63E007EC0E3 /* ServerProvider.swift in Sources */,
 				D04B46EC25D1301200AC8926 /* LabSection.swift in Sources */,
