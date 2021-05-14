@@ -2,8 +2,6 @@
 //  SearchFieldController.swift
 //  Quickfeed
 //
-//  Created by Oskar Gjølga on 09/02/2021.
-//
 
 import SwiftUI
 import AppKit
