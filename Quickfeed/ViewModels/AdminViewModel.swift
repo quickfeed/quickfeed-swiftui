@@ -31,13 +31,24 @@ class AdminViewModel: UserViewModelProtocol {
     }
     
     // Courses
-    func updateCourse(course: Course, name: String, code: String, year: String, tag: String, slipDays: String){
+    func createCourse(name: String, code: String, year: String, tag: String, slipDays: UInt32){
+        var course = Course()
+        course.name = name
+        course.code = code
+        course.year = UInt32(year)!
+        course.tag = tag
+        course.slipDays = slipDays
+        provider.updateCourse(course: course)
+        self.getCourses()
+    }
+    
+    func updateCourse(course: Course, name: String, code: String, year: String, tag: String, slipDays: UInt32){
         var course = course
         course.name = name
         course.code = code
         course.year = UInt32(year)!
         course.tag = tag
-        course.slipDays = UInt32(slipDays)!
+        course.slipDays = slipDays
         provider.updateCourse(course: course)
         self.getCourses()
     }

@@ -14,7 +14,7 @@ struct AdminCourses: View {
         if editCourse {
             AllCourses(viewModel: viewModel, course: $course, editCourse: $editCourse)
         } else {
-            NewOrEditCourse(course: course, editCourse: $editCourse)
+            NewOrEditCourse(viewModel: viewModel, course: course, editCourse: $editCourse)
         }
     }
 }

@@ -6,6 +6,7 @@
 import SwiftUI
 
 struct NewOrEditCourse: View {
+    @ObservedObject var viewModel: AdminViewModel
     var course: Course?
     @Binding var editCourse: Bool
     @State var validOrg: Bool = false
@@ -77,7 +78,7 @@ struct NewOrEditCourse: View {
                             }
                         }
                     } else {
-                        CourseFields(course: course)
+                        CourseFields(viewModel: viewModel, course: course)
                     }
                 }
                 Spacer()
@@ -105,10 +106,7 @@ struct NewOrEditCourse: View {
                 .fontWeight(.bold)
                 .padding(.bottom)
             Form{
-                CourseFields(course: course)
-                Button(action: {}, label: {
-                    Text("Edit")
-                })
+                CourseFields(viewModel: viewModel, course: course)
             }
             .frame(minWidth: 450)
             Spacer()

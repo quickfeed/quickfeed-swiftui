@@ -135,8 +135,8 @@ class ServerProvider: ProviderProtocol{
         fatalError("Not implemented")
     }
     
-    func createNewCourse(course: Course) -> Course {
-        fatalError("Not implemented")
+    func createNewCourse(course: Course) -> Course? {
+        return grpcManager.createCourse(course: course)
     }
     
     func updateCourse(course: Course) {

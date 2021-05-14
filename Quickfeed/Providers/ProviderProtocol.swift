@@ -28,7 +28,7 @@ protocol ProviderProtocol{
     func addUserToCourse(course: Course, user: User) -> Bool
     func changeUserStatus(enrollment: Enrollment, status: Enrollment.UserStatus) -> Status
     func approveAll(courseId: UInt64) -> Bool
-    func createNewCourse(course: Course) -> Course
+    func createNewCourse(course: Course) -> Course?
     func updateCourse(course: Course)
     func updateCourseVisibility(enrollment: Enrollment) -> Bool
     func getGroupsForCourse(courseId: UInt64) -> [Group]

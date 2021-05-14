@@ -404,6 +404,17 @@ class GRPCManager {
     }
     
     // Course
+    func createCourse(course: Course) -> Course?{
+        let call = self.quickfeedClient.createCourse(course, callOptions: self.defaultOptions)
+        
+        do {
+            let resp = try call.response.wait()
+            return resp
+        } catch {
+            print("Call failed: \(error)")
+            return nil
+        }
+    }
     
     func updateCourse(course: Course){
         let call = self.quickfeedClient.updateCourse(course, callOptions: self.defaultOptions)
@@ -416,10 +427,10 @@ class GRPCManager {
     }
     
     func getOrganization(orgName: String) -> Organization? {
-        var test = OrgRequest()
-        test.orgName = orgName
+        var orgRequest = OrgRequest()
+        orgRequest.orgName = orgName
         
-        let call = self.quickfeedClient.getOrganization(test, callOptions: self.defaultOptions)
+        let call = self.quickfeedClient.getOrganization(orgRequest, callOptions: self.defaultOptions)
         
         do {
             let resp = try call.response.wait()
@@ -429,11 +440,6 @@ class GRPCManager {
             return nil
         }
     }
-    
-    
-    
-    
-    
     
     func shutdown() {
         // Close the connections when we're done with it.
