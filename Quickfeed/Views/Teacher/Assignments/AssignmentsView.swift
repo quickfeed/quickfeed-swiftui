@@ -27,6 +27,7 @@ struct AssignmentsView: View {
                 Divider()
             }
         }
+        .frame(minWidth: 400, minHeight: 200)
         .sheet(isPresented: $isShowingSheet, onDismiss: dismissSheet, content: {
             VStack {
                 HStack{
