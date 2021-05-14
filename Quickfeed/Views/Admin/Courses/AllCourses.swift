@@ -81,9 +81,3 @@ struct AllCourses: View {
         }
     }
 }
-
-/*struct AllCourses_Previews: PreviewProvider {
- static var previews: some View {
- AllCourses()
- }
- }*/

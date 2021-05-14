@@ -27,10 +27,13 @@ struct GradingCriterionView: View {
                     Section(header: Text(benchmark.heading)){
                         ForEach(benchmark.criteria, id: \.self){ criterion in
                             Text(criterion.description_p)
+                            Divider()
                         }
                     }
                 }
             }
+            .frame(minHeight: 100)
+            .cornerRadius(10)
             Spacer()
         }
         Spacer()
