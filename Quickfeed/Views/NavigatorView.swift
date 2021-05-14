@@ -62,7 +62,7 @@ struct NavigatorView: View {
                     .padding(.vertical, 1.0)
                     .buttonStyle(PlainButtonStyle())
                 }
-                if viewModel.courses != nil && viewModel.courses != []{
+                if viewModel.courses == []{
                     NavigationLink(
                         destination: NewUserProfile(viewModel: viewModel, login: $login), tag: 1, selection: $activeDest){
                         HStack{
