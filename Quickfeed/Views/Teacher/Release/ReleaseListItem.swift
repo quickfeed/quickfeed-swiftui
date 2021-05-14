@@ -52,19 +52,41 @@ struct ReleaseListItem: View {
             Spacer()
             HStack{
                 Button(action: {}, label: {
-                    Text("Release")
+                    Text(releaseButtonText())
                 })
-                .disabled(hasReadyReviewForAssignment() ? false : true)
+                .disabled(releasable() ? false : true)
+                .help("NOT IMPLEMENTED")
             }
             .frame(width: 100, alignment: .trailing)
         }
     }
     
-    func hasReadyReviewForAssignment() -> Bool{
-        if subLink.submission.reviews.contains(where: {$0.ready}){
-            return true
+    func releaseButtonText() -> String{
+        if releasable(){
+            return "Release"
+        }
+        if !hasReview(){
+            return "Release"
+        }
+        return "Released"
+    }
+    
+    func hasReview() -> Bool{
+        return subLink.submission.reviews.contains(where: {$0.ready})
+    }
+    
+    func releasable() -> Bool{
+        if !hasReview(){
+            return false
+        }
+        if subLink.submission.status == Submission.Status.approved {
+            return false
+        }
+        if subLink.submission.status == Submission.Status.rejected {
+            return false
         }
         
-        return false
+        return true
     }
 }
+
