@@ -6,6 +6,7 @@
 import SwiftUI
 
 struct CourseFields: View {
+    @ObservedObject var viewModel: AdminViewModel
     var course: Course?
     @State var code: String = ""
     @State var name: String = ""
@@ -29,26 +30,8 @@ struct CourseFields: View {
             .textFieldStyle(RoundedBorderTextFieldStyle())
             .frame(width: 400)
             .padding(.leading)
-        Text("Semester:")
-            .bold()
-        Picker("Enter course tag...", selection: $tag) {
-            ForEach(tags, id: \.self) {
-                Text($0)
-            }
-        }
-        .frame(width: 400)
-        .labelsHidden()
-        .padding(.leading)
-        Text("Year:")
-            .bold()
-        Picker("Enter course tag...", selection: $year) {
-            ForEach(years, id: \.self) {
-                Text($0)
-            }
-        }
-        .frame(width: 400)
-        .labelsHidden()
-        .padding(.leading)
+        CourseFieldPickers(name: "Semester", list: tags, value: $tag)
+        CourseFieldPickers(name: "Year", list: years, value: $year)
         Text("SlipDays:")
             .bold()
         Picker("Enter course tag...", selection: $slipDays) {
@@ -59,6 +42,18 @@ struct CourseFields: View {
         .frame(width: 400)
         .labelsHidden()
         .padding(.leading)
+        if code != "" && name != "" {
+            Button(action: {
+                if course == nil {
+                    viewModel.createCourse(name: name, code: code, year: year, tag: tag, slipDays: slipDays)
+                }else{
+                    viewModel.updateCourse(course: course!, name: name, code: code, year: year, tag: tag, slipDays: slipDays)
+                }
+            }, label: {
+                Text(course == nil ? "Create" : "Edit")
+            })
+        }
+        Spacer()
         .onAppear(perform: {
             var slipDays: [UInt32] = []
             for index in 0...20 {
@@ -90,3 +85,23 @@ struct CourseFields: View {
         })
     }
 }
+
+struct CourseFieldPickers: View {
+    var name: String
+    var list: [String]
+    @Binding var value: String
+    
+    var body: some View {
+        Text("\(name):")
+            .bold()
+        Picker("Enter course \(name)...", selection: $value) {
+            ForEach(list, id: \.self) {
+                Text($0)
+            }
+        }
+        .frame(width: 400)
+        .labelsHidden()
+        .padding(.leading)
+    }
+}
+

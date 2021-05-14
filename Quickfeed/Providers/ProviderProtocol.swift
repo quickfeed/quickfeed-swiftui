@@ -28,7 +28,7 @@ protocol ProviderProtocol{
     func addUserToCourse(course: Course, user: User) -> Bool
     func changeUserStatus(enrollment: Enrollment, status: Enrollment.UserStatus) -> Status
     func approveAll(courseId: UInt64) -> Bool
-    func createNewCourse(course: Course) -> Course
+    func createNewCourse(course: Course) -> Course?
     func updateCourse(course: Course)
     func updateCourseVisibility(enrollment: Enrollment) -> Bool
     func getGroupsForCourse(courseId: UInt64) -> [Group]
@@ -43,7 +43,7 @@ protocol ProviderProtocol{
     func getSubmissionsByGroub(courseId: UInt64, groupId: UInt64) -> [Submission]
     func getSubmissionsByCourse(courseId: UInt64, type: SubmissionsForCourseRequest.TypeEnum) -> EventLoopFuture<CourseSubmissions>
     func getEnrollmentsForUser(userId: UInt64) -> [Enrollment]
-    func getOrganization(orgName: String) -> Organization
+    func getOrganization(orgName: String) -> EventLoopFuture<Organization>
     func getProviders() -> [String]
     func updateAssignments(courseId: UInt64) -> Bool
     func updateSubmission(courseId: UInt64, submisssion: Submission) -> Bool
