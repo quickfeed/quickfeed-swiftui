@@ -168,8 +168,8 @@ class ServerProvider: ProviderProtocol{
         fatalError("Not implemented")
     }
     
-    func getOrganization(orgName: String) -> Organization {
-        fatalError("Not implemented")
+    func getOrganization(orgName: String) -> EventLoopFuture<Organization> {
+        return grpcManager.getOrganization(orgName: orgName)
     }
     
     func changeName(newName: String) {

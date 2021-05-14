@@ -61,8 +61,15 @@ struct NewOrEditCourse: View {
                     if !validOrg {
                         HStack{
                             Button(action: {
+                                if viewModel.getOrganization(orgName: organization) {
+                                    validOrg = true
+                                    showingAlert = false
+                                } else {
+                                    validOrg = false
+                                    showingAlert = true
+                                }
                                 //showingAlert = true
-                                validOrg = true
+                                //validOrg = true
                             }, label: {
                                 Text("Connect Organization")
                             })

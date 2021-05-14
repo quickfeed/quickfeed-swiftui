@@ -426,19 +426,13 @@ class GRPCManager {
         }
     }
     
-    func getOrganization(orgName: String) -> Organization? {
+    func getOrganization(orgName: String) -> EventLoopFuture<Organization> {
         var orgRequest = OrgRequest()
         orgRequest.orgName = orgName
         
         let call = self.quickfeedClient.getOrganization(orgRequest, callOptions: self.defaultOptions)
         
-        do {
-            let resp = try call.response.wait()
-            return resp
-        } catch {
-            print("Call failed: \(error)")
-            return nil
-        }
+        return call.response
     }
     
     func shutdown() {
