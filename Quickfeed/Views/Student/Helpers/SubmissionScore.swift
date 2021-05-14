@@ -2,8 +2,6 @@
 //  SubmissionScore.swift
 //  Quickfeed
 //
-//  Created by Bjørn Kristian Teisrud on 11/03/2021.
-//
 
 import SwiftUI
 
@@ -27,9 +25,3 @@ struct SubmissionScore: View {
         }
     }
 }
-
-/*struct SubmissionScore_Previews: PreviewProvider {
-    static var previews: some View {
-        SubmissionScore()
-    }
-}*/
