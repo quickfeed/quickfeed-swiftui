@@ -30,7 +30,6 @@
 		D083089E260385AA005A1FF0 /* AllCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = D083089D260385AA005A1FF0 /* AllCourses.swift */; };
 		D08308A6260385C2005A1FF0 /* NewOrEditCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08308A5260385C2005A1FF0 /* NewOrEditCourse.swift */; };
 		D08A3C1026278B0A00A6E626 /* NewUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08A3C0F26278B0A00A6E626 /* NewUserProfile.swift */; };
-		D08BA18525FA3B2F008A3F6D /* ReviewPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08BA18425FA3B2F008A3F6D /* ReviewPicker.swift */; };
 		D08BA18A25FA4875008A3F6D /* SubmissionScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08BA18925FA4875008A3F6D /* SubmissionScore.swift */; };
 		D08D62962611D72A00343250 /* LogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08D62952611D72A00343250 /* LogIn.swift */; };
 		D08D62A12611DEB200343250 /* NewUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08D62A02611DEB200343250 /* NewUser.swift */; };
@@ -96,7 +95,6 @@
 		FAB0670C25CAC8D600FFE8EB /* UserViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0670B25CAC8D600FFE8EB /* UserViewModelProtocol.swift */; };
 		FABB233E25DBD91B00317969 /* MemberList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB233D25DBD91B00317969 /* MemberList.swift */; };
 		FAE71C96262CCE9900856FF5 /* AssignmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE71C95262CCE9900856FF5 /* AssignmentsView.swift */; };
-		FAF1329C262087A000795869 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = FAF1329B262087A000795869 /* SwiftUIX */; settings = {ATTRIBUTES = (Weak, ); }; };
 		FAF945B725CC4E3200074A2F /* ProtoExstensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF945B625CC4E3200074A2F /* ProtoExstensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -124,7 +122,6 @@
 		D083089D260385AA005A1FF0 /* AllCourses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCourses.swift; sourceTree = "<group>"; };
 		D08308A5260385C2005A1FF0 /* NewOrEditCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOrEditCourse.swift; sourceTree = "<group>"; };
 		D08A3C0F26278B0A00A6E626 /* NewUserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserProfile.swift; sourceTree = "<group>"; };
-		D08BA18425FA3B2F008A3F6D /* ReviewPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPicker.swift; sourceTree = "<group>"; };
 		D08BA18925FA4875008A3F6D /* SubmissionScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionScore.swift; sourceTree = "<group>"; };
 		D08D62952611D72A00343250 /* LogIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogIn.swift; sourceTree = "<group>"; };
 		D08D62A02611DEB200343250 /* NewUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUser.swift; sourceTree = "<group>"; };
@@ -344,7 +341,6 @@
 			children = (
 				FA44BC1725CDE4FB00FDB9A2 /* CoursePicker.swift */,
 				FA29716D25D28E45000C99A1 /* LabPicker.swift */,
-				D08BA18425FA3B2F008A3F6D /* ReviewPicker.swift */,
 			);
 			path = Pickers;
 			sourceTree = "<group>";
@@ -620,7 +616,6 @@
 				FA17B95525EF7D6F008BB07F /* SubmissionReview.swift in Sources */,
 				FA6C3EB125D45E4500D8A798 /* ReviewListItem.swift in Sources */,
 				FA17B98E25F2510D008BB07F /* CriterionStatusControl.swift in Sources */,
-				D08BA18525FA3B2F008A3F6D /* ReviewPicker.swift in Sources */,
 				D04B470225D1741300AC8926 /* StudentLab.swift in Sources */,
 				D06024B125DD23D4009390A1 /* LabTests.swift in Sources */,
 				FA17D8A0264D1C7500C4CC23 /* ReleaseListHeader.swift in Sources */,
