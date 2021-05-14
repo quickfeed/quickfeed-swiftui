@@ -2,10 +2,8 @@
 //  NavigatorView.swift
 //  Quickfeed
 //
-//  Created by Bjørn Kristian Teisrud on 26/02/2021.
-//
-import SwiftUI
 
+import SwiftUI
 
 struct NavigatorView: View {
     @ObservedObject var viewModel: UserViewModel
