@@ -52,7 +52,7 @@ struct TeacherNavigationView: View {
                             .foregroundColor(.blue)
                         Text("Review")
                     }
-                    NavigationLink(destination: ReleaseNavigationView(viewModel: viewModel, selectedLab: $selectedLabForManualGrading)){
+                    NavigationLink(destination: ReleaseList(viewModel: viewModel, selectedLab: $selectedLabForManualGrading)){
                         Image(systemName: "arrow.up.doc.fill")
                             .frame(width: 20)
                             .foregroundColor(.blue)

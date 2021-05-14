@@ -1,15 +1,15 @@
 //
-//  ReviewListHeader.swift
+//  ReleaseListHeader.swift
 //  Quickfeed
 //
-//  Created by Oskar Gjølga on 06/05/2021.
+//  Created by Oskar Gjølga on 13/05/2021.
 //
 
 import SwiftUI
 
-struct ReviewListHeader: View {
+struct ReleaseListHeader: View {
     var body: some View {
-        HStack(){
+        HStack{
             Text("Name")
                 .frame(width: 200, alignment: .leading)
             Spacer()
@@ -20,6 +20,10 @@ struct ReviewListHeader: View {
                 .frame(width: 200, alignment: .leading)
             Spacer()
             Text("Status")
+                .frame(width: 50, alignment: .leading)
+            Spacer()
+            Text("")
+                .frame(width: 100, alignment: .leading)
         }
     }
 }
