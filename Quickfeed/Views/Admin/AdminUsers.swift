@@ -8,6 +8,7 @@ import SwiftUI
 struct AdminUsers: View {
     @ObservedObject var viewModel: AdminViewModel
     @State var searchQuery: String = ""
+    @State var isSearching: Bool = false
     
     var body: some View {
         List{
@@ -57,8 +58,31 @@ struct AdminUsers: View {
         .frame(minWidth: 700, maxWidth: .infinity)
         .navigationTitle("Manage Users")
         .toolbar{
-            SearchField(query: $searchQuery)
-                .frame(minWidth: 200, maxWidth: 350)
+            ToolbarItem{
+                if !isSearching{
+                    Toggle(isOn: $isSearching, label: {
+                        Image(systemName: "magnifyingglass")
+                    })
+                    .keyboardShortcut("f")
+                } else {
+                    
+                    SearchField(query: $searchQuery)
+                        .frame(minWidth: 200, maxWidth: 350)
+                }
+            }
+            ToolbarItem{
+                if isSearching{
+                    Button(action: {
+                        isSearching = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            isSearching = true
+                        }
+                    }, label: {
+                    })
+                    .keyboardShortcut("f")
+                    .labelsHidden()
+                }
+            }
         }
     }
     

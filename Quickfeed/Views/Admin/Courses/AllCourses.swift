@@ -10,6 +10,8 @@ struct AllCourses: View {
     @Binding var course: Course?
     @State var searchQuery: String = ""
     @Binding var editCourse: Bool
+    @State var isSearching: Bool = false
+
     
     var body: some View {
         List{
@@ -60,15 +62,42 @@ struct AllCourses: View {
         .frame(minWidth: 920, maxWidth: .infinity, minHeight: 100)
         .navigationTitle("Manage Courses")
         .toolbar{
-            Button(action: {
-                self.course = nil
-                self.editCourse = !self.editCourse
-            }, label: {
-                Image(systemName: "plus")
-            })
-            .help("Create New Course")
-            SearchField(query: $searchQuery)
-                .frame(minWidth: 200, maxWidth: 350)
+            ToolbarItem{
+                Button(action: {
+                    self.course = nil
+                    self.editCourse = !self.editCourse
+                }, label: {
+                    Image(systemName: "plus")
+                })
+                .help("Create New Course")
+            }
+            ToolbarItem{
+                if !isSearching{
+                    Toggle(isOn: $isSearching, label: {
+                        Image(systemName: "magnifyingglass")
+                    })
+                    .keyboardShortcut("f")
+                } else {
+                    
+                    SearchField(query: $searchQuery)
+                        .frame(minWidth: 200, maxWidth: 350)
+                }
+            }
+            ToolbarItem{
+                if isSearching{
+                    Button(action: {
+                        isSearching = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            isSearching = true
+                        }
+                    }, label: {
+                    })
+                    .keyboardShortcut("f")
+                    .labelsHidden()
+                }
+            }
+//            SearchField(query: $searchQuery)
+//                .frame(minWidth: 200, maxWidth: 350)
         }
     }
     
