@@ -2,25 +2,16 @@
 //  AllCourses.swift
 //  Quickfeed
 //
-//  Created by Bjørn Kristian Teisrud on 18/03/2021.
-//
 
 import SwiftUI
 
 struct AllCourses: View {
     @ObservedObject var viewModel: AdminViewModel
+    @Binding var course: Course?
     @State var searchQuery: String = ""
     @State var isSearching: Bool = false
-    @Binding var showUsers: Bool
     @Binding var editCourse: Bool
-    @Binding var course: Course?
-    
-    func filteredCourse() -> [Course] {
-        var courses = viewModel.courses!
-        courses.sort { $0.code < $1.code }
-        return courses.filter({ matchesQuery(searchQuery: searchQuery, course: $0) })
-    }
-    
+
     var body: some View {
         List{
             Section(header: HStack{
@@ -29,11 +20,11 @@ struct AllCourses: View {
                 Text("Course Name")
                     .frame(width: 300, alignment: .leading)
                 Spacer()
-                Text("SlipDays")
+                Text("Slip Days")
                     .frame(width: 120, alignment: .leading)
                 Text("Semester")
                     .frame(width: 120, alignment: .leading)
-                Text("Years")
+                Text("Year")
                     .frame(width: 80, alignment: .leading)
                 Divider()
                 Text("Edit")
@@ -86,6 +77,12 @@ struct AllCourses: View {
                 SearchToggleToolbarItem(isSearching: $isSearching)
             }
         }
+    }
+    
+    func filteredCourse() -> [Course] {
+        var courses = viewModel.courses!
+        courses.sort { $0.code < $1.code }
+        return courses.filter({ matchesQuery(searchQuery: searchQuery, course: $0) })
     }
 }
 

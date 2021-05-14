@@ -28,17 +28,21 @@ struct ReviewList: View {
         List{
             Section(header: ReviewListHeader()){
                 ForEach(filteredEnrollmentLinks, id: \.self) { link in
-                    ReviewListItem(submitterName: link.enrollment.user.name,
-                                       subLink: link.submissions.first(where: {$0.assignment.id == selectedLab})!
-                    )
-                    .environmentObject(viewModel)
-                    .contentShape(Rectangle())
-                    .onTapGesture(perform: {
-                        setLink(link: link)
-                        isShowingSheet.toggle()
-                        
-                    })
-                    Divider()
+                    if hasSubmissionForSelectedLab(link: link){
+                        if needManGrading(link: link){
+                            ReviewListItem(submitterName: link.enrollment.user.name,
+                                               subLink: link.submissions.first(where: {$0.assignment.id == selectedLab})!
+                            )
+                            .environmentObject(viewModel)
+                            .contentShape(Rectangle())
+                            .onTapGesture(perform: {
+                                setLink(link: link)
+                                isShowingSheet.toggle()
+                                
+                            })
+                            Divider()
+                        }
+                    }
                 }
                 
             }
@@ -111,6 +115,14 @@ struct ReviewList: View {
         }
         return false
         
+    }
+    
+    func needManGrading(link: EnrollmentLink) -> Bool {
+        let subForLab = link.submissions.first(where: { $0.assignment.id == selectedLab })!
+        if subForLab.submission.status != Submission.Status.approved && subForLab.submission.status != Submission.Status.rejected{
+            return true
+        }
+        return false
     }
     
     

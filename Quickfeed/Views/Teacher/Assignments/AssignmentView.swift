@@ -16,7 +16,7 @@ struct AssignmentView: View {
                 .font(.title)
             
             Divider()
-            List{
+            VStack{
                 HStack{
                     Text("Deadline:")
                     Spacer()
@@ -41,11 +41,14 @@ struct AssignmentView: View {
                 }
                 Divider()
             }
+            .padding()
             if assignment!.skipTests{
                 GradingCriterionView(viewModel: viewModel, assignment: assignment!)
             }
             Spacer()
             
         }
+        .frame(minWidth: 550)
+        .padding()
     }
 }

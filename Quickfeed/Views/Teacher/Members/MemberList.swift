@@ -25,6 +25,7 @@ struct MemberList: View {
                 }
             }
         }
+        .frame(minWidth: 900, minHeight: 400)
         .onAppear(perform: {
             viewModel.loadEnrollments()
         })

@@ -2,18 +2,14 @@
 //  StudentNavigatorView.swift
 //  Quickfeed
 //
-//  Created by Oskar Gjølga on 25/01/2021.
-//
 
 import SwiftUI
 
 struct StudentNavigatorView: View {
     @ObservedObject var viewModel: StudentViewModel = StudentViewModel.shared
-    //@State var reload: Bool = false
     
     init(viewModelTest: StudentViewModel, course: Course) {
         viewModel.setCourse(course: course)
-        //        self.viewModel = viewModel
         viewModel.getAssignments()
         viewModel.getSubmissions()
     }

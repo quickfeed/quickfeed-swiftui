@@ -2,8 +2,6 @@
 //  AutoGraded.swift
 //  Quickfeed
 //
-//  Created by Bjørn Kristian Teisrud on 03/03/2021.
-//
 
 import SwiftUI
 
@@ -53,9 +51,3 @@ struct AutoGraded: View {
     .frame(minHeight: 500, maxHeight: .infinity)
     }
 }
-
-/*struct AutoGraded_Previews: PreviewProvider {
- static var previews: some View {
- AutoGraded()
- }
- }*/

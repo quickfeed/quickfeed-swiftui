@@ -2,8 +2,6 @@
 //  GitHubLogIn.swift
 //  Quickfeed
 //
-//  Created by Bjørn Kristian Teisrud on 23/02/2021.
-//
 
 import SwiftUI
 
