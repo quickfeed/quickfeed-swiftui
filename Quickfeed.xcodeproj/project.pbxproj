@@ -19,7 +19,6 @@
 		D04331D926028ECD0034C4B9 /* AdminUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04331D826028ECD0034C4B9 /* AdminUsers.swift */; };
 		D04331E12602A5750034C4B9 /* AdminCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04331E02602A5750034C4B9 /* AdminCourses.swift */; };
 		D04331E62602B35C0034C4B9 /* HelpFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04331E52602B35C0034C4B9 /* HelpFunctions.swift */; };
-		D04331EB2602B9FF0034C4B9 /* Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04331EA2602B9FF0034C4B9 /* Admin.swift */; };
 		D04B46EC25D1301200AC8926 /* LabSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B46EB25D1301200AC8926 /* LabSection.swift */; };
 		D04B46FD25D1696D00AC8926 /* LabInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B46FC25D1696D00AC8926 /* LabInfo.swift */; };
 		D04B470225D1741300AC8926 /* StudentLab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B470125D1741300AC8926 /* StudentLab.swift */; };
@@ -111,7 +110,6 @@
 		D04331D826028ECD0034C4B9 /* AdminUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminUsers.swift; sourceTree = "<group>"; };
 		D04331E02602A5750034C4B9 /* AdminCourses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminCourses.swift; sourceTree = "<group>"; };
 		D04331E52602B35C0034C4B9 /* HelpFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpFunctions.swift; sourceTree = "<group>"; };
-		D04331EA2602B9FF0034C4B9 /* Admin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Admin.swift; sourceTree = "<group>"; };
 		D04B46EB25D1301200AC8926 /* LabSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabSection.swift; sourceTree = "<group>"; };
 		D04B46FC25D1696D00AC8926 /* LabInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabInfo.swift; sourceTree = "<group>"; };
 		D04B470125D1741300AC8926 /* StudentLab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLab.swift; sourceTree = "<group>"; };
@@ -221,7 +219,6 @@
 				D083089C26038577005A1FF0 /* Courses */,
 				D04331D826028ECD0034C4B9 /* AdminUsers.swift */,
 				D04331E02602A5750034C4B9 /* AdminCourses.swift */,
-				D04331EA2602B9FF0034C4B9 /* Admin.swift */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
@@ -621,7 +618,6 @@
 				FA17D8A0264D1C7500C4CC23 /* ReleaseListHeader.swift in Sources */,
 				D04331D326028CD60034C4B9 /* AdminViewModel.swift in Sources */,
 				D0F6A1462609F25500C1D825 /* UserInformation.swift in Sources */,
-				D04331EB2602B9FF0034C4B9 /* Admin.swift in Sources */,
 				D0005CC625E4EF8E00EDECD1 /* GitHubLogIn.swift in Sources */,
 				FAB066FB25CAC89B00FFE8EB /* StudentViewModel.swift in Sources */,
 				D04B470A25D29B7300AC8926 /* JSON.swift in Sources */,
