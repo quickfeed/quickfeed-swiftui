@@ -2,8 +2,6 @@
 //  UserEnrollments.swift
 //  Quickfeed
 //
-//  Created by Bjørn Kristian Teisrud on 23/03/2021.
-//
 
 import SwiftUI
 

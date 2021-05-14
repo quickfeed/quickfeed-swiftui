@@ -2,8 +2,6 @@
 //  UserInformation.swift
 //  Quickfeed
 //
-//  Created by Bjørn Kristian Teisrud on 23/03/2021.
-//
 
 import SwiftUI
 
@@ -106,9 +104,3 @@ struct UserInformation: View {
         return self.userStudentID.allSatisfy{ $0.isNumber } && !self.userStudentID.isEmpty
     }
 }
-
-/*struct UserInformation_Previews: PreviewProvider {
- static var previews: some View {
- UserInformation()
- }
- }*/

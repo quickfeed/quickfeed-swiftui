@@ -2,8 +2,6 @@
 //  UserProfile.swift
 //  Quickfeed
 //
-//  Created by Bjørn Kristian Teisrud on 08/03/2021.
-//
 
 import SwiftUI
 
