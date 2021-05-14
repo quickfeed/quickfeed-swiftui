@@ -10,21 +10,44 @@ import SwiftUI
 struct AssignmentsView: View {
     @ObservedObject var viewModel: TeacherViewModel
     @State var showingAlert: Bool = false
+    @State var displayedAssignment: Assignment? = nil
+    @State var isShowingSheet: Bool = false
+    
     var body: some View {
-        NavigationView{
-            List{
-                ForEach(viewModel.assignments, id: \.self){ assignment in
-                    NavigationLink(
-                        destination: AssignmentView(viewModel: viewModel, assignment: assignment),
-                        label: {
-                            Text("\(assignment.name)") 
-                        })
-                    
-                    Divider()
+        List{
+            ForEach(viewModel.assignments, id: \.self){ assignment in
+                HStack{
+                    Text("\(assignment.name)")
                 }
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    displayedAssignment = assignment
+                    isShowingSheet.toggle()
+                }
+                Divider()
             }
         }
-        
+        .sheet(isPresented: $isShowingSheet, onDismiss: dismissSheet, content: {
+            VStack {
+                HStack{
+                    Spacer()
+                    Button(action: {isShowingSheet.toggle()}, label: {
+                        Image(systemName: "multiply")
+                            .font(.title)
+                    })
+                    .padding()
+                    .help("esc")
+                    .buttonStyle(PlainButtonStyle())
+                }
+                AssignmentView(viewModel: viewModel, assignment: $displayedAssignment)
+            }
+            .frame(minWidth: 700, minHeight: 700)
+            .onKeyboardShortcut(.escape, perform: {
+                if isShowingSheet{
+                    isShowingSheet.toggle()
+                }
+            })
+        })
         .navigationTitle("Assignments")
         .navigationSubtitle(viewModel.currentCourse.name)
         .toolbar{
@@ -43,5 +66,8 @@ struct AssignmentsView: View {
                 })
             }
         }
+    }
+    func dismissSheet() {
+        return
     }
 }
