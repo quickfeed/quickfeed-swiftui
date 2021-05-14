@@ -2,8 +2,6 @@
 //  RemoteImage.swift
 //  Quickfeed
 //
-//  Created by Bjørn Kristian Teisrud on 23/03/2021.
-//
 
 import SwiftUI
 
@@ -56,9 +54,3 @@ struct RemoteImage: View {
         }
     }
 }
-
-/*struct RemoteImage_Previews: PreviewProvider {
-    static var previews: some View {
-        RemoteImage()
-    }
-}*/

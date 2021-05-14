@@ -2,8 +2,6 @@
 //  LabInfo.swift
 //  Quickfeed
 //
-//  Created by Bjørn Kristian Teisrud on 08/02/2021.
-//
 
 import SwiftUI
 
@@ -12,51 +10,12 @@ struct LabInfo: View {
     var assignment: Assignment
     var teacherView: Bool
     
-    private func showApprovedLine() -> Bool {
-        return submission.status == Submission.Status.approved && submission.approvedDate != ""
-    }
-    
-    private func submissionStatusToString() -> String {
-        switch (submission.status){
-        case Submission.Status.approved:
-            return "Approved"
-        case Submission.Status.rejected:
-            return "Rejected"
-        case Submission.Status.revision:
-            return "Revision"
-        default:
-            return "None"
-        }
-    }
-    
-    private func date(date: String) -> String{
-        let dateFormat = DateFormatter()
-        dateFormat.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        let dateString = dateFormat.date(from: date)!
-        
-        let stringFormatter = DateFormatter()
-        stringFormatter.dateFormat = "E, d MMM YY HH:mm"
-        return stringFormatter.string(from: dateString)
-    }
-    
-    private func passed() -> Int {
-        var passed = 0
-        if submission.scoreObj != nil{
-            for object in submission.scoreObj! {
-                if object.Score == object.MaxScore {
-                    passed += 1
-                }
-            }
-        }
-        return passed
-    }
-    
     var body: some View {
         VStack{
             HStack{
                 Text("Status")
                 Spacer()
-                Text(submissionStatusToString())
+                Text(translateSubmissionStatus(statusCode: submission.status))
                     .foregroundColor(getColorForSubmissionStatus(submissionStatus: submission.status))
             }
             Divider()
@@ -82,7 +41,7 @@ struct LabInfo: View {
             }
             .padding(.top, 1.0)
             Divider()
-            if showApprovedLine() {
+            if submission.status == Submission.Status.approved && submission.approvedDate != "" {
                 HStack{
                     Text("Approved")
                     Spacer()
@@ -99,6 +58,18 @@ struct LabInfo: View {
             }
             .padding(.top, 1.0)
         }
+    }
+    
+    private func passed() -> Int {
+        var passed = 0
+        if submission.scoreObj != nil{
+            for object in submission.scoreObj! {
+                if object.Score == object.MaxScore {
+                    passed += 1
+                }
+            }
+        }
+        return passed
     }
 }
 
