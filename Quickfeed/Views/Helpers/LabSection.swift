@@ -2,15 +2,13 @@
 //  LabSection.swift
 //  Quickfeed
 //
-//  Created by Bjørn Kristian Teisrud on 08/02/2021.
-//
 
 import SwiftUI
 
 struct LabSection: View {
     @ObservedObject var viewModel: StudentViewModel
-    var assignments: [Assignment]? { return viewModel.assignments }
     @State private var activeDest: Int? = 0
+    var assignments: [Assignment]? { return viewModel.assignments }
     
     var body: some View {
         if assignments == nil {
