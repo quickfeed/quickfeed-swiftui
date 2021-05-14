@@ -10,7 +10,6 @@ import SwiftUI
 struct AllCourses: View {
     @ObservedObject var viewModel: AdminViewModel
     @State var searchQuery: String = ""
-    @Binding var showUsers: Bool
     @Binding var editCourse: Bool
     @Binding var course: Course?
     
