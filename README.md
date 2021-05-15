@@ -19,5 +19,7 @@ macOS client for [QuickFeed](https://github.com/autograde/quickfeed)
 ### quickfeed-swiftui
 * open the xcode project
 `open Quickfeed.xcodeproj`
-* specify your userid in `Managers/GitHubManager:35`
+* specify server hostname in `Managers/GRPCManager:21`
+* specify server port number in `Managers/GRPCManager:22`
+* specify your userid in `Managers/GitHubManager:23`
 * run the project
