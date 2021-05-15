@@ -21,16 +21,14 @@ protocol ProviderProtocol{
     func getAssignments(courseID: UInt64) -> [Assignment]
     func createEnrollment(courseID: UInt64, userID: UInt64)
     func updateEnrollment(enrollment: Enrollment, status: Enrollment.UserStatus)
-    func approveAll(courseId: UInt64) -> Bool
+    
     func createNewCourse(course: Course) -> Course?
     func updateCourse(course: Course)
-    func getGroupsForCourse(courseId: UInt64) -> [Group]
     func createGroup(group: Group) -> EventLoopFuture<Group>
-    func getGroup(groupId: UInt64) -> EventLoopFuture<Group>
-    func deleteGroup(courseId: UInt64, groupId: UInt64) -> Status
+    
+    
     func getGroupByUserAndCourse(courseId: UInt64, userId: UInt64) -> Group?
     func getGroupsByCourse(courseId: UInt64) -> EventLoopFuture<Groups>
-    func updateGroup(group: Group)
     func getSubmissionsByUser(courseId: UInt64, userId: UInt64) -> [Submission]
     func getSubmissionsByGroub(courseId: UInt64, groupId: UInt64) -> [Submission]
     func getSubmissionsByCourse(courseId: UInt64, type: SubmissionsForCourseRequest.TypeEnum) -> EventLoopFuture<CourseSubmissions>

@@ -36,9 +36,7 @@ class ServerProvider: ProviderProtocol{
         
     }
     
-    func updateSubmission(courseId: UInt64, submisssion: Submission) -> Bool {
-        return self.grpcManager.updateSubmission(courseId: courseId, submission: submisssion)
-    }
+    
     
     func isAuthorizedTeacher() -> Bool {
         return grpcManager.isAuthorizedTeacher()
@@ -63,8 +61,20 @@ class ServerProvider: ProviderProtocol{
         return self.grpcManager.updateAssignments(courseId: courseId)
     }
     
+    // ENROLLMENTS
+    
     func createEnrollment(courseID: UInt64, userID: UInt64) {
         self.grpcManager.createEnrollment(courseID: courseID, userID: userID)
+    }
+    
+    func getEnrollmentsForUser(userId: UInt64) -> [Enrollment] {
+        return self.grpcManager.getEnrollmentsByUser(userID: userId)
+    }
+    
+    func updateEnrollment(enrollment: Enrollment, status: Enrollment.UserStatus) {
+        var enrollment = enrollment
+        enrollment.status = status
+        grpcManager.updateEnrollment(enrollment: enrollment)
     }
 
     
@@ -87,6 +97,7 @@ class ServerProvider: ProviderProtocol{
         return self.grpcManager.getGroupsByCourse(courseId: courseId)
     }
     
+    // SUBMISSIONS
     func getSubmissionsByUser(courseId: UInt64, userId: UInt64) -> [Submission] {
         let submissions = self.grpcManager.getSubmissionsForEnrollment(courseId: courseId, userId: userId)
         return submissions
@@ -100,10 +111,17 @@ class ServerProvider: ProviderProtocol{
         return self.grpcManager.getSubmissionsByCourse(courseId: courseId, type: type)
     }
     
-    func getEnrollmentsForUser(userId: UInt64) -> [Enrollment] {
-        return self.grpcManager.getEnrollmentsByUser(userID: userId)
+    func updateSubmission(courseId: UInt64, submisssion: Submission) -> Bool {
+        return self.grpcManager.updateSubmission(courseId: courseId, submission: submisssion)
     }
     
+    func updateSubmissions(assignmentID: UInt64, courseID: UInt64, score: UInt32, release: Bool, approve: Bool) {
+        grpcManager.updateSubmissions(assignmentID: assignmentID, courseID: courseID, score: score, release: release, approve: approve)
+    }
+    
+    
+    
+
     // MANUAL GRADING
     func loadCriteria(courseId: UInt64, assignmentId: UInt64) -> [GradingBenchmark] {
         return self.grpcManager.loadCriteria(courseId: courseId, assignmentId: assignmentId)
@@ -133,36 +151,9 @@ class ServerProvider: ProviderProtocol{
     
     
     // not implemented
-   
-   
     
-    func updateEnrollment(enrollment: Enrollment, status: Enrollment.UserStatus) {
-        var enrollment = enrollment
-        enrollment.status = status
-        grpcManager.updateEnrollment(enrollment: enrollment)
-    }
 
-    func approveAll(courseId: UInt64) -> Bool {
-        fatalError("Not implemented")
-    }
-    
-    
-    func getGroupsForCourse(courseId: UInt64) -> [Group] {
-        fatalError("Not implemented")
-    }
-    
-    func updateGroupStatus(groupId: UInt64, status: Group.GroupStatus) -> Status {
-        fatalError("Not implemented")
-    }
-    
-    func getGroup(groupId: UInt64) -> EventLoopFuture<Group> {
-        fatalError("Not implemented")
-    }
-    
-    func deleteGroup(courseId: UInt64, groupId: UInt64) -> Status {
-        fatalError("Not implemented")
-    }
-    
+ 
     
     func getOrganization(orgName: String) -> EventLoopFuture<Organization> {
         return grpcManager.getOrganization(orgName: orgName)
@@ -172,9 +163,7 @@ class ServerProvider: ProviderProtocol{
         fatalError("Not implemented")
     }
     
-    func updateSubmissions(assignmentID: UInt64, courseID: UInt64, score: UInt32, release: Bool, approve: Bool) {
-        fatalError("Not implemented")
-    }
+    
     
     func rebuildSubmission(assignmentId: UInt64, submissionId: UInt64) -> Submission? {
         fatalError("Not implemented")

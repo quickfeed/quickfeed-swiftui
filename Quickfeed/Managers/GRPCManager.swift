@@ -188,6 +188,24 @@ class GRPCManager {
         }
     }
     
+    func updateSubmissions(assignmentID: UInt64, courseID: UInt64, score: UInt32, release: Bool, approve: Bool) {
+        let req = UpdateSubmissionsRequest.with{
+            $0.courseID = courseID
+            $0.assignmentID = assignmentID
+            $0.scoreLimit = score
+            $0.release = release
+            $0.approve = approve
+        }
+        let call = self.quickfeedClient.updateSubmissions(req, callOptions: self.defaultOptions)
+        do {
+            _ = try call.response.wait()
+            
+        } catch {
+            print("Call failed: \(error)")
+            
+        }
+    }
+    
     func getSubmissionsByCourse(courseId: UInt64, type: SubmissionsForCourseRequest.TypeEnum) -> EventLoopFuture<CourseSubmissions>{
         let req = SubmissionsForCourseRequest.with{
             $0.courseID = courseId
