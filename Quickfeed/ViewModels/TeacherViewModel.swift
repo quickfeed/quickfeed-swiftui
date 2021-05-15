@@ -140,8 +140,8 @@ class TeacherViewModel: UserViewModelProtocol{
         return users
     }
     
-    func changeUserStatus(enrollment: Enrollment, status: Enrollment.UserStatus){
-        _ = self.provider.changeUserStatus(enrollment: enrollment, status: status)
+    func updateEnrollment(enrollment: Enrollment, status: Enrollment.UserStatus){
+        self.provider.updateEnrollment(enrollment: enrollment, status: status)
     }
     
     // MANUAL GRADING

@@ -66,11 +66,12 @@ class ServerProvider: ProviderProtocol{
         self.grpcManager.createEnrollment(courseID: courseID, userID: userID)
     }
     
+    // Groups
+    
     func createGroup(group: Group) -> EventLoopFuture<Group> {
         return self.grpcManager.createGroup(gruop: group)
     }
     
-   
     func getGroupByUserAndCourse(courseId: UInt64, userId: UInt64) -> Group? {
         return self.grpcManager.getGroupByUserAndCourse(userID: userId, courseID: courseId)
     }
@@ -78,7 +79,6 @@ class ServerProvider: ProviderProtocol{
     func getGroupsByCourse(courseId: UInt64) -> EventLoopFuture<Groups> {
         return self.grpcManager.getGroupsByCourse(courseId: courseId)
     }
-    
     
     func getSubmissionsByUser(courseId: UInt64, userId: UInt64) -> [Submission] {
         let submissions = self.grpcManager.getSubmissionsForEnrollment(courseId: courseId, userId: userId)
@@ -124,11 +124,10 @@ class ServerProvider: ProviderProtocol{
     }
     
     
-    func changeUserStatus(enrollment: Enrollment, status: Enrollment.UserStatus) -> Status {
-        /*var newEnrollment = enrollment
-        newEnrollment.status = status
-        self.grpcManager.updateEnrollment(enrollment: newEnrollment)*/
-        return Status()
+    func updateEnrollment(enrollment: Enrollment, status: Enrollment.UserStatus) {
+        var enrollment = enrollment
+        enrollment.status = status
+        grpcManager.updateEnrollment(enrollment: enrollment)
     }
 
     func approveAll(courseId: UInt64) -> Bool {
