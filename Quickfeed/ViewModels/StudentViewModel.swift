@@ -25,6 +25,44 @@ class StudentViewModel: UserViewModelProtocol{
         self.group = provider.getGroupByUserAndCourse(courseId: course.id, userId: user.id)
     }
     
+    func createGroup(name: String, enrollments: [Enrollment]) {
+        var users: [User] = []
+        for element in enrollments{
+            users.append(element.user)
+        }
+        var group = Group()
+        group.name = name
+        group.enrollments = enrollments
+        group.status = Group.GroupStatus.pending
+        group.courseID = course!.id
+        group.users = users
+        
+        var errString: String? = nil
+        let response = self.provider.createGroup(group: group)
+        _ = response.always {(response: Result<Group, Error>) in
+            switch response {
+            case .success( _):
+                DispatchQueue.main.async {
+                    errString = nil
+                    print("yey")
+                }
+            case .failure(let err):
+                print("[Error] Connection error or groups not found: \(err)")
+                errString = err.localizedDescription
+            }
+        }
+    }
+    
+    func getEnrollmentForCurrentCourse() -> Enrollment?{
+        let enrollments = provider.getEnrollmentsForUser(userId: user.id)
+        for element in enrollments{
+            if element.course.id == course!.id{
+                return element
+            }
+        }
+        return nil
+    }
+    
     func getEnrollmentsByCourse() {
         let response = self.provider.getEnrollmentsByCourse(courseId: self.course!.id, ignoreGroupMembers: true, enrollmentStatus: [Enrollment.UserStatus.student])
         _ = response.always {(response: Result<Enrollments, Error>) in
