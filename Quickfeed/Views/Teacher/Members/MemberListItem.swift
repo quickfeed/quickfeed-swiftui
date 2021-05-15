@@ -13,7 +13,19 @@ struct MemberListItem: View {
     @Binding var isEditing: Bool
     
     func acceptUser(){
-        viewModel.changeUserStatus(enrollment: enrollment, status: .student)
+        viewModel.updateEnrollment(enrollment: enrollment, status: .student)
+    }
+    
+    func promoteUser(){
+        viewModel.updateEnrollment(enrollment: enrollment, status: .teacher)
+    }
+    
+    func demoteUser(){
+        viewModel.updateEnrollment(enrollment: enrollment, status: .student)
+    }
+    
+    func rejectUser(){
+        viewModel.updateEnrollment(enrollment: enrollment, status: .none)
     }
     
     var body: some View {
@@ -67,8 +79,12 @@ struct MemberListItem: View {
                         Text(translateUserStatus(status: enrollment.status))
                         Spacer()
                         Menu("") {
-                            Button("promote", action: {})
-                            Button("reject", action: {})
+                            if enrollment.status == .teacher{
+                                Button("demote", action: {demoteUser()})
+                            }
+                            if enrollment.status == .student{
+                                Button("promote", action: {promoteUser()})
+                            }
                         }
                         .menuStyle(BorderlessButtonMenuStyle())
                         .frame(width: 10)
@@ -79,6 +95,7 @@ struct MemberListItem: View {
                         VStack{
                             Text(translateUserStatus(status: enrollment.status))
                             Button("Accept", action: {acceptUser()})
+                            Button("Reject", action: {rejectUser()})
                         }
                         .frame(width: 75, alignment: .center)
                         
