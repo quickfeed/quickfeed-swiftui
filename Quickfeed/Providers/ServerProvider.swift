@@ -134,10 +134,7 @@ class ServerProvider: ProviderProtocol{
     
     // not implemented
    
-    func getUsersForCourse(course: Course) -> [User] {
-        fatalError("Not implemented")
-    }
-    
+   
     
     func updateEnrollment(enrollment: Enrollment, status: Enrollment.UserStatus) {
         var enrollment = enrollment
@@ -166,7 +163,6 @@ class ServerProvider: ProviderProtocol{
         fatalError("Not implemented")
     }
     
-  
     
     func getOrganization(orgName: String) -> EventLoopFuture<Organization> {
         return grpcManager.getOrganization(orgName: orgName)

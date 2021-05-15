@@ -19,7 +19,6 @@ protocol ProviderProtocol{
 
     func getCourse(courseId: UInt64) -> Course?
     func getAssignments(courseID: UInt64) -> [Assignment]
-    func getUsersForCourse(course: Course) -> [User]
     func createEnrollment(courseID: UInt64, userID: UInt64)
     func updateEnrollment(enrollment: Enrollment, status: Enrollment.UserStatus)
     func approveAll(courseId: UInt64) -> Bool
