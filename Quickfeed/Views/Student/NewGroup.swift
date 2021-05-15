@@ -12,6 +12,7 @@ struct NewGroup: View {
     @State var searchQuery: String = ""
     @State var groupName: String = ""
     @State var selectedMembers: [Enrollment] = []
+    @State var isSearching: Bool = false
     
     var body: some View {
         VStack{
@@ -31,7 +32,7 @@ struct NewGroup: View {
             Divider()
             List{
                 Section(header: Text("Available students")){
-                    ForEach(viewModel.enrollments, id: \.self){ enrollment in
+                    ForEach(self.filteredEnrollments(), id: \.self){ enrollment in
                         if enrollment.user.id != viewModel.user.id{
                             HStack{
                                 Text(enrollment.user.name)
@@ -52,14 +53,23 @@ struct NewGroup: View {
         .padding()
         .onAppear(perform:{
             viewModel.getEnrollmentsByCourse()
+            let enrollment = viewModel.getEnrollmentForCurrentCourse()
+            self.selectedMembers.append(enrollment!)
         })
         .navigationTitle("New Group")
         .navigationSubtitle(viewModel.course!.name)
         .toolbar{
             ToolbarItem{
-                SearchField(query: $searchQuery)
-                    .frame(minWidth: 200, maxWidth: 350)
+                SearchFieldToolbarItem(isSearching: $isSearching, searchQuery: $searchQuery)
+            }
+            ToolbarItem{
+                SearchToggleToolbarItem(isSearching: $isSearching)
             }
         }
+    }
+    
+    func filteredEnrollments() -> [Enrollment] {
+        let enrollments = viewModel.enrollments
+        return enrollments.filter({ matchesQuery(searchQuery: searchQuery, enrollment: $0, selectedMembers: selectedMembers) })
     }
 }

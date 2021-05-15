@@ -58,6 +58,37 @@ func matchesQuery(searchQuery: String, user: User) -> Bool{
     return false
 }
 
+func matchesQuery(searchQuery: String, enrollment: Enrollment, selectedMembers: [Enrollment]) -> Bool{
+    for element in selectedMembers{
+        if enrollment == element{
+            return false
+        }
+    }
+    
+    if searchQuery == ""{
+        return true
+    }
+    
+    if  enrollment.user.name.lowercased().contains(searchQuery.lowercased()){
+        return true
+    }
+    
+    if  enrollment.user.email.lowercased().contains(searchQuery.lowercased()){
+        return true
+    }
+    
+    if enrollment.user.studentID.lowercased().contains(searchQuery.lowercased()){
+        return true
+    }
+    
+    if enrollment.user.login.lowercased().contains(searchQuery.lowercased()){
+        return true
+    }
+    
+    
+    return false
+}
+
 func date(date: String) -> String{
     let dateFormat = DateFormatter()
     dateFormat.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
