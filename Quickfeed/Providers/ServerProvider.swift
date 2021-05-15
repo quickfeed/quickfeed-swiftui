@@ -36,7 +36,9 @@ class ServerProvider: ProviderProtocol{
         
     }
     
-    
+    func getOrganization(orgName: String) -> EventLoopFuture<Organization> {
+        return grpcManager.getOrganization(orgName: orgName)
+    }
     
     func isAuthorizedTeacher() -> Bool {
         return grpcManager.isAuthorizedTeacher()
@@ -150,14 +152,9 @@ class ServerProvider: ProviderProtocol{
     }
     
     
-    // not implemented
-    
+    // NOT IMPLEMENTED
 
- 
-    
-    func getOrganization(orgName: String) -> EventLoopFuture<Organization> {
-        return grpcManager.getOrganization(orgName: orgName)
-    }
+   
     
     func getProviders() -> [String] {
         fatalError("Not implemented")
