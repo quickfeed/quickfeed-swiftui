@@ -133,8 +133,6 @@ class TeacherViewModel: UserViewModelProtocol{
         return "None"
     }
     
-   
-    
     func updateEnrollment(enrollment: Enrollment, status: Enrollment.UserStatus){
         self.provider.updateEnrollment(enrollment: enrollment, status: status)
     }
