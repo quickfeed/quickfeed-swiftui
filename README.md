@@ -7,8 +7,7 @@ macOS client for [QuickFeed](https://github.com/autograde/quickfeed)
 ### Reqirements
 * macOS 11.0+
 * Xcode 12
-* Go
-* Docker
+* QuickFeed Server (local or remote)
 
 ### quickfeed / local-docker:
 * `git pull git@github.com:oskargj/quickfeed.git`
