@@ -277,11 +277,26 @@ class GRPCManager {
     
     
     
-    func createGroup(gruop: Group) -> EventLoopFuture<Group>{
+    func createGroup(group: Group) -> EventLoopFuture<Group>{
         
-        let call = self.quickfeedClient.createGroup(gruop, callOptions: self.defaultOptions)
+        let call = self.quickfeedClient.createGroup(group, callOptions: self.defaultOptions)
         
         return call.response
+    }
+    
+    
+    func updateGroup(group: Group){
+        
+        let call = self.quickfeedClient.updateGroup(group, callOptions: self.defaultOptions)
+        
+        do {
+            _ = try call.response.wait()
+            
+        } catch {
+            print("Call failed: \(error)")
+        }
+        
+
     }
     
     func getGroupsByCourse(courseId: UInt64) -> EventLoopFuture<Groups>{

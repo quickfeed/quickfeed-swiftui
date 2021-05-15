@@ -7,6 +7,7 @@ import Foundation
 import NIO
 
 class ServerProvider: ProviderProtocol{
+
     var grpcManager: GRPCManager = GRPCManager.shared
     static let shared: ServerProvider = ServerProvider()
     
@@ -65,11 +66,17 @@ class ServerProvider: ProviderProtocol{
     func createEnrollment(courseID: UInt64, userID: UInt64) {
         self.grpcManager.createEnrollment(courseID: courseID, userID: userID)
     }
+
     
     // Groups
     
     func createGroup(group: Group) -> EventLoopFuture<Group> {
-        return self.grpcManager.createGroup(gruop: group)
+        return self.grpcManager.createGroup(group: group)
+    }
+    
+    
+    func updateGroup(group: Group) {
+        self.grpcManager.updateGroup(group: group)
     }
     
     func getGroupByUserAndCourse(courseId: UInt64, userId: UInt64) -> Group? {
@@ -114,11 +121,19 @@ class ServerProvider: ProviderProtocol{
         return self.grpcManager.getReviewers(submissionId: submissionId, courseId: courseId)
     }
     
-    // not implemented
-    func addUserToCourse(course: Course, user: User) -> Bool {
-        fatalError("Not implemented")
+    
+    // Courses
+    func createNewCourse(course: Course) -> Course? {
+        return grpcManager.createCourse(course: course)
     }
     
+    func updateCourse(course: Course) {
+        grpcManager.updateCourse(course: course)
+    }
+    
+    
+    // not implemented
+   
     func getUsersForCourse(course: Course) -> [User] {
         fatalError("Not implemented")
     }
@@ -134,13 +149,8 @@ class ServerProvider: ProviderProtocol{
         fatalError("Not implemented")
     }
     
-    func createNewCourse(course: Course) -> Course? {
-        return grpcManager.createCourse(course: course)
-    }
+   
     
-    func updateCourse(course: Course) {
-        grpcManager.updateCourse(course: course)
-    }
     
     func updateCourseVisibility(enrollment: Enrollment) -> Bool {
         fatalError("Not implemented")
@@ -162,23 +172,11 @@ class ServerProvider: ProviderProtocol{
         fatalError("Not implemented")
     }
     
-    
-    func updateGroup(group: Group) -> Status {
-        fatalError("Not implemented")
-    }
+  
     
     func getOrganization(orgName: String) -> EventLoopFuture<Organization> {
         return grpcManager.getOrganization(orgName: orgName)
     }
-    
-    func changeName(newName: String) {
-        fatalError("Not implemented")
-    }
-    
-    func getCoursesStudent() -> [Course] {
-        fatalError("Not implemented")
-    }
-    
     
     func getProviders() -> [String] {
         fatalError("Not implemented")
