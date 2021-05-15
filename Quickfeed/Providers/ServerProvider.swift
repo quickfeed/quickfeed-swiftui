@@ -149,12 +149,6 @@ class ServerProvider: ProviderProtocol{
         fatalError("Not implemented")
     }
     
-   
-    
-    
-    func updateCourseVisibility(enrollment: Enrollment) -> Bool {
-        fatalError("Not implemented")
-    }
     
     func getGroupsForCourse(courseId: UInt64) -> [Group] {
         fatalError("Not implemented")

@@ -16,9 +16,8 @@ protocol ProviderProtocol{
     func getCourses() -> [Course]?
     func getUsers() -> [User]?
     func updateUser(user: User)
-    
+
     func getCourse(courseId: UInt64) -> Course?
-    
     func getAssignments(courseID: UInt64) -> [Assignment]
     func getUsersForCourse(course: Course) -> [User]
     func createEnrollment(courseID: UInt64, userID: UInt64)
@@ -26,9 +25,7 @@ protocol ProviderProtocol{
     func approveAll(courseId: UInt64) -> Bool
     func createNewCourse(course: Course) -> Course?
     func updateCourse(course: Course)
-    func updateCourseVisibility(enrollment: Enrollment) -> Bool
     func getGroupsForCourse(courseId: UInt64) -> [Group]
-    func updateGroupStatus(groupId: UInt64, status: Group.GroupStatus) -> Status
     func createGroup(group: Group) -> EventLoopFuture<Group>
     func getGroup(groupId: UInt64) -> EventLoopFuture<Group>
     func deleteGroup(courseId: UInt64, groupId: UInt64) -> Status
