@@ -52,7 +52,11 @@ class ServerProvider: ProviderProtocol{
     }
     
     func getAssignments(courseID: UInt64) -> [Assignment] {
-        return self.grpcManager.getAssignments(courseId: courseID)
+        let assignments = self.grpcManager.getAssignments(courseID: courseID)
+        if assignments != nil {
+            return assignments!
+        }
+        return []
     }
     func updateAssignments(courseId: UInt64) -> Bool {
         return self.grpcManager.updateAssignments(courseId: courseId)
@@ -116,7 +120,7 @@ class ServerProvider: ProviderProtocol{
     }
     
     func updateSubmissions(assignmentID: UInt64, courseID: UInt64, score: UInt32, release: Bool, approve: Bool) {
-        grpcManager.updateSubmissions(assignmentID: assignmentID, courseID: courseID, score: score, release: release, approve: approve)
+        grpcManager.updateSubmissions(courseID: courseID, assignmentID: assignmentID, scoreLimit: score, release: release, approve: approve)
     }
     
     

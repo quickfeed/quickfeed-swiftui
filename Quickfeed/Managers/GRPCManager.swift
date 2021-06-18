@@ -238,6 +238,107 @@ class GRPCManager {
         let _ = self.quickfeedClient.updateCourseVisibility(enrollment, callOptions: self.defaultOptions)
     }
     
+    // MARK: Assignments
+    func getAssignments(courseID: UInt64) -> [Assignment]?{
+        var request = CourseRequest()
+        request.courseID = courseID
+        
+        let call = self.quickfeedClient.getAssignments(request, callOptions: self.defaultOptions)
+        
+        do {
+            let response = try call.response.wait()
+            return response.assignments
+        } catch {
+            print("Call failed: \(error)")
+        }
+        return nil
+    }
+    
+//    func updateAssignments(courseID: UInt64){
+//        var request = CourseRequest()
+//        request.courseID = courseID
+//
+//        let _ = self.quickfeedClient.updateAssignments(request, callOptions: self.defaultOptions)
+//    }
+    
+    // MARK: Submissions
+    func getSubmissions(userID: UInt64?, groupID: UInt64?, courseID: UInt64) -> [Submission]?{
+        var request = SubmissionRequest()
+        request.courseID = courseID
+        
+        if userID != nil {
+            request.userID = userID!
+        }
+        
+        if groupID != nil{
+            request.groupID = groupID!
+        }
+        
+        let call = self.quickfeedClient.getSubmissions(request, callOptions: self.defaultOptions)
+        
+        do {
+            let response = try call.response.wait()
+            return response.submissions
+        } catch {
+            print("Call failed: \(error)")
+        }
+        return nil
+    }
+    
+//    func getSubmissionsByCourse(courseID: UInt64, type: SubmissionsForCourseRequest.TypeEnum) -> CourseSubmissions?{
+//        var request = SubmissionsForCourseRequest()
+//        request.courseID = courseID
+//        request.type = type
+//
+//        let call = self.quickfeedClient.getSubmissionsByCourse(request, callOptions: self.defaultOptions)
+//
+//        do {
+//            let response = try call.response.wait()
+//            return response
+//        } catch {
+//            print("Call failed: \(error)")
+//        }
+//        return nil
+//    }
+    
+//    func updateSubmission(submissionID: UInt64, courseID: UInt64, score: UInt32, released: Bool, status: Submission.Status){
+//        var request = UpdateSubmissionRequest()
+//        request.submissionID = submissionID
+//        request.courseID = courseID
+//        request.score = score
+//        request.released = released
+//        request.status = status
+//
+//        let _ = self.quickfeedClient.updateSubmission(request, callOptions: self.defaultOptions)
+//    }
+    
+    func updateSubmissions(courseID: UInt64, assignmentID: UInt64, scoreLimit: UInt32, release: Bool, approve: Bool){
+        var request = UpdateSubmissionsRequest()
+        request.courseID = courseID
+        request.assignmentID = assignmentID
+        request.scoreLimit = scoreLimit
+        request.release = release
+        request.approve = approve
+        
+        let _ = self.quickfeedClient.updateSubmissions(request, callOptions: self.defaultOptions)
+    }
+    
+    func rebuildSubmission(submissionID: UInt64, assignmentID: UInt64) -> Bool{
+        var request = RebuildRequest()
+        request.submissionID = submissionID
+        request.assignmentID = assignmentID
+        
+        let call = self.quickfeedClient.rebuildSubmission(request, callOptions: self.defaultOptions)
+        
+        do {
+            let _ = try call.response.wait()
+            return true
+        } catch {
+            print("Call failed: \(error)")
+        }
+        return false
+    }
+    
     // TODO: Duplicates with different arguments or returns (see later which one is best to use)
     func getGroupByUserAndCourse(userID: UInt64, courseID: UInt64) -> Group? {
         let req = GroupRequest.with{
@@ -305,6 +406,83 @@ class GRPCManager {
         }
     }
     
+    func updateAssignments(courseId: UInt64) -> Bool{
+        let req = CourseRequest.with{
+            $0.courseID = courseId
+        }
+        
+        let call = self.quickfeedClient.updateAssignments(req, callOptions: self.defaultOptions)
+        
+        do {
+            _ = try call.response.wait()
+            return true
+        } catch {
+            print("Call failed: \(error)")
+            return false
+        }
+    }
+    
+    func getSubbmissionByGroup(courseID: UInt64, groupID: UInt64) -> [Submission] {
+        let req = SubmissionRequest.with{
+            $0.courseID = courseID
+            $0.groupID = groupID
+        }
+        let call = self.quickfeedClient.getSubmissions(req, callOptions: self.defaultOptions)
+        do {
+            let response = try call.response.wait()
+            return response.submissions
+        } catch {
+            print("Call failed: \(error)")
+        }
+        
+        return []
+    }
+    
+    func getSubmissionsForEnrollment(courseId: UInt64, userId: UInt64) -> [Submission]{
+        let req = SubmissionRequest.with{
+            $0.courseID = courseId
+            $0.userID = userId
+        }
+        let call = self.quickfeedClient.getSubmissions(req, callOptions: self.defaultOptions)
+        do {
+            let response = try call.response.wait()
+            return response.submissions
+        } catch {
+            print("Call failed: \(error)")
+        }
+        
+        return []
+        
+    }
+    
+    func getSubmissionsByCourse(courseId: UInt64, type: SubmissionsForCourseRequest.TypeEnum) -> EventLoopFuture<CourseSubmissions>{
+        let req = SubmissionsForCourseRequest.with{
+            $0.courseID = courseId
+            $0.type = type
+        }
+        
+        let call = self.quickfeedClient.getSubmissionsByCourse(req, callOptions: self.defaultOptions)
+        return call.response
+    }
+    
+    func updateSubmission(courseId: UInt64, submission: Submission) -> Bool{
+        let req = UpdateSubmissionRequest.with{
+            $0.courseID = courseId
+            $0.submissionID = submission.id
+            $0.score = submission.score
+            $0.released = submission.released
+            $0.status = submission.status
+        }
+        let call = self.quickfeedClient.updateSubmission(req, callOptions: self.defaultOptions)
+        do {
+            _ = try call.response.wait()
+            return true
+        } catch {
+            print("Call failed: \(error)")
+            return false
+        }
+    }
+    
     // TODO: clean up the rest of the gRPC methods
     func setUser(userID: UInt64){
         self.userID = userID
@@ -336,84 +514,6 @@ class GRPCManager {
         } catch {
             print("Updating enrollment failed: \(error)")
         }
-    }
-    
-    func getSubmissionsForEnrollment(courseId: UInt64, userId: UInt64) -> [Submission]{
-        let req = SubmissionRequest.with{
-            $0.courseID = courseId
-            $0.userID = userId
-        }
-        let call = self.quickfeedClient.getSubmissions(req, callOptions: self.defaultOptions)
-        do {
-            let response = try call.response.wait()
-            return response.submissions
-        } catch {
-            print("Call failed: \(error)")
-        }
-        
-        return []
-        
-    }
-    
-    func updateSubmission(courseId: UInt64, submission: Submission) -> Bool{
-        let req = UpdateSubmissionRequest.with{
-            $0.courseID = courseId
-            $0.submissionID = submission.id
-            $0.score = submission.score
-            $0.released = submission.released
-            $0.status = submission.status
-        }
-        let call = self.quickfeedClient.updateSubmission(req, callOptions: self.defaultOptions)
-        do {
-            _ = try call.response.wait()
-            return true
-        } catch {
-            print("Call failed: \(error)")
-            return false
-        }
-    }
-    
-    func updateSubmissions(assignmentID: UInt64, courseID: UInt64, score: UInt32, release: Bool, approve: Bool) {
-        let req = UpdateSubmissionsRequest.with{
-            $0.courseID = courseID
-            $0.assignmentID = assignmentID
-            $0.scoreLimit = score
-            $0.release = release
-            $0.approve = approve
-        }
-        let call = self.quickfeedClient.updateSubmissions(req, callOptions: self.defaultOptions)
-        do {
-            _ = try call.response.wait()
-            
-        } catch {
-            print("Call failed: \(error)")
-            
-        }
-    }
-    
-    func getSubmissionsByCourse(courseId: UInt64, type: SubmissionsForCourseRequest.TypeEnum) -> EventLoopFuture<CourseSubmissions>{
-        let req = SubmissionsForCourseRequest.with{
-            $0.courseID = courseId
-            $0.type = type
-        }
-        
-        let call = self.quickfeedClient.getSubmissionsByCourse(req, callOptions: self.defaultOptions)
-        return call.response
-    }
-    func getSubbmissionByGroup(courseID: UInt64, groupID: UInt64) -> [Submission] {
-        let req = SubmissionRequest.with{
-            $0.courseID = courseID
-            $0.groupID = groupID
-        }
-        let call = self.quickfeedClient.getSubmissions(req, callOptions: self.defaultOptions)
-        do {
-            let response = try call.response.wait()
-            return response.submissions
-        } catch {
-            print("Call failed: \(error)")
-        }
-        
-        return []
     }
     
     func createEnrollment(courseID: UInt64, userID: UInt64) {
@@ -458,41 +558,6 @@ class GRPCManager {
         
         return call.response
         
-    }
-    
-    func getAssignments(courseId: UInt64) -> [Assignment]{
-        
-        let req = CourseRequest.with{
-            $0.courseID = courseId
-        }
-        
-        let call = self.quickfeedClient.getAssignments(req, callOptions: self.defaultOptions)
-        
-        do {
-            let resp = try call.response.wait()
-            return resp.assignments
-        } catch {
-            print(courseId)
-            print("Call failed: \(error)")
-        }
-        
-        return []
-    }
-    
-    func updateAssignments(courseId: UInt64) -> Bool{
-        let req = CourseRequest.with{
-            $0.courseID = courseId
-        }
-        
-        let call = self.quickfeedClient.updateAssignments(req, callOptions: self.defaultOptions)
-        
-        do {
-            _ = try call.response.wait()
-            return true
-        } catch {  
-            print("Call failed: \(error)")
-            return false
-        }
     }
     
     
