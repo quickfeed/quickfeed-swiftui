@@ -40,6 +40,14 @@ class GRPCManager {
         try! self.eventLoopGroup.syncShutdownGracefully()
     }
     
+    //TODO: Change name ("createHeader")
+    func setUser(userID: UInt64){
+        self.userID = userID
+        let headers: HPACKHeaders = ["custom-header-1": "value1", "user": "\(self.userID!)"]
+        self.defaultOptions = CallOptions()
+        self.defaultOptions!.customMetadata = headers
+    }
+    
     // MARK: Users
     func getUser() -> User?{
         let call = self.quickfeedClient.getUser(Void(), callOptions: self.defaultOptions)
@@ -172,6 +180,56 @@ class GRPCManager {
         request.courseID = courseID
         
         let _ = self.quickfeedClient.deleteGroup(request, callOptions: self.defaultOptions)
+    }
+    
+    // MARK: Enrollments
+//    func getEnrollmentsByUser(userID: UInt64, userStatus: [Enrollment.UserStatus]) -> [Enrollment]?{
+//        var request = EnrollmentStatusRequest()
+//        request.userID = userID
+//        request.statuses = userStatus
+//
+//        let call = self.quickfeedClient.getEnrollmentsByUser(request, callOptions: self.defaultOptions)
+//
+//        do {
+//            let response = try call.response.wait()
+//            return response.enrollments
+//        } catch {
+//            print("Call failed: \(error)")
+//        }
+//        return nil
+//    }
+    
+//    func getEnrollmentsByCourse(courseID: UInt64, ignoreGroupMembers: Bool, withActivity: Bool, userStatus: [Enrollment.UserStatus]) -> [Enrollment]?{
+//        var request = EnrollmentRequest()
+//        request.courseID = courseID
+//        request.ignoreGroupMembers = ignoreGroupMembers
+//        request.withActivity = withActivity
+//        request.statuses = userStatus
+//
+//        let call = self.quickfeedClient.getEnrollmentsByCourse(request, callOptions: self.defaultOptions)
+//
+//        do {
+//            let response = try call.response.wait()
+//            return response.enrollments
+//        } catch {
+//            print("Call failed: \(error)")
+//        }
+//        return nil
+//    }
+    
+//    func createEnrollment(enrollment: Enrollment){
+//        let _ = self.quickfeedClient.createEnrollment(enrollment, callOptions: self.defaultOptions)
+//    }
+    
+    func updateEnrollment(enrollment: Enrollment){
+        let _ = self.quickfeedClient.updateEnrollment(enrollment, callOptions: self.defaultOptions)
+    }
+    
+    func updateEnrollments(courseID: UInt64){
+        var request = CourseRequest()
+        request.courseID = courseID
+        
+        let _ = self.quickfeedClient.updateEnrollments(request, callOptions: self.defaultOptions)
     }
     
     // MARK: Courses
@@ -339,55 +397,59 @@ class GRPCManager {
         return false
     }
     
-    // MARK: Enrollments
-//    func getEnrollmentsByUser(userID: UInt64, userStatus: [Enrollment.UserStatus]) -> [Enrollment]?{
-//        var request = EnrollmentStatusRequest()
-//        request.userID = userID
-//        request.statuses = userStatus
-//
-//        let call = self.quickfeedClient.getEnrollmentsByUser(request, callOptions: self.defaultOptions)
-//
-//        do {
-//            let response = try call.response.wait()
-//            return response.enrollments
-//        } catch {
-//            print("Call failed: \(error)")
-//        }
-//        return nil
-//    }
-    
-//    func getEnrollmentsByCourse(courseID: UInt64, ignoreGroupMembers: Bool, withActivity: Bool, userStatus: [Enrollment.UserStatus]) -> [Enrollment]?{
-//        var request = EnrollmentRequest()
-//        request.courseID = courseID
-//        request.ignoreGroupMembers = ignoreGroupMembers
-//        request.withActivity = withActivity
-//        request.statuses = userStatus
-//
-//        let call = self.quickfeedClient.getEnrollmentsByCourse(request, callOptions: self.defaultOptions)
-//
-//        do {
-//            let response = try call.response.wait()
-//            return response.enrollments
-//        } catch {
-//            print("Call failed: \(error)")
-//        }
-//        return nil
-//    }
-    
-//    func createEnrollment(enrollment: Enrollment){
-//        let _ = self.quickfeedClient.createEnrollment(enrollment, callOptions: self.defaultOptions)
-//    }
-    
-    func updateEnrollment(enrollment: Enrollment){
-        let _ = self.quickfeedClient.updateEnrollment(enrollment, callOptions: self.defaultOptions)
+    // MARK: Misc
+    func getProviders() -> [String]?{
+        let call = self.quickfeedClient.getProviders(Void(), callOptions: self.defaultOptions)
+        
+        do {
+            let response = try call.response.wait()
+            return response.providers
+        } catch {
+            print("Call failed: \(error)")
+        }
+        return nil
     }
     
-    func updateEnrollments(courseID: UInt64){
-        var request = CourseRequest()
+//    func getOrganization(orgName: String) -> Organization?{
+//        var request = OrgRequest()
+//        request.orgName = orgName
+//
+//        let call = self.quickfeedClient.getOrganization(request, callOptions: self.defaultOptions)
+//
+//        do {
+//            let response = try call.response.wait()
+//            return response
+//        } catch {
+//            print("Call failed: \(error)")
+//        }
+//        return nil
+//    }
+    
+    func getRepositories(courseID: UInt64, repositoryTypes: [Repository.TypeEnum]) -> Repositories?{
+        var request = URLRequest()
+        request.courseID = courseID
+        request.repoTypes = repositoryTypes
+        
+        let call = self.quickfeedClient.getRepositories(request, callOptions: self.defaultOptions)
+        
+        do {
+            let response = try call.response.wait()
+            return response
+        } catch {
+            print("Call failed: \(error)")
+        }
+        return nil
+    }
+    
+    func isEmptyRepo(userID: UInt64, groupID: UInt64, courseID: UInt64){
+        var request = RepositoryRequest()
+        request.userID = userID
+        request.groupID = groupID
         request.courseID = courseID
         
-        let _ = self.quickfeedClient.updateEnrollments(request, callOptions: self.defaultOptions)
+        let _ = self.quickfeedClient.isEmptyRepo(request, callOptions: self.defaultOptions)
     }
+
     
     // TODO: Duplicates with different arguments or returns (see later which one is best to use)
     func getGroupByUserAndCourse(userID: UInt64, courseID: UInt64) -> Group? {
@@ -576,34 +638,16 @@ class GRPCManager {
         _ = self.quickfeedClient.createEnrollment(enrollment, callOptions: self.defaultOptions)
     }
     
-    // TODO: clean up the rest of the gRPC methods
-    func setUser(userID: UInt64){
-        self.userID = userID
-        let headers: HPACKHeaders = ["custom-header-1": "value1", "user": "\(self.userID!)"]
-        self.defaultOptions = CallOptions()
-        self.defaultOptions!.customMetadata = headers
-    }
-    
-    func getProviders(){
-        let call = self.quickfeedClient.getProviders(Void())
+    func getOrganization(orgName: String) -> EventLoopFuture<Organization> {
+        var orgRequest = OrgRequest()
+        orgRequest.orgName = orgName
         
-        do {
-            print("Get providers")
-            
-            print("connectivity state: \(self.connection.connectivity.state)")
-            let response = try call.response.wait()
-            
-            
-            print("Call received: \(response.providers)")
-        } catch {
-            print("Call failed: \(error)")
-        }
+        let call = self.quickfeedClient.getOrganization(orgRequest, callOptions: self.defaultOptions)
+        
+        return call.response
     }
     
-    
-    // MANUAL GRADING
-    
-    
+    // TODO: clean up the rest of the gRPC methods for manual grading
     func createReview(courseId: UInt64, review: Review) -> Review?{
         let req = ReviewRequest.with{
             $0.courseID = courseId
@@ -672,14 +716,5 @@ class GRPCManager {
         }
         
         return []
-    }
-    
-    func getOrganization(orgName: String) -> EventLoopFuture<Organization> {
-        var orgRequest = OrgRequest()
-        orgRequest.orgName = orgName
-        
-        let call = self.quickfeedClient.getOrganization(orgRequest, callOptions: self.defaultOptions)
-        
-        return call.response
     }
 }
