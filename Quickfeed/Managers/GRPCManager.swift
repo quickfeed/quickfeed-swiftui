@@ -339,6 +339,56 @@ class GRPCManager {
         return false
     }
     
+    // MARK: Enrollments
+//    func getEnrollmentsByUser(userID: UInt64, userStatus: [Enrollment.UserStatus]) -> [Enrollment]?{
+//        var request = EnrollmentStatusRequest()
+//        request.userID = userID
+//        request.statuses = userStatus
+//
+//        let call = self.quickfeedClient.getEnrollmentsByUser(request, callOptions: self.defaultOptions)
+//
+//        do {
+//            let response = try call.response.wait()
+//            return response.enrollments
+//        } catch {
+//            print("Call failed: \(error)")
+//        }
+//        return nil
+//    }
+    
+//    func getEnrollmentsByCourse(courseID: UInt64, ignoreGroupMembers: Bool, withActivity: Bool, userStatus: [Enrollment.UserStatus]) -> [Enrollment]?{
+//        var request = EnrollmentRequest()
+//        request.courseID = courseID
+//        request.ignoreGroupMembers = ignoreGroupMembers
+//        request.withActivity = withActivity
+//        request.statuses = userStatus
+//
+//        let call = self.quickfeedClient.getEnrollmentsByCourse(request, callOptions: self.defaultOptions)
+//
+//        do {
+//            let response = try call.response.wait()
+//            return response.enrollments
+//        } catch {
+//            print("Call failed: \(error)")
+//        }
+//        return nil
+//    }
+    
+//    func createEnrollment(enrollment: Enrollment){
+//        let _ = self.quickfeedClient.createEnrollment(enrollment, callOptions: self.defaultOptions)
+//    }
+    
+    func updateEnrollment(enrollment: Enrollment){
+        let _ = self.quickfeedClient.updateEnrollment(enrollment, callOptions: self.defaultOptions)
+    }
+    
+    func updateEnrollments(courseID: UInt64){
+        var request = CourseRequest()
+        request.courseID = courseID
+        
+        let _ = self.quickfeedClient.updateEnrollments(request, callOptions: self.defaultOptions)
+    }
+    
     // TODO: Duplicates with different arguments or returns (see later which one is best to use)
     func getGroupByUserAndCourse(userID: UInt64, courseID: UInt64) -> Group? {
         let req = GroupRequest.with{
@@ -483,48 +533,6 @@ class GRPCManager {
         }
     }
     
-    // TODO: clean up the rest of the gRPC methods
-    func setUser(userID: UInt64){
-        self.userID = userID
-        let headers: HPACKHeaders = ["custom-header-1": "value1", "user": "\(self.userID!)"]
-        self.defaultOptions = CallOptions()
-        self.defaultOptions!.customMetadata = headers
-    }
-    
-    func getProviders(){
-        let call = self.quickfeedClient.getProviders(Void())
-        
-        do {
-            print("Get providers")
-            
-            print("connectivity state: \(self.connection.connectivity.state)")
-            let response = try call.response.wait()
-            
-            
-            print("Call received: \(response.providers)")
-        } catch {
-            print("Call failed: \(error)")
-        }
-    }
-    
-    func updateEnrollment(enrollment: Enrollment){
-        let call = self.quickfeedClient.updateEnrollment(enrollment, callOptions: self.defaultOptions)
-        do {
-            _ = try call.response.wait()
-        } catch {
-            print("Updating enrollment failed: \(error)")
-        }
-    }
-    
-    func createEnrollment(courseID: UInt64, userID: UInt64) {
-        var enrollment = Enrollment()
-        enrollment.courseID = courseID
-        enrollment.userID = userID
-        
-        _ = self.quickfeedClient.createEnrollment(enrollment, callOptions: self.defaultOptions)
-    }
-    
-    
     func getEnrollmentsByUser(userID: UInt64) -> [Enrollment] {
         let req = EnrollmentStatusRequest.with{
             $0.userID = userID
@@ -558,6 +566,38 @@ class GRPCManager {
         
         return call.response
         
+    }
+    
+    func createEnrollment(courseID: UInt64, userID: UInt64) {
+        var enrollment = Enrollment()
+        enrollment.courseID = courseID
+        enrollment.userID = userID
+        
+        _ = self.quickfeedClient.createEnrollment(enrollment, callOptions: self.defaultOptions)
+    }
+    
+    // TODO: clean up the rest of the gRPC methods
+    func setUser(userID: UInt64){
+        self.userID = userID
+        let headers: HPACKHeaders = ["custom-header-1": "value1", "user": "\(self.userID!)"]
+        self.defaultOptions = CallOptions()
+        self.defaultOptions!.customMetadata = headers
+    }
+    
+    func getProviders(){
+        let call = self.quickfeedClient.getProviders(Void())
+        
+        do {
+            print("Get providers")
+            
+            print("connectivity state: \(self.connection.connectivity.state)")
+            let response = try call.response.wait()
+            
+            
+            print("Call received: \(response.providers)")
+        } catch {
+            print("Call failed: \(error)")
+        }
     }
     
     
