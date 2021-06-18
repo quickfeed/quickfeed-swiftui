@@ -9,33 +9,84 @@ import GRPC
 import NIOHPACK
 
 class GRPCManager {
-    let eventLoopGroup: EventLoopGroup
-    let channel: ClientConnection
+    static let shared = GRPCManager()
+    
     let quickfeedClient: AutograderServiceClient
+    let connection: ClientConnection
+    let eventLoopGroup: EventLoopGroup = MultiThreadedEventLoopGroup(numberOfThreads: 1)
+    
     let headers: HPACKHeaders? = nil
     var defaultOptions: CallOptions?
-    static let shared = GRPCManager()
     var userID: UInt64?
     
     private init(){
         let hostname = "localhost"
         let port = 9090
-        self.eventLoopGroup = MultiThreadedEventLoopGroup(numberOfThreads: 1)
-        self.channel = ClientConnection.insecure(group: self.eventLoopGroup)
-            .connect(host: hostname, port: port)
-        self.quickfeedClient = AutograderServiceClient(channel: channel)
+        
+        let configuration = ClientConnection.Configuration(
+            target: .hostAndPort(hostname, port),
+            eventLoopGroup: eventLoopGroup,
+            tls: nil // .init()/nil
+        )
+        self.connection = ClientConnection(configuration: configuration)
+        
+        self.quickfeedClient = AutograderServiceClient(channel: connection)
         print("Connecting to \(hostname)")
     }
     
-    func setUser(userID: UInt64){
-        self.userID = userID
-        let headers: HPACKHeaders = ["custom-header-1": "value1", "user": "\(self.userID!)"]
-        self.defaultOptions = CallOptions()
-        self.defaultOptions!.customMetadata = headers
+    func shutdown() {
+        // Close the connections when we're done with it.
+        try! self.connection.close().wait()
+        try! self.eventLoopGroup.syncShutdownGracefully()
+    }
+    
+    // MARK: Users
+    func getUser() -> User?{
+        let call = self.quickfeedClient.getUser(Void(), callOptions: self.defaultOptions)
+        
+        do {
+            let response = try call.response.wait()
+            return response
+        } catch {
+            print("Call failed: \(error)")
+        }
+        return nil
+    }
+    
+    func getUsers() -> [User]?{
+        let call = self.quickfeedClient.getUsers(Void(), callOptions: self.defaultOptions)
+        
+        do {
+            let response = try call.response.wait()
+            return response.users
+        } catch {
+            print("Call failed: \(error)")
+        }
+        return nil
+    }
+    
+    func getUserByCourse(courseCode: String, courseYear: UInt32, userLogin: String) -> User? {
+        var request = CourseUserRequest()
+        request.courseCode = courseCode
+        request.courseYear = courseYear
+        request.userLogin = userLogin
+        
+        let call = self.quickfeedClient.getUserByCourse(request, callOptions: self.defaultOptions)
+        
+        do {
+            let response = try call.response.wait()
+            return response
+        } catch {
+            print("Call failed: \(error)")
+        }
+        return nil
+    }
+    
+    func updateUser(user: User) {
+        let _ = self.quickfeedClient.updateUser(user, callOptions: self.defaultOptions)
     }
     
     func isAuthorizedTeacher() -> Bool{
-        
         let call = self.quickfeedClient.isAuthorizedTeacher(Void(), callOptions: self.defaultOptions)
         
         do {
@@ -44,11 +95,128 @@ class GRPCManager {
         } catch {
             print("Call failed: \(error)")
         }
-        
         return false
-        
     }
     
+    // MARK: Groups
+    func getGroup(groupID: UInt64) -> Group?{
+        var request = GetGroupRequest()
+        request.groupID = groupID
+        
+        let call = self.quickfeedClient.getGroup(request, callOptions: self.defaultOptions)
+        
+        do {
+            let response = try call.response.wait()
+            return response
+        } catch {
+            print("Call failed: \(error)")
+        }
+        return nil
+    }
+    
+    func getGroupByUserAndCourse(userID: UInt64, groupID: UInt64?, courseID: UInt64) -> Group?{
+        var request = GroupRequest()
+        request.userID = userID
+        request.courseID = courseID
+        
+        if groupID != nil{
+            request.groupID = groupID!
+        }
+        
+        let call = self.quickfeedClient.getGroupByUserAndCourse(request, callOptions: self.defaultOptions)
+        
+        do {
+            let response = try call.response.wait()
+            return response
+        } catch {
+            print("Call failed: \(error)")
+        }
+        return nil
+    }
+    
+    func getGroupsByCourse(courseID: UInt64) -> [Group]?{
+        var request = CourseRequest()
+        request.courseID = courseID
+        
+        let call = self.quickfeedClient.getGroupsByCourse(request, callOptions: self.defaultOptions)
+        
+        do {
+            let response = try call.response.wait()
+            return response.groups
+        } catch {
+            print("Call failed: \(error)")
+        }
+        return nil
+    }
+    
+    func createGroup(group: Group) -> Bool{
+        let call = self.quickfeedClient.createGroup(group, callOptions: self.defaultOptions)
+        
+        do {
+            let _ = try call.response.wait()
+            return true
+        } catch {
+            print("Call failed: \(error)")
+        }
+        return false
+    }
+    
+    func updateGroup(group: Group){
+        let _ = self.quickfeedClient.updateGroup(group, callOptions: self.defaultOptions)
+    }
+    
+    func deleteGroup(userID: UInt64, groupID: UInt64, courseID: UInt64){
+        var request = GroupRequest()
+        request.userID = userID
+        request.groupID = groupID
+        request.courseID = courseID
+        
+        let _ = self.quickfeedClient.deleteGroup(request, callOptions: self.defaultOptions)
+    }
+    
+    // TODO: Duplicates with different arguments or returns
+    func getGroupByUserAndCourse(userID: UInt64, courseID: UInt64) -> Group? {
+        let req = GroupRequest.with{
+            $0.courseID = courseID
+            $0.userID = userID
+        }
+        
+        let call = self.quickfeedClient.getGroupByUserAndCourse(req, callOptions: self.defaultOptions)
+        
+        do {
+            let response = try call.response.wait()
+            return response
+        } catch {
+            print("Call failed: \(error)")
+        }
+        
+        return nil
+    }
+    
+    func getGroupsByCourse(courseId: UInt64) -> EventLoopFuture<Groups>{
+        let req = CourseRequest.with{
+            $0.courseID = courseId
+        }
+        
+        let call = self.quickfeedClient.getGroupsByCourse(req, callOptions: self.defaultOptions)
+        
+        return call.response
+    }
+    
+    func createGroup(group: Group) -> EventLoopFuture<Group>{
+        
+        let call = self.quickfeedClient.createGroup(group, callOptions: self.defaultOptions)
+        
+        return call.response
+    }
+    
+    // TODO: clean up the rest of the gRPC methods
+    func setUser(userID: UInt64){
+        self.userID = userID
+        let headers: HPACKHeaders = ["custom-header-1": "value1", "user": "\(self.userID!)"]
+        self.defaultOptions = CallOptions()
+        self.defaultOptions!.customMetadata = headers
+    }
     
     func getProviders(){
         let call = self.quickfeedClient.getProviders(Void())
@@ -56,7 +224,7 @@ class GRPCManager {
         do {
             print("Get providers")
             
-            print("connectivity state: \(self.channel.connectivity.state)")
+            print("connectivity state: \(self.connection.connectivity.state)")
             let response = try call.response.wait()
             
             
@@ -64,36 +232,6 @@ class GRPCManager {
         } catch {
             print("Call failed: \(error)")
         }
-    }
-    
-    func getUser() -> User?{
-        let call = self.quickfeedClient.getUser(Void(), callOptions: self.defaultOptions)
-        
-        do {
-            let user = try call.response.wait()
-            return user
-        } catch {
-            print("Call failed: \(error)")
-        }
-        
-        return nil
-    }
-    
-    func updateUser(user: User) {
-        _ = self.quickfeedClient.updateUser(user, callOptions: self.defaultOptions)
-    }
-    
-    func getUsers() -> [User]? {
-        let call = self.quickfeedClient.getUsers(Void(), callOptions: self.defaultOptions)
-        
-        do {
-            let users = try call.response.wait()
-            return users.users
-        } catch {
-            print("Call failed: \(error)")
-        }
-        
-        return nil
     }
     
     func getCoursesForCurrentUser() -> [Course]{
@@ -275,58 +413,6 @@ class GRPCManager {
         
     }
     
-    func getGroupByUserAndCourse(userID: UInt64, courseID: UInt64) -> Group? {
-        let req = GroupRequest.with{
-            $0.courseID = courseID
-            $0.userID = userID
-        }
-        
-        let call = self.quickfeedClient.getGroupByUserAndCourse(req, callOptions: self.defaultOptions)
-        
-        do {
-            let response = try call.response.wait()
-            return response
-        } catch {
-            print("Call failed: \(error)")
-        }
-        
-        return nil
-    }
-    
-    
-    
-    func createGroup(group: Group) -> EventLoopFuture<Group>{
-        
-        let call = self.quickfeedClient.createGroup(group, callOptions: self.defaultOptions)
-        
-        return call.response
-    }
-    
-    
-    func updateGroup(group: Group){
-        
-        let call = self.quickfeedClient.updateGroup(group, callOptions: self.defaultOptions)
-        
-        do {
-            _ = try call.response.wait()
-            
-        } catch {
-            print("Call failed: \(error)")
-        }
-        
-
-    }
-    
-    func getGroupsByCourse(courseId: UInt64) -> EventLoopFuture<Groups>{
-        let req = CourseRequest.with{
-            $0.courseID = courseId
-        }
-        
-        let call = self.quickfeedClient.getGroupsByCourse(req, callOptions: self.defaultOptions)
-        
-        return call.response
-    }
-    
     func getAssignments(courseId: UInt64) -> [Assignment]{
         
         let req = CourseRequest.with{
@@ -466,11 +552,5 @@ class GRPCManager {
         let call = self.quickfeedClient.getOrganization(orgRequest, callOptions: self.defaultOptions)
         
         return call.response
-    }
-    
-    func shutdown() {
-        // Close the connections when we're done with it.
-        try! self.channel.close().wait()
-        try! self.eventLoopGroup.syncShutdownGracefully()
     }
 }
