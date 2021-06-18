@@ -48,7 +48,7 @@ class ServerProvider: ProviderProtocol{
     }
 
     func getCourse(courseId: UInt64) -> Course? {
-        return self.grpcManager.getCourse(courseId: courseId)
+        return self.grpcManager.getCourse(courseID: courseId)
     }
     
     func getAssignments(courseID: UInt64) -> [Assignment] {
