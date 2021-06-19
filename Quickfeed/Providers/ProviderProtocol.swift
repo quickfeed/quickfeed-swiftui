@@ -11,7 +11,7 @@ import NIO
 protocol ProviderProtocol{
     func setUser(userID: UInt64)
     func getUser() -> User?
-    func getCoursesForCurrentUser() -> [Course]?
+    func getCoursesForCurrentUser(userID: UInt64, userStatus: [Enrollment.UserStatus]) -> [Course]?
     func isAuthorizedTeacher() -> Bool
     func getCourses() -> [Course]?
     func getUsers() -> [User]?
@@ -27,7 +27,7 @@ protocol ProviderProtocol{
     func createGroup(group: Group) -> EventLoopFuture<Group>
     
     
-    func getGroupByUserAndCourse(courseId: UInt64, userId: UInt64) -> Group?
+    func getGroupByUserAndCourse(courseId: UInt64, groupID: UInt64?, userId: UInt64) -> Group?
     func getGroupsByCourse(courseId: UInt64) -> EventLoopFuture<Groups>
     func getSubmissionsByUser(courseId: UInt64, userId: UInt64) -> [Submission]
     func getSubmissionsByGroub(courseId: UInt64, groupId: UInt64) -> [Submission]
@@ -41,7 +41,7 @@ protocol ProviderProtocol{
     func rebuildSubmission(assignmentId: UInt64, submissionId: UInt64) -> Submission?
     func getRepositories(courseId: UInt64, types: [Repository.Type])
     
-    func getEnrollmentsByCourse(courseId: UInt64, ignoreGroupMembers: Bool?, enrollmentStatus: [Enrollment.UserStatus]?) -> EventLoopFuture<Enrollments>
+    func getEnrollmentsByCourse(courseId: UInt64, ignoreGroupMembers: Bool?, withActivity: Bool?, userStatus: [Enrollment.UserStatus]) -> EventLoopFuture<Enrollments>
     
     func createReview(courseId: UInt64, review: Review) -> Review?
     func getReviewers(submissionId: UInt64, courseId: UInt64) -> Reviewers?
