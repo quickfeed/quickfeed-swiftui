@@ -131,19 +131,19 @@ class ServerProvider: ProviderProtocol{
     
     // MANUAL GRADING
     func loadCriteria(courseId: UInt64, assignmentId: UInt64) -> [GradingBenchmark] {
-        return self.grpcManager.loadCriteria(courseId: courseId, assignmentId: assignmentId)
+        return self.grpcManager.loadCriteria(courseID: courseId, assignmentID: assignmentId)!
     }
     
     func createReview(courseId: UInt64, review: Review) -> Review?{
-        return self.grpcManager.createReview(courseId: courseId, review: review)
+        return self.grpcManager.createReview(courseID: courseId, review: review)
     }
     
     func updateReview(courseId: UInt64, review: Review){
-        return self.grpcManager.updateReview(courseId: courseId, review: review)
+        return self.grpcManager.updateReview(courseID: courseId, review: review)
     }
     
     func getReviewers(submissionId: UInt64, courseId: UInt64) -> Reviewers?{
-        return self.grpcManager.getReviewers(submissionId: submissionId, courseId: courseId)
+        return self.grpcManager.getReviewers(submissionID: submissionId, courseID: courseId)
     }
     
     // Courses

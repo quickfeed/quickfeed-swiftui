@@ -393,6 +393,104 @@ class GRPCManager {
         return false
     }
     
+    // MARK: Manual Grading
+    func createBenchmark(gradingBenchmark: GradingBenchmark) -> GradingBenchmark? {
+        let call = self.quickfeedClient.createBenchmark(gradingBenchmark, callOptions: self.defaultOptions)
+        
+        do {
+            let response = try call.response.wait()
+            return response
+        } catch {
+            print("Call failed: \(error)")
+        }
+        return nil
+    }
+    
+    func updateBenchmark(gradingBenchmark: GradingBenchmark) {
+        let _ = self.quickfeedClient.updateBenchmark(gradingBenchmark, callOptions: self.defaultOptions)
+    }
+    
+    func deleteBenchmark(gradingBenchmark: GradingBenchmark) {
+        let _ = self.quickfeedClient.deleteBenchmark(gradingBenchmark, callOptions: self.defaultOptions)
+    }
+    
+    func createCriterion(gradingCriterion: GradingCriterion) -> GradingCriterion? {
+        let call = self.quickfeedClient.createCriterion(gradingCriterion, callOptions: self.defaultOptions)
+        
+        do {
+            let response = try call.response.wait()
+            return response
+        } catch {
+            print("Call failed: \(error)")
+        }
+        return nil
+    }
+    
+    func updateCriterion(gradingCriterion: GradingCriterion) {
+        let _ = self.quickfeedClient.updateCriterion(gradingCriterion, callOptions: self.defaultOptions)
+    }
+    
+    func deleteCriterion(gradingCriterion: GradingCriterion) {
+        let _ = self.quickfeedClient.deleteCriterion(gradingCriterion, callOptions: self.defaultOptions)
+    }
+    
+    func createReview(courseID: UInt64, review: Review) -> Review?{
+        var request = ReviewRequest()
+        request.courseID = courseID
+        request.review = review
+        
+        let call = self.quickfeedClient.createReview(request, callOptions: self.defaultOptions)
+        
+        do {
+            let response = try call.response.wait()
+            return response
+        } catch {
+            print("Call failed: \(error)")
+        }
+        return nil
+    }
+    
+    func updateReview(courseID: UInt64, review: Review) {
+        var request = ReviewRequest()
+        request.courseID = courseID
+        request.review = review
+        
+        let _ = self.quickfeedClient.updateReview(request, callOptions: self.defaultOptions)
+    }
+    
+    func getReviewers(submissionID: UInt64, courseID: UInt64) -> Reviewers?{
+        var request = SubmissionReviewersRequest()
+        request.submissionID = submissionID
+        request.courseID = courseID
+        
+        let call = self.quickfeedClient.getReviewers(request, callOptions: self.defaultOptions)
+        
+        do {
+            let response = try call.response.wait()
+            return response
+        } catch {
+            print("Call failed: \(error)")
+        }
+        return nil
+    }
+    
+    func loadCriteria(courseID: UInt64, assignmentID: UInt64) -> [GradingBenchmark]?{
+        var request = LoadCriteriaRequest()
+        request.courseID = courseID
+        request.assignmentID = assignmentID
+        
+        let call = self.quickfeedClient.loadCriteria(request, callOptions: self.defaultOptions)
+        
+        do {
+            let response = try call.response.wait()
+            return response.benchmarks
+        } catch {
+            print("Call failed: \(error)")
+        }
+        
+        return nil
+    }
+    
     // MARK: Misc
     func getProviders() -> [String]?{
         let call = self.quickfeedClient.getProviders(Void(), callOptions: self.defaultOptions)
@@ -438,76 +536,5 @@ class GRPCManager {
         request.courseID = courseID
         
         let _ = self.quickfeedClient.isEmptyRepo(request, callOptions: self.defaultOptions)
-    }
-    
-    // TODO: clean up the rest of the gRPC methods for manual grading
-    func createReview(courseId: UInt64, review: Review) -> Review?{
-        let req = ReviewRequest.with{
-            $0.courseID = courseId
-            $0.review = review
-        }
-        
-        let call = self.quickfeedClient.createReview(req, callOptions: self.defaultOptions)
-        do {
-            let resp = try call.response.wait()
-            return resp
-        } catch {
-            print("Call failed: \(error)")
-        }
-        
-        return nil
-        
-    }
-    
-    func updateReview(courseId: UInt64, review: Review){
-        let req = ReviewRequest.with{
-            $0.courseID = courseId
-            $0.review = review
-        }
-        
-        let call = self.quickfeedClient.updateReview(req, callOptions: defaultOptions)
-        
-        do {
-            _ = try call.response.wait()
-            return
-        } catch {
-            print("Call failed: \(error)")
-        }
-        
-        
-    }
-    
-    func getReviewers(submissionId: UInt64, courseId: UInt64) -> Reviewers?{
-        let req = SubmissionReviewersRequest.with{
-            $0.courseID = courseId
-            $0.submissionID  = submissionId
-        }
-        
-        let call = self.quickfeedClient.getReviewers(req, callOptions: self.defaultOptions)
-        do {
-            let resp = try call.response.wait()
-            return resp
-        } catch {
-            print("Call failed: \(error)")
-        }
-        return nil
-    }
-    
-    func loadCriteria(courseId: UInt64, assignmentId: UInt64) -> [GradingBenchmark]{
-        let req = LoadCriteriaRequest.with{
-            $0.courseID = courseId
-            $0.assignmentID = assignmentId
-        }
-        
-        let call = self.quickfeedClient.loadCriteria(req, callOptions: self.defaultOptions)
-        
-        do {
-            let resp = try call.response.wait()
-            return resp.benchmarks
-        } catch {
-            print("Call failed: \(error)")
-        }
-        
-        return []
     }
 }
