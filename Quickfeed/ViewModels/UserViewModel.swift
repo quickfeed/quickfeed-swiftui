@@ -58,7 +58,7 @@ class UserViewModel: UserViewModelProtocol {
     }
     
     func getAllCoursesForCurrentUser() {
-        self.courses = self.provider.getCoursesForCurrentUser()
+        self.courses = self.provider.getCoursesForCurrentUser(userID: self.user!.id, userStatus: [Enrollment.UserStatus.student, Enrollment.UserStatus.teacher])
     }
     
     func isTeacherForCourse(courseId: UInt64) -> Bool? {
