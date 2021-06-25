@@ -26,7 +26,8 @@ struct LogIn: View {
             }
             .padding(.horizontal)
             GitHubLogIn(viewModel: viewModel, login: $login)
+            AuthWebView(mesgURL: "https://uis.itest.run")
         }
-        .frame(width: 300, height: 165)
+        .frame(width: 500, height: 500)
     }
 }

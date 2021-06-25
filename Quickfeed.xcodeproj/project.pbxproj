@@ -76,6 +76,7 @@
 		FA8EA6A126039B0D00A10351 /* GroupList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8EA6A026039B0D00A10351 /* GroupList.swift */; };
 		FA9B950A26835A64003F115B /* ag.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC9BCF4268358F5009B1E9B /* ag.grpc.swift */; };
 		FA9B950B26835A77003F115B /* ag.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC9BCF3268358F5009B1E9B /* ag.pb.swift */; };
+		FA9B950D2685D0A6003F115B /* AuthWebWiew.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B950C2685D0A6003F115B /* AuthWebWiew.swift */; };
 		FA9DC66A2644548D007F1A24 /* ReviewListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9DC6692644548D007F1A24 /* ReviewListHeader.swift */; };
 		FAA5DA36262EC643009DAEDE /* GradingBenchmarkHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA5DA35262EC643009DAEDE /* GradingBenchmarkHeader.swift */; };
 		FAA798B5262D6C82005E2713 /* AssignmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA798B4262D6C82005E2713 /* AssignmentView.swift */; };
@@ -168,6 +169,7 @@
 		FA85791225BEB4EA00223DB9 /* Quickfeed.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Quickfeed.entitlements; sourceTree = "<group>"; };
 		FA8EA69B26038F5D00A10351 /* AddGroupForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupForm.swift; sourceTree = "<group>"; };
 		FA8EA6A026039B0D00A10351 /* GroupList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupList.swift; sourceTree = "<group>"; };
+		FA9B950C2685D0A6003F115B /* AuthWebWiew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthWebWiew.swift; sourceTree = "<group>"; };
 		FA9DC6692644548D007F1A24 /* ReviewListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewListHeader.swift; sourceTree = "<group>"; };
 		FAA5DA35262EC643009DAEDE /* GradingBenchmarkHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradingBenchmarkHeader.swift; sourceTree = "<group>"; };
 		FAA798B4262D6C82005E2713 /* AssignmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentView.swift; sourceTree = "<group>"; };
@@ -416,6 +418,7 @@
 				FA85790A25BEB4E900223DB9 /* ContentView.swift */,
 				D08D62952611D72A00343250 /* LogIn.swift */,
 				D035C75725E92795005AC2BA /* NavigatorView.swift */,
+				FA9B950C2685D0A6003F115B /* AuthWebWiew.swift */,
 				D0F6A1432609F20A00C1D825 /* User */,
 				D04331D726028EAB0034C4B9 /* Admin */,
 				D04B46E125D12E9D00AC8926 /* Student */,
@@ -645,6 +648,7 @@
 				FA5A40E62609DCA700A20A13 /* SelectedMembers.swift in Sources */,
 				FAA8330525E3E073008C05F4 /* MemberListItem.swift in Sources */,
 				FA29717825D311B5000C99A1 /* SearchFieldController.swift in Sources */,
+				FA9B950D2685D0A6003F115B /* AuthWebWiew.swift in Sources */,
 				FAA8333E25E519E2008C05F4 /* ResultGrid.swift in Sources */,
 				FA5FBDE225E7E63E007EC0E3 /* ServerProvider.swift in Sources */,
 				D04B46EC25D1301200AC8926 /* LabSection.swift in Sources */,
