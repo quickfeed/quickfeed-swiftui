@@ -2,7 +2,7 @@
 //  AuthWebWiew.swift
 //  Quickfeed
 //
-//  Created by Oskar Gjølga on 25/06/2021.
+//  WebView in SwiftUI: https://stackoverflow.com/questions/62962063/implement-webkit-with-swiftui-on-macos-and-create-a-preview-of-a-webpage
 //
 
 import SwiftUI
@@ -23,8 +23,7 @@ struct AuthWebView: View {
         //Create the WebView with the model
         SwiftUIWebView(viewModel: model)
             .onChange(of: model.pageTitle, perform: { value in
-                print(model.sitedata)
-                
+                print(model.siteData)
             })
     }
 }
@@ -63,10 +62,10 @@ struct SwiftUIWebView: NSViewRepresentable {
         //After the webpage is loaded, assign the data in WebViewModel class
         public func webView(_ web: WKWebView, didFinish: WKNavigation!) {
             self.viewModel.pageTitle = web.title!
-            self.viewModel.link = web.url?.absoluteString as! String
+            self.viewModel.link = web.url!.absoluteString
             self.viewModel.didFinishLoading = true
             web.getCookies(for: "uis.itest.run"){data in
-                self.viewModel.sitedata = data
+                self.viewModel.siteData = data
                 print(data)
             }
             
@@ -75,7 +74,7 @@ struct SwiftUIWebView: NSViewRepresentable {
 
         public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) { }
 
-        public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Swift.Void) {
             decisionHandler(.allow)
         }
 
@@ -85,7 +84,7 @@ struct SwiftUIWebView: NSViewRepresentable {
 
 
 class WebViewModel: ObservableObject {
-    @Published var sitedata: [String : Any]
+    @Published var siteData: [String : Any]
     @Published var link: String
     @Published var didFinishLoading: Bool = false
     @Published var pageTitle: String
@@ -93,7 +92,7 @@ class WebViewModel: ObservableObject {
     init (link: String) {
         self.link = link
         self.pageTitle = ""
-        self.sitedata = [:]
+        self.siteData = [:]
     }
 }
 
