@@ -86,9 +86,9 @@ class ServerProvider: ProviderProtocol{
     }
     
     // MARK: Assignments
-//    func getAssignments(courseID: UInt64) -> [Assignment]? {
-//        return grpcManager.getAssignments(courseID: courseID)
-//    }
+    func getAssignments(courseID: UInt64) -> [Assignment]? {
+        return grpcManager.getAssignments(courseID: courseID)
+    }
     
     func updateAssignments(courseId: UInt64) -> Bool {
         return self.grpcManager.updateAssignments(courseID: courseId)
@@ -157,52 +157,6 @@ class ServerProvider: ProviderProtocol{
     }
 
     // TODO: clean up
-    
-    func getCoursesForCurrentUser(userID: UInt64, userStatus: [Enrollment.UserStatus]) -> [Course]? {
-        return grpcManager.getCoursesByUser(userID: userID, userStatus: userStatus)
-    }
-    
-    func getAssignments(courseID: UInt64) -> [Assignment] {
-        let assignments = self.grpcManager.getAssignments(courseID: courseID)
-        if assignments != nil {
-            return assignments!
-        }
-        return []
-    }
-    
-    // ENROLLMENTS
-    
-    func createEnrollment(courseID: UInt64, userID: UInt64) {
-        var enrollment = Enrollment()
-        enrollment.courseID = courseID
-        enrollment.userID = userID
-        
-        self.grpcManager.createEnrollment(enrollment: enrollment)
-    }
-    
-    func getEnrollmentsForUser(userId: UInt64) -> [Enrollment] {
-        return self.grpcManager.getEnrollmentsByUser(userID: userId, userStatus: [Enrollment.UserStatus.teacher, Enrollment.UserStatus.student, Enrollment.UserStatus.pending])!
-    }
-    
-    func updateEnrollment(enrollment: Enrollment, status: Enrollment.UserStatus) {
-        var enrollment = enrollment
-        enrollment.status = status
-        grpcManager.updateEnrollment(enrollment: enrollment)
-    }
-    
-    // SUBMISSIONS
-    func getSubmissionsByUser(courseId: UInt64, userId: UInt64) -> [Submission] {
-        /*let submissions = self.grpcManager.getSubmissionsForEnrollment(courseId: courseId, userId: userId)
-        return submissions*/
-        return self.grpcManager.getSubmissions(userID: userId, groupID: nil, courseID: courseId)!
-    }
-    
-    func getSubmissionsByGroub(courseId: UInt64, groupId: UInt64) -> [Submission] {
-        return self.grpcManager.getSubmissions(userID: nil, groupID: groupId, courseID: courseId)!
-        //return self.grpcManager.getSubbmissionByGroup(courseID: courseId, groupID: groupId)
-    }
-    
-    
     // MANUAL GRADING
     func loadCriteria(courseId: UInt64, assignmentId: UInt64) -> [GradingBenchmark] {
         return self.grpcManager.loadCriteria(courseID: courseId, assignmentID: assignmentId)!
@@ -218,10 +172,5 @@ class ServerProvider: ProviderProtocol{
     
     func getReviewers(submissionId: UInt64, courseId: UInt64) -> Reviewers?{
         return self.grpcManager.getReviewers(submissionID: submissionId, courseID: courseId)
-    }
-    
-    // Courses
-    func createNewCourse(course: Course) -> Course? {
-        return grpcManager.createCourse(course: course)
     }
 }

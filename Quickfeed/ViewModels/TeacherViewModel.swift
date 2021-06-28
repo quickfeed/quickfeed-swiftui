@@ -99,7 +99,7 @@ class TeacherViewModel: UserViewModelProtocol{
     }
     
     func loadAssignments(){
-        self.assignments =  self.provider.getAssignments(courseID: self.currentCourse.id)
+        self.assignments =  self.provider.getAssignments(courseID: self.currentCourse.id)!
         self.loadManuallyGradedAssignments(courseId: self.currentCourse.id)
     }
     
@@ -118,7 +118,7 @@ class TeacherViewModel: UserViewModelProtocol{
     }
     
     func getSubmissionsByUser(courseId: UInt64, userId: UInt64) -> [Submission]{
-        return self.provider.getSubmissionsByUser(courseId: courseId, userId: userId)
+        return self.provider.getSubmissions(userID: userId, groupID: nil, courseID: courseId)!
     }
     
     func getUserName(userId: UInt64) -> String{
@@ -134,7 +134,10 @@ class TeacherViewModel: UserViewModelProtocol{
     }
     
     func updateEnrollment(enrollment: Enrollment, status: Enrollment.UserStatus){
-        self.provider.updateEnrollment(enrollment: enrollment, status: status)
+        var enrollment = enrollment
+        enrollment.status = status
+        
+        self.provider.updateEnrollment(enrollment: enrollment)
     }
     
     // MANUAL GRADING
@@ -148,7 +151,7 @@ class TeacherViewModel: UserViewModelProtocol{
     }
     
     func getSubmissionByAssignment(userId: UInt64, assigmentID: UInt64) -> Submission{
-        let submissions = provider.getSubmissionsByUser(courseId: self.currentCourse.id, userId: userId)
+        let submissions = provider.getSubmissions(userID: userId, groupID: nil, courseID: self.currentCourse.id)!
         return submissions.first(where: {$0.assignmentID == assigmentID})!
     }
     

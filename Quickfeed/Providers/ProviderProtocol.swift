@@ -33,7 +33,7 @@ protocol ProviderProtocol{
     func updateCourseVisibility(enrollment: Enrollment)
     
     // MARK: Assignments
-    //func getAssignments(courseID: UInt64) -> [Assignment]?
+    func getAssignments(courseID: UInt64) -> [Assignment]?
     func updateAssignments(courseId: UInt64) -> Bool
     
     // MARK: Enrollments
@@ -59,16 +59,8 @@ protocol ProviderProtocol{
     func isEmptyRepo(userID: UInt64, groupID: UInt64, courseID: UInt64)
     
     // TODO: clean
-    func getCoursesForCurrentUser(userID: UInt64, userStatus: [Enrollment.UserStatus]) -> [Course]?
-    func getAssignments(courseID: UInt64) -> [Assignment]
-    func createEnrollment(courseID: UInt64, userID: UInt64)
-    func getEnrollmentsForUser(userId: UInt64) -> [Enrollment]
-    func updateEnrollment(enrollment: Enrollment, status: Enrollment.UserStatus)
-    func getSubmissionsByUser(courseId: UInt64, userId: UInt64) -> [Submission]
-    func getSubmissionsByGroub(courseId: UInt64, groupId: UInt64) -> [Submission]
     func loadCriteria(courseId: UInt64, assignmentId: UInt64) -> [GradingBenchmark]
     func createReview(courseId: UInt64, review: Review) -> Review?
     func updateReview(courseId: UInt64, review: Review)
     func getReviewers(submissionId: UInt64, courseId: UInt64) -> Reviewers?
-    func createNewCourse(course: Course) -> Course?
 }
