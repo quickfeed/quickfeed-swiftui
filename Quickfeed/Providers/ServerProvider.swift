@@ -7,14 +7,14 @@ import Foundation
 import NIO
 
 class ServerProvider: ProviderProtocol{
-
-    var grpcManager: GRPCManager = GRPCManager.shared
     static let shared: ServerProvider = ServerProvider()
+    var grpcManager: GRPCManager = GRPCManager.shared
     
     private init(){
         print("New ServerProvider")
     }
     
+    // MARK: Users
     func setUser(userID: UInt64){
         grpcManager.setUser(userID: userID)
     }
@@ -23,32 +23,143 @@ class ServerProvider: ProviderProtocol{
         return grpcManager.getUser()
     }
     
+    func getUsers() -> [User]? {
+        return grpcManager.getUsers()
+    }
+    
     func updateUser(user: User) {
         grpcManager.updateUser(user: user)
-    }
-    
-    func getCoursesForCurrentUser(userID: UInt64, userStatus: [Enrollment.UserStatus]) -> [Course]? {
-        return grpcManager.getCoursesByUser(userID: userID, userStatus: userStatus)
-    }
-    
-    func getOrganization(orgName: String) -> EventLoopFuture<Organization> {
-        return grpcManager.getOrganization(orgName: orgName)
     }
     
     func isAuthorizedTeacher() -> Bool {
         return grpcManager.isAuthorizedTeacher()
     }
     
+    // MARK: Groups
+    func getGroup(groupID: UInt64) -> Group? {
+        return grpcManager.getGroup(groupID: groupID)
+    }
+    
+    func getGroupByUserAndCourse(courseId: UInt64, groupID: UInt64?, userId: UInt64) -> Group? {
+        return self.grpcManager.getGroupByUserAndCourse(userID: userId, groupID: groupID, courseID: courseId)
+    }
+    
+    func getGroupsByCourse(courseId: UInt64) -> EventLoopFuture<Groups> {
+        return self.grpcManager.getGroupsByCourse(courseID: courseId)
+    }
+    
+    func createGroup(group: Group) -> EventLoopFuture<Group> {
+        return self.grpcManager.createGroup(group: group)
+    }
+    
+    func updateGroup(group: Group) {
+        self.grpcManager.updateGroup(group: group)
+    }
+    
+    func deleteGroup(userID: UInt64, groupID: UInt64, courseID: UInt64) {
+        grpcManager.deleteGroup(userID: userID, groupID: groupID, courseID: courseID)
+    }
+    
+    // MARK: Courses
+    func getCourse(courseId: UInt64) -> Course? {
+        return self.grpcManager.getCourse(courseID: courseId)
+    }
+    
     func getCourses() -> [Course]? {
         return grpcManager.getCourses()
     }
     
-    func getUsers() -> [User]? {
-        return grpcManager.getUsers()
+    func getCoursesByUser(userID: UInt64, userStatus: [Enrollment.UserStatus]) -> [Course]? {
+        return grpcManager.getCoursesByUser(userID: userID, userStatus: userStatus)
+    }
+    
+    func createCourse(course: Course) -> Course? {
+        return grpcManager.createCourse(course: course)
+    }
+    
+    func updateCourse(course: Course) {
+        grpcManager.updateCourse(course: course)
+    }
+    
+    func updateCourseVisibility(enrollment: Enrollment) {
+        grpcManager.updateCourseVisibility(enrollment: enrollment)
+    }
+    
+    // MARK: Assignments
+//    func getAssignments(courseID: UInt64) -> [Assignment]? {
+//        return grpcManager.getAssignments(courseID: courseID)
+//    }
+    
+    func updateAssignments(courseId: UInt64) -> Bool {
+        return self.grpcManager.updateAssignments(courseID: courseId)
+    }
+    
+    // MARK: Enrollments
+    func getEnrollmentsByUser(userID: UInt64, userStatus: [Enrollment.UserStatus]) -> [Enrollment]? {
+        return grpcManager.getEnrollmentsByUser(userID: userID, userStatus: userStatus)
+    }
+    
+    func getEnrollmentsByCourse(courseId: UInt64, ignoreGroupMembers: Bool?, withActivity: Bool?, userStatus: [Enrollment.UserStatus]) -> EventLoopFuture<Enrollments> {
+        return self.grpcManager.getEnrollmentsByCourse(courseID: courseId, ignoreGroupMembers: ignoreGroupMembers, withActivity: withActivity, userStatus: userStatus)
+    }
+    
+    func createEnrollment(enrollment: Enrollment) {
+        grpcManager.createEnrollment(enrollment: enrollment)
+    }
+    
+    func updateEnrollment(enrollment: Enrollment) {
+        grpcManager.updateEnrollment(enrollment: enrollment)
+    }
+    
+    func updateEnrollments(courseID: UInt64) {
+        grpcManager.updateEnrollments(courseID: courseID)
+    }
+    
+    // MARK: Submissions
+    func getSubmissions(userID: UInt64?, groupID: UInt64?, courseID: UInt64) -> [Submission]? {
+        return grpcManager.getSubmissions(userID: userID, groupID: groupID, courseID: courseID)
+    }
+    
+    func getSubmissionsByCourse(courseId: UInt64, type: SubmissionsForCourseRequest.TypeEnum) -> EventLoopFuture<CourseSubmissions> {
+        return self.grpcManager.getSubmissionsByCourse(courseID: courseId, type: type)
+    }
+    
+    func updateSubmission(courseId: UInt64, submisssion: Submission) -> Bool {
+        return self.grpcManager.updateSubmission(submissionID: submisssion.id, courseID: courseId, score: submisssion.score, released: submisssion.released, status: submisssion.status)
+    }
+    
+    func updateSubmissions(assignmentID: UInt64, courseID: UInt64, score: UInt32, release: Bool, approve: Bool) {
+        grpcManager.updateSubmissions(courseID: courseID, assignmentID: assignmentID, scoreLimit: score, release: release, approve: approve)
+    }
+    
+    func rebuildSubmission(submissionID: UInt64, assignmentID: UInt64) -> Bool {
+        return grpcManager.rebuildSubmission(submissionID: submissionID, assignmentID: assignmentID)
+    }
+    
+    // MARK: Manual Grading
+    
+    
+    // MARK: Misc
+    func getProviders() -> [String]? {
+        return grpcManager.getProviders()
+    }
+    
+    func getOrganization(orgName: String) -> EventLoopFuture<Organization> {
+        return grpcManager.getOrganization(orgName: orgName)
+    }
+    
+    func getRepositories(courseID: UInt64, repositoryTypes: [Repository.TypeEnum]) -> Repositories? {
+        return grpcManager.getRepositories(courseID: courseID, repositoryTypes: repositoryTypes)
+    }
+    
+    func isEmptyRepo(userID: UInt64, groupID: UInt64, courseID: UInt64) {
+        grpcManager.isEmptyRepo(userID: userID, groupID: groupID, courseID: courseID)
     }
 
-    func getCourse(courseId: UInt64) -> Course? {
-        return self.grpcManager.getCourse(courseID: courseId)
+    // TODO: clean up
+    
+    func getCoursesForCurrentUser(userID: UInt64, userStatus: [Enrollment.UserStatus]) -> [Course]? {
+        return grpcManager.getCoursesByUser(userID: userID, userStatus: userStatus)
     }
     
     func getAssignments(courseID: UInt64) -> [Assignment] {
@@ -57,9 +168,6 @@ class ServerProvider: ProviderProtocol{
             return assignments!
         }
         return []
-    }
-    func updateAssignments(courseId: UInt64) -> Bool {
-        return self.grpcManager.updateAssignments(courseID: courseId)
     }
     
     // ENROLLMENTS
@@ -81,28 +189,6 @@ class ServerProvider: ProviderProtocol{
         enrollment.status = status
         grpcManager.updateEnrollment(enrollment: enrollment)
     }
-
-    func getEnrollmentsByCourse(courseId: UInt64, ignoreGroupMembers: Bool?, withActivity: Bool?, userStatus: [Enrollment.UserStatus]) -> EventLoopFuture<Enrollments>{
-        return self.grpcManager.getEnrollmentsByCourse(courseID: courseId, ignoreGroupMembers: ignoreGroupMembers, withActivity: withActivity, userStatus: userStatus)
-    }
-    
-    // GROUPS
-    func createGroup(group: Group) -> EventLoopFuture<Group> {
-        return self.grpcManager.createGroup(group: group)
-    }
-    
-    func updateGroup(group: Group) {
-        self.grpcManager.updateGroup(group: group)
-    }
-    
-    func getGroupByUserAndCourse(courseId: UInt64, groupID: UInt64?, userId: UInt64) -> Group? {
-        return self.grpcManager.getGroupByUserAndCourse(userID: userId, groupID: groupID, courseID: courseId)
-    }
-    
-    func getGroupsByCourse(courseId: UInt64) -> EventLoopFuture<Groups> {
-        return self.grpcManager.getGroupsByCourse(courseID: courseId)
-    }
-    
     
     // SUBMISSIONS
     func getSubmissionsByUser(courseId: UInt64, userId: UInt64) -> [Submission] {
@@ -114,18 +200,6 @@ class ServerProvider: ProviderProtocol{
     func getSubmissionsByGroub(courseId: UInt64, groupId: UInt64) -> [Submission] {
         return self.grpcManager.getSubmissions(userID: nil, groupID: groupId, courseID: courseId)!
         //return self.grpcManager.getSubbmissionByGroup(courseID: courseId, groupID: groupId)
-    }
-    
-    func getSubmissionsByCourse(courseId: UInt64, type: SubmissionsForCourseRequest.TypeEnum) -> EventLoopFuture<CourseSubmissions> {
-        return self.grpcManager.getSubmissionsByCourse(courseID: courseId, type: type)
-    }
-    
-    func updateSubmission(courseId: UInt64, submisssion: Submission) -> Bool {
-        return self.grpcManager.updateSubmission(submissionID: submisssion.id, courseID: courseId, score: submisssion.score, released: submisssion.released, status: submisssion.status)
-    }
-    
-    func updateSubmissions(assignmentID: UInt64, courseID: UInt64, score: UInt32, release: Bool, approve: Bool) {
-        grpcManager.updateSubmissions(courseID: courseID, assignmentID: assignmentID, scoreLimit: score, release: release, approve: approve)
     }
     
     
@@ -150,23 +224,4 @@ class ServerProvider: ProviderProtocol{
     func createNewCourse(course: Course) -> Course? {
         return grpcManager.createCourse(course: course)
     }
-    
-    func updateCourse(course: Course) {
-        grpcManager.updateCourse(course: course)
-    }
-    
-    // NOT IMPLEMENTED
-
-    func getProviders() -> [String] {
-        fatalError("Not implemented")
-    }
-    
-    func rebuildSubmission(assignmentId: UInt64, submissionId: UInt64) -> Submission? {
-        fatalError("Not implemented")
-    }
-    
-    func getRepositories(courseId: UInt64, types: [Repository.Type]) {
-        fatalError("Not implemented")
-    }
-    
 }
