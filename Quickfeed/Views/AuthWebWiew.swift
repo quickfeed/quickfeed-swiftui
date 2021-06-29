@@ -12,19 +12,33 @@ import Foundation
 import AppKit
 
 struct AuthWebView: View {
-    @ObservedObject var model: WebViewModel
+    @ObservedObject var viewModel: UserViewModel
+    @ObservedObject var webViewModel: WebViewModel
 
-    init(mesgURL: String) {
-        //Assign the url to the model and initialise the model
-        self.model = WebViewModel(link: mesgURL)
+    init(viewModel: UserViewModel, mesgURL: String) {
+        self.viewModel = viewModel
+        self.webViewModel = WebViewModel(link: mesgURL)
     }
     
     var body: some View {
-        //Create the WebView with the model
-        SwiftUIWebView(viewModel: model)
-            .onChange(of: model.pageTitle, perform: { value in
-                print(model.siteData)
+        SwiftUIWebView(viewModel: webViewModel)
+            .onChange(of: webViewModel.pageTitle, perform: { value in
+                print(webViewModel.siteData)
             })
+    }
+}
+
+
+class WebViewModel: ObservableObject {
+    @Published var siteData: [String : Any]
+    @Published var link: String
+    @Published var didFinishLoading: Bool = false
+    @Published var pageTitle: String
+    
+    init (link: String) {
+        self.link = link
+        self.pageTitle = ""
+        self.siteData = [:]
     }
 }
 
@@ -83,18 +97,7 @@ struct SwiftUIWebView: NSViewRepresentable {
 }
 
 
-class WebViewModel: ObservableObject {
-    @Published var siteData: [String : Any]
-    @Published var link: String
-    @Published var didFinishLoading: Bool = false
-    @Published var pageTitle: String
-    
-    init (link: String) {
-        self.link = link
-        self.pageTitle = ""
-        self.siteData = [:]
-    }
-}
+
 
 extension WKWebView {
 

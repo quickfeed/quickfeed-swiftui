@@ -18,7 +18,7 @@ class GRPCManager {
     var defaultOptions: CallOptions?
     
     private init(){
-        let hostname = "localhost"
+        let hostname = "uis.itest.run"
         let port = 9090
         
         let configuration = ClientConnection.Configuration(

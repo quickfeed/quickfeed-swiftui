@@ -8,6 +8,8 @@ import SwiftUI
 struct LogIn: View {
     @ObservedObject var viewModel: UserViewModel
     @Binding var login: Bool
+    @State var signingIn: Bool = false
+    @State var hostName: String = "https://uis.itest.run/app/login/login/github"
     
     var body: some View {
         VStack{
@@ -25,9 +27,18 @@ struct LogIn: View {
                 }
             }
             .padding(.horizontal)
-            GitHubLogIn(viewModel: viewModel, login: $login)
-            AuthWebView(mesgURL: "https://uis.itest.run")
+            TextField("Hostname", text: $hostName)
+            GitHubLogInButton(viewModel: viewModel, login: $login)
+                .onTapGesture {
+                    signingIn = true
+                }
+                .sheet(isPresented: $signingIn, content: {
+                    AuthWebView(viewModel: viewModel, mesgURL: self.hostName)
+                        .frame(width: 600, height: 600)
+                })
+            
+            
         }
-        .frame(width: 500, height: 500)
+        .frame(width: 300, height: 300)
     }
 }
