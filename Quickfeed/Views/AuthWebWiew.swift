@@ -14,16 +14,19 @@ import AppKit
 struct AuthWebView: View {
     @ObservedObject var viewModel: UserViewModel
     @ObservedObject var webViewModel: WebViewModel
+    @Binding var signingIn: Bool
 
-    init(viewModel: UserViewModel, mesgURL: String) {
+    init(viewModel: UserViewModel, mesgURL: String, signingIn: Binding<Bool>) {
         self.viewModel = viewModel
         self.webViewModel = WebViewModel(link: mesgURL)
+        self._signingIn = signingIn
     }
     
     var body: some View {
         SwiftUIWebView(viewModel: webViewModel)
-            .onChange(of: webViewModel.pageTitle, perform: { value in
-                print(webViewModel.siteData)
+            .onChange(of: webViewModel.link, perform: { value in
+                print(webViewModel.pageTitle)
+                print(webViewModel.siteData["session"].unsafelyUnwrapped)
             })
     }
 }
@@ -41,7 +44,21 @@ class WebViewModel: ObservableObject {
         self.siteData = [:]
     }
 }
-
+/*
+class Cookie{
+    let Created: Int
+    let Domain: String
+    let Expires: Date
+    let HttpOnly: Bool
+    let Name: String
+    let Path: String
+    let Secure: Bool
+    let Value: String
+    init(opt: AnyObject) {
+        self.Created = opt.getAttribute("Created")
+    }
+}
+*/
 struct SwiftUIWebView: NSViewRepresentable {
     
     public typealias NSViewType = WKWebView
@@ -80,7 +97,6 @@ struct SwiftUIWebView: NSViewRepresentable {
             self.viewModel.didFinishLoading = true
             web.getCookies(for: "uis.itest.run"){data in
                 self.viewModel.siteData = data
-                print(data)
             }
             
             
@@ -103,16 +119,16 @@ extension WKWebView {
 
     private var httpCookieStore: WKHTTPCookieStore  { return WKWebsiteDataStore.default().httpCookieStore }
 
-    func getCookies(for domain: String? = nil, completion: @escaping ([String : Any])->())  {
-        var cookieDict = [String : AnyObject]()
+    func getCookies(for domain: String? = nil, completion: @escaping ([String : String])->())  {
+        var cookieDict = [String : String]()
         httpCookieStore.getAllCookies { cookies in
             for cookie in cookies {
                 if let domain = domain {
                     if cookie.domain.contains(domain) {
-                        cookieDict[cookie.name] = cookie.properties as AnyObject?
+                        cookieDict[cookie.name] = cookie.value as String?
                     }
                 } else {
-                    cookieDict[cookie.name] = cookie.properties as AnyObject?
+                    cookieDict[cookie.name] = cookie.value as String?
                 }
             }
             completion(cookieDict)

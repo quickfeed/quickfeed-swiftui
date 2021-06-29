@@ -9,7 +9,7 @@ struct LogIn: View {
     @ObservedObject var viewModel: UserViewModel
     @Binding var login: Bool
     @State var signingIn: Bool = false
-    @State var hostName: String = "https://uis.itest.run/app/login/login/github"
+    @State var authUrl: String = "https://uis.itest.run/app/login/login/github"
     
     var body: some View {
         VStack{
@@ -27,13 +27,15 @@ struct LogIn: View {
                 }
             }
             .padding(.horizontal)
-            TextField("Hostname", text: $hostName)
+            TextField("Hostname", text: $authUrl)
             GitHubLogInButton(viewModel: viewModel, login: $login)
                 .onTapGesture {
                     signingIn = true
                 }
                 .sheet(isPresented: $signingIn, content: {
-                    AuthWebView(viewModel: viewModel, mesgURL: self.hostName)
+                    AuthWebView(viewModel: viewModel,
+                                mesgURL: authUrl,
+                                signingIn: $signingIn)
                         .frame(width: 600, height: 600)
                 })
             
