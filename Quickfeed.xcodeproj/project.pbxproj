@@ -40,8 +40,6 @@
 		D0F6A14E2609F54300C1D825 /* UserEnrollments.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F6A14D2609F54300C1D825 /* UserEnrollments.swift */; };
 		D0F9FC6325BEB9A90080A1F2 /* GRPC in Frameworks */ = {isa = PBXBuildFile; productRef = D0F9FC6225BEB9A90080A1F2 /* GRPC */; };
 		D0F9FC6525BEB9A90080A1F2 /* CGRPCZlib in Frameworks */ = {isa = PBXBuildFile; productRef = D0F9FC6425BEB9A90080A1F2 /* CGRPCZlib */; };
-		D0F9FC6F25BEBC360080A1F2 /* ag.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9FC6D25BEBC360080A1F2 /* ag.pb.swift */; };
-		D0F9FC7025BEBC360080A1F2 /* ag.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9FC6E25BEBC360080A1F2 /* ag.grpc.swift */; };
 		FA17B95525EF7D6F008BB07F /* SubmissionReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B95425EF7D6F008BB07F /* SubmissionReview.swift */; };
 		FA17B95D25EF81F1008BB07F /* TranslateStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B95C25EF81F1008BB07F /* TranslateStatus.swift */; };
 		FA17B96225EF90E6008BB07F /* SubmissionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B96125EF90E6008BB07F /* SubmissionInfo.swift */; };
@@ -76,6 +74,8 @@
 		FA85791025BEB4EA00223DB9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA85790F25BEB4EA00223DB9 /* Preview Assets.xcassets */; };
 		FA8EA69C26038F5D00A10351 /* AddGroupForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8EA69B26038F5D00A10351 /* AddGroupForm.swift */; };
 		FA8EA6A126039B0D00A10351 /* GroupList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8EA6A026039B0D00A10351 /* GroupList.swift */; };
+		FA9B950A26835A64003F115B /* ag.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC9BCF4268358F5009B1E9B /* ag.grpc.swift */; };
+		FA9B950B26835A77003F115B /* ag.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC9BCF3268358F5009B1E9B /* ag.pb.swift */; };
 		FA9DC66A2644548D007F1A24 /* ReviewListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9DC6692644548D007F1A24 /* ReviewListHeader.swift */; };
 		FAA5DA36262EC643009DAEDE /* GradingBenchmarkHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA5DA35262EC643009DAEDE /* GradingBenchmarkHeader.swift */; };
 		FAA798B5262D6C82005E2713 /* AssignmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA798B4262D6C82005E2713 /* AssignmentView.swift */; };
@@ -129,8 +129,6 @@
 		D0F6A13B2609DD5000C1D825 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
 		D0F6A1452609F25500C1D825 /* UserInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformation.swift; sourceTree = "<group>"; };
 		D0F6A14D2609F54300C1D825 /* UserEnrollments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEnrollments.swift; sourceTree = "<group>"; };
-		D0F9FC6D25BEBC360080A1F2 /* ag.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ag.pb.swift; sourceTree = "<group>"; };
-		D0F9FC6E25BEBC360080A1F2 /* ag.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ag.grpc.swift; sourceTree = "<group>"; };
 		FA17B95425EF7D6F008BB07F /* SubmissionReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionReview.swift; sourceTree = "<group>"; };
 		FA17B95C25EF81F1008BB07F /* TranslateStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateStatus.swift; sourceTree = "<group>"; };
 		FA17B96125EF90E6008BB07F /* SubmissionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionInfo.swift; sourceTree = "<group>"; };
@@ -186,6 +184,8 @@
 		FAB0670B25CAC8D600FFE8EB /* UserViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModelProtocol.swift; sourceTree = "<group>"; };
 		FAB0671C25CACF8700FFE8EB /* TeacherNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherNavigationView.swift; sourceTree = "<group>"; };
 		FABB233D25DBD91B00317969 /* MemberList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberList.swift; sourceTree = "<group>"; };
+		FAC9BCF3268358F5009B1E9B /* ag.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ag.pb.swift; sourceTree = "<group>"; };
+		FAC9BCF4268358F5009B1E9B /* ag.grpc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ag.grpc.swift; sourceTree = "<group>"; };
 		FAE71C95262CCE9900856FF5 /* AssignmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentsView.swift; sourceTree = "<group>"; };
 		FAF945B625CC4E3200074A2F /* ProtoExstensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtoExstensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -264,15 +264,6 @@
 				D01D73302639D95500D94003 /* NewUserEnrollments.swift */,
 			);
 			path = Helpers;
-			sourceTree = "<group>";
-		};
-		D0F9FC6C25BEBBDB0080A1F2 /* Proto */ = {
-			isa = PBXGroup;
-			children = (
-				D0F9FC6E25BEBC360080A1F2 /* ag.grpc.swift */,
-				D0F9FC6D25BEBC360080A1F2 /* ag.pb.swift */,
-			);
-			path = Proto;
 			sourceTree = "<group>";
 		};
 		FA17B98825F24FC3008BB07F /* Review */ = {
@@ -385,12 +376,12 @@
 		FA85790725BEB4E900223DB9 /* Quickfeed */ = {
 			isa = PBXGroup;
 			children = (
+				FA9B9508268359AE003F115B /* Proto */,
 				FAB066A425CAC09F00FFE8EB /* Providers */,
 				FAC5364F25C0321600784980 /* Managers */,
 				FAB066F825CAC84200FFE8EB /* ViewModels */,
 				FA85798025BEC4B000223DB9 /* Views */,
 				FA85795A25BEB9AC00223DB9 /* Models */,
-				D0F9FC6C25BEBBDB0080A1F2 /* Proto */,
 				FA17B95C25EF81F1008BB07F /* TranslateStatus.swift */,
 				D04331E52602B35C0034C4B9 /* HelpFunctions.swift */,
 				FA85790825BEB4E900223DB9 /* QuickfeedApp.swift */,
@@ -447,6 +438,23 @@
 				D0005CC525E4EF8E00EDECD1 /* GitHubLogIn.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		FA9B9508268359AE003F115B /* Proto */ = {
+			isa = PBXGroup;
+			children = (
+				FA9B9509268359B5003F115B /* ag */,
+			);
+			path = Proto;
+			sourceTree = "<group>";
+		};
+		FA9B9509268359B5003F115B /* ag */ = {
+			isa = PBXGroup;
+			children = (
+				FAC9BCF4268358F5009B1E9B /* ag.grpc.swift */,
+				FAC9BCF3268358F5009B1E9B /* ag.pb.swift */,
+			);
+			path = ag;
 			sourceTree = "<group>";
 		};
 		FAB0667125CABF6E00FFE8EB /* Frameworks */ = {
@@ -585,11 +593,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA9B950A26835A64003F115B /* ag.grpc.swift in Sources */,
 				D08D62962611D72A00343250 /* LogIn.swift in Sources */,
 				FAA8333425E4F1D0008C05F4 /* ReviewList.swift in Sources */,
 				FAE71C96262CCE9900856FF5 /* AssignmentsView.swift in Sources */,
 				FAA798B5262D6C82005E2713 /* AssignmentView.swift in Sources */,
 				FA17B97525EFD40B008BB07F /* MemberListHeader.swift in Sources */,
+				FA9B950B26835A77003F115B /* ag.pb.swift in Sources */,
 				FA17B96225EF90E6008BB07F /* SubmissionInfo.swift in Sources */,
 				FAA8333025E4F1BD008C05F4 /* TeacherViewModel.swift in Sources */,
 				FA9DC66A2644548D007F1A24 /* ReviewListHeader.swift in Sources */,
@@ -627,7 +637,6 @@
 				D035C75825E92795005AC2BA /* NavigatorView.swift in Sources */,
 				FA29711F25D04CF2000C99A1 /* GithubLinkSection.swift in Sources */,
 				D0F6A14E2609F54300C1D825 /* UserEnrollments.swift in Sources */,
-				D0F9FC6F25BEBC360080A1F2 /* ag.pb.swift in Sources */,
 				FA17D89A264D150800C4CC23 /* ReleaseList.swift in Sources */,
 				FAA8335325E52E3A008C05F4 /* SubmissionResult.swift in Sources */,
 				D01D73312639D95600D94003 /* NewUserEnrollments.swift in Sources */,
@@ -646,7 +655,6 @@
 				FA17D897264C2A1A00C4CC23 /* ReviewSheet.swift in Sources */,
 				FA5A4113260B56C000A20A13 /* ResultStats.swift in Sources */,
 				D0A8499D263232E800EC0E2F /* CourseFields.swift in Sources */,
-				D0F9FC7025BEBC360080A1F2 /* ag.grpc.swift in Sources */,
 				FAA8334E25E5259B008C05F4 /* ResultListItem.swift in Sources */,
 				D0005CC125E4EF2A00EDECD1 /* GitHubManager.swift in Sources */,
 				FA39C85E26396A7A00906EB4 /* CreateReview.swift in Sources */,
