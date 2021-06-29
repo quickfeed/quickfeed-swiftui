@@ -37,7 +37,7 @@ class TeacherViewModel: UserViewModelProtocol{
     }
     
     func loadGroups(){
-        let response = self.provider.getGroupsByCourse(courseId: self.currentCourse.id)
+        let response = self.provider.getGroupsByCourse(courseID: self.currentCourse.id)
         _ = response.always {(response: Result<Groups, Error>) in
             switch response {
             case .success(let response):
@@ -69,7 +69,7 @@ class TeacherViewModel: UserViewModelProtocol{
     }
     
     func loadEnrollmentLinks(){
-        let response = self.provider.getSubmissionsByCourse(courseId: self.currentCourse.id, type: SubmissionsForCourseRequest.TypeEnum.all)
+        let response = self.provider.getSubmissionsByCourse(courseID: self.currentCourse.id, type: SubmissionsForCourseRequest.TypeEnum.all)
         _ = response.always {(response: Result<CourseSubmissions, Error>) in
             switch response {
             case .success(let response):
@@ -84,7 +84,7 @@ class TeacherViewModel: UserViewModelProtocol{
     }
     
     func loadEnrollments(){
-        let response = self.provider.getEnrollmentsByCourse(courseId: self.currentCourse.id, ignoreGroupMembers: nil, withActivity: nil, userStatus: [Enrollment.UserStatus.student, Enrollment.UserStatus.teacher, Enrollment.UserStatus.pending])
+        let response = self.provider.getEnrollmentsByCourse(courseID: self.currentCourse.id, ignoreGroupMembers: nil, withActivity: nil, userStatus: [Enrollment.UserStatus.student, Enrollment.UserStatus.teacher, Enrollment.UserStatus.pending])
         _ = response.always {(response: Result<Enrollments, Error>) in
             switch response {
             case .success(let response):
@@ -104,11 +104,11 @@ class TeacherViewModel: UserViewModelProtocol{
     }
     
     func updateAssignments() -> Bool{
-        return self.provider.updateAssignments(courseId: self.currentCourse.id)
+        return self.provider.updateAssignments(courseID: self.currentCourse.id)
     }
     
     func updateSubmission(submission: Submission) -> Bool{
-        return provider.updateSubmission(courseId: self.currentCourse.id, submisssion: submission)
+        return provider.updateSubmission(courseID: self.currentCourse.id, submisssion: submission)
     }
     
     func loadManuallyGradedAssignments(courseId: UInt64){
@@ -142,12 +142,12 @@ class TeacherViewModel: UserViewModelProtocol{
     
     // MANUAL GRADING
     func createReview(review: Review) -> Review?{
-        return self.provider.createReview(courseId: self.currentCourse.id, review: review)
+        return self.provider.createReview(courseID: self.currentCourse.id, review: review)
     }
     
     
     func updateReview(review: Review){
-        self.provider.updateReview(courseId: self.currentCourse.id, review: review)
+        self.provider.updateReview(courseID: self.currentCourse.id, review: review)
     }
     
     func getSubmissionByAssignment(userId: UInt64, assigmentID: UInt64) -> Submission{
@@ -156,7 +156,7 @@ class TeacherViewModel: UserViewModelProtocol{
     }
     
     func loadCriteria(assignmentId: UInt64) -> [GradingBenchmark]{
-        return self.provider.loadCriteria(courseId: currentCourse.id, assignmentId: assignmentId)
+        return self.provider.loadCriteria(courseID: currentCourse.id, assignmentID: assignmentId)
     }
     
     func reset() {

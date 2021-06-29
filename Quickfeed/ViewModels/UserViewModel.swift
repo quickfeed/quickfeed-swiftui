@@ -50,7 +50,7 @@ class UserViewModel: UserViewModelProtocol {
     }
     
     func getCourseById(courseId: UInt64) -> Course{
-        return self.provider.getCourse(courseId: courseId)!
+        return self.provider.getCourse(courseID: courseId)!
     }
     
     func getAllCourses() -> [Course]? {

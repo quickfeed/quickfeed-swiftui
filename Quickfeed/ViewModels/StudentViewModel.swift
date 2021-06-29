@@ -22,7 +22,7 @@ class StudentViewModel: UserViewModelProtocol{
     
     func setCourse(course: Course){
         self.course = course
-        self.group = provider.getGroupByUserAndCourse(courseId: course.id, groupID: nil, userId: user.id)
+        self.group = provider.getGroupByUserAndCourse(courseID: course.id, groupID: nil, userID: user.id)
     }
     
     func createGroup(name: String, enrollments: [Enrollment]) {
@@ -64,7 +64,7 @@ class StudentViewModel: UserViewModelProtocol{
     }
     
     func getEnrollmentsByCourse() {
-        let response = self.provider.getEnrollmentsByCourse(courseId: self.course!.id, ignoreGroupMembers: true, withActivity: nil, userStatus: [Enrollment.UserStatus.student])
+        let response = self.provider.getEnrollmentsByCourse(courseID: self.course!.id, ignoreGroupMembers: true, withActivity: nil, userStatus: [Enrollment.UserStatus.student])
         _ = response.always {(response: Result<Enrollments, Error>) in
             switch response {
             case .success(let response):
