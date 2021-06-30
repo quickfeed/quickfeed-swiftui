@@ -22,7 +22,7 @@ class StudentViewModel: UserViewModelProtocol{
     
     func setCourse(course: Course){
         self.course = course
-        self.group = provider.getGroupByUserAndCourse(courseId: course.id, groupID: nil, userId: user.id)
+        self.group = provider.getGroupByUserAndCourse(courseID: course.id, groupID: nil, userID: user.id)
     }
     
     func createGroup(name: String, enrollments: [Enrollment]) {
@@ -54,7 +54,7 @@ class StudentViewModel: UserViewModelProtocol{
     }
     
     func getEnrollmentForCurrentCourse() -> Enrollment?{
-        let enrollments = provider.getEnrollmentsForUser(userId: user.id)
+        let enrollments = provider.getEnrollmentsByUser(userID: self.user.id, userStatus: [Enrollment.UserStatus.teacher, Enrollment.UserStatus.student, Enrollment.UserStatus.pending])!
         for element in enrollments{
             if element.course.id == course!.id{
                 return element
@@ -64,7 +64,7 @@ class StudentViewModel: UserViewModelProtocol{
     }
     
     func getEnrollmentsByCourse() {
-        let response = self.provider.getEnrollmentsByCourse(courseId: self.course!.id, ignoreGroupMembers: true, withActivity: nil, userStatus: [Enrollment.UserStatus.student])
+        let response = self.provider.getEnrollmentsByCourse(courseID: self.course!.id, ignoreGroupMembers: true, withActivity: nil, userStatus: [Enrollment.UserStatus.student])
         _ = response.always {(response: Result<Enrollments, Error>) in
             switch response {
             case .success(let response):
@@ -79,7 +79,7 @@ class StudentViewModel: UserViewModelProtocol{
     }
     
     func getAssignments(){
-        self.assignments = provider.getAssignments(courseID: course!.id)
+        self.assignments = provider.getAssignments(courseID: course!.id)!
     }
     
     func hasGroupAssignments() -> Bool{
@@ -109,15 +109,15 @@ class StudentViewModel: UserViewModelProtocol{
     }
     
     func getSubmissions(){
-        var submissions = provider.getSubmissionsByUser(courseId: course!.id, userId: user.id)
+        var submissions = provider.getSubmissions(userID: user.id, groupID: nil, courseID: course!.id)!
         if self.group != nil{
-            submissions.append(contentsOf: provider.getSubmissionsByGroub(courseId: course!.id, groupId: group!.id))
+            submissions.append(contentsOf: provider.getSubmissions(userID: nil, groupID: group!.id, courseID: course!.id)!)
         }
         self.submissions = submissions
     }
     
     func getSlipdays() -> UInt32? {
-        let enrollments = provider.getEnrollmentsForUser(userId: user.id)
+        let enrollments = provider.getEnrollmentsByUser(userID: self.user.id, userStatus: [Enrollment.UserStatus.teacher, Enrollment.UserStatus.student, Enrollment.UserStatus.pending])!
         for element in enrollments{
             if element.courseID == course!.id{
                 return element.slipDaysRemaining
