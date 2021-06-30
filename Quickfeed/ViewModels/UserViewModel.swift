@@ -50,7 +50,7 @@ class UserViewModel: UserViewModelProtocol {
     }
     
     func getCourseById(courseId: UInt64) -> Course{
-        return self.provider.getCourse(courseId: courseId)!
+        return self.provider.getCourse(courseID: courseId)!
     }
     
     func getAllCourses() -> [Course]? {
@@ -58,7 +58,7 @@ class UserViewModel: UserViewModelProtocol {
     }
     
     func getAllCoursesForCurrentUser() {
-        self.courses = self.provider.getCoursesForCurrentUser(userID: self.user!.id, userStatus: [Enrollment.UserStatus.student, Enrollment.UserStatus.teacher])
+        self.courses = self.provider.getCoursesByUser(userID: self.user!.id, userStatus: [Enrollment.UserStatus.student, Enrollment.UserStatus.teacher])
     }
     
     func isTeacherForCourse(courseId: UInt64) -> Bool? {
@@ -82,7 +82,11 @@ class UserViewModel: UserViewModelProtocol {
     // Enrollment
     
     func createEnrollment(courseID: UInt64) {
-        self.provider.createEnrollment(courseID: courseID, userID: self.user!.id)
+        var enrollment = Enrollment()
+        enrollment.courseID = courseID
+        enrollment.userID = self.user!.id
+        
+        self.provider.createEnrollment(enrollment: enrollment)
         self.getEnrollments()
     }
     
@@ -98,7 +102,7 @@ class UserViewModel: UserViewModelProtocol {
     }
     
     func getEnrollments() {
-        self.enrollments = self.provider.getEnrollmentsForUser(userId: self.user!.id)
+        self.enrollments = self.provider.getEnrollmentsByUser(userID: self.user!.id, userStatus: [Enrollment.UserStatus.teacher, Enrollment.UserStatus.student, Enrollment.UserStatus.pending])!
         if self.enrollments.count != 0 {
             self.sortEnrollmentsByCode()
         }
