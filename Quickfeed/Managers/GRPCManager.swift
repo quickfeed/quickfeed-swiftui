@@ -44,7 +44,7 @@ class GRPCManager {
     }
     
     // MARK: Users
-    func setSession(sessionId: String){
+    func setUserSession(sessionId: String){
         createHeader(sessionId: sessionId)
     }
     

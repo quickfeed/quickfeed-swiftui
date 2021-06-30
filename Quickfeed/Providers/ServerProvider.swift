@@ -17,7 +17,7 @@ class ServerProvider: ProviderProtocol{
     
     // MARK: Users
     func setUser(sessionId: String){
-        grpcManager.setSession(sessionId: sessionId)
+        grpcManager.setUserSession(sessionId: sessionId)
     }
     
     func getUser() -> User? {
