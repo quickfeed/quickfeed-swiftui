@@ -26,8 +26,11 @@ struct AuthWebView: View {
         SwiftUIWebView(viewModel: webViewModel)
             .onChange(of: webViewModel.link, perform: { value in
                 print(webViewModel.pageTitle)
-                print(webViewModel.siteData["session"].unsafelyUnwrapped)
-                signingIn = false
+                if let sessionString = webViewModel.siteData["session"] as? String{
+                    viewModel.setUser(sessionId: sessionString)
+                    print("test")
+                    signingIn = false
+                }
             })
     }
 }

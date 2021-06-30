@@ -15,8 +15,8 @@ class ServerProvider: ProviderProtocol{
         print("New ServerProvider")
     }
     
-    func setUser(userID: UInt64){
-        grpcManager.setUser(userID: userID)
+    func setUser(sessionId: String){
+        grpcManager.setSession(sessionId: sessionId)
     }
     
     func getUser() -> User? {

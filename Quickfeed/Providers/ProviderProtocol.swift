@@ -9,7 +9,7 @@ import NIO
 
 
 protocol ProviderProtocol{
-    func setUser(userID: UInt64)
+    func setUser(sessionId: String)
     func getUser() -> User?
     func getCoursesForCurrentUser(userID: UInt64, userStatus: [Enrollment.UserStatus]) -> [Course]?
     func isAuthorizedTeacher() -> Bool

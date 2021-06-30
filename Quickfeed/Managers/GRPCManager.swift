@@ -32,9 +32,9 @@ class GRPCManager {
         print("Connecting to \(hostname)")
     }
     
-    func createHeader(userID: UInt64){
+    func createHeader(sessionId: String){
         self.defaultOptions = CallOptions()
-        self.defaultOptions!.customMetadata = ["custom-header-1": "value1", "user": "\(userID)"]
+        self.defaultOptions!.customMetadata = ["custom-header-1": "value1", "session": "\(sessionId)"]
     }
     
     func shutdown() {
@@ -44,8 +44,8 @@ class GRPCManager {
     }
     
     // MARK: Users
-    func setUser(userID: UInt64){
-        createHeader(userID: userID)
+    func setSession(sessionId: String){
+        createHeader(sessionId: sessionId)
     }
     
     func getUser() -> User?{
