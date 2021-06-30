@@ -27,6 +27,7 @@ struct AuthWebView: View {
             .onChange(of: webViewModel.link, perform: { value in
                 print(webViewModel.pageTitle)
                 print(webViewModel.siteData["session"].unsafelyUnwrapped)
+                signingIn = false
             })
     }
 }
