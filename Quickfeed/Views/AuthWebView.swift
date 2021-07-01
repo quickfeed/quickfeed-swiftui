@@ -24,11 +24,13 @@ struct AuthWebView: View {
     
     var body: some View {
         SwiftUIWebView(viewModel: webViewModel)
-            .onChange(of: webViewModel.link, perform: { value in
+            .onChange(of: webViewModel.pageTitle, perform: { value in
                 print(webViewModel.pageTitle)
+                print("test")
+                print(webViewModel.siteData)
                 if let sessionString = webViewModel.siteData["session"] as? String{
                     viewModel.setUser(sessionId: sessionString)
-                    print("test")
+                    print(sessionString)
                     signingIn = false
                 }
             })
@@ -48,21 +50,7 @@ class WebViewModel: ObservableObject {
         self.siteData = [:]
     }
 }
-/*
-class Cookie{
-    let Created: Int
-    let Domain: String
-    let Expires: Date
-    let HttpOnly: Bool
-    let Name: String
-    let Path: String
-    let Secure: Bool
-    let Value: String
-    init(opt: AnyObject) {
-        self.Created = opt.getAttribute("Created")
-    }
-}
-*/
+
 struct SwiftUIWebView: NSViewRepresentable {
     
     public typealias NSViewType = WKWebView
