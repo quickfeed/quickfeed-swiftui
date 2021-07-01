@@ -8,6 +8,11 @@ import NIO
 import GRPC
 import NIOHPACK
 
+var baseURL: String {
+        return try! Configuration.value(for: "BASE_URL")
+}
+
+
 class GRPCManager {
     static let shared = GRPCManager()
     
@@ -18,9 +23,9 @@ class GRPCManager {
     var defaultOptions: CallOptions?
     
     private init(){
-        let hostname = "uis.itest.run"
+        let hostname = baseURL
         let port = 9090
-        
+        print(hostname)
         let configuration = ClientConnection.Configuration(
             target: .hostAndPort(hostname, port),
             eventLoopGroup: eventLoopGroup,
@@ -31,6 +36,9 @@ class GRPCManager {
         self.quickfeedClient = AutograderServiceClient(channel: connection)
         print("Connecting to \(hostname)")
     }
+    
+    
+    
     
     func createHeader(sessionId: String){
         self.defaultOptions = CallOptions()
