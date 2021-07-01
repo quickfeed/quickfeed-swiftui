@@ -9,7 +9,7 @@ struct LogIn: View {
     @ObservedObject var viewModel: UserViewModel
     @Binding var login: Bool
     @State var signingIn: Bool = false
-    @State var authUrl: String = "https://uis.itest.run/app/login/login/github"
+    @State var authUrl: String = "https://\(baseURL)/app/login/login/github"
     
     var body: some View {
         VStack{

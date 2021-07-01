@@ -1,5 +1,5 @@
 //
-//  AuthWebWiew.swift
+//  AuthWebView.swift
 //  Quickfeed
 //
 //  WebView in SwiftUI: https://stackoverflow.com/questions/62962063/implement-webkit-with-swiftui-on-macos-and-create-a-preview-of-a-webpage

@@ -8,9 +8,6 @@ import NIO
 import GRPC
 import NIOHPACK
 
-var baseURL: String {
-        return try! Configuration.value(for: "BASE_URL")
-}
 
 
 class GRPCManager {
@@ -25,7 +22,6 @@ class GRPCManager {
     private init(){
         let hostname = baseURL
         let port = 9090
-        print(hostname)
         let configuration = ClientConnection.Configuration(
             target: .hostAndPort(hostname, port),
             eventLoopGroup: eventLoopGroup,

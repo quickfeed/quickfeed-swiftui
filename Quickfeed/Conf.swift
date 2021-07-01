@@ -28,3 +28,8 @@ enum Configuration {
         }
     }
 }
+
+var baseURL: String {
+        return try! Configuration.value(for: "BASE_URL")
+}
+
