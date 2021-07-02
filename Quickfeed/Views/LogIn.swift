@@ -10,7 +10,7 @@ struct LogIn: View {
     @Binding var login: Bool
     @State var signingIn: Bool = false
     @State var authUrl: String = "https://\(baseURL)/app/login/login/github"
-    @State var hasSession: Bool = false
+   
     
     var body: some View {
         VStack{
@@ -36,20 +36,10 @@ struct LogIn: View {
                 .sheet(isPresented: $signingIn, content: {
                     AuthWebView(viewModel: viewModel,
                                 mesgURL: authUrl,
-                                signingIn: $signingIn,
-                                hasSession: $hasSession
+                                signingIn: $signingIn
                     )
                     .frame(width: 600, height: 600)
                 })
-                .onChange(of: self.hasSession, perform: { value in
-                    signingIn = false
-                    print(hasSession)
-                    
-                    
-                })
-            
-            
-            
         }
         
         .frame(width: 300, height: 300)

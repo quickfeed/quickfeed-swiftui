@@ -15,25 +15,19 @@ struct AuthWebView: View {
     @ObservedObject var viewModel: UserViewModel
     @ObservedObject var webViewModel: WebViewModel
     @Binding var signingIn: Bool
-    @Binding var hasSession: Bool
     
-    init(viewModel: UserViewModel, mesgURL: String, signingIn: Binding<Bool>, hasSession: Binding<Bool>) {
+    init(viewModel: UserViewModel, mesgURL: String, signingIn: Binding<Bool>) {
         self.viewModel = viewModel
         self.webViewModel = WebViewModel(link: mesgURL)
         self._signingIn = signingIn
-        self._hasSession = hasSession
     }
     
     var body: some View {
         VStack{
-            if webViewModel.hasSession{
-                Text("has session")
-            }
             SwiftUIWebView(viewModel: webViewModel)
                 .onChange(of: webViewModel.link, perform: { value in
                     if let sessionString = webViewModel.siteData["session"] as? String{
                         print(sessionString)
-                        self.webViewModel.hasSession = false
                         viewModel.setUser(sessionId: sessionString)
                         
                     } else {
