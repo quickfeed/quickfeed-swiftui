@@ -9,4 +9,4 @@
 // https://help.apple.com/xcode/#/dev745c5c974
 
 
-BASE_URL = uis.itest.run
+BASE_URL = test.oskargjolga.com

@@ -15,25 +15,32 @@ struct AuthWebView: View {
     @ObservedObject var viewModel: UserViewModel
     @ObservedObject var webViewModel: WebViewModel
     @Binding var signingIn: Bool
-
-    init(viewModel: UserViewModel, mesgURL: String, signingIn: Binding<Bool>) {
+    @Binding var hasSession: Bool
+    
+    init(viewModel: UserViewModel, mesgURL: String, signingIn: Binding<Bool>, hasSession: Binding<Bool>) {
         self.viewModel = viewModel
         self.webViewModel = WebViewModel(link: mesgURL)
         self._signingIn = signingIn
+        self._hasSession = hasSession
     }
     
     var body: some View {
-        SwiftUIWebView(viewModel: webViewModel)
-            .onChange(of: webViewModel.pageTitle, perform: { value in
-                print(webViewModel.pageTitle)
-                print("test")
-                print(webViewModel.siteData)
-                if let sessionString = webViewModel.siteData["session"] as? String{
-                    viewModel.setUser(sessionId: sessionString)
-                    print(sessionString)
-                    signingIn = false
-                }
-            })
+        VStack{
+            if webViewModel.hasSession{
+                Text("has session")
+            }
+            SwiftUIWebView(viewModel: webViewModel)
+                .onChange(of: webViewModel.link, perform: { value in
+                    if let sessionString = webViewModel.siteData["session"] as? String{
+                        print(sessionString)
+                        self.webViewModel.hasSession = false
+                        viewModel.setUser(sessionId: sessionString)
+                        
+                    } else {
+                        print("Failed to retrieve session")
+                    }
+                })
+        }
     }
 }
 
@@ -43,6 +50,7 @@ class WebViewModel: ObservableObject {
     @Published var link: String
     @Published var didFinishLoading: Bool = false
     @Published var pageTitle: String
+    @Published var hasSession: Bool = false
     
     init (link: String) {
         self.link = link
@@ -55,7 +63,7 @@ struct SwiftUIWebView: NSViewRepresentable {
     
     public typealias NSViewType = WKWebView
     @ObservedObject var viewModel: WebViewModel
-
+    
     private let webView: WKWebView = WKWebView()
     public func makeNSView(context: NSViewRepresentableContext<SwiftUIWebView>) -> WKWebView {
         webView.navigationDelegate = context.coordinator
@@ -63,54 +71,53 @@ struct SwiftUIWebView: NSViewRepresentable {
         webView.load(Foundation.URLRequest(url: URL(string: viewModel.link)!))
         return webView
     }
-
+    
     public func updateNSView(_ nsView: WKWebView, context: NSViewRepresentableContext<SwiftUIWebView>) { }
-
+    
     public func makeCoordinator() -> Coordinator {
         return Coordinator(viewModel)
     }
     
     class Coordinator: NSObject, WKNavigationDelegate {
         private var viewModel: WebViewModel
-
+        
         init(_ viewModel: WebViewModel) {
-           //Initialise the WebViewModel
-           self.viewModel = viewModel
+            self.viewModel = viewModel
         }
         
         public func webView(_: WKWebView, didFail: WKNavigation!, withError: Error) { }
-
+        
         public func webView(_: WKWebView, didFailProvisionalNavigation: WKNavigation!, withError: Error) { }
-
-        //After the webpage is loaded, assign the data in WebViewModel class
+        
         public func webView(_ web: WKWebView, didFinish: WKNavigation!) {
             self.viewModel.pageTitle = web.title!
             self.viewModel.link = web.url!.absoluteString
             self.viewModel.didFinishLoading = true
-            web.getCookies(for: "uis.itest.run"){data in
+            web.getCookies(for: baseURL){data in
                 self.viewModel.siteData = data
             }
             
             
+            
         }
-
+        
         public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) { }
-
+        
         public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Swift.Void) {
             decisionHandler(.allow)
         }
-
+        
     }
-
+    
 }
 
 
 
 
 extension WKWebView {
-
+    
     private var httpCookieStore: WKHTTPCookieStore  { return WKWebsiteDataStore.default().httpCookieStore }
-
+    
     func getCookies(for domain: String? = nil, completion: @escaping ([String : String])->())  {
         var cookieDict = [String : String]()
         httpCookieStore.getAllCookies { cookies in
