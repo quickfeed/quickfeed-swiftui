@@ -17,12 +17,12 @@ class UserViewModel: UserViewModelProtocol {
     
     // User
     
-    func setUser(userID: UInt64){
-        self.provider.setUser(userID: userID)
-        self.getUser()
+    func setUser(sessionId: String){
+        self.provider.setUser(sessionId: sessionId)
     }
     
     func getUser() {
+        print("get user")
         self.user = provider.getUser()!
         self.getAllCoursesForCurrentUser()
         self.getEnrollments()

@@ -40,6 +40,7 @@
 		D0F6A14E2609F54300C1D825 /* UserEnrollments.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F6A14D2609F54300C1D825 /* UserEnrollments.swift */; };
 		D0F9FC6325BEB9A90080A1F2 /* GRPC in Frameworks */ = {isa = PBXBuildFile; productRef = D0F9FC6225BEB9A90080A1F2 /* GRPC */; };
 		D0F9FC6525BEB9A90080A1F2 /* CGRPCZlib in Frameworks */ = {isa = PBXBuildFile; productRef = D0F9FC6425BEB9A90080A1F2 /* CGRPCZlib */; };
+		FA12A8AC268DD53F00B83F4F /* Conf.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA12A8AB268DD53F00B83F4F /* Conf.swift */; };
 		FA17B95525EF7D6F008BB07F /* SubmissionReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B95425EF7D6F008BB07F /* SubmissionReview.swift */; };
 		FA17B95D25EF81F1008BB07F /* TranslateStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B95C25EF81F1008BB07F /* TranslateStatus.swift */; };
 		FA17B96225EF90E6008BB07F /* SubmissionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17B96125EF90E6008BB07F /* SubmissionInfo.swift */; };
@@ -76,6 +77,7 @@
 		FA8EA6A126039B0D00A10351 /* GroupList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8EA6A026039B0D00A10351 /* GroupList.swift */; };
 		FA9B950A26835A64003F115B /* ag.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC9BCF4268358F5009B1E9B /* ag.grpc.swift */; };
 		FA9B950B26835A77003F115B /* ag.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC9BCF3268358F5009B1E9B /* ag.pb.swift */; };
+		FA9B950D2685D0A6003F115B /* AuthWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B950C2685D0A6003F115B /* AuthWebView.swift */; };
 		FA9DC66A2644548D007F1A24 /* ReviewListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9DC6692644548D007F1A24 /* ReviewListHeader.swift */; };
 		FAA5DA36262EC643009DAEDE /* GradingBenchmarkHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA5DA35262EC643009DAEDE /* GradingBenchmarkHeader.swift */; };
 		FAA798B5262D6C82005E2713 /* AssignmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA798B4262D6C82005E2713 /* AssignmentView.swift */; };
@@ -129,6 +131,8 @@
 		D0F6A13B2609DD5000C1D825 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
 		D0F6A1452609F25500C1D825 /* UserInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformation.swift; sourceTree = "<group>"; };
 		D0F6A14D2609F54300C1D825 /* UserEnrollments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEnrollments.swift; sourceTree = "<group>"; };
+		FA12A8A9268DC82F00B83F4F /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		FA12A8AB268DD53F00B83F4F /* Conf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conf.swift; sourceTree = "<group>"; };
 		FA17B95425EF7D6F008BB07F /* SubmissionReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionReview.swift; sourceTree = "<group>"; };
 		FA17B95C25EF81F1008BB07F /* TranslateStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateStatus.swift; sourceTree = "<group>"; };
 		FA17B96125EF90E6008BB07F /* SubmissionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionInfo.swift; sourceTree = "<group>"; };
@@ -168,6 +172,7 @@
 		FA85791225BEB4EA00223DB9 /* Quickfeed.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Quickfeed.entitlements; sourceTree = "<group>"; };
 		FA8EA69B26038F5D00A10351 /* AddGroupForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupForm.swift; sourceTree = "<group>"; };
 		FA8EA6A026039B0D00A10351 /* GroupList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupList.swift; sourceTree = "<group>"; };
+		FA9B950C2685D0A6003F115B /* AuthWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthWebView.swift; sourceTree = "<group>"; };
 		FA9DC6692644548D007F1A24 /* ReviewListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewListHeader.swift; sourceTree = "<group>"; };
 		FAA5DA35262EC643009DAEDE /* GradingBenchmarkHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradingBenchmarkHeader.swift; sourceTree = "<group>"; };
 		FAA798B4262D6C82005E2713 /* AssignmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentView.swift; sourceTree = "<group>"; };
@@ -389,6 +394,8 @@
 				FA85791125BEB4EA00223DB9 /* Info.plist */,
 				FA85791225BEB4EA00223DB9 /* Quickfeed.entitlements */,
 				FA85790E25BEB4EA00223DB9 /* Preview Content */,
+				FA12A8A9268DC82F00B83F4F /* Config.xcconfig */,
+				FA12A8AB268DD53F00B83F4F /* Conf.swift */,
 			);
 			path = Quickfeed;
 			sourceTree = "<group>";
@@ -416,6 +423,7 @@
 				FA85790A25BEB4E900223DB9 /* ContentView.swift */,
 				D08D62952611D72A00343250 /* LogIn.swift */,
 				D035C75725E92795005AC2BA /* NavigatorView.swift */,
+				FA9B950C2685D0A6003F115B /* AuthWebView.swift */,
 				D0F6A1432609F20A00C1D825 /* User */,
 				D04331D726028EAB0034C4B9 /* Admin */,
 				D04B46E125D12E9D00AC8926 /* Student */,
@@ -600,6 +608,7 @@
 				FAA798B5262D6C82005E2713 /* AssignmentView.swift in Sources */,
 				FA17B97525EFD40B008BB07F /* MemberListHeader.swift in Sources */,
 				FA9B950B26835A77003F115B /* ag.pb.swift in Sources */,
+				FA12A8AC268DD53F00B83F4F /* Conf.swift in Sources */,
 				FA17B96225EF90E6008BB07F /* SubmissionInfo.swift in Sources */,
 				FAA8333025E4F1BD008C05F4 /* TeacherViewModel.swift in Sources */,
 				FA9DC66A2644548D007F1A24 /* ReviewListHeader.swift in Sources */,
@@ -645,6 +654,7 @@
 				FA5A40E62609DCA700A20A13 /* SelectedMembers.swift in Sources */,
 				FAA8330525E3E073008C05F4 /* MemberListItem.swift in Sources */,
 				FA29717825D311B5000C99A1 /* SearchFieldController.swift in Sources */,
+				FA9B950D2685D0A6003F115B /* AuthWebView.swift in Sources */,
 				FAA8333E25E519E2008C05F4 /* ResultGrid.swift in Sources */,
 				FA5FBDE225E7E63E007EC0E3 /* ServerProvider.swift in Sources */,
 				D04B46EC25D1301200AC8926 /* LabSection.swift in Sources */,
@@ -685,6 +695,7 @@
 /* Begin XCBuildConfiguration section */
 		FA85792925BEB4EA00223DB9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FA12A8A9268DC82F00B83F4F /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -746,6 +757,7 @@
 		};
 		FA85792A25BEB4EA00223DB9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FA12A8A9268DC82F00B83F4F /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

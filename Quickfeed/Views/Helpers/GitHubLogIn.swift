@@ -5,7 +5,7 @@
 
 import SwiftUI
 
-struct GitHubLogIn: View {
+struct GitHubLogInButton: View {
     @ObservedObject var viewModel: UserViewModel
     @Binding var login: Bool
     
@@ -23,11 +23,5 @@ struct GitHubLogIn: View {
         .foregroundColor(.white)
         .cornerRadius(10.0)
         .contentShape(Rectangle())
-        .onTapGesture {
-            GitHubManager(viewModel: viewModel).logInWithGitHub()
-            if viewModel.user != nil{
-                login = !login
-            }
-        }
     }
 }

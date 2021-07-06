@@ -9,8 +9,11 @@ import NIO
 
 
 protocol ProviderProtocol{
+
+   
+
     // MARK: Users
-    func setUser(userID: UInt64)
+    func setUser(sessionId: String)
     func getUser() -> User?
     func getUsers() -> [User]?
     func updateUser(user: User)

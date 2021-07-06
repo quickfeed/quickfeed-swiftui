@@ -8,6 +8,8 @@ import NIO
 import GRPC
 import NIOHPACK
 
+
+
 class GRPCManager {
     static let shared = GRPCManager()
     
@@ -18,9 +20,8 @@ class GRPCManager {
     var defaultOptions: CallOptions?
     
     private init(){
-        let hostname = "localhost"
-        let port = 9090
-        
+        let hostname = CONF_BASE_URL
+        let port = Int(CONF_GRPC_PORT)!
         let configuration = ClientConnection.Configuration(
             target: .hostAndPort(hostname, port),
             eventLoopGroup: eventLoopGroup,
@@ -32,9 +33,12 @@ class GRPCManager {
         print("Connecting to \(hostname)")
     }
     
-    func createHeader(userID: UInt64){
+    
+    
+    
+    func createHeader(sessionId: String){
         self.defaultOptions = CallOptions()
-        self.defaultOptions!.customMetadata = ["custom-header-1": "value1", "user": "\(userID)"]
+        self.defaultOptions!.customMetadata = ["custom-header-1": "value1", "session": "\(sessionId)"]
     }
     
     func shutdown() {
@@ -44,8 +48,8 @@ class GRPCManager {
     }
     
     // MARK: Users
-    func setUser(userID: UInt64){
-        createHeader(userID: userID)
+    func setUserSession(sessionId: String){
+        createHeader(sessionId: sessionId)
     }
     
     func getUser() -> User?{
