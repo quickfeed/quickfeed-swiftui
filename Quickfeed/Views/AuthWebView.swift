@@ -15,20 +15,27 @@ struct AuthWebView: View {
     @ObservedObject var viewModel: UserViewModel
     @ObservedObject var webViewModel: WebViewModel
     @Binding var signingIn: Bool
+    @Binding var signedIn: Bool
     
-    init(viewModel: UserViewModel, mesgURL: String, signingIn: Binding<Bool>) {
+    init(viewModel: UserViewModel, mesgURL: String, signingIn: Binding<Bool>, signedIn: Binding<Bool>) {
         self.viewModel = viewModel
         self.webViewModel = WebViewModel(link: mesgURL)
         self._signingIn = signingIn
+        self._signedIn = signedIn
     }
     
     var body: some View {
         VStack{
             SwiftUIWebView(viewModel: webViewModel)
                 .onChange(of: webViewModel.link, perform: { value in
+                    do{
+                        sleep(3)
+                    }
                     if let sessionString = webViewModel.siteData["session"] as? String{
                         print(sessionString)
                         viewModel.setUser(sessionId: sessionString)
+                        signingIn = false
+                        signedIn = true
                         
                     } else {
                         print("Failed to retrieve session")
@@ -90,9 +97,6 @@ struct SwiftUIWebView: NSViewRepresentable {
             web.getCookies(for: baseURL){data in
                 self.viewModel.siteData = data
             }
-            
-            
-            
         }
         
         public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) { }
@@ -109,9 +113,7 @@ struct SwiftUIWebView: NSViewRepresentable {
 
 
 extension WKWebView {
-    
     private var httpCookieStore: WKHTTPCookieStore  { return WKWebsiteDataStore.default().httpCookieStore }
-    
     func getCookies(for domain: String? = nil, completion: @escaping ([String : String])->())  {
         var cookieDict = [String : String]()
         httpCookieStore.getAllCookies { cookies in

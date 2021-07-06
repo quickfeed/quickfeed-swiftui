@@ -9,6 +9,7 @@ struct LogIn: View {
     @ObservedObject var viewModel: UserViewModel
     @Binding var login: Bool
     @State var signingIn: Bool = false
+    @State var signedIn: Bool = false
     @State var authUrl: String = "https://\(baseURL)/app/login/login/github"
    
     
@@ -36,11 +37,15 @@ struct LogIn: View {
                 .sheet(isPresented: $signingIn, content: {
                     AuthWebView(viewModel: viewModel,
                                 mesgURL: authUrl,
-                                signingIn: $signingIn
+                                signingIn: $signingIn,
+                                signedIn: $signedIn
                     )
                     .frame(width: 600, height: 600)
                 })
         }
+        .onChange(of: signedIn, perform: { data in
+            viewModel.getUser()
+        })
         
         .frame(width: 300, height: 300)
         
