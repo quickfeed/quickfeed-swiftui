@@ -33,6 +33,8 @@
 	<string>1</string>
 	<key>BASE_URL</key>
 	<string>$(BASE_URL)</string>
+	<key>GRPC_PORT</key>
+	<string>$(GRPC_PORT)</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 </dict>

@@ -10,7 +10,7 @@ struct LogIn: View {
     @Binding var login: Bool
     @State var signingIn: Bool = false
     @State var signedIn: Bool = false
-    @State var authUrl: String = "https://\(baseURL)/app/login/login/github"
+    @State var authUrl: String = "https://\(CONF_BASE_URL)/app/login/login/github"
    
     
     var body: some View {

@@ -20,8 +20,8 @@ class GRPCManager {
     var defaultOptions: CallOptions?
     
     private init(){
-        let hostname = baseURL
-        let port = 9090
+        let hostname = CONF_BASE_URL
+        let port = Int(CONF_GRPC_PORT)!
         let configuration = ClientConnection.Configuration(
             target: .hostAndPort(hostname, port),
             eventLoopGroup: eventLoopGroup,

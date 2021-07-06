@@ -94,7 +94,7 @@ struct SwiftUIWebView: NSViewRepresentable {
             self.viewModel.pageTitle = web.title!
             self.viewModel.link = web.url!.absoluteString
             self.viewModel.didFinishLoading = true
-            web.getCookies(for: baseURL){data in
+            web.getCookies(for: CONF_BASE_URL){data in
                 self.viewModel.siteData = data
             }
         }

@@ -29,7 +29,10 @@ enum Configuration {
     }
 }
 
-var baseURL: String {
+var CONF_BASE_URL: String {
         return try! Configuration.value(for: "BASE_URL")
 }
 
+var CONF_GRPC_PORT: String {
+        return try! Configuration.value(for: "GRPC_PORT")
+}
