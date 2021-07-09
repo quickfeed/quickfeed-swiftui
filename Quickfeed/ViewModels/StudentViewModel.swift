@@ -20,8 +20,6 @@ class StudentViewModel: UserViewModelProtocol{
         print("New StudentViewModel")
     }
     
-    // MARK: Users
-    
     // MARK: Groups
     func createGroup(name: String, enrollments: [Enrollment]) {
         var users: [User] = []
@@ -157,7 +155,7 @@ class StudentViewModel: UserViewModelProtocol{
         return nil
     }
     
-    // MARK: Misc    
+    // MARK: Misc
     func reload() {
         self.getAssignments()
         self.getSubmissions()
