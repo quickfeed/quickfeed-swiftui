@@ -41,9 +41,3 @@ struct ResultListItem: View {
         
     }
 }
-
-struct ResultListItem_Previews: PreviewProvider {
-    static var previews: some View {
-        ResultListItem(user: User(name: "Test User", id: 1, studentID: "111111", isAdmin: false, email: "gfkjdsl@dfsa.com", enrollments: [], login: "oskargj"), submissionLinks: [], displayedSubmissionLink: .constant(nil))
-    }
-}
