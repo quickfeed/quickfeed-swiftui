@@ -18,7 +18,7 @@ class AdminViewModel: UserViewModelProtocol {
         getCourses()
     }
     
-    // Users
+    // MARK: Users
     func getUsers(){
         self.users = provider.getUsers()
     }
@@ -30,7 +30,7 @@ class AdminViewModel: UserViewModelProtocol {
         self.getUsers()
     }
     
-    // Courses
+    // MARK: Courses
     func getOrganization(orgName: String) -> Bool{
         var errString: String = ""
         let response = self.provider.getOrganization(orgName: orgName)

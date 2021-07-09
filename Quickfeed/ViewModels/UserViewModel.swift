@@ -17,7 +17,6 @@ class UserViewModel: UserViewModelProtocol {
     }
     
     // MARK: Users
-    
     func setUser(userID: UInt64){
         self.provider.setUser(userID: userID)
         self.getUser()
@@ -38,7 +37,6 @@ class UserViewModel: UserViewModelProtocol {
     }
     
     // MARK: Enrollments
-    
     func createEnrollment(courseID: UInt64) {
         var enrollment = Enrollment()
         enrollment.courseID = courseID
@@ -92,7 +90,6 @@ class UserViewModel: UserViewModelProtocol {
     }
     
     // MARK: Courses
-    
     func getCourse(courseID: UInt64) -> Course? {
         if self.courses != nil {
             for course in self.courses! {
