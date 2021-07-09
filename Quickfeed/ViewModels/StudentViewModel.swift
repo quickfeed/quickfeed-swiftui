@@ -20,11 +20,9 @@ class StudentViewModel: UserViewModelProtocol{
         print("New StudentViewModel")
     }
     
-    func setCourse(course: Course){
-        self.course = course
-        self.group = provider.getGroupByUserAndCourse(courseID: course.id, groupID: nil, userID: user.id)
-    }
+    // MARK: Users
     
+    // MARK: Groups
     func createGroup(name: String, enrollments: [Enrollment]) {
         var users: [User] = []
         for element in enrollments{
@@ -53,6 +51,7 @@ class StudentViewModel: UserViewModelProtocol{
         }
     }
     
+    // MARK: Enrollments
     func getEnrollmentForCurrentCourse() -> Enrollment?{
         let enrollments = provider.getEnrollmentsByUser(userID: self.user.id, userStatus: [Enrollment.UserStatus.teacher, Enrollment.UserStatus.student, Enrollment.UserStatus.pending])!
         for element in enrollments{
@@ -78,6 +77,23 @@ class StudentViewModel: UserViewModelProtocol{
         }
     }
     
+    // MARK: Courses
+    func setCourse(course: Course){
+        self.course = course
+        self.group = provider.getGroupByUserAndCourse(courseID: course.id, groupID: nil, userID: user.id)
+    }
+    
+    func getSlipdays() -> UInt32? {
+        let enrollments = provider.getEnrollmentsByUser(userID: self.user.id, userStatus: [Enrollment.UserStatus.teacher, Enrollment.UserStatus.student, Enrollment.UserStatus.pending])!
+        for element in enrollments{
+            if element.courseID == course!.id{
+                return element.slipDaysRemaining
+            }
+        }
+        return nil
+    }
+    
+    // MARK: Assignments
     func getAssignments(){
         self.assignments = provider.getAssignments(courseID: course!.id)!
     }
@@ -93,6 +109,7 @@ class StudentViewModel: UserViewModelProtocol{
         return false
     }
     
+    // MARK: Submissions
     func getSubmission(assignment: Assignment) -> Submission? {
         if self.submissions != nil {
             for element in self.submissions! {
@@ -116,16 +133,7 @@ class StudentViewModel: UserViewModelProtocol{
         self.submissions = submissions
     }
     
-    func getSlipdays() -> UInt32? {
-        let enrollments = provider.getEnrollmentsByUser(userID: self.user.id, userStatus: [Enrollment.UserStatus.teacher, Enrollment.UserStatus.student, Enrollment.UserStatus.pending])!
-        for element in enrollments{
-            if element.courseID == course!.id{
-                return element.slipDaysRemaining
-            }
-        }
-        return nil
-    }
-    
+    // MARK: Manual Grading
     func getReviews(reviews: [Review]) -> [Review]{
         var reviews = reviews
         for review in reviews{
@@ -149,6 +157,7 @@ class StudentViewModel: UserViewModelProtocol{
         return nil
     }
     
+    // MARK: Misc    
     func reload() {
         self.getAssignments()
         self.getSubmissions()
