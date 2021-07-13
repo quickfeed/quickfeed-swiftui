@@ -125,13 +125,13 @@ class GRPCManager {
         var request = GroupRequest()
         request.userID = userID
         request.courseID = courseID
-
+        
         if groupID != nil{
             request.groupID = groupID!
         }
-
+        
         let call = self.quickfeedClient.getGroupByUserAndCourse(request, callOptions: self.defaultOptions)
-
+        
         do {
             let response = try call.response.wait()
             return response
@@ -144,15 +144,15 @@ class GRPCManager {
     func getGroupsByCourse(courseID: UInt64) -> EventLoopFuture<Groups>{
         var request = CourseRequest()
         request.courseID = courseID
-
+        
         let call = self.quickfeedClient.getGroupsByCourse(request, callOptions: self.defaultOptions)
-
+        
         return call.response
     }
     
     func createGroup(group: Group) -> EventLoopFuture<Group>{
         let call = self.quickfeedClient.createGroup(group, callOptions: self.defaultOptions)
-
+        
         return call.response
     }
     
@@ -174,9 +174,9 @@ class GRPCManager {
         var request = EnrollmentStatusRequest()
         request.userID = userID
         request.statuses = userStatus
-
+        
         let call = self.quickfeedClient.getEnrollmentsByUser(request, callOptions: self.defaultOptions)
-
+        
         do {
             let response = try call.response.wait()
             return response.enrollments
@@ -197,7 +197,7 @@ class GRPCManager {
         if withActivity != nil {
             request.withActivity = withActivity!
         }
-
+        
         let call = self.quickfeedClient.getEnrollmentsByCourse(request, callOptions: self.defaultOptions)
         
         return call.response
@@ -301,7 +301,7 @@ class GRPCManager {
     func updateAssignments(courseID: UInt64) -> Bool{
         var request = CourseRequest()
         request.courseID = courseID
-
+        
         let call = self.quickfeedClient.updateAssignments(request, callOptions: self.defaultOptions)
         
         do {
@@ -341,7 +341,7 @@ class GRPCManager {
         var request = SubmissionsForCourseRequest()
         request.courseID = courseID
         request.type = type
-
+        
         let call = self.quickfeedClient.getSubmissionsByCourse(request, callOptions: self.defaultOptions)
         
         return call.response
@@ -354,7 +354,7 @@ class GRPCManager {
         request.score = score
         request.released = released
         request.status = status
-
+        
         let call = self.quickfeedClient.updateSubmission(request, callOptions: self.defaultOptions)
         
         do {
@@ -507,7 +507,7 @@ class GRPCManager {
     func getOrganization(orgName: String) -> EventLoopFuture<Organization>{
         var request = OrgRequest()
         request.orgName = orgName
-
+        
         let call = self.quickfeedClient.getOrganization(request, callOptions: self.defaultOptions)
         
         return call.response
