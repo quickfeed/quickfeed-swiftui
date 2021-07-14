@@ -9,7 +9,7 @@ class UserViewModel: UserViewModelProtocol {
     var provider: ProviderProtocol = ServerProvider.shared
     
     @Published var user: User?
-    @Published var courses: [Course]?
+    @Published var courses: [Course] = []
     @Published var enrollments: [Enrollment] = []
     
     init() {
@@ -70,11 +70,9 @@ class UserViewModel: UserViewModelProtocol {
     
     // MARK: Courses
     func getCourse(courseID: UInt64) -> Course? {
-        if self.courses != nil {
-            for course in self.courses! {
-                if course.id == courseID {
-                    return course
-                }
+        for course in self.courses {
+            if course.id == courseID {
+                return course
             }
         }
         return nil
@@ -89,7 +87,7 @@ class UserViewModel: UserViewModelProtocol {
     }
     
     func getCoursesByUser() {
-        self.courses = self.provider.getCoursesByUser(userID: self.user!.id, userStatus: [Enrollment.UserStatus.student, Enrollment.UserStatus.teacher])
+        self.courses = self.provider.getCoursesByUser(userID: self.user!.id, userStatus: [Enrollment.UserStatus.student, Enrollment.UserStatus.teacher])!
     }
     
     func getCoursesForNewEnrollments() -> [Course]?{
@@ -112,13 +110,11 @@ class UserViewModel: UserViewModelProtocol {
     }
     
     func isTeacherForCourse(courseId: UInt64) -> Bool? {
-        if self.courses != nil {
-            for course in self.courses! {
+            for course in self.courses {
                 if course.id == courseId {
                     return course.enrolled == Enrollment.UserStatus.teacher ? true : false
                 }
             }
-        }
         
         return nil
     }
