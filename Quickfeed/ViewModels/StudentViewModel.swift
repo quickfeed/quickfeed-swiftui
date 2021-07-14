@@ -8,8 +8,11 @@ import Foundation
 
 class StudentViewModel: UserViewModelProtocol{
     static let shared: StudentViewModel = StudentViewModel()
+    
     var provider: ProviderProtocol = ServerProvider.shared
+    
     @Published var user: User = ServerProvider.shared.getUser()!
+    
     @Published var course: Course?
     @Published var group: Group?
     @Published var assignments: [Assignment]?
@@ -33,18 +36,15 @@ class StudentViewModel: UserViewModelProtocol{
         group.courseID = course!.id
         group.users = users
         
-        var errString: String? = nil
         let response = self.provider.createGroup(group: group)
         _ = response.always {(response: Result<Group, Error>) in
             switch response {
             case .success( _):
                 DispatchQueue.main.async {
-                    errString = nil
-                    print("yey")
+                    print("Group created")
                 }
             case .failure(let err):
                 print("[Error] Connection error or groups not found: \(err)")
-                errString = err.localizedDescription
             }
         }
     }
