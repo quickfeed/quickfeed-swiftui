@@ -35,6 +35,7 @@ class StudentViewModel: UserViewModelProtocol{
         group.status = Group.GroupStatus.pending
         group.courseID = course!.id
         group.users = users
+        self.group = provider.getGroupByUserAndCourse(courseID: self.course!.id, groupID: nil, userID: user.id)
         
         let response = self.provider.createGroup(group: group)
         _ = response.always {(response: Result<Group, Error>) in
@@ -50,7 +51,7 @@ class StudentViewModel: UserViewModelProtocol{
     }
     
     // MARK: Enrollments
-    func getEnrollmentForCurrentCourse() -> Enrollment?{
+    func getEnrollment() -> Enrollment?{
         let enrollments = provider.getEnrollmentsByUser(userID: self.user.id, userStatus: [Enrollment.UserStatus.teacher, Enrollment.UserStatus.student, Enrollment.UserStatus.pending])!
         for element in enrollments{
             if element.course.id == course!.id{
@@ -82,13 +83,7 @@ class StudentViewModel: UserViewModelProtocol{
     }
     
     func getSlipdays() -> UInt32? {
-        let enrollments = provider.getEnrollmentsByUser(userID: self.user.id, userStatus: [Enrollment.UserStatus.teacher, Enrollment.UserStatus.student, Enrollment.UserStatus.pending])!
-        for element in enrollments{
-            if element.courseID == course!.id{
-                return element.slipDaysRemaining
-            }
-        }
-        return nil
+        return getEnrollment()!.slipDaysRemaining
     }
     
     // MARK: Assignments
