@@ -11,7 +11,7 @@ struct UserEnrollments: View {
     @State private var newEnrollments: Bool = false
     
     func sortCourseByCode() -> [Course] {
-        var courses = viewModel.getAllCourses()!
+        var courses = viewModel.getCourses()!
         courses.sort { $0.code < $1.code }
         return courses
     }

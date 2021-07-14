@@ -82,7 +82,7 @@ class UserViewModel: UserViewModelProtocol {
         return self.provider.getCourse(courseID: courseId)!
     }
     
-    func getAllCourses() -> [Course]? {
+    func getCourses() -> [Course]? {
         return provider.getCourses()
     }
     
@@ -91,7 +91,7 @@ class UserViewModel: UserViewModelProtocol {
     }
     
     func getCoursesForNewEnrollments() -> [Course]?{
-        var courses = self.getAllCourses()
+        var courses = self.getCourses()
         if courses?.count != 0 {
             for course in courses! {
                 if self.enrollments.count != 0{
@@ -110,11 +110,11 @@ class UserViewModel: UserViewModelProtocol {
     }
     
     func isTeacherForCourse(courseId: UInt64) -> Bool? {
-            for course in self.courses {
-                if course.id == courseId {
-                    return course.enrolled == Enrollment.UserStatus.teacher ? true : false
-                }
+        for course in self.courses {
+            if course.id == courseId {
+                return course.enrolled == Enrollment.UserStatus.teacher ? true : false
             }
+        }
         
         return nil
     }
