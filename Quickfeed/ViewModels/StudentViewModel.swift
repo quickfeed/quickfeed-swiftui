@@ -16,7 +16,7 @@ class StudentViewModel: UserViewModelProtocol{
     @Published var course: Course?
     @Published var group: Group?
     @Published var assignments: [Assignment] = []
-    @Published var submissions: [Submission]?
+    @Published var submissions: [Submission] = []
     @Published var enrollments: [Enrollment] = []
     
     private init() {
@@ -102,17 +102,16 @@ class StudentViewModel: UserViewModelProtocol{
     
     // MARK: Submissions
     func getSubmission(assignment: Assignment) -> Submission? {
-        if self.submissions != nil {
-            for element in self.submissions! {
-                if element.assignmentID == assignment.id {
-                    if assignment.isGroupLab && element.groupID != 0 {
-                        return element
-                    } else if !assignment.isGroupLab && element.groupID == 0{
-                        return element
-                    }
+        for element in self.submissions {
+            if element.assignmentID == assignment.id {
+                if assignment.isGroupLab && element.groupID != 0 {
+                    return element
+                } else if !assignment.isGroupLab && element.groupID == 0{
+                    return element
                 }
             }
         }
+        
         return nil
     }
     
