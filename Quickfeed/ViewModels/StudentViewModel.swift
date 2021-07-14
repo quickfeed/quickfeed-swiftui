@@ -15,7 +15,7 @@ class StudentViewModel: UserViewModelProtocol{
     
     @Published var course: Course?
     @Published var group: Group?
-    @Published var assignments: [Assignment]?
+    @Published var assignments: [Assignment] = []
     @Published var submissions: [Submission]?
     @Published var enrollments: [Enrollment] = []
     
@@ -92,11 +92,9 @@ class StudentViewModel: UserViewModelProtocol{
     }
     
     func hasGroupAssignments() -> Bool{
-        if self.assignments != nil{
-            for assignment in self.assignments!{
-                if assignment.isGroupLab{
-                    return true
-                }
+        for assignment in self.assignments{
+            if assignment.isGroupLab{
+                return true
             }
         }
         return false
@@ -155,7 +153,6 @@ class StudentViewModel: UserViewModelProtocol{
         self.getAssignments()
         self.getSubmissions()
     }
-    
     
     func reset() {
         

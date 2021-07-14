@@ -8,15 +8,15 @@ import SwiftUI
 struct LabSection: View {
     @ObservedObject var viewModel: StudentViewModel
     @State private var activeDest: Int? = 0
-    var assignments: [Assignment]? { return viewModel.assignments }
+    var assignments: [Assignment] { return viewModel.assignments }
     
     var body: some View {
-        if assignments == nil {
+        if assignments.isEmpty {
             Text("No Assignments yet")
         } else {
             Section(header: Text("Labs")){
-                ForEach(assignments!, id: \.id){ assignment in
-                    NavigationLink(destination: StudentLab(viewModel: viewModel, assignment: assignment, submission: viewModel.getSubmission(assignment: assignment)), tag: (assignments?.firstIndex(of: assignment))!, selection: $activeDest){
+                ForEach(assignments, id: \.id){ assignment in
+                    NavigationLink(destination: StudentLab(viewModel: viewModel, assignment: assignment, submission: viewModel.getSubmission(assignment: assignment)), tag: (assignments.firstIndex(of: assignment)!), selection: $activeDest){
                         if viewModel.getSubmission(assignment: assignment) != nil {
                             getImageForSubmissionStatus(submission: viewModel.getSubmission(assignment: assignment)!.status)
                                 .frame(width: 5)
