@@ -24,7 +24,7 @@ class UserViewModel: UserViewModelProtocol {
     
     func getUser() {
         self.user = provider.getUser()!
-        self.getAllCoursesForCurrentUser()
+        self.getCoursesByUser()
         self.getEnrollments()
     }
     
@@ -32,6 +32,7 @@ class UserViewModel: UserViewModelProtocol {
         self.user!.name = name
         self.user!.studentID = studentID
         self.user!.email = email
+        
         self.provider.updateUser(user: self.user!)
         self.getUser()
     }
@@ -47,11 +48,9 @@ class UserViewModel: UserViewModelProtocol {
     }
     
     func getEnrollmentByCourse(courseID: UInt64) -> Enrollment?{
-        if self.enrollments.count > 0 {
-            for enrollment in self.enrollments {
-                if enrollment.courseID == courseID {
-                    return enrollment
-                }
+        for enrollment in self.enrollments {
+            if enrollment.courseID == courseID {
+                return enrollment
             }
         }
         return nil
@@ -59,28 +58,8 @@ class UserViewModel: UserViewModelProtocol {
     
     func getEnrollments() {
         self.enrollments = self.provider.getEnrollmentsByUser(userID: self.user!.id, userStatus: [Enrollment.UserStatus.teacher, Enrollment.UserStatus.student, Enrollment.UserStatus.pending])!
-        if self.enrollments.count != 0 {
-            self.sortEnrollmentsByCode()
-        }
-    }
-    
-    func getCoursesForNewEnrollments() -> [Course]?{
-        var courses = self.getAllCourses()
-        if courses?.count != 0 {
-            for course in courses! {
-                if self.enrollments.count != 0{
-                    for enrollment in self.enrollments {
-                        if course.id == enrollment.courseID {
-                            if let index = courses!.firstIndex(of: course) {
-                                courses!.remove(at: index)
-                            }
-                        }
-                    }
-                }
-            }
-            return courses
-        }
-        return nil
+        
+        self.sortEnrollmentsByCode()
     }
     
     private func sortEnrollmentsByCode() {
@@ -109,8 +88,27 @@ class UserViewModel: UserViewModelProtocol {
         return provider.getCourses()
     }
     
-    func getAllCoursesForCurrentUser() {
+    func getCoursesByUser() {
         self.courses = self.provider.getCoursesByUser(userID: self.user!.id, userStatus: [Enrollment.UserStatus.student, Enrollment.UserStatus.teacher])
+    }
+    
+    func getCoursesForNewEnrollments() -> [Course]?{
+        var courses = self.getAllCourses()
+        if courses?.count != 0 {
+            for course in courses! {
+                if self.enrollments.count != 0{
+                    for enrollment in self.enrollments {
+                        if course.id == enrollment.courseID {
+                            if let index = courses!.firstIndex(of: course) {
+                                courses!.remove(at: index)
+                            }
+                        }
+                    }
+                }
+            }
+            return courses
+        }
+        return nil
     }
     
     func isTeacherForCourse(courseId: UInt64) -> Bool? {
