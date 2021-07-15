@@ -40,6 +40,7 @@ class UserViewModel: UserViewModelProtocol {
     // MARK: Enrollments
     func createEnrollment(courseID: UInt64) {
         var enrollment = Enrollment()
+        
         enrollment.courseID = courseID
         enrollment.userID = self.user!.id
         
