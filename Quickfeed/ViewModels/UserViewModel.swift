@@ -7,16 +7,16 @@ import Foundation
 
 class UserViewModel: UserViewModelProtocol {
     var provider: ProviderProtocol = ServerProvider.shared
+    
     @Published var user: User?
-    @Published var courses: [Course]?
+    @Published var courses: [Course] = []
     @Published var enrollments: [Enrollment] = []
     
     init() {
         print("New UserViewModel")
     }
     
-    // User
-    
+    // MARK: Users
     func setUser(userID: UInt64){
         self.provider.setUser(userID: userID)
         self.getUser()
@@ -24,7 +24,7 @@ class UserViewModel: UserViewModelProtocol {
     
     func getUser() {
         self.user = provider.getUser()!
-        self.getAllCoursesForCurrentUser()
+        self.getCoursesByUser()
         self.getEnrollments()
     }
     
@@ -32,18 +32,48 @@ class UserViewModel: UserViewModelProtocol {
         self.user!.name = name
         self.user!.studentID = studentID
         self.user!.email = email
+        
         self.provider.updateUser(user: self.user!)
         self.getUser()
     }
     
-    // Course
+    // MARK: Enrollments
+    func createEnrollment(courseID: UInt64) {
+        var enrollment = Enrollment()
+        
+        enrollment.courseID = courseID
+        enrollment.userID = self.user!.id
+        
+        self.provider.createEnrollment(enrollment: enrollment)
+        self.getEnrollments()
+    }
     
+    func getEnrollmentByCourse(courseID: UInt64) -> Enrollment?{
+        for enrollment in self.enrollments {
+            if enrollment.courseID == courseID {
+                return enrollment
+            }
+        }
+        return nil
+    }
+    
+    func getEnrollments() {
+        self.enrollments = self.provider.getEnrollmentsByUser(userID: self.user!.id, userStatus: [Enrollment.UserStatus.teacher, Enrollment.UserStatus.student, Enrollment.UserStatus.pending])!
+        
+        self.sortEnrollmentsByCode()
+    }
+    
+    private func sortEnrollmentsByCode() {
+        var enrollments = self.enrollments
+        enrollments.sort { self.getCourseById(courseId: $0.courseID).code < self.getCourseById(courseId: $1.courseID).code }
+        self.enrollments = enrollments
+    }
+    
+    // MARK: Courses
     func getCourse(courseID: UInt64) -> Course? {
-        if self.courses != nil {
-            for course in self.courses! {
-                if course.id == courseID {
-                    return course
-                }
+        for course in self.courses {
+            if course.id == courseID {
+                return course
             }
         }
         return nil
@@ -53,63 +83,16 @@ class UserViewModel: UserViewModelProtocol {
         return self.provider.getCourse(courseID: courseId)!
     }
     
-    func getAllCourses() -> [Course]? {
+    func getCourses() -> [Course]? {
         return provider.getCourses()
     }
     
-    func getAllCoursesForCurrentUser() {
-        self.courses = self.provider.getCoursesByUser(userID: self.user!.id, userStatus: [Enrollment.UserStatus.student, Enrollment.UserStatus.teacher])
-    }
-    
-    func isTeacherForCourse(courseId: UInt64) -> Bool? {
-        if self.courses != nil {
-            for course in self.courses! {
-                if course.id == courseId {
-                    return course.enrolled == Enrollment.UserStatus.teacher ? true : false
-                }
-            }
-        }
-        
-        return nil
-    }
-    
-    func sortCourseByCode(courses: [Course]) -> [Course] {
-        var courses = courses
-        courses.sort { $0.code < $1.code }
-        return courses
-    }
-    
-    // Enrollment
-    
-    func createEnrollment(courseID: UInt64) {
-        var enrollment = Enrollment()
-        enrollment.courseID = courseID
-        enrollment.userID = self.user!.id
-        
-        self.provider.createEnrollment(enrollment: enrollment)
-        self.getEnrollments()
-    }
-    
-    func getEnrollmentByCourse(courseID: UInt64) -> Enrollment?{
-        if self.enrollments.count > 0 {
-            for enrollment in self.enrollments {
-                if enrollment.courseID == courseID {
-                    return enrollment
-                }
-            }
-        }
-        return nil
-    }
-    
-    func getEnrollments() {
-        self.enrollments = self.provider.getEnrollmentsByUser(userID: self.user!.id, userStatus: [Enrollment.UserStatus.teacher, Enrollment.UserStatus.student, Enrollment.UserStatus.pending])!
-        if self.enrollments.count != 0 {
-            self.sortEnrollmentsByCode()
-        }
+    func getCoursesByUser() {
+        self.courses = self.provider.getCoursesByUser(userID: self.user!.id, userStatus: [Enrollment.UserStatus.student, Enrollment.UserStatus.teacher])!
     }
     
     func getCoursesForNewEnrollments() -> [Course]?{
-        var courses = self.getAllCourses()
+        var courses = self.getCourses()
         if courses?.count != 0 {
             for course in courses! {
                 if self.enrollments.count != 0{
@@ -127,12 +110,21 @@ class UserViewModel: UserViewModelProtocol {
         return nil
     }
     
-    private func sortEnrollmentsByCode() {
-        var enrollments = self.enrollments
-        enrollments.sort { self.getCourseById(courseId: $0.courseID).code < self.getCourseById(courseId: $1.courseID).code }
-        self.enrollments = enrollments
+    func isTeacherForCourse(courseId: UInt64) -> Bool? {
+        for course in self.courses {
+            if course.id == courseId {
+                return course.enrolled == Enrollment.UserStatus.teacher ? true : false
+            }
+        }
+        
+        return nil
     }
     
+    func sortCourseByCode(courses: [Course]) -> [Course] {
+        var courses = courses
+        courses.sort { $0.code < $1.code }
+        return courses
+    }
     
     func reset() {
         

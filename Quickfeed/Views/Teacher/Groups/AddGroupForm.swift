@@ -38,7 +38,7 @@ struct AddGroupForm: View {
     func createGroup(){
         viewModel.loadEnrollments()
         var group = Group()
-        group.courseID = viewModel.currentCourse.id
+        group.courseID = viewModel.course.id
         group.users = []
         for enr in selectedMembers{
             var user = User()
@@ -100,7 +100,7 @@ struct AddGroupForm: View {
             viewModel.loadEnrollments()
         })
         .navigationTitle("Add Group")
-        .navigationSubtitle(viewModel.currentCourse.name)
+        .navigationSubtitle(viewModel.course.name)
         .toolbar{
             ToolbarItem{
                 SearchFieldToolbarItem(isSearching: $isSearching, searchQuery: $searchQuery)

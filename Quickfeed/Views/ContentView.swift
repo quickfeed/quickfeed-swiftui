@@ -18,10 +18,10 @@ struct ContentView: View {
         } else {
             if viewModel.user!.name == "" || viewModel.user!.email == "" || viewModel.user!.studentID == "" {
                 NewUser(viewModel: viewModel)
-            } else if viewModel.courses == [] || viewModel.courses == nil{
+            } else if viewModel.courses == [] {
                 NavigatorView(viewModel: viewModel, selectedCourse: 0, login: $login)
             }else {
-                NavigatorView(viewModel: viewModel, selectedCourse: viewModel.courses![0].id, login: $login)
+                NavigatorView(viewModel: viewModel, selectedCourse: viewModel.courses[0].id, login: $login)
             }
         }
     }

@@ -18,7 +18,7 @@ struct MemberList: View {
     }
     var body: some View {
         List{
-            Section(header: MemberListHeader(courseTotalSlipDays: self.viewModel.currentCourse.slipDays)){
+            Section(header: MemberListHeader(courseTotalSlipDays: self.viewModel.course.slipDays)){
                 ForEach(self.filteredEnrollments(), id: \.self){ enrollment in
                     MemberListItem(viewModel: viewModel, enrollment: enrollment, isEditing: $isEditing)
                     Divider()
@@ -30,7 +30,7 @@ struct MemberList: View {
             viewModel.loadEnrollments()
         })
         .navigationTitle("Members")
-        .navigationSubtitle(viewModel.currentCourse.name)
+        .navigationSubtitle(viewModel.course.name)
         .toolbar{
             ToolbarItem{
                 Toggle(isOn: $isEditing, label: {

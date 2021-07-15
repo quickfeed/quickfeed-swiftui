@@ -80,7 +80,7 @@ struct AllCourses: View {
     }
     
     func filteredCourse() -> [Course] {
-        var courses = viewModel.courses!
+        var courses = viewModel.courses
         courses.sort { $0.code < $1.code }
         return courses.filter({ matchesQuery(searchQuery: searchQuery, course: $0) })
     }

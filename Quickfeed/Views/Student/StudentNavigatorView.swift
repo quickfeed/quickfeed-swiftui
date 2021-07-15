@@ -6,17 +6,11 @@
 import SwiftUI
 
 struct StudentNavigatorView: View {
-    @ObservedObject var viewModel: StudentViewModel = StudentViewModel.shared
-    
-    init(viewModelTest: StudentViewModel, course: Course) {
-        viewModel.setCourse(course: course)
-        viewModel.getAssignments()
-        viewModel.getSubmissions()
-    }
+    @ObservedObject var viewModel: StudentViewModel
     
     var body: some View {
         HStack{
-            if viewModel.course!.slipDays != 0 {
+            if viewModel.course.slipDays != 0 {
                 Text("Remaining SlipDays: \(viewModel.getSlipdays()!)")
                     .padding(.leading)
             } else {
@@ -45,7 +39,7 @@ struct StudentNavigatorView: View {
                     }
                 }
             }
-            GithubLinkSection(orgPath: viewModel.course!.organizationPath, userLogin: viewModel.user.login, group: viewModel.group, isTeacher: false)
+            GithubLinkSection(orgPath: viewModel.course.organizationPath, userLogin: viewModel.user.login, group: viewModel.group, isTeacher: false)
                 .padding(.leading)
         }
     }

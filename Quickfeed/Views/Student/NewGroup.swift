@@ -24,7 +24,7 @@ struct NewGroup: View {
                 Spacer()
                 TextField("Enter group name", text: $groupName)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                Button(action: {}, label: {
+                Button(action: { viewModel.createGroup(name: groupName, enrollments: selectedMembers) }, label: {
                     Text("Create group")
                 })
                 .disabled(selectedMembers.count > 0 && groupName != "" ? false : true)
@@ -53,11 +53,11 @@ struct NewGroup: View {
         .padding()
         .onAppear(perform:{
             viewModel.getEnrollmentsByCourse()
-            let enrollment = viewModel.getEnrollmentForCurrentCourse()
+            let enrollment = viewModel.getEnrollment()
             self.selectedMembers.append(enrollment!)
         })
         .navigationTitle("New Group")
-        .navigationSubtitle(viewModel.course!.name)
+        .navigationSubtitle(viewModel.course.name)
         .toolbar{
             ToolbarItem{
                 SearchFieldToolbarItem(isSearching: $isSearching, searchQuery: $searchQuery)

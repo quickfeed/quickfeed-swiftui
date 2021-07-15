@@ -29,7 +29,7 @@ struct SubmissionReview: View {
             Text("\(user.name)'s submission for \(submissionLink.assignment.name)")
                 .font(.title)
                 .fontWeight(.bold)
-            SubmissionRepoLink(assignmentName: submissionLink.assignment.name, orgPath: viewModel.currentCourse.organizationPath, userLogin: user.login)
+            SubmissionRepoLink(assignmentName: submissionLink.assignment.name, orgPath: viewModel.course.organizationPath, userLogin: user.login)
             SubmissionInfo(viewModel: viewModel, submissionLink: submissionLink)
             if submissionLink.hasSubmission{
                 if assignmentHasCriteriaList(){

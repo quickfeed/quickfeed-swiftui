@@ -65,7 +65,7 @@ struct TeacherNavigationView: View {
                 })
             }
             
-            GithubLinkSection(orgPath: viewModel.currentCourse.organizationPath, userLogin: viewModel.user.login, isTeacher: true)
+            GithubLinkSection(orgPath: viewModel.course.organizationPath, userLogin: viewModel.user.login, isTeacher: true)
             
         }
         .onAppear(perform: {

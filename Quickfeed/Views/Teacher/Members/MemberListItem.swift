@@ -31,7 +31,7 @@ struct MemberListItem: View {
     var body: some View {
         HStack {
             SwiftUI.Group{
-                Link(destination: URL(string: "https://www.github.com/" + viewModel.currentCourse.organizationPath + "/" + enrollment.user.login + "-labs")!, label:{
+                Link(destination: URL(string: "https://www.github.com/" + viewModel.course.organizationPath + "/" + enrollment.user.login + "-labs")!, label:{
                     Text(enrollment.user.name)
                         .frame(width: 180, alignment: .leading)
                 })
@@ -64,7 +64,7 @@ struct MemberListItem: View {
             }
             
             SwiftUI.Group{
-                if viewModel.currentCourse.slipDays > 0 {
+                if viewModel.course.slipDays > 0 {
                     Text("\(enrollment.slipDaysRemaining)")
                         .frame(width: 60, alignment: .center)
                     Spacer()

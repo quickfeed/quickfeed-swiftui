@@ -78,7 +78,7 @@ struct ReviewList: View {
             viewModel.loadEnrollmentLinks()
         })
         .navigationTitle("Review Submissions")
-        .navigationSubtitle(viewModel.currentCourse.name)
+        .navigationSubtitle(viewModel.course.name)
         .toolbar{
             ToolbarItem{
                 LabPicker(labs: viewModel.manuallyGradedAssignments, selectedLab: $selectedLab)

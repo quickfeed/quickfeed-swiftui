@@ -7,7 +7,7 @@ import SwiftUI
 
 struct NavigatorView: View {
     @ObservedObject var viewModel: UserViewModel
-    var courses: [Course] { return viewModel.courses! }
+    var courses: [Course] { return viewModel.courses }
     @State var selectedCourse: UInt64
     @Binding var login: Bool
     @State private var activeDest: Int? = 1
@@ -16,14 +16,14 @@ struct NavigatorView: View {
         NavigationView{
             VStack(alignment: .leading){
                 
-                if viewModel.courses != nil && viewModel.courses != []{
+                if viewModel.courses != []{
                     CoursePicker(courses: courses, selectedCourse: $selectedCourse)
                         .padding([.horizontal, .top])
                     
                     if viewModel.isTeacherForCourse(courseId: selectedCourse)! {
-                        TeacherNavigationView(viewModel: TeacherViewModel(provider: ServerProvider.shared, course: viewModel.getCourse(courseID: selectedCourse)!))
+                        TeacherNavigationView(viewModel: TeacherViewModel(course: viewModel.getCourse(courseID: selectedCourse)!))
                     } else {
-                        StudentNavigatorView(viewModelTest: StudentViewModel.shared, course: viewModel.getCourse(courseID: selectedCourse)!)
+                        StudentNavigatorView(viewModel: StudentViewModel(course: viewModel.getCourse(courseID: selectedCourse)!))
                     }
                 }
                 

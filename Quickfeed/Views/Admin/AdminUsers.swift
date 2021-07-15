@@ -68,7 +68,7 @@ struct AdminUsers: View {
     }
     
     func filteredUsers() -> [User] {
-        var users = viewModel.users!
+        var users = viewModel.users
         users.sort {
             if $0.isAdmin != $1.isAdmin{
                 return $0.isAdmin && !$1.isAdmin

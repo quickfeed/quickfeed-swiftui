@@ -29,7 +29,7 @@ struct ResultView: View {
         })
         .navigationTitle("Results")
         
-        .navigationSubtitle(viewModel.currentCourse.name)
+        .navigationSubtitle(viewModel.course.name)
        
     }
 }
