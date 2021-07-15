@@ -80,11 +80,6 @@ class StudentViewModel: UserViewModelProtocol{
     }
     
     // MARK: Courses
-    func setCourse(course: Course){
-        self.course = course
-        self.group = provider.getGroupByUserAndCourse(courseID: course.id, groupID: nil, userID: user.id)
-    }
-    
     func getSlipdays() -> UInt32? {
         return getEnrollment()!.slipDaysRemaining
     }
