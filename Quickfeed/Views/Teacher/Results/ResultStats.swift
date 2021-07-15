@@ -63,7 +63,7 @@ struct ResultStats: View {
             
         }
         .navigationTitle("Stats")
-        .navigationSubtitle(viewModel.currentCourse.name)
+        .navigationSubtitle(viewModel.course.name)
     }
 }
 

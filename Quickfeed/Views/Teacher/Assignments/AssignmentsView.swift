@@ -50,7 +50,7 @@ struct AssignmentsView: View {
             })
         })
         .navigationTitle("Assignments")
-        .navigationSubtitle(viewModel.currentCourse.name)
+        .navigationSubtitle(viewModel.course.name)
         .toolbar{
             ToolbarItem{
                 Button(action: {

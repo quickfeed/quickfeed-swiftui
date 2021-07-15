@@ -21,7 +21,7 @@ struct NavigatorView: View {
                         .padding([.horizontal, .top])
                     
                     if viewModel.isTeacherForCourse(courseId: selectedCourse)! {
-                        TeacherNavigationView(viewModel: TeacherViewModel(provider: ServerProvider.shared, course: viewModel.getCourse(courseID: selectedCourse)!))
+                        TeacherNavigationView(viewModel: TeacherViewModel(course: viewModel.getCourse(courseID: selectedCourse)!))
                     } else {
                         StudentNavigatorView(viewModel: StudentViewModel(course: viewModel.getCourse(courseID: selectedCourse)!))
                     }
