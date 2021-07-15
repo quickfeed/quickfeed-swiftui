@@ -28,7 +28,9 @@ class AdminViewModel: UserViewModelProtocol {
     
     func updateUser(user: User){
         var user = user
+        
         user.isAdmin = !user.isAdmin
+        
         provider.updateUser(user: user)
         self.getUsers()
     }
@@ -40,22 +42,26 @@ class AdminViewModel: UserViewModelProtocol {
     
     func createCourse(name: String, code: String, year: String, tag: String, slipDays: UInt32){
         var course = Course()
+        
         course.name = name
         course.code = code
         course.year = UInt32(year)!
         course.tag = tag
         course.slipDays = slipDays
-        provider.updateCourse(course: course)
+        
+        provider.createCourse(course: course)
         self.getCourses()
     }
     
     func updateCourse(course: Course, name: String, code: String, year: String, tag: String, slipDays: UInt32){
         var course = course
+        
         course.name = name
         course.code = code
         course.year = UInt32(year)!
         course.tag = tag
         course.slipDays = slipDays
+        
         provider.updateCourse(course: course)
         self.getCourses()
     }
