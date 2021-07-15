@@ -12,45 +12,52 @@ struct NewUser: View {
     @State private var userStudentID: String = ""
     
     var body: some View {
-        VStack(alignment: .leading){
-            HStack{
-                Spacer()
-                Text("User Information")
-                    .font(.title2)
+        VStack{
+            Spacer()
+            VStack(alignment: .leading){
+                HStack{
+                    Spacer()
+                    Text("User Information")
+                        .font(.title2)
+                        .bold()
+                        .padding(.bottom)
+                    Spacer()
+                }
+                Text("Name:")
                     .bold()
-                    .padding(.bottom)
+                TextField("Enter your name...", text: $userName)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .foregroundColor(isValidName() ? .primary : .red)
+                    .padding(.leading)
+                Text("Email:")
+                    .bold()
+                TextField("Enter your Email...", text: $userEmail)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .foregroundColor(isValidEmail() ? .primary : .red)
+                    .padding(.leading)
+                Text("StudentID:")
+                    .bold()
+                TextField("Enter your studentID...", text: $userStudentID)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .foregroundColor(isValidStudentID() ? .primary : .red)
+                    .padding(.leading)
+                if self.isValidEmail() && self.isValidStudentID() && self.isValidName() {
+                    Button(action: {
+                        viewModel.updateUser(name: self.userName, studentID: self.userStudentID, email: self.userEmail)
+                    }, label: {
+                        Text("Done")
+                    })
+                    .padding(.top)
+                }
                 Spacer()
             }
-            Text("Name:")
-                .bold()
-            TextField("Enter your name...", text: $userName)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .foregroundColor(isValidName() ? .primary : .red)
-                .padding(.leading)
-            Text("Email:")
-                .bold()
-            TextField("Enter your Email...", text: $userEmail)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .foregroundColor(isValidEmail() ? .primary : .red)
-                .padding(.leading)
-            Text("StudentID:")
-                .bold()
-            TextField("Enter your studentID...", text: $userStudentID)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .foregroundColor(isValidStudentID() ? .primary : .red)
-                .padding(.leading)
-            if self.isValidEmail() && self.isValidStudentID() && self.isValidName() {
-                Button(action: {
-                    viewModel.updateUser(name: self.userName, studentID: self.userStudentID, email: self.userEmail)
-                }, label: {
-                    Text("Done")
-                })
-                .padding(.top)
-            }
+            .frame(width: 300, height: 250)
+            .padding()
+            Spacer()
             Spacer()
         }
-        .frame(width: 300, height: 250)
-        .padding()
+        .fill()
+        .frame(minWidth: 310, minHeight: 265)
     }
     
     func isValidName() -> Bool {
