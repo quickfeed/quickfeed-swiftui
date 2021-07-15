@@ -12,8 +12,8 @@ class AdminViewModel: UserViewModelProtocol {
     
     var user: User = ServerProvider.shared.getUser()!
     
-    @Published var users: [User]?
-    @Published var courses: [Course]?
+    @Published var users: [User] = []
+    @Published var courses: [Course] = []
     
     private init() {
         print("New AdminViewModel")
@@ -23,7 +23,11 @@ class AdminViewModel: UserViewModelProtocol {
     
     // MARK: Users
     func getUsers(){
-        self.users = provider.getUsers()
+        let users = provider.getUsers()
+        
+        if users != nil {
+            self.users = users!
+        }
     }
     
     func updateUser(user: User){
@@ -37,7 +41,11 @@ class AdminViewModel: UserViewModelProtocol {
     
     // MARK: Courses
     func getCourses(){
-        self.courses = provider.getCourses()
+        let courses = provider.getCourses()
+        
+        if courses != nil {
+            self.courses = courses!
+        }
     }
     
     func createCourse(name: String, code: String, year: String, tag: String, slipDays: UInt32){
@@ -49,7 +57,7 @@ class AdminViewModel: UserViewModelProtocol {
         course.tag = tag
         course.slipDays = slipDays
         
-        provider.createCourse(course: course)
+        _ = provider.createCourse(course: course)
         self.getCourses()
     }
     
