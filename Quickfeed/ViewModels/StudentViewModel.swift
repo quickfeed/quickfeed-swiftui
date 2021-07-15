@@ -90,12 +90,9 @@ class StudentViewModel: UserViewModelProtocol{
     func getAssignments(){
         let assignments = provider.getAssignments(courseID: course!.id)
         
-        if assignments == nil {
-            self.assignments = []
-        } else {
+        if assignments != nil {
             self.assignments = assignments!
         }
-        //self.assignments = provider.getAssignments(courseID: course!.id)!
     }
     
     func hasGroupAssignments() -> Bool{
@@ -123,10 +120,20 @@ class StudentViewModel: UserViewModelProtocol{
     }
     
     func getSubmissions(){
-        var submissions = provider.getSubmissions(userID: user.id, groupID: nil, courseID: course!.id)!
-        if self.group != nil{
-            submissions.append(contentsOf: provider.getSubmissions(userID: nil, groupID: group!.id, courseID: course!.id)!)
+        var submissions: [Submission] = []
+        
+        let individualSubmissions = provider.getSubmissions(userID: user.id, groupID: nil, courseID: course!.id)
+        if individualSubmissions != nil {
+            submissions.append(contentsOf: individualSubmissions!)
         }
+        
+        if group != nil {
+            let groupSubmissions = provider.getSubmissions(userID: nil, groupID: group!.id, courseID: course!.id)
+            if groupSubmissions != nil {
+                submissions.append(contentsOf: groupSubmissions!)
+            }
+        }
+        
         self.submissions = submissions
     }
     
