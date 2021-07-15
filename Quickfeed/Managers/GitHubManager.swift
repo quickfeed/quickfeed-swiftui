@@ -20,7 +20,7 @@ class GitHubManager: NSObject, ObservableObject, ASWebAuthenticationPresentation
     }
     
     func logInWithGitHub() {
-        self.viewModel.setUser(userID: 61)
+        self.viewModel.setUser(userID: 100)
         /*guard let authURL = URL(string: "https://QuickFeed.no/auth/github/github") else { return }
         let session = ASWebAuthenticationSession(url: authURL, callbackURLScheme: "quickfeed", completionHandler: { (callbackURL, error) in
             guard error == nil, let callbackURL = callbackURL else { return }
