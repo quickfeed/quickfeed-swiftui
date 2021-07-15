@@ -57,7 +57,7 @@ struct NewGroup: View {
             self.selectedMembers.append(enrollment!)
         })
         .navigationTitle("New Group")
-        .navigationSubtitle(viewModel.course!.name)
+        .navigationSubtitle(viewModel.course.name)
         .toolbar{
             ToolbarItem{
                 SearchFieldToolbarItem(isSearching: $isSearching, searchQuery: $searchQuery)

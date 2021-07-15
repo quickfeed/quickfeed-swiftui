@@ -7,20 +7,23 @@ import Foundation
 
 
 class StudentViewModel: UserViewModelProtocol{
-    static let shared: StudentViewModel = StudentViewModel()
-    
     var provider: ProviderProtocol = ServerProvider.shared
     
     @Published var user: User = ServerProvider.shared.getUser()!
     
-    @Published var course: Course?
+    @Published var course: Course
     @Published var group: Group?
+    
     @Published var assignments: [Assignment] = []
     @Published var submissions: [Submission] = []
     @Published var enrollments: [Enrollment] = []
     
-    private init() {
+    init(course: Course) {
         print("New StudentViewModel")
+        self.course = course
+        self.group = provider.getGroupByUserAndCourse(courseID: course.id, groupID: nil, userID: user.id)
+        getAssignments()
+        getSubmissions()
     }
     
     // MARK: Groups
@@ -33,9 +36,9 @@ class StudentViewModel: UserViewModelProtocol{
         group.name = name
         group.enrollments = enrollments
         group.status = Group.GroupStatus.pending
-        group.courseID = course!.id
+        group.courseID = course.id
         group.users = users
-        self.group = provider.getGroupByUserAndCourse(courseID: self.course!.id, groupID: nil, userID: user.id)
+        self.group = provider.getGroupByUserAndCourse(courseID: self.course.id, groupID: nil, userID: user.id)
         
         let response = self.provider.createGroup(group: group)
         _ = response.always {(response: Result<Group, Error>) in
@@ -54,7 +57,7 @@ class StudentViewModel: UserViewModelProtocol{
     func getEnrollment() -> Enrollment?{
         let enrollments = provider.getEnrollmentsByUser(userID: self.user.id, userStatus: [Enrollment.UserStatus.teacher, Enrollment.UserStatus.student, Enrollment.UserStatus.pending])!
         for element in enrollments{
-            if element.course.id == course!.id{
+            if element.course.id == course.id{
                 return element
             }
         }
@@ -62,7 +65,7 @@ class StudentViewModel: UserViewModelProtocol{
     }
     
     func getEnrollmentsByCourse() {
-        let response = self.provider.getEnrollmentsByCourse(courseID: self.course!.id, ignoreGroupMembers: true, withActivity: nil, userStatus: [Enrollment.UserStatus.student])
+        let response = self.provider.getEnrollmentsByCourse(courseID: self.course.id, ignoreGroupMembers: true, withActivity: nil, userStatus: [Enrollment.UserStatus.student])
         _ = response.always {(response: Result<Enrollments, Error>) in
             switch response {
             case .success(let response):
@@ -88,7 +91,7 @@ class StudentViewModel: UserViewModelProtocol{
     
     // MARK: Assignments
     func getAssignments(){
-        let assignments = provider.getAssignments(courseID: course!.id)
+        let assignments = provider.getAssignments(courseID: course.id)
         
         if assignments != nil {
             self.assignments = assignments!
@@ -122,13 +125,13 @@ class StudentViewModel: UserViewModelProtocol{
     func getSubmissions(){
         var submissions: [Submission] = []
         
-        let individualSubmissions = provider.getSubmissions(userID: user.id, groupID: nil, courseID: course!.id)
+        let individualSubmissions = provider.getSubmissions(userID: user.id, groupID: nil, courseID: course.id)
         if individualSubmissions != nil {
             submissions.append(contentsOf: individualSubmissions!)
         }
         
         if group != nil {
-            let groupSubmissions = provider.getSubmissions(userID: nil, groupID: group!.id, courseID: course!.id)
+            let groupSubmissions = provider.getSubmissions(userID: nil, groupID: group!.id, courseID: course.id)
             if groupSubmissions != nil {
                 submissions.append(contentsOf: groupSubmissions!)
             }

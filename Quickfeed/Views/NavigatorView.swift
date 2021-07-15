@@ -23,7 +23,7 @@ struct NavigatorView: View {
                     if viewModel.isTeacherForCourse(courseId: selectedCourse)! {
                         TeacherNavigationView(viewModel: TeacherViewModel(provider: ServerProvider.shared, course: viewModel.getCourse(courseID: selectedCourse)!))
                     } else {
-                        StudentNavigatorView(viewModelTest: StudentViewModel.shared, course: viewModel.getCourse(courseID: selectedCourse)!)
+                        StudentNavigatorView(viewModel: StudentViewModel(course: viewModel.getCourse(courseID: selectedCourse)!))
                     }
                 }
                 
