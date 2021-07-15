@@ -88,7 +88,14 @@ class StudentViewModel: UserViewModelProtocol{
     
     // MARK: Assignments
     func getAssignments(){
-        self.assignments = provider.getAssignments(courseID: course!.id)!
+        let assignments = provider.getAssignments(courseID: course!.id)
+        
+        if assignments == nil {
+            self.assignments = []
+        } else {
+            self.assignments = assignments!
+        }
+        //self.assignments = provider.getAssignments(courseID: course!.id)!
     }
     
     func hasGroupAssignments() -> Bool{
