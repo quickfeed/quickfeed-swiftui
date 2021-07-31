@@ -102,6 +102,9 @@
 		D01618D926B5C65700170D52 /* LabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06024B025DD23D4009390A1 /* LabTests.swift */; };
 		D01618DA26B5C65700170D52 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F6A13B2609DD5000C1D825 /* RemoteImage.swift */; };
 		D01618DB26B5C65700170D52 /* GitHubLogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0005CC525E4EF8E00EDECD1 /* GitHubLogIn.swift */; };
+		D01618DF26B5CDB900170D52 /* CGRPCZlib in Frameworks */ = {isa = PBXBuildFile; productRef = D01618DE26B5CDB900170D52 /* CGRPCZlib */; };
+		D01618E126B5CDBA00170D52 /* GRPC in Frameworks */ = {isa = PBXBuildFile; productRef = D01618E026B5CDBA00170D52 /* GRPC */; };
+		D01618E326B5CDBA00170D52 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = D01618E226B5CDBA00170D52 /* SwiftUIX */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -225,6 +228,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D01618E326B5CDBA00170D52 /* SwiftUIX in Frameworks */,
+				D01618E126B5CDBA00170D52 /* GRPC in Frameworks */,
+				D01618DF26B5CDB900170D52 /* CGRPCZlib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,7 +269,6 @@
 				FAC5364F25C0321600784980 /* Managers */,
 				FAB066F825CAC84200FFE8EB /* ViewModels */,
 				D016183E26B5BCD100170D52 /* QuickFeedApp.swift */,
-				D016183F26B5BCD100170D52 /* ContentView.swift */,
 				FAF945B625CC4E3200074A2F /* ProtoExstensions.swift */,
 				FA17B95C25EF81F1008BB07F /* TranslateStatus.swift */,
 				D04331E52602B35C0034C4B9 /* HelpFunctions.swift */,
@@ -275,6 +280,7 @@
 		D016184626B5BCD200170D52 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				D01618DC26B5CD8D00170D52 /* Views */,
 				D016184726B5BCD200170D52 /* Info.plist */,
 			);
 			path = iOS;
@@ -306,6 +312,21 @@
 				D016186526B5BCD300170D52 /* Info.plist */,
 			);
 			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		D01618DC26B5CD8D00170D52 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D016183F26B5BCD100170D52 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D01618DD26B5CDB900170D52 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		D03EF9CD25F02636008869CA /* Helpers */ = {
@@ -469,6 +490,7 @@
 				D016185726B5BCD200170D52 /* Tests iOS */,
 				D016186226B5BCD300170D52 /* Tests macOS */,
 				FA85790625BEB4E900223DB9 /* Products */,
+				D01618DD26B5CDB900170D52 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -589,6 +611,11 @@
 			dependencies = (
 			);
 			name = "QuickFeed (iOS)";
+			packageProductDependencies = (
+				D01618DE26B5CDB900170D52 /* CGRPCZlib */,
+				D01618E026B5CDBA00170D52 /* GRPC */,
+				D01618E226B5CDBA00170D52 /* SwiftUIX */,
+			);
 			productName = "QuickFeed (iOS)";
 			productReference = D016184526B5BCD200170D52 /* QuickFeed.app */;
 			productType = "com.apple.product-type.application";
@@ -1235,6 +1262,21 @@
 			productName = GRPC;
 		};
 		D016187C26B5BF2B00170D52 /* SwiftUIX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0D940F3264D0E8F00A41EF3 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
+			productName = SwiftUIX;
+		};
+		D01618DE26B5CDB900170D52 /* CGRPCZlib */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0F9FC6125BEB9A90080A1F2 /* XCRemoteSwiftPackageReference "grpc-swift" */;
+			productName = CGRPCZlib;
+		};
+		D01618E026B5CDBA00170D52 /* GRPC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0F9FC6125BEB9A90080A1F2 /* XCRemoteSwiftPackageReference "grpc-swift" */;
+			productName = GRPC;
+		};
+		D01618E226B5CDBA00170D52 /* SwiftUIX */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D0D940F3264D0E8F00A41EF3 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
 			productName = SwiftUIX;
