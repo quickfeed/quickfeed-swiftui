@@ -105,6 +105,8 @@
 		D01618DF26B5CDB900170D52 /* CGRPCZlib in Frameworks */ = {isa = PBXBuildFile; productRef = D01618DE26B5CDB900170D52 /* CGRPCZlib */; };
 		D01618E126B5CDBA00170D52 /* GRPC in Frameworks */ = {isa = PBXBuildFile; productRef = D01618E026B5CDBA00170D52 /* GRPC */; };
 		D01618E326B5CDBA00170D52 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = D01618E226B5CDBA00170D52 /* SwiftUIX */; };
+		D01618E426B5CE1400170D52 /* ag.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05FDEEE269868AC00509F63 /* ag.grpc.swift */; };
+		D01618E526B5CE1400170D52 /* ag.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05FDEEF269868AD00509F63 /* ag.pb.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -766,6 +768,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D01618E426B5CE1400170D52 /* ag.grpc.swift in Sources */,
+				D01618E526B5CE1400170D52 /* ag.pb.swift in Sources */,
 				D016189326B5C61500170D52 /* ProtoExstensions.swift in Sources */,
 				D016186826B5BCD300170D52 /* ContentView.swift in Sources */,
 				D016189526B5C61500170D52 /* TranslateStatus.swift in Sources */,
@@ -902,6 +906,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -923,6 +928,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
