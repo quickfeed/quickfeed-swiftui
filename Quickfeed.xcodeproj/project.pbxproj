@@ -17,6 +17,9 @@
 		D016186926B5BCD300170D52 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D016183F26B5BCD100170D52 /* ContentView.swift */; };
 		D016186A26B5BCD300170D52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D016184026B5BCD200170D52 /* Assets.xcassets */; };
 		D016186B26B5BCD300170D52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D016184026B5BCD200170D52 /* Assets.xcassets */; };
+		D016187926B5BF2600170D52 /* CGRPCZlib in Frameworks */ = {isa = PBXBuildFile; productRef = D016187826B5BF2600170D52 /* CGRPCZlib */; };
+		D016187B26B5BF2600170D52 /* GRPC in Frameworks */ = {isa = PBXBuildFile; productRef = D016187A26B5BF2600170D52 /* GRPC */; };
+		D016187D26B5BF2B00170D52 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = D016187C26B5BF2B00170D52 /* SwiftUIX */; };
 		D01B3CD225C2D76900B126FB /* GRPCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B3CD125C2D76900B126FB /* GRPCManager.swift */; };
 		D01D732F2639601600D94003 /* NewGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01D732E2639601600D94003 /* NewGroup.swift */; };
 		D01D73312639D95600D94003 /* NewUserEnrollments.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01D73302639D95500D94003 /* NewUserEnrollments.swift */; };
@@ -239,6 +242,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D016187D26B5BF2B00170D52 /* SwiftUIX in Frameworks */,
+				D016187B26B5BF2600170D52 /* GRPC in Frameworks */,
+				D016187926B5BF2600170D52 /* CGRPCZlib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -658,6 +664,11 @@
 			dependencies = (
 			);
 			name = "QuickFeed (macOS)";
+			packageProductDependencies = (
+				D016187826B5BF2600170D52 /* CGRPCZlib */,
+				D016187A26B5BF2600170D52 /* GRPC */,
+				D016187C26B5BF2B00170D52 /* SwiftUIX */,
+			);
 			productName = "QuickFeed (macOS)";
 			productReference = D016184C26B5BCD200170D52 /* QuickFeed.app */;
 			productType = "com.apple.product-type.application";
@@ -1367,6 +1378,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D016187826B5BF2600170D52 /* CGRPCZlib */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0F9FC6125BEB9A90080A1F2 /* XCRemoteSwiftPackageReference "grpc-swift" */;
+			productName = CGRPCZlib;
+		};
+		D016187A26B5BF2600170D52 /* GRPC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0F9FC6125BEB9A90080A1F2 /* XCRemoteSwiftPackageReference "grpc-swift" */;
+			productName = GRPC;
+		};
+		D016187C26B5BF2B00170D52 /* SwiftUIX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0D940F3264D0E8F00A41EF3 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
+			productName = SwiftUIX;
+		};
 		D0D940F4264D0E8F00A41EF3 /* SwiftUIX */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D0D940F3264D0E8F00A41EF3 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
