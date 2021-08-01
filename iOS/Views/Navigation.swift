@@ -13,7 +13,7 @@ struct Navigation: View {
     var body: some View {
         TabView{
             if !viewModel.courses.isEmpty {
-                Text("Course")
+                CourseNavigation(viewModel: viewModel, selectedCourse: viewModel.courses[0].id)
                     .tabItem {
                         Label("Assignments", systemImage: "square.and.pencil")
                     }
