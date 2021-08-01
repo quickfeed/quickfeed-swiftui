@@ -27,7 +27,7 @@ struct CourseNavigation: View {
                     Text("Teacher")
                 }
             }
-            .navigationTitle((viewModel.getCourse(courseID: selectedCourse)!.slipDays != 0 && viewModel.getCourse(courseID: selectedCourse)!.enrolled == Enrollment.UserStatus.student) ? "\(viewModel.getCourse(courseID: selectedCourse)!.code), SlipDays: \(viewModel.getEnrollmentByCourse(courseID: selectedCourse)!.slipDaysRemaining)" : "\(viewModel.getCourse(courseID: selectedCourse)!.code)")
+            .navigationTitle("\(viewModel.getCourse(courseID: selectedCourse)!.code)")
         }
     }
 }
