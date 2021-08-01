@@ -28,7 +28,7 @@ struct Navigation: View {
                         Label("Users", systemImage: "person.3")
                     }
             }
-            Text("UserProfile")
+            UserProfile(viewModel: viewModel)
                 .tabItem {
                     Label("Profile", systemImage: "person")
                 }

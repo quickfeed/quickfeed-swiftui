@@ -106,7 +106,7 @@ class UserViewModel: UserViewModelProtocol {
                     }
                 }
             }
-            return courses
+            return sortCourseByCode(courses: courses!)
         }
         return nil
     }
