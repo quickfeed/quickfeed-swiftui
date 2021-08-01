@@ -110,36 +110,28 @@ struct UserProfile: View {
                             newEnrollment = !newEnrollment
                         }){
                             Image(systemName: "plus")
-                                .foregroundColor(newEnrollment ? .clear : .primary)
+                                .foregroundColor(newEnrollment || viewModel.getCoursesForNewEnrollments() == nil || viewModel.getCoursesForNewEnrollments() == [] ? .clear : .primary)
                         }
-                        .disabled(newEnrollment)
+                        .disabled(newEnrollment || viewModel.getCoursesForNewEnrollments() == nil || viewModel.getCoursesForNewEnrollments() == [])
                     }
                     if newEnrollment{
-                        if viewModel.getCoursesForNewEnrollments() == nil || viewModel.getCoursesForNewEnrollments() == [] {
+                        
+                        ForEach(viewModel.getCoursesForNewEnrollments()!, id: \.self){ course in
                             HStack{
+                                Text(course.code)
                                 Spacer()
-                                Text("No more courses for enrollment")
-                                Spacer()
+                                Button(action: {
+                                    viewModel.createEnrollment(courseID: course.id)
+                                    newEnrollment = !newEnrollment
+                                    viewModel.getEnrollments()
+                                }){
+                                    Text("Enroll")
+                                }
                             }
                             .padding(.top)
                             Divider()
-                        } else {
-                            ForEach(viewModel.getCoursesForNewEnrollments()!, id: \.self){ course in
-                                HStack{
-                                    Text(course.code)
-                                    Spacer()
-                                    Button(action: {
-                                        viewModel.createEnrollment(courseID: course.id)
-                                        newEnrollment = !newEnrollment
-                                        viewModel.getEnrollments()
-                                    }){
-                                        Text("Enroll")
-                                    }
-                                }
-                                .padding(.top)
-                                Divider()
-                            }
                         }
+                        
                     }else{
                         ForEach(viewModel.enrollments, id: \.self){ enrollment in
                             HStack{
