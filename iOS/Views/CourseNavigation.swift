@@ -20,9 +20,12 @@ struct CourseNavigation: View {
                             Text($0.code)
                         }
                     }
+                    if viewModel.getCourseById(courseId: selectedCourse).slipDays != 0 && viewModel.getCourse(courseID: selectedCourse)!.enrolled == Enrollment.UserStatus.student {
+                        Text("SlipDays: \(viewModel.getEnrollmentByCourse(courseID: selectedCourse)!.slipDaysRemaining)")
+                    }
                 }
                 if viewModel.getCourse(courseID: selectedCourse)!.enrolled == Enrollment.UserStatus.student {
-                    Text("Student")
+                    StudentNavigation(viewModel: StudentViewModel(course: viewModel.getCourseById(courseId: selectedCourse)))
                 } else {
                     Text("Teacher")
                 }
