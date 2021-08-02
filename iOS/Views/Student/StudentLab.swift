@@ -42,8 +42,14 @@ struct LabHeader: View {
             .fontWeight(.bold)
         Text("\(submission.score)%")
             .font(.subheadline)
-        ProgressView(value: Float(submission.score > 100 ? 100 : submission.score), total: 100)
-            .accentColor(getColorForSubmissionStatus(submissionStatus: submission.status))
+        ZStack{
+            if !(submission.status == Submission.Status.approved || submission.status == Submission.Status.rejected){
+                ProgressView(value: Float(assignment.scoreLimit), total: 100)
+                    .accentColor(Color("ScoreLimit"))
+            }
+            ProgressView(value: Float(submission.score > 100 ? 100 : submission.score), total: 100)
+                .accentColor(getColorForSubmissionStatus(submissionStatus: submission.status))
+        }
         Divider()
     }
 }

@@ -42,7 +42,7 @@ struct LogIn: View {
             .cornerRadius(10.0)
             .contentShape(Rectangle())
             .onTapGesture {
-                viewModel.setUser(userID: 151)
+                viewModel.setUser(userID: 61)
             }
         }
         .padding()

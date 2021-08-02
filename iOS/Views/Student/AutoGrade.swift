@@ -37,8 +37,11 @@ struct LabInfo: View {
                     .foregroundColor(getColorForSubmissionStatus(submissionStatus: submission.status))
             }
             Divider()
-            InfoRow(title: "Tests passed", info: "\(passed()) / \(submission.scoreObj!.count)")
-            InfoRow(title: "Execution time", info: "\(String(format: "%.2f", Double(submission.buildInfoJSON.execTime) / 1000)) seconds")
+            if submission.status != Submission.Status.approved {
+                InfoRow(title: "ScoreLimit", info: "\(assignment.scoreLimit)%")
+            }
+            InfoRow(title: "TestsPassed", info: "\(passed()) / \(submission.scoreObj!.count)")
+            InfoRow(title: "ExecutionTime", info: "\(String(format: "%.2f", Double(submission.buildInfoJSON.execTime) / 1000)) seconds")
             InfoRow(title: "Delivered", info: date(date: submission.buildInfoJSON.builddate))
 
             if submission.status == Submission.Status.approved && submission.approvedDate != "" {
