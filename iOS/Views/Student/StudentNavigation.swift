@@ -38,7 +38,7 @@ struct LabSection: View {
             } else {
                 ForEach(viewModel.assignments, id: \.id){ assignment in
                     NavigationLink(
-                        destination: Text(assignment.name)){
+                        destination: StudentLab(assignment: assignment, submission: viewModel.getSubmission(assignment: assignment))){
                         HStack{
                             if viewModel.getSubmission(assignment: assignment) != nil {
                                 getImageForSubmissionStatus(submission: viewModel.getSubmission(assignment: assignment)!.status)
