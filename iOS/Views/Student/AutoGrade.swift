@@ -20,25 +20,6 @@ struct AutoGrade: View {
     }
 }
 
-struct LabTests: View {
-    var submission: Submission
-    
-    var body: some View {
-        Text("Tests")
-            .font(.title2)
-            .fontWeight(.bold)
-            .padding(.vertical)
-        ForEach(submission.scoreObj!, id: \.self) { scoreObject in
-            HStack{
-                Text(scoreObject.TestName)
-                Spacer()
-                Text("\(scoreObject.Score)/\(scoreObject.MaxScore)")
-            }
-            Divider()
-        }
-    }
-}
-
 struct LabInfo: View {
     var assignment: Assignment
     var submission: Submission
@@ -92,6 +73,25 @@ struct InfoRow: View {
             Text(info)
         }
         Divider()
+    }
+}
+
+struct LabTests: View {
+    var submission: Submission
+    
+    var body: some View {
+        Text("Tests")
+            .font(.title2)
+            .fontWeight(.bold)
+            .padding(.vertical)
+        ForEach(submission.scoreObj!, id: \.self) { scoreObject in
+            HStack{
+                Text(scoreObject.TestName)
+                Spacer()
+                Text("\(scoreObject.Score)/\(scoreObject.MaxScore)")
+            }
+            Divider()
+        }
     }
 }
 
