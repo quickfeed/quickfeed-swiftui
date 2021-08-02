@@ -21,7 +21,7 @@ struct StudentLab: View {
             VStack{
                 LabHeader(assignment: assignment, submission: submission!)
                 if assignment.skipTests{
-                    //ManualGrade(reviews: getReadyReviews(reviews: submission!.reviews))
+                    ManualGrade(reviews: getReadyReviews(reviews: submission!.reviews))
                 }else {
                     AutoGrade(assignment: assignment, submission: submission!)
                 }
