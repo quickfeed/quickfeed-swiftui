@@ -111,6 +111,7 @@
 		D075A50826B80CFF001B5C0F /* StudentLab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D075A50726B80CFE001B5C0F /* StudentLab.swift */; };
 		D075A50A26B80FCC001B5C0F /* AutoGrade.swift in Sources */ = {isa = PBXBuildFile; fileRef = D075A50926B80FCC001B5C0F /* AutoGrade.swift */; };
 		D075A50C26B814B7001B5C0F /* ManualGrade.swift in Sources */ = {isa = PBXBuildFile; fileRef = D075A50B26B814B7001B5C0F /* ManualGrade.swift */; };
+		D075A50E26B82D55001B5C0F /* StudentGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D075A50D26B82D55001B5C0F /* StudentGroup.swift */; };
 		D0CAFD3F26B6F08400AABADF /* LogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CAFD3E26B6F08400AABADF /* LogIn.swift */; };
 		D0CAFD4026B6F27A00AABADF /* ProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB066AF25CAC0F000FFE8EB /* ProviderProtocol.swift */; };
 		D0CAFD4126B6F27A00AABADF /* ServerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5FBDE125E7E63E007EC0E3 /* ServerProvider.swift */; };
@@ -181,6 +182,7 @@
 		D075A50726B80CFE001B5C0F /* StudentLab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLab.swift; sourceTree = "<group>"; };
 		D075A50926B80FCC001B5C0F /* AutoGrade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoGrade.swift; sourceTree = "<group>"; };
 		D075A50B26B814B7001B5C0F /* ManualGrade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualGrade.swift; sourceTree = "<group>"; };
+		D075A50D26B82D55001B5C0F /* StudentGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentGroup.swift; sourceTree = "<group>"; };
 		D083089D260385AA005A1FF0 /* AllCourses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCourses.swift; sourceTree = "<group>"; };
 		D08308A5260385C2005A1FF0 /* NewOrEditCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOrEditCourse.swift; sourceTree = "<group>"; };
 		D08A3C0F26278B0A00A6E626 /* NewUserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserProfile.swift; sourceTree = "<group>"; };
@@ -398,6 +400,7 @@
 				D075A50726B80CFE001B5C0F /* StudentLab.swift */,
 				D075A50926B80FCC001B5C0F /* AutoGrade.swift */,
 				D075A50B26B814B7001B5C0F /* ManualGrade.swift */,
+				D075A50D26B82D55001B5C0F /* StudentGroup.swift */,
 			);
 			path = Student;
 			sourceTree = "<group>";
@@ -825,6 +828,7 @@
 				D0CAFD4726B6F28000AABADF /* AdminViewModel.swift in Sources */,
 				D075A50626B7F27B001B5C0F /* StudentNavigation.swift in Sources */,
 				D0CAFD4026B6F27A00AABADF /* ProviderProtocol.swift in Sources */,
+				D075A50E26B82D55001B5C0F /* StudentGroup.swift in Sources */,
 				D075A50C26B814B7001B5C0F /* ManualGrade.swift in Sources */,
 				D0CAFD4126B6F27A00AABADF /* ServerProvider.swift in Sources */,
 				D0CAFD4226B6F27A00AABADF /* GRPCManager.swift in Sources */,

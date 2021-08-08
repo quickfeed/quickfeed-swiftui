@@ -14,7 +14,7 @@ struct StudentNavigation: View {
         if viewModel.group == nil && viewModel.hasGroupAssignments(){
             Section(header: Text("Group")){
                 NavigationLink(
-                    destination: Text("New Group")){
+                    destination: StudentGroup(viewModel: viewModel)){
                     HStack{
                         Text("New Group")
                         Spacer()
