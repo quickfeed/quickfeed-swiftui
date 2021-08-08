@@ -11,10 +11,14 @@ struct LogIn: View {
     
     var body: some View {
         VStack{
+            Spacer()
+            Spacer()
             Text("QuickFeed")
-                .font(.system(.title, design: .monospaced))
+                .font(.system(size: 35, design: .monospaced))
                 .fontWeight(.bold)
                 .padding()
+            Spacer()
+            Spacer()
             HStack{
                 VStack{
                     Divider()
@@ -24,9 +28,12 @@ struct LogIn: View {
                     Divider()
                 }
             }
+            .frame(width: 290)
             .padding(.horizontal)
             GitHubLogIn(viewModel: viewModel, login: $login)
         }
-        .frame(width: 300, height: 165)
+        .padding()
+        .fill()
+        .frame(minWidth: 300, minHeight: 200)
     }
 }
