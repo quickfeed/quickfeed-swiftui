@@ -1,7 +1,7 @@
 # QuickFeed SwiftUI
 
 macOS client for [QuickFeed](https://github.com/autograde/quickfeed)
-![Student Lab Result](https://raw.githubusercontent.com/autograde/quickfeed-swiftui/main/Images/Student/Submissions/LabDarkMode.png)
+![Student Lab Result](https://github.com/autograde/quickfeed-swiftui/blob/main/Images/macOS/Student/Submissions/LabDarkMode.png)
 
 
 ## Guide
