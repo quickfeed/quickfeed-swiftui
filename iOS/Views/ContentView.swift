@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  Shared
+//  QuickFeed (iOS)
 //
 //  Created by Bjørn Kristian Teisrud on 31/07/2021.
 //
@@ -8,44 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var viewModel: UserViewModel = UserViewModel()
+    
     var body: some View {
-        VStack{
-            Spacer()
-            Spacer()
-            Text("QuickFeed")
-                .font(.system(.title, design: .monospaced))
-                .fontWeight(.bold)
-            Spacer()
-            Spacer()
-            HStack{
-                VStack{
-                    Divider()
-                }
-                Text("Sign In")
-                VStack{
-                    Divider()
-                }
-            }
-            HStack{
-                Spacer()
-                Image("GitHubLogo")
-                    .resizable()
-                    .frame(width: 18, height: 18)
-                Text("Sign in with GitHub")
-                Spacer()
-            }
-            .frame(height: 50)
-            .background(Color("GitHubColor"))
-            .foregroundColor(.white)
-            .cornerRadius(10.0)
-            .contentShape(Rectangle())
+        if viewModel.user == nil {
+            LogIn(viewModel: viewModel)
+        } else {
+            Navigation(viewModel: viewModel)
         }
-        .padding()
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
     }
 }

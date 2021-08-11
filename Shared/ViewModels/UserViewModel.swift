@@ -89,6 +89,7 @@ class UserViewModel: UserViewModelProtocol {
     
     func getCoursesByUser() {
         self.courses = self.provider.getCoursesByUser(userID: self.user!.id, userStatus: [Enrollment.UserStatus.student, Enrollment.UserStatus.teacher])!
+        self.courses = sortCourseByCode(courses: self.courses)
     }
     
     func getCoursesForNewEnrollments() -> [Course]?{
@@ -105,7 +106,7 @@ class UserViewModel: UserViewModelProtocol {
                     }
                 }
             }
-            return courses
+            return sortCourseByCode(courses: courses!)
         }
         return nil
     }
