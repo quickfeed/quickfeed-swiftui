@@ -287,13 +287,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		D01618DD26B5CDB900170D52 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		D03EF9CD25F02636008869CA /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -461,7 +454,6 @@
 				D016184626B5BCD200170D52 /* iOS */,
 				D016184D26B5BCD200170D52 /* macOS */,
 				FA85790625BEB4E900223DB9 /* Products */,
-				D01618DD26B5CDB900170D52 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
