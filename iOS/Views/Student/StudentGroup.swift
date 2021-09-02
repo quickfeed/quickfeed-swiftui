@@ -13,9 +13,6 @@ struct StudentGroup: View {
     @State private var groupName: String = ""
     @State private var groupMembers: [Enrollment] = []
     
-    @State private var testName: [String] = ["Truls Jørgensen", "Hanne Svendsen", "Bodil Nilsen", "Jonas Borgersen", "Børge Børgersen", "Andrine Hillesen", "Henrik Karlsen", "Marius Kull", "Hanne Skage", "Julie Gruve", "Bjørn Borger", "Malin Hallosen", "Andreas Nilsen", "Mikkel Rev", "Rolf Rive", "Torkel Testis", "Aleksander Finnestad", "Daniel Sven", "Sven Kullestad", "Bent Johnsen", "Tuva Beckman", "Mary Storhammer", "Hege Tullball", "Alexandria Hilde"]
-    @State private var testGroupName: [String] = ["Ola Nordmann", "Kari Nordmann"]
-    
     var body: some View {
         VStack{
             HStack{
@@ -48,8 +45,7 @@ struct StudentGroup: View {
                     ForEach(groupMembers, id: \.self){ enrollment in
                         HStack{
                             Spacer()
-                            Text(testGroupName.randomElement()!)
-                            //Text(enrollment.user.name)
+                            Text(enrollment.user.name)
                             if enrollment != viewModel.getEnrollment()!{
                                 Image(systemName: "xmark")
                                     .onTapGesture {
@@ -67,8 +63,7 @@ struct StudentGroup: View {
                     ForEach(viewModel.enrollments, id: \.self){ enrollment in
                         if !groupMembers.contains(enrollment){
                             HStack{
-                                Text(testName.randomElement()!)
-                                //Text(enrollment.user.name)
+                                Text(enrollment.user.name)
                                 Spacer()
                                 Image(systemName: "plus")
                                     .onTapGesture {
