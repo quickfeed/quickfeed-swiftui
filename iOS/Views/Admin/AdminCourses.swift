@@ -13,6 +13,14 @@ struct AdminCourses: View {
     var body: some View {
         NavigationView{
             Form{
+                Section(header: Text("Create Course")){
+                    List{
+                        NavigationLink(destination: AdminNewCourse(viewModel: viewModel)){
+                            Text("Create Course")
+                        }
+                        
+                    }
+                }
                 Section(header: Text("Course")){
                     List{
                         ForEach(self.filteredCourses(), id: \.self){ course in
@@ -24,11 +32,6 @@ struct AdminCourses: View {
                 }
             }
             .navigationTitle("Manage Courses")
-            .toolbar {
-                Button(action: {}){
-                    Image(systemName: "plus")
-                }
-            }
         }
     }
     

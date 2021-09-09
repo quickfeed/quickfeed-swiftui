@@ -126,6 +126,7 @@
 		D0FE36BC26EA968F00A6EFB3 /* AdminUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FE36BB26EA968F00A6EFB3 /* AdminUserProfile.swift */; };
 		D0FE36BE26EA9FF300A6EFB3 /* AdminCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FE36BD26EA9FF300A6EFB3 /* AdminCourses.swift */; };
 		D0FE36C026EAA16200A6EFB3 /* AdminCourseProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FE36BF26EAA16200A6EFB3 /* AdminCourseProfile.swift */; };
+		D0FE36C226EAB4A400A6EFB3 /* AdminNewCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FE36C126EAB4A400A6EFB3 /* AdminNewCourse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -181,6 +182,7 @@
 		D0FE36BB26EA968F00A6EFB3 /* AdminUserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminUserProfile.swift; sourceTree = "<group>"; };
 		D0FE36BD26EA9FF300A6EFB3 /* AdminCourses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminCourses.swift; sourceTree = "<group>"; };
 		D0FE36BF26EAA16200A6EFB3 /* AdminCourseProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminCourseProfile.swift; sourceTree = "<group>"; };
+		D0FE36C126EAB4A400A6EFB3 /* AdminNewCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminNewCourse.swift; sourceTree = "<group>"; };
 		FA17B95425EF7D6F008BB07F /* SubmissionReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionReview.swift; sourceTree = "<group>"; };
 		FA17B95C25EF81F1008BB07F /* TranslateStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateStatus.swift; sourceTree = "<group>"; };
 		FA17B96125EF90E6008BB07F /* SubmissionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionInfo.swift; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 				D0FE36BB26EA968F00A6EFB3 /* AdminUserProfile.swift */,
 				D0FE36BD26EA9FF300A6EFB3 /* AdminCourses.swift */,
 				D0FE36BF26EAA16200A6EFB3 /* AdminCourseProfile.swift */,
+				D0FE36C126EAB4A400A6EFB3 /* AdminNewCourse.swift */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
@@ -713,6 +716,7 @@
 				D075A50A26B80FCC001B5C0F /* AutoGrade.swift in Sources */,
 				D0CAFD4326B6F28000AABADF /* StudentViewModel.swift in Sources */,
 				D0CAFD4426B6F28000AABADF /* TeacherViewModel.swift in Sources */,
+				D0FE36C226EAB4A400A6EFB3 /* AdminNewCourse.swift in Sources */,
 				D0CAFD4526B6F28000AABADF /* UserViewModelProtocol.swift in Sources */,
 				D0CAFD4626B6F28000AABADF /* UserViewModel.swift in Sources */,
 				D075A50826B80CFF001B5C0F /* StudentLab.swift in Sources */,
