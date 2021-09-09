@@ -67,12 +67,26 @@ class AdminViewModel: UserViewModelProtocol {
         self.getCourses()
     }
     
+    // TODO: combine updateCourse functions
     func updateCourse(course: Course, name: String, code: String, year: String, tag: String, slipDays: UInt32){
         var course = course
         
         course.name = name
         course.code = code
         course.year = UInt32(year)!
+        course.tag = tag
+        course.slipDays = slipDays
+        
+        provider.updateCourse(course: course)
+        self.getCourses()
+    }
+
+    func updateCourse(course: Course, name: String, code: String, year: UInt32, tag: String, slipDays: UInt32){
+        var course = course
+        
+        course.name = name
+        course.code = code
+        course.year = year
         course.tag = tag
         course.slipDays = slipDays
         

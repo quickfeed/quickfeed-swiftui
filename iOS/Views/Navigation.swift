@@ -19,7 +19,7 @@ struct Navigation: View {
                     }
             }
             if viewModel.user!.isAdmin {
-                Text("AdminCourses")
+                AdminCourses(viewModel: AdminViewModel.shared)
                     .tabItem {
                         Label("Courses", systemImage: "folder")
                     }
