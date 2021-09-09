@@ -30,13 +30,19 @@ class AdminViewModel: UserViewModelProtocol {
         }
     }
     
-    func updateUser(user: User){
+    func updateUser(user: User) -> User?{
         var user = user
         
         user.isAdmin = !user.isAdmin
         
         provider.updateUser(user: user)
         self.getUsers()
+        for element in users {
+            if element.id == user.id {
+                return element
+            }
+        }
+        return nil
     }
     
     // MARK: Courses
@@ -72,6 +78,11 @@ class AdminViewModel: UserViewModelProtocol {
         
         provider.updateCourse(course: course)
         self.getCourses()
+    }
+    
+    // MARK: Enrollments
+    func getEnrollmentByUser(userID: UInt64) -> [Enrollment]?{
+        return provider.getEnrollmentsByUser(userID: userID, userStatus: [Enrollment.UserStatus.student, Enrollment.UserStatus.teacher, Enrollment.UserStatus.pending])
     }
     
     // MARK: Misc

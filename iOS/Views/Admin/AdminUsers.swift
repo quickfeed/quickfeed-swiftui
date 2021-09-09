@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AdminUsers: View {
     @ObservedObject var viewModel: AdminViewModel
+    
     @State var searchQuery: String = ""
     
     func filteredUsers() -> [User] {
@@ -33,7 +34,7 @@ struct AdminUsers: View {
                     List{
                         ForEach(self.filteredUsers(), id: \.self){ user in
                             if user.isAdmin{
-                                NavigationLink(destination: Text(user.name)){
+                                NavigationLink(destination: AdminUserProfile(viewModel: viewModel, user: user)){
                                     Text(user.name != "" ? user.name : user.login)
                                 }
                             }
@@ -44,7 +45,7 @@ struct AdminUsers: View {
                     List{
                         ForEach(self.filteredUsers(), id: \.self){ user in
                             if !user.isAdmin && user.name != ""{
-                                NavigationLink(destination: Text(user.name)){
+                                NavigationLink(destination: AdminUserProfile(viewModel: viewModel, user: user)){
                                     Text(user.name)
                                 }
                             }
