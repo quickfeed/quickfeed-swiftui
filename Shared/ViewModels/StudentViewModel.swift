@@ -22,9 +22,12 @@ class StudentViewModel: UserViewModelProtocol{
         print("New StudentViewModel")
         self.course = course
         
-        self.group = provider.getGroupByUserAndCourse(courseID: course.id, groupID: nil, userID: user.id)
-        
         getAssignments()
+        
+        if hasGroupAssignments(){
+            self.group = provider.getGroupByUserAndCourse(courseID: course.id, groupID: nil, userID: user.id)
+        }
+        
         getSubmissions()
     }
     
