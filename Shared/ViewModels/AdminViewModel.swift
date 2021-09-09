@@ -81,7 +81,7 @@ class AdminViewModel: UserViewModelProtocol {
         self.getCourses()
     }
 
-    func updateCourse(course: Course, name: String, code: String, year: UInt32, tag: String, slipDays: UInt32){
+    func updateCourse(course: Course, name: String, code: String, year: UInt32, tag: String, slipDays: UInt32) -> Course?{
         var course = course
         
         course.name = name
@@ -92,6 +92,13 @@ class AdminViewModel: UserViewModelProtocol {
         
         provider.updateCourse(course: course)
         self.getCourses()
+        
+        for element in courses {
+            if element.id == course.id {
+                return element
+            }
+        }
+        return nil
     }
     
     // MARK: Enrollments

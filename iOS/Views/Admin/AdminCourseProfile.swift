@@ -14,9 +14,9 @@ struct AdminCourseProfile: View {
     
     var body: some View {
         if isEdit {
-            EditCourse(viewModel: viewModel, isEdit: $isEdit, course: course)
+            EditCourse(viewModel: viewModel, isEdit: $isEdit, course: $course)
         } else {
-            CourseProfile(viewModel: viewModel, isEdit: $isEdit, course: course)
+            CourseProfile(viewModel: viewModel, isEdit: $isEdit, course: $course)
         }
     }
 }
@@ -24,7 +24,7 @@ struct AdminCourseProfile: View {
 struct CourseProfile: View {
     @ObservedObject var viewModel: AdminViewModel
     @Binding var isEdit: Bool
-    @State var course: Course
+    @Binding var course: Course
     
     var body: some View {
         VStack{
@@ -82,7 +82,7 @@ struct CourseProfile: View {
 struct EditCourse: View {
     @ObservedObject var viewModel: AdminViewModel
     @Binding var isEdit: Bool
-    @State var course: Course
+    @Binding var course: Course
     
     @State var code: String = ""
     @State var slipDays: UInt32 = 0
@@ -143,7 +143,7 @@ struct EditCourse: View {
                     }
                     .padding(.top)
                     Button(action: {
-                        viewModel.updateCourse(course: course, name: name, code: code, year: year, tag: tag, slipDays: slipDays)
+                        course = viewModel.updateCourse(course: course, name: name, code: code, year: year, tag: tag, slipDays: slipDays)!
                         isEdit = !isEdit
                     }){
                         Text("Update Course")
