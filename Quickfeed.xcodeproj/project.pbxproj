@@ -122,6 +122,7 @@
 		D0CAFD4926B6F5C300AABADF /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CAFD4826B6F5C300AABADF /* Navigation.swift */; };
 		D0CAFD4B26B6FA1700AABADF /* CourseNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CAFD4A26B6FA1700AABADF /* CourseNavigation.swift */; };
 		D0CAFD4E26B7413400AABADF /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CAFD4D26B7413400AABADF /* UserProfile.swift */; };
+		D0FE36BA26EA923100A6EFB3 /* AdminUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FE36B926EA923100A6EFB3 /* AdminUsers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -173,6 +174,7 @@
 		D0F6A13B2609DD5000C1D825 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
 		D0F6A1452609F25500C1D825 /* UserInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformation.swift; sourceTree = "<group>"; };
 		D0F6A14D2609F54300C1D825 /* UserEnrollments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEnrollments.swift; sourceTree = "<group>"; };
+		D0FE36B926EA923100A6EFB3 /* AdminUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminUsers.swift; sourceTree = "<group>"; };
 		FA17B95425EF7D6F008BB07F /* SubmissionReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionReview.swift; sourceTree = "<group>"; };
 		FA17B95C25EF81F1008BB07F /* TranslateStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateStatus.swift; sourceTree = "<group>"; };
 		FA17B96125EF90E6008BB07F /* SubmissionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionInfo.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 				D0CAFD4826B6F5C300AABADF /* Navigation.swift */,
 				D0CAFD4A26B6FA1700AABADF /* CourseNavigation.swift */,
 				D0CAFD4C26B7411000AABADF /* User */,
+				D0FE36B826EA91D900A6EFB3 /* Admin */,
 				D075A50426B7F24E001B5C0F /* Student */,
 			);
 			path = Views;
@@ -378,6 +381,14 @@
 				D01D73302639D95500D94003 /* NewUserEnrollments.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		D0FE36B826EA91D900A6EFB3 /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+				D0FE36B926EA923100A6EFB3 /* AdminUsers.swift */,
+			);
+			path = Admin;
 			sourceTree = "<group>";
 		};
 		FA17B98825F24FC3008BB07F /* Review */ = {
@@ -711,6 +722,7 @@
 				D016189526B5C61500170D52 /* TranslateStatus.swift in Sources */,
 				D0CAFD4E26B7413400AABADF /* UserProfile.swift in Sources */,
 				D016186626B5BCD300170D52 /* QuickFeedApp.swift in Sources */,
+				D0FE36BA26EA923100A6EFB3 /* AdminUsers.swift in Sources */,
 				D016189726B5C61500170D52 /* HelpFunctions.swift in Sources */,
 				D0CAFD4B26B6FA1700AABADF /* CourseNavigation.swift in Sources */,
 				D0CAFD3F26B6F08400AABADF /* LogIn.swift in Sources */,

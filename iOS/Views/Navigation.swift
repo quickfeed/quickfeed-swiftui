@@ -23,7 +23,7 @@ struct Navigation: View {
                     .tabItem {
                         Label("Courses", systemImage: "folder")
                     }
-                Text("AdminUsers")
+                AdminUsers(viewModel: AdminViewModel.shared)
                     .tabItem {
                         Label("Users", systemImage: "person.3")
                     }
