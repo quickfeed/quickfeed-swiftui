@@ -9,8 +9,10 @@ import SwiftUI
 
 struct AdminCourseProfile: View {
     @ObservedObject var viewModel: AdminViewModel
-    @State var course: Course
+    
     @State var isEdit: Bool = false
+    
+    @State var course: Course
     
     var body: some View {
         if isEdit {
@@ -23,7 +25,9 @@ struct AdminCourseProfile: View {
 
 struct CourseProfile: View {
     @ObservedObject var viewModel: AdminViewModel
+    
     @Binding var isEdit: Bool
+    
     @Binding var course: Course
     
     var body: some View {
@@ -81,7 +85,9 @@ struct CourseProfile: View {
 
 struct EditCourse: View {
     @ObservedObject var viewModel: AdminViewModel
+    
     @Binding var isEdit: Bool
+    
     @Binding var course: Course
     
     @State var code: String = ""
