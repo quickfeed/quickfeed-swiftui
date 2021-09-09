@@ -27,7 +27,7 @@ struct AdminNewCourse: View {
         Text("Create New Course at QuickFeed")
             .font(.title)
             .fontWeight(.bold)
-            .padding()
+            .padding([.leading, .bottom, .trailing])
         ScrollView{
             VStack(alignment: .leading){
                 Text("For each new semester of a course, QuickFeed requires a new GitHub organization. This is to keep the student roster for the different runs of the course separate.")
