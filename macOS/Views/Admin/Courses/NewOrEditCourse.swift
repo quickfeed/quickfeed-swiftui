@@ -14,7 +14,7 @@ struct NewOrEditCourse: View {
     var orgUrl: String { return "https://github.com/organizations/\(organization)/settings/oauth_application_policy" }
     @State private var showingAlert = false
     @Environment(\.openURL) var openURL
-    
+
     var body: some View {
         if course == nil{
             Text("Create New Course at QuickFeed")
@@ -42,12 +42,12 @@ struct NewOrEditCourse: View {
                         .padding(.leading)
                     HStack{
                         Text("Please read")
-                        Link(destination: URL(string: "https://github.com/autograde/quickfeed/blob/master/doc/teacher.md")!, label:{
+                        Link(destination: URL(string: "https://github.com/quickfeed/quickfeed/blob/master/doc/teacher.md")!, label:{
                             Text("the documentation")
                         })
                         Text("for further instructions on how to work with the various repositories.")
                     }
-                    
+
                 }
                 .frame(minWidth: 650, minHeight: 170)
                 Form{
@@ -94,7 +94,7 @@ struct NewOrEditCourse: View {
             .navigationTitle("New Course")
             .toolbar{
                 ToolbarItem(placement: .navigation){
-                    
+
                     Toggle(isOn: $editCourse, label: {
                         Image(systemName: "chevron.backward")
                     })
